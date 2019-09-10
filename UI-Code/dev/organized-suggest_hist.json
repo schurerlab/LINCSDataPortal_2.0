@@ -1,0 +1,95 @@
+{
+"shrna": {
+"totalCount":"5",
+"nucleicAcidReagent": {
+"HIST1H1C":"5"
+}
+}
+,
+"smallMolecule": {
+"totalCount":"57",
+"mechanismOfAction": {
+"Histamine H1 receptor antagonist":"37"
+,
+"Histamine H2 receptor antagonist":"3"
+,
+"Histamine H1 receptor agonist":"2"
+,
+"Histamine H2 receptor agonist":"2"
+,
+"Histone deacetylase 1 inhibitor":"2"
+,
+"Histone deacetylase 2 inhibitor":"2"
+,
+"Histone deacetylase 6 inhibitor":"1"
+,
+"Histone deacetylase 8 inhibitor":"1"
+,
+"Histone deacetylase 3":"1"
+,
+"Histone deacetylase 3 inhibitor":"1"
+,
+"Histamine H3 receptor antagonist":"1"
+,
+"Histone deacetylase 11":"1"
+}
+,
+"proteinTarget": {
+"Histamine H1 receptor":"39"
+,
+"Histamine H2 receptor":"5"
+,
+"Histone deacetylase 2":"2"
+,
+"Histone deacetylase 3":"2"
+,
+"Histone deacetylase 1":"2"
+,
+"Histone deacetylase 8":"1"
+,
+"Histamine H3 receptor":"1"
+,
+"Histone deacetylase 11":"1"
+,
+"Histone deacetylase 6":"1"
+}
+,
+"smallMolecule": {
+"2-Methylhistamine":"1"
+,
+"4-Methylhistamine":"1"
+,
+"AC1OEPX8":"1"
+,
+"Betahistine":"1"
+,
+"Betazole":"1"
+,
+"BRD-K83068825":"1"
+,
+"Diphenhydramine":"1"
+,
+"Diphenylpyraline":"1"
+,
+"Ethisterone":"1"
+,
+"Histamine 2HCl":"1"
+,
+"Mebhydrolin":"1"
+,
+"Norethindrone":"1"
+,
+"Promethazine":"1"
+,
+"(S)-Alpha-methylhistamine":"1"
+,
+"Terfenadine":"1"
+,
+"Thonzylamine":"1"
+,
+"Triprolidine":"1"
+,
+"UNII-884KT10YB7":"1"
+}
+}
+}

@@ -1,0 +1,81 @@
+{
+"cells": {
+"totalCount":"4",
+"diseases": {
+"B-cell lymphocytic neoplasm":"2"
+,
+"acute myelogenous leukemia (AML), M3 (promyelocytic)":"1"
+,
+"acute myelogenous leukemia, promyelocytic":"1"
+}
+}
+,
+"smallMolecule": {
+"totalCount":"52",
+"mechanismOfAction": {
+"Hepatocyte growth factor receptor inhibitor":"16"
+,
+"Cytochrome P450 51 inhibitor":"12"
+,
+"Cytochrome P450 19A1 inhibitor":"4"
+,
+"Cytochrome P450 11A1 inhibitor":"2"
+,
+"DNA (cytosine-5)-methyltransferase 1 inhibitor":"2"
+,
+"DNA (cytosine-5)-methyltransferase 3A inhibitor":"2"
+,
+"Cytochrome P450 11B1 inhibitor":"1"
+}
+,
+"proteinTarget": {
+"Hepatocyte growth factor receptor":"16"
+,
+"DNA (cytosine-5)-methyltransferase 1":"2"
+,
+"DNA (cytosine-5)-methyltransferase 3A":"2"
+,
+"Cytochrome P450 11B1, mitochondrial":"1"
+}
+,
+"smallMolecule": {
+"Azacitidine":"2"
+,
+"Aminoglutethimide":"1"
+,
+"Amitriptyline":"1"
+,
+"BSPBIO_000981":"1"
+,
+"Chlorhexidine":"1"
+,
+"Cyclophosphamide":"1"
+,
+"Cytarabine":"1"
+,
+"Cytisine":"1"
+,
+"Cytochalasin B":"1"
+,
+"Decitabine":"1"
+,
+"Estramustine phosphate sodium":"1"
+,
+"Flucytosine":"1"
+,
+"Lexibulin":"1"
+,
+"Liothyronine":"1"
+,
+"Momelotinib":"1"
+,
+"NSC-127716":"1"
+,
+"PRESTWICK3_000866":"1"
+,
+"2'-Deoxycytidine (hydrochloride)":"1"
+,
+"Zalcitabine":"1"
+}
+}
+}

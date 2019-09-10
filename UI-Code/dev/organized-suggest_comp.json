@@ -1,0 +1,76 @@
+{
+"smallMolecule": {
+"totalCount":"34",
+"mechanismOfAction": {
+"Vitamin k epoxide reductase complex subunit 1 isoform 1 inhibitor":"3"
+}
+,
+"proteinTarget": {
+"Vitamin K epoxide reductase complex subunit 1":"3"
+}
+,
+"smallMolecule": {
+"3,5-Bis(4-nitrophenoxy)benzoic acid":"1"
+,
+"4-(3-Ethyl[1,2,4]triazolo[3,4-b][1,3,4]thiadiazol-6-yl)aniline":"1"
+,
+"AC1M52QF":"1"
+,
+"AC1MEZO6":"1"
+,
+"Alexidine":"1"
+,
+"AR-C133057XX":"1"
+,
+"BRD32048":"1"
+,
+"BRD-K95985487-001-01-3":"1"
+,
+"Cefaclor":"1"
+,
+"CHEMBL12760":"1"
+,
+"DASA-58":"1"
+,
+"Dexamethasone":"1"
+,
+"Dobutamine":"1"
+,
+"Dorsomorphin":"1"
+,
+"Enoxacin":"1"
+,
+"Glycerin":"1"
+,
+"HMS2819G15":"1"
+,
+"Lidocaine":"1"
+,
+"Metronidazole":"1"
+,
+"Nisoxetine":"1"
+,
+"Paricalcitol":"1"
+,
+"Perampanel":"1"
+,
+"Phentermine":"1"
+,
+"Prochlorperazine":"1"
+,
+"Pyridoxine":"1"
+,
+"Rimonabant":"1"
+,
+"Salicylic acid":"1"
+,
+"ST51005413":"1"
+,
+"Vindesine":"1"
+,
+"Xanthinol":"1"
+,
+"Zidovudine":"1"
+}
+}
+}

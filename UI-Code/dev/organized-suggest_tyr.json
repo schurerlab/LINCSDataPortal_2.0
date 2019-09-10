@@ -1,0 +1,258 @@
+{
+"smallMolecule": {
+"totalCount":"131",
+"mechanismOfAction": {
+"Tyrosine-protein kinase receptor FLT3 inhibitor":"14"
+,
+"Receptor protein-tyrosine kinase erbB-2 inhibitor":"12"
+,
+"Tyrosine-protein kinase ABL inhibitor":"11"
+,
+"Tyrosine-protein kinase receptor RET inhibitor":"9"
+,
+"Tyrosine-protein kinase JAK2 inhibitor":"6"
+,
+"Tyrosine-protein kinase SRC inhibitor":"4"
+,
+"Receptor protein-tyrosine kinase erbB-4 inhibitor":"4"
+,
+"Tyrosine-protein kinase TIE-2 inhibitor":"4"
+,
+"Tyrosine-protein kinase JAK1  inhibitor":"4"
+,
+"ALK tyrosine kinase receptor inhibitor":"2"
+,
+"Tyrosine-protein kinase BTK inhibitor":"2"
+,
+"Tyrosine-protein kinase FRK inhibitor":"1"
+,
+"Tyrosine-protein kinase HCK  inhibitor":"1"
+,
+"Tyrosine-protein kinase ITK/TSK  inhibitor":"1"
+,
+"Tyrosine-protein kinase BRK inhibitor":"1"
+,
+"Tyrosinase inhibitor":"1"
+,
+"Tyrosine-protein kinase JAK3 inhibitor":"1"
+,
+"Tyrosine-protein kinase LCK inhibitor":"1"
+,
+"Tyrosine-protein kinase Lyn  inhibitor":"1"
+,
+"Receptor tyrosine-protein kinase erbB-3 inhibitor":"1"
+,
+"Protein tyrosine kinase 2 beta inhibitor":"1"
+,
+"Neurotrophic tyrosine kinase receptor type 2 inhibitor":"1"
+,
+"Tyrosine-protein kinase SYK inhibitor":"1"
+,
+"Gamma-amino-N-butyrate transaminase inhibitor":"1"
+}
+,
+"proteinTarget": {
+"Receptor-type tyrosine-protein kinase FLT3":"14"
+,
+"Receptor tyrosine-protein kinase erbB-2":"12"
+,
+"Tyrosine-protein kinase ABL1":"11"
+,
+"Proto-oncogene tyrosine-protein kinase receptor Ret":"9"
+,
+"Tyrosine-protein kinase JAK2":"6"
+,
+"Receptor tyrosine-protein kinase erbB-4":"4"
+,
+"Tyrosine-protein kinase JAK1":"4"
+,
+"Proto-oncogene tyrosine-protein kinase Src":"4"
+,
+"ALK tyrosine kinase receptor":"3"
+,
+"Tyrosine-protein kinase BTK":"2"
+,
+"Tyrosine-protein kinase JAK3":"1"
+,
+"Tyrosine-protein kinase Lck":"1"
+,
+"Tyrosine-protein kinase Lyn":"1"
+,
+"4-aminobutyrate aminotransferase, mitochondrial":"1"
+,
+"Tyrosine-protein kinase SYK":"1"
+,
+"Gamma-aminobutyric acid receptor subunit alpha-1":"1"
+,
+"Gamma-aminobutyric acid receptor subunit beta-3":"1"
+,
+"Protein-tyrosine kinase 2-beta":"1"
+,
+"Protein-tyrosine kinase 6":"1"
+,
+"Receptor tyrosine-protein kinase erbB-3":"1"
+,
+"Tyrosinase":"1"
+,
+"Tyrosine-protein kinase FRK":"1"
+,
+"Tyrosine-protein kinase HCK":"1"
+,
+"Tyrosine-protein kinase ITK/TSK":"1"
+}
+,
+"smallMolecule": {
+"10F-358S":"1"
+,
+"10K-421S":"1"
+,
+"11K-381S":"1"
+,
+"362-74-3":"1"
+,
+"3-Amino-7-hydroxy-3,4-dihydroquinolin-2(1H)-one":"1"
+,
+"423735-93-7":"1"
+,
+"4-(2,4-Dichlorophenoxy)-n-pyridin-3-ylbutanamide":"1"
+,
+"436810-97-8":"1"
+,
+"4L-310S":"1"
+,
+"7Beta-forskolin":"1"
+,
+"AC1MITDB":"1"
+,
+"AC1MITEO":"1"
+,
+"AC1MIUOR":"1"
+,
+"AC1MLULA":"1"
+,
+"AC1MUFF7":"1"
+,
+"AC1MXGX3":"1"
+,
+"AC1MZSEV":"1"
+,
+"AC1NO93H":"1"
+,
+"AG1295":"1"
+,
+"AN-329/15538120":"1"
+,
+"ASN 05443267":"1"
+,
+"BAS 09528148":"1"
+,
+"Benzocaine":"1"
+,
+"BIO2_000330":"1"
+,
+"BRD-K10939925":"1"
+,
+"BSPBIO_003237":"1"
+,
+"Bucladesine":"1"
+,
+"D-64406":"1"
+,
+"Diotyrosine":"1"
+,
+"Dopamine":"1"
+,
+"K114":"1"
+,
+"Metyrapone":"1"
+,
+"MLS000027293":"1"
+,
+"MLS000049028":"1"
+,
+"MLS000070329":"1"
+,
+"MLS000551235":"1"
+,
+"MLS000551404":"1"
+,
+"MLS000559781":"1"
+,
+"MLS000560339":"1"
+,
+"MLS000580382":"1"
+,
+"MLS000582986":"1"
+,
+"MLS000763076":"1"
+,
+"MLS000779999":"1"
+,
+"MLS001206572":"1"
+,
+"N-Methyltyramine":"1"
+,
+"OPREA1_468775":"1"
+,
+"Phenylbutanoic acid":"1"
+,
+"Pterostilbene":"1"
+,
+"Riboflavin":"1"
+,
+"SCHEMBL12187882":"1"
+,
+"SMR000002122":"1"
+,
+"SMR000008531":"1"
+,
+"SMR000011504":"1"
+,
+"SMR000014841":"1"
+,
+"SMR000146144":"1"
+,
+"ST50573378":"1"
+,
+"ST50631045":"1"
+,
+"ST50631159":"1"
+,
+"STK259522":"1"
+,
+"Tyramine":"1"
+,
+"Tyramine O-Sulfate":"1"
+,
+"Tyrosine O-Sulfate":"1"
+,
+"Tyrphostin 1":"1"
+,
+"Tyrphostin 25":"1"
+,
+"Tyrphostin 51":"1"
+,
+"Tyrphostin 8":"1"
+,
+"Tyrphostin A9":"1"
+,
+"Tyrphostin AG-112":"1"
+,
+"Tyrphostin AG-1478":"1"
+,
+"TyrphostinAG835":"1"
+,
+"Tyrphostin AG 879":"1"
+,
+"Vigabatrin":"1"
+,
+"ZINC01435809":"1"
+,
+"ZINC04423993":"1"
+,
+"ZINC3871788":"1"
+,
+"ZM 306416":"1"
+}
+}
+}
