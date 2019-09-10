@@ -36,7 +36,7 @@
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-table": "^4.3.1",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.4.2",
     "react-paginate": "^6.3.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
