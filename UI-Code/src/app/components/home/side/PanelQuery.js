@@ -35,9 +35,7 @@ class PanelQuery extends React.Component {
                 <form onSubmit={this.handleSubmit}>
 
                     <div className="form-group">
-                        <label>
-                            Metadata Search
-                            </label>
+
                         <div className="input-group mb-3">
                             <input
                                 type="text"
@@ -50,51 +48,29 @@ class PanelQuery extends React.Component {
                             />
                             <div className="input-group-append">
                                 <button className="btn btn-secondary"
-                                    type="button" id="button-organized-suggest"
-                                    onClick={() => this.props.querySuggestSubmit(this.props.str_suggest)}>
-                                    Go</button>
+                                        type="button" id="button-organized-suggest"
+                                        onClick={() => this.props.querySuggestSubmit(this.props.str_suggest)}>
+                                    Search</button>
                             </div>
                         </div>
                     </div>
                     {/* <div>
-                        <button className="btn btn-outline-danger btn-sm btn-block"
-                            style={{ "fontSize": "0.7em" }}
-                            type="button" id="button-update-counts"
-                            onClick={() => this.props.updateCounts(this.props.array_terms)}>
-                            update counts</button>
-                    </div> */}
+                     <button className="btn btn-outline-danger btn-sm btn-block"
+                     style={{ "fontSize": "0.7em" }}
+                     type="button" id="button-update-counts"
+                     onClick={() => this.props.updateCounts(this.props.array_terms)}>
+                     update counts</button>
+                     </div> */}
 
-                    <div >
-                        <h5>FACETS</h5>
-                        {
-                            mapObject(this.props, this.props.json_facets, "", function (state, key, lastkey, value) {
-
-                                var segment
-
-                                
-                                if (key === 'segment') {
-
-                                    segment = key
-                                    return <div>
-                                        <div className="badge badge-dark" style={{ "display": "block", "padding": "5px" }}>{value}</div>
-                                    </div>
-                                } else {
-                                    lastkey = lastkey.replace(/\:[0-9]+$/, '').replace(/.*\:/, '')
-                                    return <a className="btn btn-sm btn-outline-warning btn-block"
-                                        > {value} </a>
-                                }
-                            })
-                        }
-                    </div>
 
                     <br />
-                    
+
                     <div >
-                        <h5>SUGGESTED TERMS</h5>
+
 
                         {
                             mapObject(this.props, this.props.json_suggest, "", function (state, key, lastkey, value) {
-                                
+
                                 if (key === 'segment') {
 
                                     segment = key
@@ -106,10 +82,10 @@ class PanelQuery extends React.Component {
                                 if (key === 'preferred_term') {
                                     lastkey = lastkey.replace(/\:[0-9]+$/, '').replace(/.*\:/, '')
                                     return <a className="btn btn-sm btn-outline-warning btn-block"
-                                        style={{ "fontSize": "0.7em" }}
-                                        key={lastkey}
-                                        value={value}
-                                        onClick={() => state.queryTermSubmit(value, segment)}
+                                              style={{ "fontSize": "0.7em" }}
+                                              key={lastkey}
+                                              value={value}
+                                              onClick={() => state.queryTermSubmit(value, segment)}
                                     > {value} </a>
                                 }
 

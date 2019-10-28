@@ -2,6 +2,7 @@ import React from "react";
 
 export class PanelFilter extends React.Component {
     constructor(props) {
+   
         super(props);
         this.state = { value: '' };
         this.state.nsel = Array.from(Array(1000).keys());
@@ -28,7 +29,7 @@ export class PanelFilter extends React.Component {
                     <div className="form-group">
                         <label>
                             Small Molecules
-                        <input
+                            <input
                                 className="form-control form-control-sm"
                                 type="text"
                                 value={this.state.value}
@@ -38,7 +39,7 @@ export class PanelFilter extends React.Component {
                         <div className="form-group">
                             <label>
                                 Redux Test
-                        <select
+                                <select
                                     className="form-control form-control-sm"
                                     type="text"
                                     value={this.state.value}

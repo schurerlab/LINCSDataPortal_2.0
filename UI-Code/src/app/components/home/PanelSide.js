@@ -25,9 +25,9 @@ class PanelSide extends React.Component {
 
             <div>
 
-                <ul className="nav nav-tabs nav-justified">
-                    <li className="nav-item" >
-                        <a className={(() => {
+
+                <div className="nav-item" >
+                    <a className={(() => {
                             switch (this.state.subpanel) {
                                 case 'query':
                                     return "nav-link active";
@@ -35,23 +35,12 @@ class PanelSide extends React.Component {
                                     return "nav-link";
                             }
                         })()}
-                            onClick={() => this.changeSubPanel('query')}>
-                            Query</a>
-                    </li>
-                    <li className="nav-item" >
-                        <a className={(() => {
-                            switch (this.state.subpanel) {
-                                case 'filter':
-                                    return "nav-link active";
-                                default:
-                                    return "nav-link";
-                            }
-                        })()}
-                            onClick={() => this.changeSubPanel('filter')}>
-                            Filter</a>
-                    </li>
-                </ul>
-                <div className="card container border-top-0 border-bottom-0 rounded-0">
+                       onClick={() => this.changeSubPanel('query')}>
+                    </a>
+                </div>
+
+
+                <div className=" border-top-0 border-bottom-0 rounded-0">
 
                     {(() => {
                         switch (this.state.subpanel) {

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://marvinjs.chemicalize.com/v1/b2454419f7a6424495b764ebfb3cab33/client-settings.js"></script>
+    <script src="https://marvinjs.chemicalize.com/v1/client.js"></script>
+</head>
+<body>
+<div id="marvin-test" style="width: 800px; height: 480px"></div>
+<!--<button id="action-button" type="button">Click Me!</button>-->
+<div >
+<button id="getSmilesButton" style="background-color: #3a5278;border-color: #578fc7;color: whitesmoke" >Substructure Search</button>
+<button id="getSimarButton" style="background-color: #3a5278;border-color: #578fc7;color: whitesmoke" >Similarity Search</button>
+</div>
+<script>
+    ChemicalizeMarvinJs.createEditor("#marvin-test").then(function (marvin) {
+        function subStructure() {
+            marvin.exportStructure("smiles").then(function (smiles) {
+                window.open("/beta/perturbation/smiles?"+smiles+"?type=subStructure")
+                console.log(smiles);
+            });
+        }
+        function similarity() {
+            marvin.exportStructure("smiles").then(function (smiles) {
+                console.log(smiles);
+            });
+        }
+
+        document.getElementById("getSmilesButton").addEventListener("click", subStructure);
+        document.getElementById("getSimarButton").addEventListener("click", similarity);
+
+    });
+</script>
+<div>
+</div>
+</body>
+</html>
