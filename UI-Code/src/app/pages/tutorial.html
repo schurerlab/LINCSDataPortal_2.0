@@ -1,0 +1,301 @@
+
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+    <!-- setup 3col/9col grid for toc_float and main content  -->
+    <div class="row-fluid">
+        <div class="col-xs-12 col-sm-4 col-md-3">
+            <div id="TOC" class="tocify">
+            </div>
+        </div>
+
+        <div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+            <div class="fluid-row" id="header">
+
+
+
+                <h1 class="title toc-ignore">LDP 2.0 - Help</h1>
+
+            </div>
+
+
+            <style type="text/css">
+                h1 { /* Header 1 */
+                    font-size: 22px;
+                    color: #446F9C;
+                    font-weight: bold;
+                }
+
+                h2 { /* Header 2 */
+                    font-size: 14px;
+                    color: black;
+                    font-weight: bold;
+                }
+
+                h1.title {
+                    font-size: 30px;
+                    color: #446F9C;
+                }
+
+                body{ /* Normal  */
+                    font-size: 14px;
+                }
+            </style>
+            <p><br></p>
+            <div id="a-about" class="section level1">
+                <h1>A) About</h1>
+                <p><strong>The LINCS Program</strong> <br> The Library of Integrated Network-Based Cellular Signatures (LINCS) is an NIH Common Fund program with the goal of generating a large-scale and comprehensive catalogue of perturbation-response signatures by utilizing a diverse collection of perturbations across many model systems and assay types. <br /></p>
+                <p><strong>The LINCS Data Portal (LDP)</strong> <br> The LINCS Data Portal (LDP) has been the primary access point for the compendium of LINCS data and has been widely utilized. Here we report the first major update of LDP (<a href="http://lincsportal.ccs.miami.edu/beta/" class="uri">http://lincsportal.ccs.miami.edu/beta/</a>) with substantial changes in the data architecture and APIs, a completely redesigned user interface, and enhanced curated metadata annotations to support more advanced, intuitive and deeper querying, exploration and analysis capabilities. The cornerstone of this update has been the decision to reprocess all high-level LINCS datasets and make them accessible at the data point level enabling users to directly access and download any subset of signatures across the entire library independent from the originating source, project or assay. Access to the individual signatures also enables the newly implemented signature search functionality, which utilizes the iLINCS platform to identify conditions that mimic or reverse gene set queries. A newly designed query interface enables global metadata search with autosuggest across all annotations associated with perturbations, model systems, and signatures. <br></p>
+                <p><strong>How to Cite</strong> <br>Coming soon</p>
+                <p><br></p>
+                <hr />
+            </div>
+            <div id="b-current-limitations-upcoming-features" class="section level1">
+                <h1>B) Current Limitations &amp; Upcoming Features</h1>
+                <p><strong>Upcoming Features</strong></p>
+                <p>The following features are in testing phase and will be implemented in the coming months</p>
+                <ul>
+                    <li><p><u>Multiple filters functionality:</u> Filter signatures based on multiple AND / OR terms</p></li>
+                    <li><p><u>Remove signature download limit:</u> Users will be able to download more than 100 signatures at a time</p></li>
+                    <li><p><u>Fully functional tables:</u> All the tables (Perturbation, Model System and Signature) will be fully searchable</p></li>
+                    <li><p><u>Expanded use cases:</u> The help will be expanded with more tutorials based on user feedback</p></li>
+                </ul>
+                <p>For more issues / requests please use our github repository: <a href="https://github.com/schurerlab/LINCSDataPortal_2.0" class="uri">https://github.com/schurerlab/LINCSDataPortal_2.0</a></p>
+                <p><br> <strong>Current Limitations</strong></p>
+                <p><br></p>
+                <hr />
+            </div>
+            <div id="c-tutorials" class="section level1">
+                <h1>C) Tutorials</h1>
+                <div id="data-access-via-gcp" class="section level2">
+                    <h2>Data Access via GCP</h2>
+                    <p>LDP 2.0 can be accessed through the Google Cloud Platform. <br></p>
+                    <p><strong>Step1 :</strong> Visit <a href="https://console.cloud.google.com/bigquery?p=bigquery-public-data&amp;d=umiami_lincs" class="uri">https://console.cloud.google.com/bigquery?p=bigquery-public-data&amp;d=umiami_lincs</a></p>
+                    <p><strong>Step2 :</strong> Paste the SQL query that was downloaded from LDP 2.0</p>
+                    <p><strong>Step3 :</strong> Press run and retrieve signatures</p>
+                    <p><br></p>
+                </div>
+                <div id="data-access-via-r" class="section level2 tabset">
+                    <h2>Data Access via R</h2>
+                    <div id="signatures-by-perturbation" class="section level3">
+                        <h3>Signatures by perturbation</h3>
+                        <p><br> <strong>Step 1: Identify perturbagens that match the keyword: “<em>sorafenib</em>”</strong> <br>In this example we can see that our keyword matched only one perturbagen with <em>hit_object_id</em> = 16626 by matching to the synonyms “<em>Sorafenib</em>” and “<em>Sorafenib tosylate</em>”.</p>
+<pre class="r"><code>library(httr)
+library(jsonlite)
+library(data.table)
+url  &lt;- &quot;http://dev3.ccs.miami.edu:8080&quot;
+
+# sotrafenib is our keyword that we want to match against the perturbation name
+perturbation_name &lt;- &quot;sorafenib&quot;
+path_name &lt;- paste(&quot;sigc-api/search/suggest?term=&quot;,perturbation_name,sep=&quot;&quot;)
+raw_name &lt;-  GET(url = url, path = path_name)
+raw_name_content &lt;- rawToChar(raw_name$content)
+name_content &lt;- fromJSON(raw_name_content)
+
+# these are all the perturbagens that matched our keyword
+data.table(name_content[[&quot;data&quot;]][[&quot;name&quot;]])</code></pre>
+                        <div data-pagedtable="false">
+                            <script data-pagedtable-source type="application/json">
+                                {"columns":[{"label":["preferred_term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hit_object_class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["suggest_term"],"name":[3],"type":["chr"],"align":["left"]},{"label":["hit_type"],"name":[4],"type":["chr"],"align":["left"]},{"label":["hit_object_id"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"Sorafenib","2":"small molecule","3":"Sorafenib","4":"name","5":"16626"},{"1":"Sorafenib","2":"small molecule","3":"Sorafenib","4":"name","5":"16626"},{"1":"Sorafenib","2":"small molecule","3":"Sorafenib tosylate","4":"name","5":"16626"},{"1":"Sorafenib","2":"small molecule","3":"Sorafenib Tosylate","4":"name","5":"16626"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+                            </script>
+                        </div>
+                        <p><br /> <strong>Step 2: Obtain all the signature ids for the above perturbagens</strong> <br>We will then use the perturbagen id (<em>hit_object_id</em>) that we got from above to get all the <em>signature_ids</em> that are associated with it.</p>
+<pre class="r"><code>#get all the perturbagen IDs that matched our keyword from step 1
+small_molecule_id &lt;- unique(name_content[[&quot;data&quot;]][[&quot;name&quot;]]$hit_object_id)
+
+path_name &lt;- paste(&quot;sigc-api/small-molecule/fetch-by-id?id=&quot;,small_molecule_id,&quot;&amp;returnSignatureIDs=true&quot;,sep=&quot;&quot;)
+raw_name &lt;-  GET(url = url, path = path_name)
+raw_name_content &lt;- rawToChar(raw_name$content)
+name_content2 &lt;- fromJSON(raw_name_content)
+
+#Signature IDs of sorafenib, annotated by assay type
+sig &lt;- as.data.frame(name_content2[[&quot;data&quot;]][[&quot;signature&quot;]])
+
+#Here we can see that we have 2 &quot;Binding Assay&quot; signatures and 284 &quot;Gene Expression&quot; signatures
+table(sig$assay_category)</code></pre>
+<pre><code>##
+##         binding gene expression
+##               2             284</code></pre>
+                        <p><br /></p>
+                        <p><strong>Step 3: Obtain the signature Data for the above signature IDs</strong> <br>Using the signature IDs from above we can now obtain the Signatures themselves. In this example we are requesting Gene Expression signatures.</p>
+<pre class="r"><code>#Filter for &quot;gene expression&quot; Signature IDs
+gene_expr_ids &lt;- sig[which(sig$assay_category==&quot;gene expression&quot;),&quot;signature_id&quot;]
+gene_expr_ids2 &lt;- paste(&quot;id=&quot;,gene_expr_ids,sep=&quot;&quot;)
+gene_expr_ids3 &lt;- paste(gene_expr_ids2,collapse=&quot;&amp;&quot;)
+
+# the &quot;onlyLandmarkGenes=true&quot; statement brings in only the 978 L1000 genes
+path_name &lt;- paste(&quot;sigc-api/signature/fetch-by-id?&quot;,gene_expr_ids3,&quot;&amp;onlyLandmarkGenes=true&quot;,sep=&quot;&quot;)
+raw_name &lt;-  GET(url = url, path = path_name)
+raw_name_content &lt;- rawToChar(raw_name$content)
+name_content3 &lt;- fromJSON(raw_name_content)
+
+#rows are the individual signatures and the columsn of the dataframe are the Gene Symbols
+Gene_Expression_Data_Matrix &lt;- name_content3[[&quot;data&quot;]][[&quot;data&quot;]]</code></pre>
+                        <p><br /></p>
+                        <p><strong>Step 4: Obtain the signature Metadata for the above signature IDs</strong> <br>Apart from the Signature Data, we can also obtain the corresponding Signature Metadata.</p>
+<pre class="r"><code>#name_content3[[&quot;data&quot;]][[&quot;perturbagenClass&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;perturbagenID&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;modelSystem&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;componentObjectClass&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;signatureID&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;concentration&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;concentrationUnits&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;timepoint&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;timepointUnits&quot;]]</code></pre>
+                    </div>
+                    <div id="signatures-by-model-system" class="section level3">
+                        <h3>Signatures by model system</h3>
+                        <p><br> <strong>Step 1: Identify model systems that match the keyword: “MCF10A”</strong> <br>In this example we can see that our keyword matched only one model system with <em>hit_object_id</em> = 85.</p>
+<pre class="r"><code>library(httr)
+library(jsonlite)
+library(data.table)
+url  &lt;- &quot;http://dev3.ccs.miami.edu:8080&quot;
+
+# MCF10A is our keyword that we want to match against the perturbation name
+model_system_name &lt;- &quot;MCF10A&quot;
+path_name &lt;- paste(&quot;sigc-api/search/suggest?term=&quot;,model_system_name,sep=&quot;&quot;)
+raw_name &lt;-  GET(url = url, path = path_name)
+raw_name_content &lt;- rawToChar(raw_name$content)
+name_content &lt;- fromJSON(raw_name_content)
+
+# these are all the model systems that matched our keyword
+data.table(name_content[[&quot;data&quot;]][[&quot;name&quot;]])</code></pre>
+                        <div data-pagedtable="false">
+                            <script data-pagedtable-source type="application/json">
+                                {"columns":[{"label":["preferred_term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hit_object_class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["suggest_term"],"name":[3],"type":["chr"],"align":["left"]},{"label":["hit_type"],"name":[4],"type":["chr"],"align":["left"]},{"label":["hit_object_id"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"MCF-10A","2":"cell line","3":"MCF10A","4":"name","5":"85"},{"1":"MCF-10A","2":"cell line","3":"MCF10a","4":"name","5":"85"},{"1":"MCF-10A","2":"cell line","3":"MCF10A","4":"name","5":"85"},{"1":"MCF-10A","2":"cell line","3":"MCF10A_CVCL0598","4":"name","5":"85"},{"1":"MCF-10A","2":"cell line","3":"MCF10A_CVCL0598-ATCCOwn_CRL10317_ICBP43_0xnot|available","4":"name","5":"85"},{"1":"MCF-10A","2":"cell line","3":"MCF10A_CVCL0598-ATCCOwn_CRL10317_ICBP43_5x14","4":"name","5":"85"},{"1":"MCF-10A","2":"cell line","3":"MCF10A-Dx1","4":"name","5":"85"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+                            </script>
+                        </div>
+                        <p><br></p>
+                        <p><strong>Step 2: Obtain all the signature ids for the above model system</strong> <br>We will then use the model system id (<em>hit_object_id</em>) that we got from above to get all the <em>signature_ids</em> that are associated with it. We can see that MCF10A has been used in cell phenotype, gene expression, epigenetic and proteomic signatures.</p>
+<pre class="r"><code>#get all the model system IDs that matched our keyword from step 1
+model_system_id &lt;- unique(name_content[[&quot;data&quot;]][[&quot;name&quot;]]$hit_object_id)
+
+path_name &lt;- paste(&quot;sigc-api/cell-line/fetch-by-id?id=&quot;,model_system_id,&quot;&amp;returnSignatureIDs=true&quot;,sep=&quot;&quot;)
+raw_name &lt;-  GET(url = url, path = path_name)
+raw_name_content &lt;- rawToChar(raw_name$content)
+name_content2 &lt;- fromJSON(raw_name_content)
+
+#Signature IDs of sorafenib, annotated by assay type
+sig &lt;- as.data.frame(name_content2[[&quot;data&quot;]][[&quot;signature&quot;]])
+
+#Here we can see that we have 2 &quot;Binding Assay&quot; signatures and 284 &quot;Gene Expression&quot; signatures
+table(sig$assay_category)</code></pre>
+<pre><code>##
+##  cell phenotype      epigenetic gene expression      proteomics
+##            8232              84            3240              82</code></pre>
+                        <p><strong>Step 3: Obtain the signature Data for the above signature IDs</strong> <br>Using the signature IDs from above we can now obtain the Signatures themselves. In this example we are requesting Gene Expression signatures.</p>
+<pre class="r"><code>#Filter for &quot;gene expression&quot; Signature IDs
+gene_expr_ids &lt;- sig[which(sig$assay_category==&quot;gene expression&quot;),&quot;signature_id&quot;]
+gene_expr_ids &lt;- gene_expr_ids[1:50]
+gene_expr_ids2 &lt;- paste(&quot;id=&quot;,gene_expr_ids,sep=&quot;&quot;)
+gene_expr_ids3 &lt;- paste(gene_expr_ids2,collapse=&quot;&amp;&quot;)
+
+# the &quot;onlyLandmarkGenes=true&quot; statement brings in only the 978 L1000 genes
+path_name &lt;- paste(&quot;sigc-api/signature/fetch-by-id?&quot;,gene_expr_ids3,&quot;&amp;onlyLandmarkGenes=true&quot;,sep=&quot;&quot;)
+raw_name &lt;-  GET(url = url, path = path_name)
+raw_name_content &lt;- rawToChar(raw_name$content)
+name_content3 &lt;- fromJSON(raw_name_content)
+
+#rows are the individual signatures and the columsn of the dataframe are the Gene Symbols
+Gene_Expression_Data_Matrix &lt;- name_content3[[&quot;data&quot;]][[&quot;data&quot;]]</code></pre>
+                        <p><br /></p>
+                        <p><strong>Step 4: Obtain the signature Metadata for the above signature IDs</strong> <br>Apart from the Signature Data, we can also obtain the corresponding Signature Metadata.</p>
+<pre class="r"><code>#name_content3[[&quot;data&quot;]][[&quot;perturbagenClass&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;perturbagenID&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;modelSystem&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;componentObjectClass&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;signatureID&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;concentration&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;concentrationUnits&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;timepoint&quot;]]
+#name_content3[[&quot;data&quot;]][[&quot;timepointUnits&quot;]]</code></pre>
+                    </div>
+                </div>
+                <div id="section" class="section level2">
+                    <h2></h2>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    // add bootstrap table styles to pandoc tables
+    function bootstrapStylePandocTables() {
+        $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+    }
+    $(document).ready(function () {
+        bootstrapStylePandocTables();
+    });
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+    $(document).ready(function () {
+        window.buildTabsets("TOC");
+    });
+
+    $(document).ready(function () {
+        $('.tabset-dropdown > .nav-tabs > li').click(function () {
+            $(this).parent().toggleClass('nav-tabs-open')
+        });
+    });
+</script>
+
+<!-- code folding -->
+
+<script>
+    $(document).ready(function ()  {
+
+        // move toc-ignore selectors from section div to header
+        $('div.section.toc-ignore')
+                .removeClass('toc-ignore')
+                .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+        // establish options
+        var options = {
+            selectors: "h1,h2,h3",
+            theme: "bootstrap3",
+            context: '.toc-content',
+            hashGenerator: function (text) {
+                return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+            },
+            ignoreSelector: ".toc-ignore",
+            scrollTo: 0
+        };
+        options.showAndHide = true;
+        options.smoothScroll = true;
+
+        // tocify
+        var toc = $("#TOC").tocify(options).data("toc-tocify");
+    });
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+    (function () {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+        document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+</script>
+
+</body>
+

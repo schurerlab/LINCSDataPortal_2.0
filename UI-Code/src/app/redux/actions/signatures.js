@@ -80,3 +80,10 @@ export function setCountSignaturesTotal(n) {
 
     };
 }
+
+export function setSignature(json) {
+    return {
+        type: "SET_SHOW_SIGNATURES",
+        payload: json
+    }
+}

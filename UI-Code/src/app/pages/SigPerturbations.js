@@ -1,21 +1,22 @@
 import React from "react";
+import { connect } from "react-redux"
 
-import TablePerturbations from "../components/home/TablePerturbations";
-import PanelSide from "../components/home/PanelSide";
+import Perturbations from "../components/perturbations/Perturbations";
+import PerturbationDetail from "../components/perturbations/PerturbationDetail"
+// import PerturbationsSearch from "../components/perturbations/";
+// import PerturbationsDescription from "../components/perturbations/PerturbationsDescription";
+// import PerturbationsAbout from "../components/perturbations/PerturbationsAbout";
 
-export const SigPerturbations = (props) => {
-    return (
-        <div >
-            <div className="row">
-                <div className="col-md-3">
-                    <PanelSide />
-                </div>
-                <div className="col-md-9">
-                    <TablePerturbations />
-                </div>
-                
-            </div>
-        </div>
-    )
+
+export default class SigPerturbations extends React.Component{
+
+    render() {
+      return (
+          <div >
+              <Perturbations></Perturbations>
+
+          </div>
+
+      )
+    }
 }
-

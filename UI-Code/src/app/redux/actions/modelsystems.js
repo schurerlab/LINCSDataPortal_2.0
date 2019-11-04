@@ -78,3 +78,10 @@ export function setDataTableModelSystems(json) {
         payload: json
     };
 }
+
+export function setShowModelSystem(json) {
+  return {
+    type: "SET_SHOW_MODELSYSTEM",
+    payload: json   
+  }
+}

@@ -5,7 +5,8 @@ const init_state_modelsystems = {
     n_diseases: '-',
     n_tissuetypes: '-',
     n_modelsystems: '-',
-    data_table_modelsystems: [{}]
+    data_table_modelsystems: [{}],
+    showModelSystem: null
 };
 
 const modelsystemsReducer = (state = init_state_modelsystems, action) => {
@@ -45,6 +46,12 @@ const modelsystemsReducer = (state = init_state_modelsystems, action) => {
             state = {
                 ...state,
                 data_table_modelsystems: action.payload
+            }
+            break;
+        case "SET_SHOW_MODELSYSTEM":
+            state = {
+                ...state,
+                showModelSystem: action.payload
             }
             break;
     }

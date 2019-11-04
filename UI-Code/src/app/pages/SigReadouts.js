@@ -1,9 +1,10 @@
 import React from "react";
+import StructureSearch from "../components/home/StructureSearch";
 
 export const SigReadouts = (props) => {
     return (
         <div>
-            <h1>Readouts</h1>
+            <StructureSearch/>
         </div>
     )
 }

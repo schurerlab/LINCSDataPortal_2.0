@@ -2,20 +2,28 @@ import React from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+import '../../index.css'
 import { Navbar } from "./Navbar";
+import { Footer } from "./Footer";
 import { SigHome } from "../pages/SigHome";
+import { Help } from "../pages/Help";
+import { SigAssays } from "../pages/SigAssays";
 import { SigDatasets } from "../pages/SigDatasets";
-import { SigPerturbations } from "../pages/SigPerturbations";
+import SigPerturbations from "../pages/SigPerturbations";
 import { SigModels } from "../pages/SigModels";
 import { SigReadouts } from "../pages/SigReadouts";
 import { SigSignatures } from "../pages/SigSignatures";
+import PerturbationShowPage from "../components/perturbations/PerturbationShowPage";
+import ModelSystemLandingPage from "../components/modelSystems/ModelSystemLandingPage";
+import AssayLandingPage from "../components/assays/AssayLandingPage";
+import DatasetLandingPage from "../components/datasetLandingPages/DatasetLandingPage";
 
-import { getCounts } from "../redux/fetch/get-counts";
+// import { getCounts } from "../redux/fetch/get-counts";
 
 class Main extends React.Component {
 
     // SETING THE INITIAL STATE OF THE APP
-    
+
     componentDidMount() {
         // this.props.getCounts();
     }
@@ -26,20 +34,33 @@ class Main extends React.Component {
                 <div>
                     <Navbar />
 
-                    <br /><br /><br /><br /><br />
 
-                    <div className="container">
+                    <div style={{ marginTop: "6em"}} className="offset-1 col-md-10 col-sm-12 col-lg-10">
 
-                        <Route exact path="/" render={(props) => (
-                            <Redirect from="/" to="/home" />
+                        <Route exact path="/signatures" render={(props) => (
+                            <Redirect from="/signatures" to="/signatures/home" />
                         )} />
-                        <Route path="/home" render={(props) => <SigHome />} />
-                        <Route path="/datasets" render={(props) => <SigDatasets />} />
-                        <Route path="/perturbations" render={(props) => <SigPerturbations />} />
-                        <Route path="/models" render={(props) => <SigModels />} />
-                        <Route path="/readouts" render={(props) => <SigReadouts />} />
-                        <Route path="/signatures" render={(props) => <SigSignatures />} />
+                        <Route path="/signatures/home" render={(props) => <SigHome />} />
+                        <Route exact path="/signatures/assays" render={ (props) => <SigAssays />} />
+                        <Route exact path="/signatures/assays/:dataset_id" render={
+                          (props) => <AssayLandingPage id={props.match.params.dataset_id}/>}
+                        />
+                        <Route exact path="/signatures/datasets/:dataset_id" render={
+                          (props) => <DatasetLandingPage id={props.match.params.dataset_id}/>}
+                        />
+                        <Route exact path="/signatures/perturbations" render={(props) => <SigPerturbations />} />
+                        <Route exact path="/signatures/perturbations/:perturbation_id" render={
+                          (props) => <PerturbationShowPage id={props.match.params.perturbation_id}/>}
+                        />
+                        <Route exact path="/signatures/models" render={(props) => <SigModels />} />
+                        <Route exact path="/signatures/models/:id" render={
+                          (props) => <ModelSystemLandingPage id={props.match.params.id}/>}
+                        />
+                        <Route path="/signatures/structure-search" render={(props) => <SigReadouts />} />
+                        <Route path="/signatures/signatures" render={(props) => <SigSignatures />} />
+                        <Route path="/signatures/help" render={(props) => <Help/>} />
                     </div>
+                    <Footer />
                 </div>
             </BrowserRouter>
         )

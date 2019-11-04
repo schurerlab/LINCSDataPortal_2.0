@@ -6,7 +6,8 @@ const init_state_perturbations = {
     n_antibodies: '-',
     n_microenvironments: '-',
     n_perturbations: '-',
-    data_table_perturbagens: [{}]
+    data_table_perturbagens: [{}],
+    showPerturbation: null
 };
 
 const perturbationsReducer = (state = init_state_perturbations, action) => {
@@ -52,6 +53,12 @@ const perturbationsReducer = (state = init_state_perturbations, action) => {
             state = {
                 ...state,
                 data_table_perturbagens: action.payload
+            }
+            break;
+        case "SET_SHOW_PERTURBATION":
+            state = {
+              ...state,
+              showPerturbation: action.payload
             }
             break;
     }

@@ -1,3 +1,5 @@
+// need to update setCountMicroevnironments, and misspelled Perturbations
+
 export function nullCountPerturbations() {
     return dispatch => {
         dispatch(setCountSmallMolecules());
@@ -88,7 +90,7 @@ export function setCountPerterbationsTotal(n) {
     };
 }
 
-export function setDataTablePerterbagans(json) {
+export function setDataTablePerturbagens(json) {
 
     if (json === undefined)
         json = NaN

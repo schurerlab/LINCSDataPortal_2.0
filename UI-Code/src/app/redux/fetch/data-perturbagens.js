@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { url_server } from "../server";
 
-import { setDataTablePerterbagans } from "../actions/perturbations";
+import { setDataTablePerturbagens } from "../actions/perturbations";
 
-export function getDataTablePerterbagans(array_terms, result_group) {
+export function getDataTablePerturbagens(array_terms, result_group) {
+    // This function formats the data returned from the GET fetch for
+    // perturbagens and then dispatches that data to the store. 
 
     // let target_url = url_server + "fetch-perturbagens?term=" + encodeURI(array_terms.join())
     let target_url = 'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch?limit=100'
@@ -26,22 +28,23 @@ export function getDataTablePerterbagans(array_terms, result_group) {
 
 
                     if (json_d[key].signature_category_count['gene expression'] != undefined) {
-                        gcol = "X";
+                        gcol = "/media/icons/Arrow_Icon.png";
                     }
                     if (json_d[key].signature_category_count['proteomics'] != undefined) {
-                        pcol = "X";
+                        pcol = "/media/icons/Arrow_Icon.png";
                     }
                     if (json_d[key].signature_category_count['binding'] != undefined) {
-                        bcol = "X";
+                        bcol = "/media/icons/Arrow_Icon.png";
                     }
                     if (json_d[key].signature_category_count['epigenetic'] != undefined) {
-                        ecol = "X";
+                        ecol = "/media/icons/Arrow_Icon.png";
                     }
                     if (json_d[key].signature_category_count['imaging'] != undefined) {
-                        icol = "X";
+                        icol = "/media/icons/Arrow_Icon.png";
                     }
 
                     return {
+                        "id": json_d[key].perturbagen_id[0],
                         "sm_name": json_d[key].sm_name.join(',').replace(/^(.{20}).+/, "$1…"),
                         "moa": json_d[key].moa.join(',').replace(/^(.{20}).+/, "$1…"),
                         "target": json_d[key].target.join(',').replace(/^(.{20}).+/, "$1…"),
@@ -54,11 +57,10 @@ export function getDataTablePerterbagans(array_terms, result_group) {
                     }
                 });
 
-                dispatch(setDataTablePerterbagans(json_m));
+                dispatch(setDataTablePerturbagens(json_m));
 
             }
             ).catch((response) => console.log(response, 'fetch failure !!!'));
 
     }
 }
-
