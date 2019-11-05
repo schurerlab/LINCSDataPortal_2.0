@@ -40,7 +40,7 @@ class PanelSignatures extends React.Component {
 
                 <div className="" style={{ borderColor: 'orange', height: '360px' }}>
                     <br />
-                    <Link to={"/beta/signatures?signature=Gene Expressions"} style={{ textDecoration: 'none' }}>
+                    <Link to={"/signatures/signatures?signature=Gene Expressions"} style={{ textDecoration: 'none' }}>
                         <div className="row">
                             <button className="btn d-flex w-100"
                                     style={{  color:'gray'  }}>
@@ -53,7 +53,7 @@ class PanelSignatures extends React.Component {
                             </button>
                         </div>
                         </Link>
-                    <Link to={"/beta/signatures?signature=Proteomics"} style={{ textDecoration: 'none' }}>
+                    <Link to={"/signatures/signatures?signature=Proteomics"} style={{ textDecoration: 'none' }}>
                         <div className="row">
                             <button className="btn d-flex w-100"
                                     style={{  color:'gray'  }}>
@@ -66,7 +66,7 @@ class PanelSignatures extends React.Component {
                             </button>
                         </div>
                         </Link>
-                    <Link to={"/beta/signatures?signature=Epigenetic"} style={{ textDecoration: 'none' }}>
+                    <Link to={"/signatures/signatures?signature=Epigenetic"} style={{ textDecoration: 'none' }}>
                         <div className="row">
                             <button className="btn  d-flex w-100"
                                     style={{ color:'gray'  }}>
@@ -79,7 +79,7 @@ class PanelSignatures extends React.Component {
                             </button>
                         </div>
 </Link>
-                    <Link to={"/beta/signatures?signature=Cell Phenotype"} style={{ textDecoration: 'none' }}>
+                    <Link to={"/signatures/signatures?signature=Cell Phenotype"} style={{ textDecoration: 'none' }}>
                         <div className="row">
                             <button className="btn  d-flex w-100"
                                     style={{  color:'gray'  }}>
@@ -92,7 +92,7 @@ class PanelSignatures extends React.Component {
                             </button>
                         </div>
 </Link>
-                    <Link to={"/beta/signatures?signature=Protein Binding"} style={{ textDecoration: 'none' }}>
+                    <Link to={"/signatures/signatures?signature=Protein Binding"} style={{ textDecoration: 'none' }}>
                         <div className="row">
                             <button className="btn  d-flex w-100"
                                     style={{  color:'gray'  }}>

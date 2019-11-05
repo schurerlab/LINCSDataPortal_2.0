@@ -19,7 +19,7 @@ class PanelModelSystems extends React.Component {
 
                 <div className=" " style={{ borderColor: 'green', height: '360px' }}>
                     <br />
-                    <Link to={"/beta/models"} style={{ textDecoration: 'none' }}>
+                    <Link to={"/signatures/models"} style={{ textDecoration: 'none' }}>
                         <div className="row">
                             <button className="btn d-flex w-100"
                                     style={{ borderColor: 'white', color:'gray'  }}>

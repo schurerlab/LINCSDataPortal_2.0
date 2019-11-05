@@ -27,7 +27,7 @@ class PanelPerturbations extends React.Component {
                 <div className="" style={{  height: '360px' }}>
                     <br />
 
-                    <Link to={"/beta/perturbations"} style={{ textDecoration: 'none' }}>
+                    <Link to={"/signatures/perturbations"} style={{ textDecoration: 'none' }}>
                         <div className="row">
                             <button className="btn  d-flex w-100"
                                     style={{ borderColor: 'white', color:'gray' }}>
