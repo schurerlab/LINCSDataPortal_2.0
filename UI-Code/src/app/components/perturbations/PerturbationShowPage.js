@@ -186,20 +186,20 @@ class PerturbationShowPage extends React.Component {
                  <tr  >
                     <th scope="row" >Gene Expression :</th>
                     <td>
-                        <a href={'/beta/signatures?signature=Gene Expressions&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['gene expression']}</a>
+                        <a href={'/signatures/signatures?signature=Gene Expressions&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['gene expression']}</a>
                     </td>
                 </tr>
 
                  <tr  >
                     <th scope="row" >Epigenetic :</th>
                     <td>
-                        <a href={'/beta/signatures?signature=Epigenetic&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['epigenetic']}</a>
+                        <a href={'/signatures/signatures?signature=Epigenetic&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['epigenetic']}</a>
                     </td>
                 </tr>
                <tr  >
                     <th scope="row" >Protein Binding :</th>
                     <td>
-                        <a href={'/beta/signatures?signature=Protein Binding&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['binding']}</a>
+                        <a href={'/signatures/signatures?signature=Protein Binding&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['binding']}</a>
                     </td>
                 </tr>
                   </tbody>
@@ -209,12 +209,12 @@ class PerturbationShowPage extends React.Component {
               <tr  >
                     <th scope="row" >Protein Expression :</th>
                     <td>
-            <a href={'/beta/signatures?signature=Proteomics&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['proteomics']}</a>                    </td>
+            <a href={'/signatures/signatures?signature=Proteomics&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['proteomics']}</a>                    </td>
                 </tr>
                 <tr  >
                     <th scope="row" >Cell Phenotype :</th>
                     <td>
-                    <a href={'/beta/signatures?signature=Cell Phenotype&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['cell phenotype']}</a>
+                    <a href={'/signatures/signatures?signature=Cell Phenotype&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['cell phenotype']}</a>
                     </td>
                 </tr>
 

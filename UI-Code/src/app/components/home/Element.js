@@ -59,7 +59,7 @@ class Element extends Component {
         let url;
         if(type==="Cell line" && cat==="organ/tissue"){
 
-            url= "/beta/models?type="+type+"&class="+cat+"&term="+ k
+            url= "/signatures/models?type="+type+"&class="+cat+"&term="+ k
             window.open(url,'_self');
         }
         if(type==="Cell line" && cat==="name"){
@@ -71,21 +71,21 @@ class Element extends Component {
                 .get(findID)
                 .then((res) => {
                     objectid =res.data.data.name[0].hit_object_id;
-                    url= "/beta/models/"+objectid;
+                    url= "/signatures/models/"+objectid;
                     window.open(url,'_self');
 
                 })
         }
         if(type==="Cell line" && cat==="disease"){
-            url= "/beta/models?type="+type+"&class="+cat+"&term="+ k
+            url= "/signatures/models?type="+type+"&class="+cat+"&term="+ k
             window.open(url,'_self');
         }
         if(type==="Small Molecules" && cat==="mechanism of action"){
-            url= "/beta/perturbations?type="+type+"&class="+cat+"&term="+ k
+            url= "/signatures/perturbations?type="+type+"&class="+cat+"&term="+ k
             window.open(url,'_self');
         }
         if(type==="Small Molecules" && cat==="small molecule target"){
-                url= "/beta/perturbations?type="+type+"&class="+cat+"&term="+ k
+                url= "/signatures/perturbations?type="+type+"&class="+cat+"&term="+ k
                 window.open(url,'_self');
         }
         if(type==="Small Molecules" && cat==="name"){
@@ -100,7 +100,7 @@ class Element extends Component {
                     function findIndex(jsonData, findThis){
                         var indexNum = data.findIndex(obj => obj.preferred_term == findThis);
                         objectid =res.data.data.name[indexNum].hit_object_id;
-                        url= "/beta/perturbations/"+objectid;
+                        url= "/signatures/perturbations/"+objectid;
                         window.open(url,'_self');
                     }
                     findIndex(data, k);
@@ -108,31 +108,31 @@ class Element extends Component {
         }
         if(type==="Gene Expression" ){
 
-            url= "/beta/signatures?signature="+type+"&class="+cat+"&term="+ k
+            url= "/signatures/signatures?signature="+type+"&class="+cat+"&term="+ k
             window.open(url,'_self');
         }
         if(type==="Protein Expression" ){
 
-            url= "/beta/signatures?signature="+type+"&class="+cat+"&term="+ k
+            url= "/signatures/signatures?signature="+type+"&class="+cat+"&term="+ k
             window.open(url,'_self');
         }
         if(type==="Assay" ){
 
-            url= "/beta/assays?class="+cat+"&term="+ k
+            url= "/signatures/assays?class="+cat+"&term="+ k
             window.open(url,'_self');
         }
         if(type==="Epigenetic" ){
 
-            url= "/beta/signatures?signature="+type+"&class="+cat+"&term="+ k
+            url= "/signatures/signatures?signature="+type+"&class="+cat+"&term="+ k
             window.open(url,'_self');
         }
         if(type==="Protein binding" ){
 
-            url= "/beta/signatures?signature="+"Protein Binding"+"&class="+cat+"&term="+ k
+            url= "/signatures/signatures?signature="+"Protein Binding"+"&class="+cat+"&term="+ k
             window.open(url,'_self');
         }
         if(type===undefined){
-            url= "/beta/signatures?signature="+'Gene Expression'+"&class="+cat+"&term="+ k
+            url= "/signatures/signatures?signature="+'Gene Expression'+"&class="+cat+"&term="+ k
             window.open(url,'_self');
         }
         e.preventDefault();
