@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem, Button,Table} from 'react-bootstrap';
 import axios from 'axios'
-import Signatures from '../../components/signatures/Signatures';
+import SignaturesZScores from '../../components/signatures/SignaturesZScores';
 
 
 
@@ -86,9 +86,11 @@ class SignatureSearch extends Component {
         }
     ).then((response) => {
             this.setState({loading:false});
+            console.log(response.data.sigScores);
             var newArray = response.data.sigScores.map(el =>{
                 return el.lincsSigID
             });
+            console.log(newArray);
             this.setState({cids:newArray});
 
         })
@@ -117,7 +119,7 @@ class SignatureSearch extends Component {
                  {this.state.loading == true ?   <div className="row text-center lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> : "" }
                 </div>
             </div>
-            {this.state.cids.length > 0   ?  <Signatures centerid={this.state.cids}/> : ''}
+            {this.state.cids.length > 0   ?  <SignaturesZScores centerid={this.state.cids}/> : ''}
 
         </div>;
     }
