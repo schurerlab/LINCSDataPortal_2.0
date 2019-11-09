@@ -110,9 +110,9 @@ class SignaturesZScores extends React.Component {
             var lincsSigIDs = props.data.map(el =>{
                 return el.lincsSigID
             });
-            // var zScores = props.data.map(el =>{
-            //     return el.zScores
-            // });
+            var zScores = props.data.map(el =>{
+                return el.zScores
+            });
 
             this.state = {
                 dowloadLoading: false,
@@ -124,7 +124,7 @@ class SignaturesZScores extends React.Component {
                 page:'0',
                 signatureIds:[],
                 centerIds: lincsSigIDs,
-                // zScores: zScores,
+                zScores: zScores,
                 text:'MCF-10A',
                 data:[],
                 signature: this.rename('Gene Expressions'),
@@ -199,7 +199,7 @@ class SignaturesZScores extends React.Component {
     download() {
         console.log("We're here: download");
         console.log(this.state);
-        debugger;  
+        // debugger;  
 
         let idUrl ='id='+this.state.signatureIds.slice(0,100).join('id=');
         if(this.state.signature=='cell phenotype'){
@@ -251,10 +251,11 @@ class SignaturesZScores extends React.Component {
     getSigMedata(sigIds){
         console.log("getSigMedata");
         console.log(sigIds);
-        debugger;
+        // debugger;
         
         this.setState({totalCount:sigIds.length/20})
         let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
+        let zScores = this.state.zScores;
         this.setState( {data:[]});
         axios.request({
             method:'get',
@@ -277,6 +278,7 @@ class SignaturesZScores extends React.Component {
                     "timepointunit": type['small molecule'] ? type['small molecule'][0].timepointUnit: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].gettimepointUnit : '',
                     "concentration": type['small molecule']? type['small molecule'][0].concentration: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].getconcentration : type['protein perturbagen'][0].concentration.toString() ? type['protein perturbagen'][0].concentration.toString() : ''  ,
                     "concentrationunit": type['small molecule'] ? type['small molecule'][0].concentrationUnit: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].getconcentrationUnit : '',
+                    // "zScore": 0,
                     "cellName": type['cell line'] ? type['cell line'][0].name :'-',
                     "organ": type['cell line'] ? type['cell line'][0].organ :'-',
                     "diseases": type['cell line']? type['cell line'][0].diseases :'-',
@@ -284,10 +286,19 @@ class SignaturesZScores extends React.Component {
                     "assay_category": type.assay_category ? type.assay_category : '_',
                     "dataset_id":type.dataset_id? type.dataset_id : '_',
                     "data_level":type.data_level ? type.data_level : '_'
-                }
+                };                
                datatable.push(smet);
                 // this.state.data.push(smet)
-            })
+            });
+            // datatable.forEach(element => {
+
+            //     element
+            // });
+            datatable.forEach(function (value, i) {
+                console.log('%d: %s', i, value);
+                value.zScore = zScores[i];
+            });
+            // debugger;
             this.setState({data:datatable})
         })
 
@@ -314,7 +325,7 @@ class SignaturesZScores extends React.Component {
             method: 'get',
             url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/search-center-ids?id=' + centerIdsApiString
         }).then((response) => {
-            debugger;
+            // debugger;
             // this.setState(response.data.data.map(type => {
             //     this.state.signatureIds = []
 
@@ -541,7 +552,7 @@ class SignaturesZScores extends React.Component {
 
                 <div className="row">
                 <div className="col-3" >
-                    <ButtonToolbar >
+                    {/* <ButtonToolbar >
                         <ButtonGroup bsSize="medium" >
                             <Button className={this.state.selectedButton === 'Details' ? "ms_active" : "btn-default"}  onClick={() => {this.buttonSelected('Details')} }>
                                 <i className="fa fa-info fa-2x" style={{    color:"gray" }}></i>
@@ -562,7 +573,7 @@ class SignaturesZScores extends React.Component {
 
 
                         </ButtonGroup>
-                    </ButtonToolbar>
+                    </ButtonToolbar> */}
                      {this.state.data !='' ?   <div className="details-panel" style={{minHeight:"40em"}}>
                         <div>
 

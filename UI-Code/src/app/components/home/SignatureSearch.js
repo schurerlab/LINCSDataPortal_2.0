@@ -66,83 +66,83 @@ class SignatureSearch extends Component {
     getData(){
         // console.log(this.state.up);
         //   console.log(this.state.dn);
-    //    this.setState({loading:true});
-    //     axios.post('http://dev.ilincs.org/api/ilincsR/findConcordancesSC',
-    //     {
-    //         "mode"
-    //     :
-    //         "geneList", "signatureProfile"
-    //     :
-    //         {
-    //             "genesUp"
-    //         :
-    //             this.state.up, "genesDown"
-    //         :
-    //              this.state.dn
-    //         }
-    //     }
-    // ,
-    //     {
-    //         headers: {
-    //             'Accept'
-    //         :
-    //             'application/json'
-    //         }
-    //     }
-    // ).then((response) => {
-    //         this.setState({loading:false});
-    //         // console.log(response.data.sigScores);
-    //         // var newArray = response.data.sigScores.map(el =>{
-    //         //     return el.lincsSigID
-    //         // });
-    //         // console.log(newArray);
-    //         debugger;
-    //         // this.setState({cids:newArray});
-
-    //         this.setState({cids:response.data.sigScores});
-
-    //     })
-
-        //fake data
-        let data = [
+       this.setState({loading:true});
+        axios.post('http://dev.ilincs.org/api/ilincsR/findConcordancesSC',
+        {
+            "mode"
+        :
+            "geneList", "signatureProfile"
+        :
             {
-              "lincsSigID": "CPC013_MCF7_6H:BRD-K85266146-001-01-3:10",
-              "signatureID": "LINCSCP_32385",
-              "zScores": 5.8983
-            },
-            {
-              "lincsSigID": "LJP008_PC3_24H:D18",
-              "signatureID": "LINCSCP_151892",
-              "zScores": 5.6712
-            },
-            {
-              "lincsSigID": "REP.A010_HT29_24H:O17",
-              "signatureID": "LINCSCP_121485",
-              "zScores": 5.3838
-            },
-            {
-              "lincsSigID": "CPC006_MCF7_24H:BRD-K64634304-001-01-5:40",
-              "signatureID": "LINCSCP_30598",
-              "zScores": 5.3234
-            },
-            {
-              "lincsSigID": "CPC019_PC3_24H:BRD-K88008216-001-01-1:10",
-              "signatureID": "LINCSCP_47162",
-              "zScores": 5.1273
-            },
-            {
-              "lincsSigID": "REP.A017_MCF7_24H:I03",
-              "signatureID": "LINCSCP_140431",
-              "zScores": 5.0539
-            },
-            {
-              "lincsSigID": "CPC006_CORL23_6H:BRD-K43620258-001-01-6:80",
-              "signatureID": "LINCSCP_12633",
-              "zScores": 4.8997
+                "genesUp"
+            :
+                this.state.up, "genesDown"
+            :
+                 this.state.dn
             }
-        ];
-        this.setState({loading:false});
-        this.setState({cids:data});
+        }
+    ,
+        {
+            headers: {
+                'Accept'
+            :
+                'application/json'
+            }
+        }
+    ).then((response) => {
+            this.setState({loading:false});
+            // console.log(response.data.sigScores);
+            // var newArray = response.data.sigScores.map(el =>{
+            //     return el.lincsSigID
+            // });
+            // console.log(newArray);
+            // debugger;
+            // this.setState({cids:newArray});
+
+            this.setState({cids:response.data.sigScores});
+
+        })
+
+        // //fake data
+        // let data = [
+        //     {
+        //       "lincsSigID": "CPC013_MCF7_6H:BRD-K85266146-001-01-3:10",
+        //       "signatureID": "LINCSCP_32385",
+        //       "zScores": 5.8983
+        //     },
+        //     {
+        //       "lincsSigID": "LJP008_PC3_24H:D18",
+        //       "signatureID": "LINCSCP_151892",
+        //       "zScores": 5.6712
+        //     },
+        //     {
+        //       "lincsSigID": "REP.A010_HT29_24H:O17",
+        //       "signatureID": "LINCSCP_121485",
+        //       "zScores": 5.3838
+        //     },
+        //     {
+        //       "lincsSigID": "CPC006_MCF7_24H:BRD-K64634304-001-01-5:40",
+        //       "signatureID": "LINCSCP_30598",
+        //       "zScores": 5.3234
+        //     },
+        //     {
+        //       "lincsSigID": "CPC019_PC3_24H:BRD-K88008216-001-01-1:10",
+        //       "signatureID": "LINCSCP_47162",
+        //       "zScores": 5.1273
+        //     },
+        //     {
+        //       "lincsSigID": "REP.A017_MCF7_24H:I03",
+        //       "signatureID": "LINCSCP_140431",
+        //       "zScores": 5.0539
+        //     },
+        //     {
+        //       "lincsSigID": "CPC006_CORL23_6H:BRD-K43620258-001-01-6:80",
+        //       "signatureID": "LINCSCP_12633",
+        //       "zScores": 4.8997
+        //     }
+        // ];
+        // this.setState({loading:false});
+        // this.setState({cids:data});
 
     }
 
