@@ -97,8 +97,8 @@ class SignatureSearch extends Component {
     render() {
         return <div>
             {this.state.loading == false && this.state.cids.length == 0 ?  <form>
-                <div class="form-row">
-                    <div class="col">
+                <div className="form-row">
+                    <div className="col">
                         <textarea name="styled-textarea" id="styled" type="text" value={this.state.value} onChange={this.handleUpGenes} placeholder="Enter UP Genes either seperated by coma or new line "/>
                     </div>
                     <div className="col text-center " style={{marginTop:"20em"}}>
@@ -106,7 +106,7 @@ class SignatureSearch extends Component {
                         Submit
                     </Button>
                         </div>
-                    <div class="col">
+                    <div className="col">
                         <textarea name="styled-textarea" id="styled" type="text" value={this.state.value} onChange={this.handleDownGenes}  placeholder="Enter Down Genes either seperated by coma or new line "/>
                     </div>
                 </div>
