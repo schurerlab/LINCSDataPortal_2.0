@@ -184,9 +184,9 @@ class SignaturesZScores extends React.Component {
     downloadIds(){
         console.log("We're here: downloadIds");
         console.log(this.state);
-        debugger;   
+        // debugger;   
 
-        let ids = "'"+this.state.signatureIds.toString().replace(/,/g,'').replace(/&/g,"','")+"'";
+        let ids = "'"+this.state.signatureIds.join("&").replace(/,/g,'').replace(/&/g,"','")+"'";
         var blob = new Blob(["SELECT * FROM `bigquery-public-data.umiami_lincs.readout` where signature_id in ("+ids+")"], {type: "text/plain;charset=utf-8"});
         if (this.state.signatureIds){
             FileSaver.saveAs(blob, "GCP_query.txt");
@@ -202,7 +202,7 @@ class SignaturesZScores extends React.Component {
         console.log(this.state);
         // debugger;  
 
-        let idUrl ='id='+this.state.signatureIds.slice(0,100).join('id=');
+        let idUrl ='id='+this.state.signatureIds.slice(0,100).join('&id=');
         if(this.state.signature=='cell phenotype'){
             window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?onlyLandmarkGenes=false&"+idUrl,"_self");
         }
@@ -613,9 +613,9 @@ class SignaturesZScores extends React.Component {
                         <div className="row">
                             <div className="col-10">
                                 <div className="row">
-                                    <div className="col-11" >
+                                    {/* <div className="col-11" >
                                         <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-11">
                                         { this.state.data !=''  > 0 ?
                                             <div>
@@ -673,7 +673,7 @@ class SignaturesZScores extends React.Component {
                             < ReactTable
                             data={this.state.data}
                             columns={columns}
-                            defaultPageSize={5}
+                            defaultPageSize={20}
                             showPageSizeOptions={false}
                             // minRows={1}
                             // filterable={true}
