@@ -8,6 +8,7 @@ import ReactPaginate from 'react-paginate';
 import 'react-table/react-table.css';
 import axios from 'axios';
 import queryString from 'query-string';
+import Pagination from "../functions/Pagination";
 import SignaturePanel from './SignaturePanel'
 import SignatureSearch from './SignatureSearch'
 import SignatureFilter from './SignatureFilter'
@@ -254,7 +255,8 @@ class SignaturesZScores extends React.Component {
         // debugger;
         
         this.setState({totalCount:sigIds.length/20})
-        let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
+        // let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
+        let idUrl ='id='+sigIds.join('&id=');
         let zScores = this.state.zScores;
         this.setState( {data:[]});
         axios.request({
@@ -671,26 +673,28 @@ class SignaturesZScores extends React.Component {
                             < ReactTable
                             data={this.state.data}
                             columns={columns}
-                            defaultPageSize={20}
-                            minRows={1}
+                            defaultPageSize={5}
+                            showPageSizeOptions={false}
+                            // minRows={1}
                             // filterable={true}
-                            showPagination={false}
-                            getTdProps={(state, rowInfo, column, instance) => {
-                      return {
-                      onClick: (e) => {
-                      this.changeShowModelSystem(rowInfo["original"]["id"])
-                          this.setState({ selected: rowInfo.index})
-                      },
-                        style: {
-                          background: rowInfo.index === this.state.selected ? 'orange' : 'white',
-                          color: rowInfo.index === this.state.selected ? 'white' : 'black'
-                        }
-                      }
-                      }
-                      }
+                            showPagination={true}
+                            PaginationComponent={Pagination}
+                    //         getTdProps={(state, rowInfo, column, instance) => {
+                    //   return {
+                    //   onClick: (e) => {
+                    //   this.changeShowModelSystem(rowInfo["original"]["id"])
+                    //       this.setState({ selected: rowInfo.index})
+                    //   },
+                    //     style: {
+                    //       background: rowInfo.index === this.state.selected ? 'orange' : 'white',
+                    //       color: rowInfo.index === this.state.selected ? 'white' : 'black'
+                    //     }
+                    //   }
+                    //   }
+                    //   }
 
 
-                        />   :
+                        /> :
                             <Row>
                                 <Col xs={4} md={4} lg={4}>
 
@@ -703,21 +707,21 @@ class SignaturesZScores extends React.Component {
                                 </Col>
                             </Row>
                         }
-                        { this.state.data.length > 0 ?     <ReactPaginate 
-                            previousLabel={'previous'} 
-                            nextLabel={'next'} 
-                            breakLabel={'.......'} 
-                            breakClassName={'break-me'} 
-                            pageCount={this.state.totalCount} 
-                            marginPagesDisplayed={2} 
-                            pageRangeDisplayed={7} 
-                            onPageChange={this.handlePageClick.bind(this)} 
-                            containerClassName={'pagination '} 
-                            subContainerClassName={'pages pagination'} 
-                             activeClassName={'active'} 
+                        {/* { this.state.data.length > 0 ?    <ReactPaginate
+                            previousLabel={'previous'}
+                            nextLabel={'next'}
+                            breakLabel={'.......'}
+                            breakClassName={'break-me'}
+                            pageCount={this.state.totalCount}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={7}
+                            onPageChange={this.handlePageClick.bind(this)}
+                            containerClassName={'pagination '}
+                            subContainerClassName={'pages pagination'}
+                             activeClassName={'active'}
                             // activeLinkClassName={'btn-page'}
                             forcePage={this.state.active}
-                        />     : '' }
+                        />    : '' } */}
 
                     </div>
                 </div>

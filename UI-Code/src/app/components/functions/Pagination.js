@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const defaultButton = props => <button {...props}>{props.children}</button>;
+// const defaultButton = props => <button {...props}>{props.children}</button>;
 
 export default class Pagination extends React.Component {
     constructor(props) {
@@ -68,15 +68,16 @@ export default class Pagination extends React.Component {
     }
 
     render() {
-        const { PageButtonComponent = defaultButton } = this.props;
+        // const { PageButtonComponent = defaultButton } = this.props;
         const { visiblePages } = this.state;
         const activePage = this.props.page + 1;
 
         return (
-            <div className="Table__pagination">
-                <div className="Table__prevPageWrapper">
-                    <PageButtonComponent
-                        className="Table__pageButton"
+            <ul className="pagination">
+                <li>
+                    <a
+                        role="button"
+                        className="previous"
                         onClick={() => {
               if (activePage === 1) return;
               this.changePage(activePage - 1);
@@ -84,28 +85,29 @@ export default class Pagination extends React.Component {
                         disabled={activePage === 1}
                     >
                         {this.props.previousText}
-                    </PageButtonComponent>
-                </div>
-                <div className="Table__visiblePagesWrapper">
+                    </a>
+                </li>       
                     {visiblePages.map((page, index, array) => {
-                        return (
-                            <PageButtonComponent
+                    return (
+                            <li className={
+                                activePage === page
+                                  ? "active"
+                                  : ""
+                              }>  
+                            <a
+                                role="button"
                                 key={page}
-                                className={
-                  activePage === page
-                    ? "Table__pageButton Table__pageButton--active"
-                    : "Table__pageButton"
-                }
                                 onClick={this.changePage.bind(null, page)}
                             >
-                                {array[index - 1] + 2 < page ? `...${page}` : page}
-                            </PageButtonComponent>
-                        );
+                                {array[index - 1] + 2 < page ? `... ${page}` : page}
+                            </a>
+                            </li>
+                        );                        
                     })}
-                </div>
-                <div className="Table__nextPageWrapper">
-                    <PageButtonComponent
-                        className="Table__pageButton"
+                <li >
+                    <a
+                        className="next"
+                        role="button"
                         onClick={() => {
               if (activePage === this.props.pages) return;
               this.changePage(activePage + 1);
@@ -113,9 +115,9 @@ export default class Pagination extends React.Component {
                         disabled={activePage === this.props.pages}
                     >
                         {this.props.nextText}
-                    </PageButtonComponent>
-                </div>
-            </div>
+                    </a>
+                </li>
+            </ul>
         );
     }
 }
