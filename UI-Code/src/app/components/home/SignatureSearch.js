@@ -52,7 +52,10 @@ class SignatureSearch extends Component {
         // if(upGenes.length > 0) {
         //     this.setState({up: upGenes})
         // }
-        this.setState({upString: event.target.value});
+        this.setState({
+            upString: event.target.value,
+            emptyResults:false
+        });
         console.log(this.state.upString);
     }
     handleDownGenes = (event) => {
@@ -67,7 +70,10 @@ class SignatureSearch extends Component {
         // if(dnGenes.length > 0){
         //     this.setState({dn:dnGenes})
         // }
-        this.setState({dnString: event.target.value});
+        this.setState({
+            dnString: event.target.value,
+            emptyResults:false
+        });
         console.log(this.state.dnString);
         
     }
@@ -148,6 +154,10 @@ class SignatureSearch extends Component {
             this.setState({loading:false});
             console.log("back from iLINCS");
             console.log(response.data.sigScores);
+            if (!response.data.sigScores.length) {
+                console.log("empty results");
+                this.setState({emptyResults:true});
+            }
             // var newArray = response.data.sigScores.map(el =>{
             //     return el.lincsSigID
             // });
@@ -159,6 +169,11 @@ class SignatureSearch extends Component {
             // this.props.withRouter
             // this.props.history.push('/signatures/similarity-search');
 
+        }).catch((error) => {
+            console.log("error from iLINCS"); 
+            // console.log(error.status)
+            this.setState({emptyResults:true});
+            this.setState({loading:false});
         })
 
         // //fake data
@@ -746,7 +761,8 @@ class SignatureSearch extends Component {
             upString: upGenes,
             dnString: dnGenes,
             up: upGenes.split(","),
-            dn: dnGenes.split(",")
+            dn: dnGenes.split(","),
+            emptyResults:false
           });
         
         //   console.log(this.state.upString);
@@ -771,6 +787,7 @@ class SignatureSearch extends Component {
                     <Button className="btn btn-primary  mb-2" disabled={this.state.dnString.length==0 && this.state.upString.length==0}  onClick={() => {this.getData()} }>
                         Submit
                     </Button>
+                    {this.state.emptyResults && <p>There are no similar genes for a given set of genes!</p>}
                         </div>
                     <div className="col">
                         <textarea name="styled-textarea" id="styled" type="text" value={this.state.dnString} onChange={this.handleDownGenes}  placeholder="Enter Down Genes either seperated by coma or new line "/>
