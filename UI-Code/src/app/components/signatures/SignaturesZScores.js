@@ -297,7 +297,7 @@ class SignaturesZScores extends React.Component {
             //     element
             // });
             datatable.forEach(function (value, i) {
-                console.log('%d: %s', i, value);
+                // console.log('%d: %s', i, value);
                 value.zScore = zScores[i];
             });
             // debugger;
@@ -675,23 +675,23 @@ class SignaturesZScores extends React.Component {
                             columns={columns}
                             defaultPageSize={20}
                             showPageSizeOptions={false}
-                            // minRows={1}
+                            minRows={1}
                             // filterable={true}
                             showPagination={true}
                             PaginationComponent={Pagination}
-                    //         getTdProps={(state, rowInfo, column, instance) => {
-                    //   return {
-                    //   onClick: (e) => {
-                    //   this.changeShowModelSystem(rowInfo["original"]["id"])
-                    //       this.setState({ selected: rowInfo.index})
-                    //   },
-                    //     style: {
-                    //       background: rowInfo.index === this.state.selected ? 'orange' : 'white',
-                    //       color: rowInfo.index === this.state.selected ? 'white' : 'black'
-                    //     }
-                    //   }
-                    //   }
-                    //   }
+                            getTdProps={(state, rowInfo, column, instance) => {
+                      return {
+                      onClick: (e) => {
+                      this.changeShowModelSystem(rowInfo["original"]["id"])
+                          this.setState({ selected: rowInfo.index})
+                      },
+                        style: {
+                          background: rowInfo && rowInfo.index == this.state.selected ? 'orange' : 'white',
+                          color: rowInfo && rowInfo.index == this.state.selected ? 'white' : 'black'
+                        }
+                      }
+                      }
+                      }
 
 
                         /> :
