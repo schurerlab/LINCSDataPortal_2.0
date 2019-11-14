@@ -167,11 +167,20 @@ class SignatureSearch extends Component {
                 </div>
             </form> : "" }
 
-            <div className="row">
-                <div className="col-offset-5">
-                 {this.state.loading == true ?   <div className="row text-center lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> : "" }
+            {this.state.loading &&
+            <div>
+                <div className="row justify-content-md-center">
+                    <div className="col-offset-5">
+                        <div className="row text-center lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    </div>
+                </div>
+                <div className="row justify-content-md-center">
+                    <div className="col-offset-4">
+                        <p>This analysis might take several minutes!</p>
+                    </div>
                 </div>
             </div>
+            }
             {this.state.cids.length > 0   ?  <SignaturesZScores data={this.state.cids}/> : ''}
 
         </div>;
