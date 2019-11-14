@@ -75,73 +75,39 @@ class SignaturesZScores extends React.Component {
 
     constructor(props){
         super(props);
-        console.log("SignaturesZScores constructor");
-        console.log(props);
-        
-        // debugger;
-        // if(props.location.search){
-        //     let params = queryString.parse(props.location.search)
-        //     console.log(params);
-        //     this.state = {
-        //         dowloadLoading: false,
-        //         types:params.class,
-        //         sids:[],
-        //         totalCount:'',
-        //         id:'',
-        //         page:'0',
-        //         selected: 0,
-        //         text: params.term ? params.term : 'MCF-10A',
-        //         data:[],
-        //         signature: this.rename(params.signature),
-        //         data_table_modelsystems:[],
-        //         ms:{},
-        //         selectedButton:'Details',
-        //         selectedId :'',
-        //         cells:{},
-        //         active:0,
-        //         pages:[],
-        //         showModal: false,
-        //         downloadUrl:'',
-        //         slicFrom:0,
-        //     }
-        // }else {
-        //     console.log("SignaturesZScores constructor else");
 
-            console.log(props.data);
-            var lincsSigIDs = props.data.map(el =>{
-                return el.lincsSigID
-            });
-            var zScores = props.data.map(el =>{
-                return el.zScores
-            });
+        var lincsSigIDs = props.data.map(el =>{
+            return el.lincsSigID
+        });
+        var zScores = props.data.map(el =>{
+            return el.zScores
+        });
 
-            this.state = {
-                dowloadLoading: false,
-                slicFrom:0,
-                types:'',
-                sids:[],
-                totalCount:'',
-                id:'',
-                page:'0',
-                signatureIds:[],
-                centerIds: lincsSigIDs,
-                zScores: zScores,
-                text:'MCF-10A',
-                data:[],
-                signature: this.rename('Gene Expressions'),
-                selected: 0,
-                data_table_modelsystems:[],
-                ms:{},
-                selectedButton:'Details',
-                selectedId :'',
-                cells:{},
-                active:0,
-                pages:[],
-                showModal: false,
-                downloadUrl:'',
-
-            }
-        // }
+        this.state = {
+            dowloadLoading: false,
+            slicFrom:0,
+            types:'',
+            sids:[],
+            totalCount:'',
+            id:'',
+            page:'0',
+            signatureIds:[],
+            centerIds: lincsSigIDs,
+            zScores: zScores,
+            text:'MCF-10A',
+            data:[],
+            signature: this.rename('Gene Expressions'),
+            selected: 0,
+            data_table_modelsystems:[],
+            ms:{},
+            selectedButton:'Details',
+            selectedId :'',
+            cells:{},
+            active:0,
+            pages:[],
+            showModal: false,
+            downloadUrl:''
+        }
 
     }
 
@@ -152,8 +118,6 @@ class SignaturesZScores extends React.Component {
 
     changeShowModelSystem(id) {
         this.buttonSelected('Details')
- 
-
 
     }
 
@@ -162,8 +126,6 @@ class SignaturesZScores extends React.Component {
         if(text.length > 2){
             this.setState({text: text}, this.getDatasets());
         }
-
-
 
     }
 
@@ -181,10 +143,7 @@ class SignaturesZScores extends React.Component {
         
     }
 
-    downloadIds(){
-        console.log("We're here: downloadIds");
-        console.log(this.state);
-        // debugger;   
+    downloadIds(){  
 
         let ids = "'"+this.state.signatureIds.join("&").replace(/,/g,'').replace(/&/g,"','")+"'";
         var blob = new Blob(["SELECT * FROM `bigquery-public-data.umiami_lincs.readout` where signature_id in ("+ids+")"], {type: "text/plain;charset=utf-8"});
@@ -197,10 +156,7 @@ class SignaturesZScores extends React.Component {
     }
 
 
-    download() {
-        console.log("We're here: download");
-        console.log(this.state);
-        // debugger;  
+    download() { 
 
         let idUrl ='id='+this.state.signatureIds.slice(0,100).join('&id=');
         if(this.state.signature=='cell phenotype'){
@@ -240,9 +196,6 @@ class SignaturesZScores extends React.Component {
             else if (input == 'Cell Phenotype') {
                 return input.replace('Cell Phenotype', 'cell phenotype');
             }
-            // else if (input == 'Cell Phenotype') {
-            //     return input.replace('Cell Phenotype', 'cell viability');
-            // }
             else if (input == 'Cell Viability') {
                 return input.replace('Cell Viability', 'cell viability');
             }
@@ -250,9 +203,6 @@ class SignaturesZScores extends React.Component {
     }
 
     getSigMedata(sigIds){
-        console.log("getSigMedata");
-        console.log(sigIds);
-        // debugger;
         
         this.setState({totalCount:sigIds.length/20})
         // let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
@@ -268,7 +218,6 @@ class SignaturesZScores extends React.Component {
 
            response.data.data.map(type => {
 
-
                 let smet = {
                     "id": type.signature_id,
                     "pertid":  type['small molecule'] ? type['small molecule'][0].perturbagenID :'',
@@ -280,7 +229,6 @@ class SignaturesZScores extends React.Component {
                     "timepointunit": type['small molecule'] ? type['small molecule'][0].timepointUnit: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].gettimepointUnit : '',
                     "concentration": type['small molecule']? type['small molecule'][0].concentration: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].getconcentration : type['protein perturbagen'][0].concentration.toString() ? type['protein perturbagen'][0].concentration.toString() : ''  ,
                     "concentrationunit": type['small molecule'] ? type['small molecule'][0].concentrationUnit: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].getconcentrationUnit : '',
-                    // "zScore": 0,
                     "cellName": type['cell line'] ? type['cell line'][0].name :'-',
                     "organ": type['cell line'] ? type['cell line'][0].organ :'-',
                     "diseases": type['cell line']? type['cell line'][0].diseases :'-',
@@ -290,26 +238,17 @@ class SignaturesZScores extends React.Component {
                     "data_level":type.data_level ? type.data_level : '_'
                 };                
                datatable.push(smet);
-                // this.state.data.push(smet)
             });
-            // datatable.forEach(element => {
 
-            //     element
-            // });
             datatable.forEach(function (value, i) {
-                // console.log('%d: %s', i, value);
                 value.zScore = zScores[i];
             });
-            // debugger;
             this.setState({data:datatable})
         })
 
     }
 
     getStats(sigIds){
-        console.log("getStats");
-        console.log(sigIds);
-        // debugger;
 
         let idUrl ='id='+sigIds.join('&id=');
         axios.request({
@@ -322,177 +261,25 @@ class SignaturesZScores extends React.Component {
 
     getSigIds(sigCenterIds) {
         let centerIdsApiString = sigCenterIds.join("&id=");
-        // debugger;
+
         axios.request({
             method: 'get',
             url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/search-center-ids?id=' + centerIdsApiString
         }).then((response) => {
-            // debugger;
-            // this.setState(response.data.data.map(type => {
-            //     this.state.signatureIds = []
 
-
-            //     type.signature.map(sigids => {
-
-            //         if (sigids.assay_category === this.state.signature) {
-
-            //             this.state.signatureIds.push(sigids.signature_id + "&")
-            //         }
-
-            //     })
-                this.state.signatureIds = response.data.data;//.join("&");
+                this.state.signatureIds = response.data.data;
                 this.getStats(this.state.signatureIds);
                 this.getSigMedata(this.state.signatureIds);
-            // }));
+
         });
     }
 
     getDatasets() {
-        console.log("getDatasets");
-        console.log(this.state);
-        // debugger;
 
         this.setState({text:""})
         this.getSigIds(this.state.centerIds);
-        // this.getStats(this.state.signatureIds.join());
-        // this.getSigMedata(this.state.signatureIds.join());
 
-        // if (this.state.text === "MCF-10A" && this.state.signature === "cell viability") {
-        //     this.state.signatureIds = ["605673&","605674&","605675&","605676&","605677&","605678&","605679&","605680&","605681&","605682&","605683&","605684&","605685&","605686&","605687&","605688&","605689&","605690&","605691&","605692&","605693&","605694&","605695&","605696&","605697&","605698&","605699&","605700&","605701&","605702&"];
-        //     this.getStats(this.state.signatureIds);
-        //     this.getSigMedata(this.state.signatureIds);
-
-        // }
-        // else if(this.state.text === "MCF-10A" && this.state.signature === "binding"){
-        //     this.state.signatureIds = ["1&","2&","3&","4&","5&","6&","7&","8&","9&","10&","11&","12&","13&","14&","15&","16&","17&","18&","19&","20&","21&","22&","23&","24&","25&","26&","27&","28&","29&","30&","31&","32&","33&","34&","35&","36&","37&","38&","39&","40&","41&","42&","43&","44&","45&","46&","47&","48&","49&","50&","51&","52&","53&","54&","55&","56&","57&","58&","59&","60&","61&","62&","63&","64&","65&","66&","67&","68&","69&","70&","71&","72&","73&","74&","75&","76&","77&","78&","79&","80&","81&","82&","83&","84&","85&","86&","87&","88&","89&","90&","91&","92&","93&","94&","95&","96&","97&","98&","99&","100&","101&","102&","103&","104&","105&","106&","107&","108&","109&","110&","111&","112&","113&","114&","115&","116&","117&","118&","118169&","118170&","118171&","118172&","118173&","118174&","118175&","118176&","118177&","118178&","118179&","118180&","118181&","118182&","118183&","118184&","118185&","118186&","118187&","118188&","118189&","118190&","118191&","118192&","118193&","118194&","118195&","118196&","118197&","118198&","118199&","118200&","118201&","118202&","118203&","118204&","118205&","118206&","118207&","118208&","118209&","118210&","118211&","118212&","118213&","118214&","118215&","118216&","118217&","118218&","118219&","118220&","118221&","118222&","118223&","118224&","118225&","118226&","118227&","118228&","118229&","118230&","118231&","118232&","118233&","118234&","118235&","118236&","118237&","118238&","118239&","118240&","118241&","118242&","118243"];
-        //     this.setState({text:""})
-        //     this.getStats(this.state.signatureIds);
-        //     this.getSigMedata(this.state.signatureIds);
-        // }
-        // else {
-
-
-        //     axios.request({
-        //         method: 'get',
-        //         url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term=' + this.state.text
-        //     }).then((response) => {
-        //         if (response.data.data.name) {
-        //             var ids = "";
-        //            let names = response.data.data.name;
-        //             let temp = names.find(obj => obj.preferred_term == this.state.text)
-        //             this.setState({
-        //                 id: "id="+temp.hit_object_id,
-        //                 types: temp.hit_object_class
-        //             });
-        //         } else {
-        //             var ids = "";
-        //             for (var i = 0; i < response.data.data[this.state.types].length; i++) {
-
-        //                 ids += "id=" + response.data.data[this.state.types][i].hit_object_id + "&"
-        //             }
-        //             this.setState({
-        //                 id: ids,
-        //                 types: response.data.data[this.state.types][0].hit_type
-        //             });
-
-        //         }
-
-
-        //         if (this.state.types === "small molecule" || this.state.types === "mechanism of action") {
-
-        //             axios.request({
-        //                 method: 'get',
-        //                 url: 'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
-        //             }).then((response) => {
-
-
-        //                 this.setState(response.data.data.map(type => {
-        //                     this.state.signatureIds = []
-
-        //                     type.signature.map(sigids => {
-        //                         if (sigids.assay_category === this.state.signature) {
-        //                             this.state.signatureIds.push(sigids.signature_id + "&")
-        //                         }
-
-        //                     })
-        //                     this.getStats(this.state.signatureIds);
-        //                     this.getSigMedata(this.state.signatureIds);
-        //                 }));
-
-        //             })
-
-
-        //         }
-        //         // else if( this.state.signature === 'binding'){
-        //         //     console.log("I am here")
-        //         //     this.getSigMedata("id=1&id=2&id=3&id=4&id=5&id=6&id=7&id=8&id=9&id=10")
-        //         // }
-        //         else if (this.state.types === "cell line" || this.state.types === "disease") {
-
-
-        //             axios.request({
-        //                 method: 'get',
-        //                 url: 'http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
-        //             }).then((response) => {
-        //                 this.setState(response.data.data.map(type => {
-        //                     this.state.signatureIds = []
-
-
-        //                     type.signature.map(sigids => {
-
-        //                         if (sigids.assay_category === this.state.signature) {
-
-        //                             this.state.signatureIds.push(sigids.signature_id + "&")
-        //                         }
-
-        //                     })
-        //                     this.getStats(this.state.signatureIds);
-        //                     this.getSigMedata(this.state.signatureIds);
-        //                 }));
-        //             });
-        //         }
-
-
-        //         else if (this.state.types == undefined) {
-        //             console.log("We're here");
-        //             console.log(this.state);
-        //             debbuger;                    
-
-        //             axios.request({
-        //                 method: 'get',
-        //                 url: 'http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
-        //             }).then((response) => {
-        //                 this.setState(response.data.data.map(type => {
-        //                     this.state.signatureIds = []
-
-
-        //                     type.signature.map(sigids => {
-
-        //                         if (sigids.assay_category === this.state.signature) {
-
-        //                             this.state.signatureIds.push(sigids.signature_id + "&")
-        //                         }
-
-        //                     })
-        //                     this.getStats(this.state.signatureIds);
-        //                     this.getSigMedata(this.state.signatureIds);
-        //                 }));
-        //             });
-        //         }
-            
-        //         console.log("end up with nothing");
-
-        //     }).catch((error) => {
-        //         console.log(error);
-        //     });
-
-        // }
     }
-
-
-
-
-
 
     findId = (name) => {
 
@@ -513,10 +300,7 @@ class SignaturesZScores extends React.Component {
 
         }
 
-
     }
-
-
 
     handleOpenModal = () => {
 
@@ -528,22 +312,16 @@ class SignaturesZScores extends React.Component {
         this.setState({ showModal: false });
     };
 
-
-
     render() {
-
-
 
         const overlayClassName = this.state.showModal
             ? "modal fade show"
             : "modal fade";
 
-        if(this.state.selected===0){
+        // if(this.state.selected===0){
 
-            // this.changeShowModelSystem(this.props.data[0].id);
-        }
-
-
+        //     // this.changeShowModelSystem(this.props.data[0].id);
+        // }
 
         return (
 
@@ -588,10 +366,7 @@ class SignaturesZScores extends React.Component {
                                 :''
                             }
                             {this.state.data !=''   && this.state.selectedButton === 'Filter' ?
-
                                 <div>
-
-
                                     <br/>
                                     <SignatureFilter></SignatureFilter>
                                 </div>
@@ -600,9 +375,7 @@ class SignaturesZScores extends React.Component {
                             {this.state.data !=''  && this.state.selectedButton === 'Details' ?
                                 <div >
 
-
                                     <SignaturePanel data={this.state.data[this.state.selected]} ></SignaturePanel>
-
 
                                 </div>
                                 :"" }
@@ -692,8 +465,6 @@ class SignaturesZScores extends React.Component {
                       }
                       }
                       }
-
-
                         /> :
                             <Row>
                                 <Col xs={4} md={4} lg={4}>
@@ -707,21 +478,6 @@ class SignaturesZScores extends React.Component {
                                 </Col>
                             </Row>
                         }
-                        {/* { this.state.data.length > 0 ?    <ReactPaginate
-                            previousLabel={'previous'}
-                            nextLabel={'next'}
-                            breakLabel={'.......'}
-                            breakClassName={'break-me'}
-                            pageCount={this.state.totalCount}
-                            marginPagesDisplayed={2}
-                            pageRangeDisplayed={7}
-                            onPageChange={this.handlePageClick.bind(this)}
-                            containerClassName={'pagination '}
-                            subContainerClassName={'pages pagination'}
-                             activeClassName={'active'}
-                            // activeLinkClassName={'btn-page'}
-                            forcePage={this.state.active}
-                        />    : '' } */}
 
                     </div>
                 </div>
