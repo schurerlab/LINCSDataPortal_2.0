@@ -530,11 +530,17 @@ class Signatures extends React.Component {
                     </div> : ''}
                     </div>
                     <div className="col-9" style={ csl }>
+                        {/* <div className="row"> 
+                            <div className="col-10" >
+                                <SignatureAppliedFilters tags={[this.state.text,"MCF-7"]} type={this.state.signature} />
+                            </div>                                                       
+                        </div> */}
                         <div className="row">
                             <div className="col-10">
                                 <div className="row">
                                     <div className="col-11" >
-                                        <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div>
+                                        {/* <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div> */}
+                                        <SignatureAppliedFilters tags={[this.state.text]} type={this.state.signature} />
                                     </div>
                                     <div className="col-11">
                                         { this.state.data !=''  > 0 ?
