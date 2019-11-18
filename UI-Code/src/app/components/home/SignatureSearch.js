@@ -15,6 +15,8 @@ class SignatureSearch extends Component {
         this.state = {
             selectedButton:'Signature',
             cids:[],
+            mode: 'UpDn',
+            // mode: 'geneList',
             query: '',
             up:[],
             dn:[],
@@ -89,11 +91,13 @@ class SignatureSearch extends Component {
     }
 
     sendToiLlincs = () => {
-
+        // debugger;
         this.setState({loading:true});
         axios.post('http://dev.ilincs.org/api/ilincsR/findConcordancesSC',
         {
-            "mode" : "geneList",
+            // "mode" : "geneList",
+            // "mode" : "UpDn",
+            "mode" : this.state.mode,
             "signatureProfile" : {
                 "genesUp" : this.state.up, 
                 "genesDown" : this.state.dn
@@ -106,13 +110,21 @@ class SignatureSearch extends Component {
         }
     ).then((response) => {
             this.setState({loading:false});
-
-            if (!response.data.sigScores.length) {
-                console.log("empty results");
-                this.setState({emptyResults:true});
-            }
-
-            this.setState({cids:response.data.sigScores});
+            console.log("iLINCS data ready");            
+            // debugger;
+            if (this.state.mode == "geneList") {
+                if (!response.data.sigScores.length) {
+                    console.log("empty results");
+                    this.setState({emptyResults:true});
+                }
+                this.setState({cids:response.data.sigScores});
+            } else {
+                if (!response.data.concordanceTable.length) {
+                    console.log("empty results");
+                    this.setState({emptyResults:true});
+                }
+                this.setState({cids:response.data.concordanceTable});
+            }          
 
         }).catch((error) => {
             console.log("error from iLINCS"); 
@@ -181,7 +193,7 @@ class SignatureSearch extends Component {
                 </div>
             </div>
             }
-            {this.state.cids.length > 0   ?  <SignaturesZScores data={this.state.cids}/> : ''}
+            {this.state.cids.length > 0   ?  <SignaturesZScores mode={this.state.mode} data={this.state.cids}/> : ''}
 
         </div>;
     }

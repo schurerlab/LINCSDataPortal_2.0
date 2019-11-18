@@ -19,57 +19,57 @@ let FileSaver = require('file-saver');
 let csl = { 'fontSize': '0.7em' };
 
 
-const columns = [
-    {
-        Header: 'Category',
-        accessor: 'assay_category',
-        // filterable:true// String-based value accessors!
-    },
-    {
-        Header: 'Assay',
-        accessor: 'assay',
-        // filterable:true
-    },
-    {
-    Header: 'Perturbagen',
-    accessor: 'pertname',
-        // filterable:true
-    },
+// const columns = [
+//     {
+//         Header: 'Category',
+//         accessor: 'assay_category',
+//         // filterable:true// String-based value accessors!
+//     },
+//     {
+//         Header: 'Assay',
+//         accessor: 'assay',
+//         // filterable:true
+//     },
+//     {
+//     Header: 'Perturbagen',
+//     accessor: 'pertname',
+//         // filterable:true
+//     },
 
 
-    // {
-    //     Header: 'MOA',
-    //     accessor: 'mechanismOfAction'
-    // },
-    {
-        Header: 'Cell Line',
-        accessor: 'cellName',
-        // filterable:true
+//     // {
+//     //     Header: 'MOA',
+//     //     accessor: 'mechanismOfAction'
+//     // },
+//     {
+//         Header: 'Cell Line',
+//         accessor: 'cellName',
+//         // filterable:true
 
-    },
+//     },
 
-    {
-        Header: 'Organ',
-        accessor: 'organ',
-        // filterable:true// String-based value accessors!
-    },
-    {
-        Header: 'Time Point',
-        accessor: 'timepoint',
-        // filterable:true
-    }
-    ,
-    {
-        Header: 'concentration',
-        accessor: 'concentration',
-        // filterable:true
-    },
-    {
-        Header: 'zScore',
-        accessor: 'zScore',
-        // filterable:true
-    }
-];
+//     {
+//         Header: 'Organ',
+//         accessor: 'organ',
+//         // filterable:true// String-based value accessors!
+//     },
+//     {
+//         Header: 'Time Point',
+//         accessor: 'timepoint',
+//         // filterable:true
+//     }
+//     ,
+//     {
+//         Header: 'concentration',
+//         accessor: 'concentration',
+//         // filterable:true
+//     },
+//     {
+//         Header: 'zScore',
+//         accessor: 'zScore',
+//         // filterable:true
+//     }
+// ];
 
 class SignaturesZScores extends React.Component {
 
@@ -83,6 +83,78 @@ class SignaturesZScores extends React.Component {
             return el.zScores
         });
 
+        let columns = [
+            {
+                Header: 'Category',
+                accessor: 'assay_category',
+            },
+            {
+                Header: 'Assay',
+                accessor: 'assay',
+            },
+            {
+            Header: 'Perturbagen',
+            accessor: 'pertname',
+            },
+            {
+                Header: 'Cell Line',
+                accessor: 'cellName',
+            },
+        
+            {
+                Header: 'Organ',
+                accessor: 'organ',
+            },
+            {
+                Header: 'Time Point',
+                accessor: 'timepoint',
+            }
+            ,
+            {
+                Header: 'concentration',
+                accessor: 'concentration',                
+            },
+            // {
+            //     Header: 'zScore',
+            //     accessor: 'zScore',          
+            // }
+            // {
+            //     Header: 'P Value',
+            //     accessor: 'pValue',                
+            // },
+            // {
+            //     Header: 'similarity',
+            //     accessor: 'Similarity',                
+            // }
+        ];
+        // debugger;
+
+        var lincsSigIDs = props.data.map(el =>{
+            return el.lincsSigID
+        });
+        
+        if (props.mode == "geneList") {
+            columns.push({
+                    Header: 'zScore',
+                    accessor: 'zScore',          
+                })
+            // var zScores = props.data.map(el =>{
+            //     return el.zScores
+            // });
+        } else {
+            columns.push({
+                Header: 'P Value',
+                accessor: 'pValue',      
+            })
+            columns.push({
+                Header: 'Similarity',
+                accessor: 'similarity',   
+            })
+            // var pValues = props.data.map(el =>{
+            //     return el.pValue
+            // });
+        }
+
         this.state = {
             dowloadLoading: false,
             slicFrom:0,
@@ -93,6 +165,8 @@ class SignaturesZScores extends React.Component {
             page:'0',
             signatureIds:[],
             centerIds: lincsSigIDs,
+            iLincsData: props.data,
+            iLincsMode: props.mode,
             zScores: zScores,
             text:'MCF-10A',
             data:[],
@@ -103,6 +177,7 @@ class SignaturesZScores extends React.Component {
             selectedButton:'Details',
             selectedId :'',
             cells:{},
+            columns: columns,
             active:0,
             pages:[],
             showModal: false,
@@ -112,7 +187,7 @@ class SignaturesZScores extends React.Component {
     }
 
     componentWillMount(){
-        console.log("componentWillMount");
+        // console.log("componentWillMount");
         this.getDatasets();
     }
 
@@ -208,6 +283,10 @@ class SignaturesZScores extends React.Component {
         let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
         // let idUrl ='id='+sigIds.join('&id=');
         let zScores = this.state.zScores;
+
+        const iLincsData = this.state.iLincsData
+        const iLincsMode = this.state.iLincsMode
+
         this.setState( {data:[]});
         axios.request({
             method:'get',
@@ -235,14 +314,53 @@ class SignaturesZScores extends React.Component {
                     "cl_id": type['cell line']? type['cell line'][0].celllineID : '-',
                     "assay_category": type.assay_category ? type.assay_category : '_',
                     "dataset_id":type.dataset_id? type.dataset_id : '_',
-                    "data_level":type.data_level ? type.data_level : '_'
+                    "data_level":type.data_level ? type.data_level : '_',
+                    "sig_id" : type['gene expression assay'] ? type['gene expression assay'][0].dataset_sample_id : ''
                 };                
                datatable.push(smet);
             });
+            // datatable.forEach(function (value, i) {
+            //     value.zScore = zScores[i];
+            // });
+            // debugger;
+            // if (props.mode == "geneList") {
+            //     datatable.forEach(function (value, i) {
+            //         value.zScore = zScores[i];
+            //     });
+            // } else {
+            //     datatable.forEach(function (value, i) {
+            //         value.pValue = pValues[i];
+            //         value.similarity = similarities[i];
+            //     });
+            // }
 
+            // debugger
             datatable.forEach(function (value, i) {
-                value.zScore = zScores[i];
+                // console.log(value);                
+                // value.zScore = zScores[i];
+                let sig = iLincsData.find( ({ lincsSigID }) => lincsSigID === value.sig_id );
+
+                // let ms =  this.state.data_table_modelsystems.find(ms => {
+
+                //     return ms.name == name
+                // })
+                // return ms.id
+                // console.log(sig);
+                
+                if (iLincsMode == "geneList") {
+                    // console.log(sig.zScores)
+                    value.zScore = sig.zScores
+                } else {
+                    // console.log(sig.pValue)
+                    // console.log(sig.similarity)
+                    value.pValue = sig.pValue
+                    value.similarity = sig.similarity
+                }
             });
+              
+            //   const result = inventory.find( ({ name }) => name === 'cherries' );
+            //   lo
+
             this.setState({data:datatable})
         })
 
@@ -445,11 +563,12 @@ class SignaturesZScores extends React.Component {
                         { this.state.data !=''  > 0 ?
                             < ReactTable
                             data={this.state.data}
-                            columns={columns}
+                            columns={this.state.columns}
                             defaultPageSize={20}
                             showPageSizeOptions={false}
                             minRows={1}
                             // filterable={true}
+                            sortable={false}
                             showPagination={false}
                             // PaginationComponent={Pagination}
                             getTdProps={(state, rowInfo, column, instance) => {
