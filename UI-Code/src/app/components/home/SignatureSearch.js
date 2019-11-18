@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem, Button,Table} from 'react-bootstrap';
+import { Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import SignaturesZScores from '../../components/signatures/SignaturesZScores';
+import { log } from 'util';
 
 
 
@@ -34,6 +36,7 @@ class SignatureSearch extends Component {
             cells:{},
             loading: false,
             message: '',
+            toResults: false
         };
         this.cancel = '';
 
@@ -117,13 +120,24 @@ class SignatureSearch extends Component {
                     console.log("empty results");
                     this.setState({emptyResults:true});
                 }
-                this.setState({cids:response.data.sigScores});
+                this.setState({cids:response.data.sigScores},() => this.props.history.push({
+                    pathname: '/signatures/signature-search-results',
+                    state: { mode: this.state.mode, data: this.state.cids}
+                }));
+                // mode={this.state.mode} data={this.state.cids}
             } else {
                 if (!response.data.concordanceTable.length) {
                     console.log("empty results");
                     this.setState({emptyResults:true});
                 }
-                this.setState({cids:response.data.concordanceTable});
+                this.setState({cids:response.data.concordanceTable,toResults:true},() => this.props.history.push({
+                    pathname: '/signatures/signature-search-results',
+                    state: { mode: this.state.mode, data: this.state.cids}
+                }))
+                // .then(
+                //     () => this.props.history.push('/signatures/signatures')
+                // );
+                // mode={this.state.mode} data={this.state.cids}
             }          
 
         }).catch((error) => {
@@ -157,6 +171,14 @@ class SignatureSearch extends Component {
     }
 
     render() {
+        // // if (this.state.cids.length > 0) {
+        // console.log("turesults",this.state.toResults)
+        // if (this.state.toResults === true) {
+        //     // toResults
+        //     // <Redirect to="/signatures/signature-search-results" mode={this.state.mode} data={this.state.cids} /> 
+        //     <Redirect to='/signatures/signatures' /> 
+        // }   
+
         return <div>
             {this.state.loading == false && this.state.cids.length == 0 ?  <form>
                 <div className="form-row">
@@ -193,12 +215,11 @@ class SignatureSearch extends Component {
                 </div>
             </div>
             }
-            {this.state.cids.length > 0   ?  <SignaturesZScores mode={this.state.mode} data={this.state.cids}/> : ''}
-
+            {/* {this.state.cids.length > 0   ?  <SignaturesZScores mode={this.state.mode} data={this.state.cids}/> : ''} */}             
         </div>;
     }
 
 }
 
-export default SignatureSearch;
+export default withRouter(SignatureSearch);
 
