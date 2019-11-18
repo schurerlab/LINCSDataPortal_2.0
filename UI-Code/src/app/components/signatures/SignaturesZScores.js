@@ -349,12 +349,17 @@ class SignaturesZScores extends React.Component {
                 
                 if (iLincsMode == "geneList") {
                     // console.log(sig.zScores)
-                    value.zScore = sig.zScores
+                    value.zScore = sig.zScores.toPrecision(3)
                 } else {
                     // console.log(sig.pValue)
                     // console.log(sig.similarity)
-                    value.pValue = sig.pValue
-                    value.similarity = sig.similarity
+                    value.pValue = sig.pValue.toExponential(2)
+                    value.similarity = sig.similarity.toPrecision(3)
+                    if (sig.pValue < 0.0001) {
+                        value.pValue = sig.pValue.toExponential(2)
+                    } else {
+                        value.pValue = sig.pValue.toPrecision(3)
+                    }
                 }
             });
               
