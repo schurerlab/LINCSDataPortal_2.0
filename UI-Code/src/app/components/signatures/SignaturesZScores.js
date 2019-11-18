@@ -205,8 +205,8 @@ class SignaturesZScores extends React.Component {
     getSigMedata(sigIds){
         
         this.setState({totalCount:sigIds.length/20})
-        // let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
-        let idUrl ='id='+sigIds.join('&id=');
+        let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
+        // let idUrl ='id='+sigIds.join('&id=');
         let zScores = this.state.zScores;
         this.setState( {data:[]});
         axios.request({
@@ -450,8 +450,8 @@ class SignaturesZScores extends React.Component {
                             showPageSizeOptions={false}
                             minRows={1}
                             // filterable={true}
-                            showPagination={true}
-                            PaginationComponent={Pagination}
+                            showPagination={false}
+                            // PaginationComponent={Pagination}
                             getTdProps={(state, rowInfo, column, instance) => {
                       return {
                       onClick: (e) => {
@@ -478,7 +478,21 @@ class SignaturesZScores extends React.Component {
                                 </Col>
                             </Row>
                         }
-
+{ this.state.data.length > 0 ?     <ReactPaginate 
+                            previousLabel={'previous'} 
+                            nextLabel={'next'} 
+                            breakLabel={'.......'} 
+                            breakClassName={'break-me'} 
+                            pageCount={this.state.totalCount} 
+                            marginPagesDisplayed={2} 
+                            pageRangeDisplayed={7} 
+                            onPageChange={this.handlePageClick.bind(this)} 
+                            containerClassName={'pagination '} 
+                            subContainerClassName={'pages pagination'} 
+                             activeClassName={'active'} 
+                            // activeLinkClassName={'btn-page'}
+                            forcePage={this.state.active}
+                        />     : '' }
                     </div>
                 </div>
             </div>
