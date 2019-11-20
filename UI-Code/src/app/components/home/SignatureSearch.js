@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem, Button,Table} from 'react-bootstrap';
+import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem, Button,Table, Radio} from 'react-bootstrap';
 import { Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import SignaturesZScores from '../../components/signatures/SignaturesZScores';
@@ -22,8 +22,10 @@ class SignatureSearch extends Component {
             query: '',
             up:[],
             dn:[],
-            upString:[],
-            dnString:[],
+            upString:'',
+            dnString:'',
+            geneString:'',
+            geneList:[],
             len:0,
             results:{},
             ge:{},
@@ -42,6 +44,7 @@ class SignatureSearch extends Component {
 
         this.handleUpGenes = this.handleUpGenes.bind(this)
         this.handleDownGenes = this.handleDownGenes.bind(this)
+        this.handleGeneList = this.handleGeneList.bind(this)
     }
     handleUpGenes = (event) =>  {
 
@@ -57,8 +60,14 @@ class SignatureSearch extends Component {
             dnString: event.target.value,
             emptyResults:false
         });
+    }
+    
+    handleGeneList = (event) => {
 
-        
+        this.setState({
+            geneString: event.target.value,
+            emptyResults:false
+        });
     }
 
     parseGenes = (callback) => {        
@@ -130,6 +139,8 @@ class SignatureSearch extends Component {
                     console.log("empty results");
                     this.setState({emptyResults:true});
                 }
+                console.log(response.data.concordanceTable.length);
+                
                 this.setState({cids:response.data.concordanceTable,toResults:true},() => this.props.history.push({
                     pathname: '/signatures/signature-search-results',
                     state: { mode: this.state.mode, data: this.state.cids}
@@ -156,6 +167,17 @@ class SignatureSearch extends Component {
     }
 
     setExampleGenes(){
+                
+        const genes = "ESR1,GREB1,LRRC6,GPR143,CCDC170,SCUBE2,ABAT,ST6GALNAC2,CACNA2D2,RHOH,TFF3,IQSEC1,CLSTN2,REPS2,CACNA1H,MRFAP1L1,ATP7B,CA5B,ARMT1,PRLR,CACNG4,XBP1,CRYL1,SLC9A2,ANXA9,ZMAT4,KIAA1324,KIAA1467,SULT2B1,BCAS1,MED13L,SEPT8,ADD1,ZFYVE21,BCAS3,CYFIP2,CHRD,COX6C,TOB1,MREG,SIAH2,GHR,GATA3,KDM2A,COLQ,HTT,SCGN,CA12,KIF16B,PVALB,SOX2,SIRT4,CBFA2T3,BEX4,GPD1L,SPDEF,TGFB3,KIAA0513,ASTN2,RAB5B,SHROOM2,SUOX,CYP46A1,CLU,EFHD1,ASAH1,SIDT1,SLC22A5,ALDH3B2,RHOB,KDM5B,MAGED2,SLC7A8,GADD45G,NCAM2,ETNK2,PTGER3,MCCC2,SUPT4H1,CTPS2,GRIK4,SLC1A2,TCTN1,CERS4,TTC39A,ELOVL2,IGSF3,C11orf80,SLC35E3,ALDH6A1,ADIRF,CPT1A,KIAA0100,ARSD,UNC13B,LCMT1,SNF8,HOXC4,IGFBP2,ZNF652";        
+    
+        this.setState({
+            geneString: genes,            
+            geneList: genes.split(","),            
+            emptyResults:false
+          });
+    }
+
+    setExampleUpDn(){
         
         let upGenes,dnGenes;
         upGenes = "ESR1,GREB1,LRRC6,GPR143,CCDC170,SCUBE2,ABAT,ST6GALNAC2,CACNA2D2,RHOH,TFF3,IQSEC1,CLSTN2,REPS2,CACNA1H,MRFAP1L1,ATP7B,CA5B,ARMT1,PRLR,CACNG4,XBP1,CRYL1,SLC9A2,ANXA9,ZMAT4,KIAA1324,KIAA1467,SULT2B1,BCAS1,MED13L,SEPT8,ADD1,ZFYVE21,BCAS3,CYFIP2,CHRD,COX6C,TOB1,MREG,SIAH2,GHR,GATA3,KDM2A,COLQ,HTT,SCGN,CA12,KIF16B,PVALB,SOX2,SIRT4,CBFA2T3,BEX4,GPD1L,SPDEF,TGFB3,KIAA0513,ASTN2,RAB5B,SHROOM2,SUOX,CYP46A1,CLU,EFHD1,ASAH1,SIDT1,SLC22A5,ALDH3B2,RHOB,KDM5B,MAGED2,SLC7A8,GADD45G,NCAM2,ETNK2,PTGER3,MCCC2,SUPT4H1,CTPS2,GRIK4,SLC1A2,TCTN1,CERS4,TTC39A,ELOVL2,IGSF3,C11orf80,SLC35E3,ALDH6A1,ADIRF,CPT1A,KIAA0100,ARSD,UNC13B,LCMT1,SNF8,HOXC4,IGFBP2,ZNF652";
@@ -170,6 +192,15 @@ class SignatureSearch extends Component {
           });
     }
 
+    handleChange(event){
+        // const formState = Object.assign({}, this.state.mode)
+        // formState[event.target.name] = event.target.
+        console.log(event.target.name);        
+        console.log(event.target.value); 
+        this.setState({mode: event.target.name})
+        // setStatus({ upload_radio: e.target.value })
+      }
+
     render() {
         // // if (this.state.cids.length > 0) {
         // console.log("turesults",this.state.toResults)
@@ -180,7 +211,50 @@ class SignatureSearch extends Component {
         // }   
 
         return <div>
-            {this.state.loading == false && this.state.cids.length == 0 ?  <form>
+
+        {this.state.loading == false && <form>
+                <div className="form-row" style={{padding:"20px",margin:"12px"}}>
+                <div className="col-12 col-sm-12 col-md-4 card" style={{padding:"10px", width: '80%'}}>                                        
+                    {/* <Radio name="signatureOptions" name="sigProfile" value={this.state.mode}
+                        checked={this.state.mode === 'sigProfile'}
+                        onChange={this.handleChange.bind(this)}> Signature Profile</Radio> */}
+                    <Radio name="signatureOptions" name="UpDn" value={this.state.mode} 
+                        checked={this.state.mode === 'UpDn'}
+                        onChange={this.handleChange.bind(this)}> Up and Down Genes <a className="text-right" style={{color: "#212529", fontSize:'8px'}} href="#" onClick={() => {this.setExampleUpDn()} }>
+                        Example
+                    </a></Radio>
+                    <Radio name="signatureOptions" name="geneList" value={this.state.mode}
+                        checked={this.state.mode === 'geneList'}
+                        onChange={this.handleChange.bind(this)}> Gene List <a className="text-right" style={{color: "#212529", fontSize:'8px'}} href="#" onClick={() => {this.setExampleGenes()} }>
+                        Example
+                    </a></Radio>
+                    <br />
+                    <Button className="btn btn-primary" disabled={this.state.dnString.length==0 && this.state.upString.length==0}  onClick={() => {this.getData()} }>
+                        Submit Signature
+                    </Button>
+                    {this.state.emptyResults && <p>There are no similar genes for a given set of genes!</p>}                        
+                    </div>
+                    {this.state.mode === 'UpDn' && <div className="col-12 col-sm-12 col-md-8">
+                        <div className="row" style={{padding:"0 20px"}}>
+                            <div className="col col-md-6">
+                                <textarea name="styled-textarea" id="styled" type="text" value={this.state.upString} onChange={this.handleUpGenes} placeholder="Enter UP Genes either seperated by coma or new line "/>
+                            </div>
+                            <div className="col col-md-6">
+                                <textarea name="styled-textarea" id="styled" type="text" value={this.state.dnString} onChange={this.handleDownGenes}  placeholder="Enter Down Genes either seperated by coma or new line "/>
+                            </div>
+                        </div>
+                    </div>}
+                    {this.state.mode === 'geneList' && <div className="col-12 col-sm-12 col-md-8">
+                        <div className="row" style={{padding:"0 6px"}}>
+                            <div className="col col-md-12">
+                                <textarea name="styled-textarea" style={{padding:"10px", width: '100%', minHeight: "10em"}} type="text" value={this.state.geneString} onChange={this.handleGeneList} placeholder="Enter Genes either seperated by coma or new line "/>
+                            </div>                           
+                        </div>
+                    </div>}
+                    
+                </div>
+            </form> }
+            {/* {this.state.loading == false && this.state.cids.length == 0 ?  <form>
                 <div className="form-row">
                     <div className="col">
                         <textarea name="styled-textarea" id="styled" type="text" value={this.state.upString} onChange={this.handleUpGenes} placeholder="Enter UP Genes either seperated by coma or new line "/>
@@ -199,7 +273,7 @@ class SignatureSearch extends Component {
                         <textarea name="styled-textarea" id="styled" type="text" value={this.state.dnString} onChange={this.handleDownGenes}  placeholder="Enter Down Genes either seperated by coma or new line "/>
                     </div>
                 </div>
-            </form> : "" }
+            </form> : "" } */}
 
             {this.state.loading &&
             <div>

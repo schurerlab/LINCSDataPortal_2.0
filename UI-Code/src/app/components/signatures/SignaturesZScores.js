@@ -602,21 +602,21 @@ class SignaturesZScores extends React.Component {
                                 </Col>
                             </Row>
                         }
-{ this.state.data.length > 0 ?     <ReactPaginate 
-                            previousLabel={'previous'} 
-                            nextLabel={'next'} 
-                            breakLabel={'.......'} 
-                            breakClassName={'break-me'} 
-                            pageCount={this.state.totalCount} 
-                            marginPagesDisplayed={2} 
-                            pageRangeDisplayed={7} 
+{ this.state.data.length > 0 ?   <ReactPaginate
+                            previousLabel={'previous'}
+                            nextLabel={'next'}
+                            breakLabel={'.......'}
+                            breakClassName={'break-me'}
+                            pageCount={this.state.totalCount}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={7}
                             onPageChange={this.handlePageClick.bind(this)} 
-                            containerClassName={'pagination '} 
+                            containerClassName={'pagination '}
                             subContainerClassName={'pages pagination'} 
-                             activeClassName={'active'} 
+                             activeClassName={'active'}
                             // activeLinkClassName={'btn-page'}
                             forcePage={this.state.active}
-                        />     : '' }
+                        />   : '' }
                     </div>
                 </div>
             </div>
