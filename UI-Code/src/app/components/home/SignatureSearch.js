@@ -37,6 +37,7 @@ class SignatureSearch extends Component {
             sg:{},
             cells:{},
             loading: false,
+            disableSubmit: true,
             message: '',
             toResults: false
         };
@@ -51,7 +52,7 @@ class SignatureSearch extends Component {
         this.setState({
             upString: event.target.value,
             emptyResults:false
-        });
+        },this.handleDisable);
 
     }
     handleDownGenes = (event) => {
@@ -59,18 +60,34 @@ class SignatureSearch extends Component {
         this.setState({
             dnString: event.target.value,
             emptyResults:false
-        });
+        },this.handleDisable);
     }
     
     handleGeneList = (event) => {
-
+        
         this.setState({
             geneString: event.target.value,
             emptyResults:false
-        });
+        },this.handleDisable);
     }
 
-    parseGenes = (callback) => {        
+    handleDisable() {
+        console.log("handling disabling the button");
+        console.log(this.state.mode, this.state.geneString.length);
+        
+        if (this.state.mode === 'geneList' && !this.state.geneString.length) {
+            console.log("here1");            
+            this.setState({ disableSubmit: true})
+        } else if(this.state.mode === 'UpDn' && (!this.state.upString.length&&!this.state.dnString.length)) {
+            console.log("here1");
+            this.setState({ disableSubmit: true})
+        } else {
+            this.setState({ disableSubmit: false})
+        }
+        
+    }
+
+    parseUpDnGenes = (callback) => {        
 
         let upGenes =[];
 
@@ -102,19 +119,79 @@ class SignatureSearch extends Component {
           
     }
 
+    parseGeneList = (callback) => {        
+
+        const genes = this.parseGenes(this.state.geneString);
+        // if(genes.length > 0) {
+        //     this.setState({geneList: genes})
+        // }
+
+        this.setState({ geneList: genes}, () => {
+            callback();
+          });
+          
+    }
+
+    parseGenes = (geneString) => {
+        let genes =[];
+
+        console.log(geneString);
+        
+        console.log("check enters",geneString.includes("\n"));
+        console.log(geneString.split("\n"));
+        console.log(geneString.split(/,;\s\n\t/));
+        console.log(geneString.replace(/\s/g, ''));
+        
+        
+
+        // geneString = geneString.replace(/\s/g, '');
+        // return geneString.split(/,| \n\t/) 
+        // genes = geneString.split(/,;\s\n\t/);
+        // genes = geneString.split(",");
+
+        if(geneString.includes("\n")){
+            genes = geneString.split("\n");
+        } else if(geneString.includes(",")){
+            genes = geneString.split(",");
+        } else if(geneString.length) {
+            genes[0] = this.state.upString
+        }
+
+        console.log(genes);        
+        return genes 
+    }
+
     sendToiLlincs = () => {
         // debugger;
         this.setState({loading:true});
-        axios.post('http://dev.ilincs.org/api/ilincsR/findConcordancesSC',
-        {
-            // "mode" : "geneList",
-            // "mode" : "UpDn",
-            "mode" : this.state.mode,
-            "signatureProfile" : {
-                "genesUp" : this.state.up, 
-                "genesDown" : this.state.dn
+        let postBody;
+        if (this.state.mode == "UpDn") {
+            postBody = {             
+                "mode" : this.state.mode,
+                "signatureProfile" : {
+                    "genesUp" : this.state.up, 
+                    "genesDown" : this.state.dn
+                }
             }
-        },
+        } else {
+            postBody = {             
+                "mode" : this.state.mode,
+                "signatureProfile" : {
+                    "genes" : this.state.geneList
+                }
+            }
+        }
+        axios.post('http://dev.ilincs.org/api/ilincsR/findConcordancesSC',
+        // {
+        //     // "mode" : "geneList",
+        //     // "mode" : "UpDn",
+        //     "mode" : this.state.mode,
+        //     "signatureProfile" : {
+        //         "genesUp" : this.state.up, 
+        //         "genesDown" : this.state.dn
+        //     }
+        // },
+        postBody,
         {
             headers: {
                 'Accept' : 'application/json'
@@ -128,23 +205,28 @@ class SignatureSearch extends Component {
                 if (!response.data.sigScores.length) {
                     console.log("empty results");
                     this.setState({emptyResults:true});
+                } else {
+                    console.log(response.data.sigScores.length);
+
+                    this.setState({cids:response.data.sigScores},() => this.props.history.push({
+                        pathname: '/signatures/signature-search-results',
+                        state: { mode: this.state.mode, data: this.state.cids}
+                    }));
+                    // mode={this.state.mode} data={this.state.cids}
                 }
-                this.setState({cids:response.data.sigScores},() => this.props.history.push({
-                    pathname: '/signatures/signature-search-results',
-                    state: { mode: this.state.mode, data: this.state.cids}
-                }));
-                // mode={this.state.mode} data={this.state.cids}
             } else {
                 if (!response.data.concordanceTable.length) {
                     console.log("empty results");
                     this.setState({emptyResults:true});
-                }
-                console.log(response.data.concordanceTable.length);
+                } else {
+                    console.log(response.data.concordanceTable.length);
                 
-                this.setState({cids:response.data.concordanceTable,toResults:true},() => this.props.history.push({
-                    pathname: '/signatures/signature-search-results',
-                    state: { mode: this.state.mode, data: this.state.cids}
-                }))
+                    this.setState({cids:response.data.concordanceTable,toResults:true},() => this.props.history.push({
+                        pathname: '/signatures/signature-search-results',
+                        state: { mode: this.state.mode, data: this.state.cids}
+                    }))
+                }
+                
                 // .then(
                 //     () => this.props.history.push('/signatures/signatures')
                 // );
@@ -162,7 +244,12 @@ class SignatureSearch extends Component {
 
     getData = () => {
 
-        this.parseGenes(this.sendToiLlincs);
+        if (this.state.mode === "UpDn" ) {
+            this.parseUpDnGenes(this.sendToiLlincs);
+        } else {
+            this.parseGeneList(this.sendToiLlincs);
+        }
+        
 
     }
 
@@ -172,9 +259,9 @@ class SignatureSearch extends Component {
     
         this.setState({
             geneString: genes,            
-            geneList: genes.split(","),            
+            geneList: genes.split(","), 
             emptyResults:false
-          });
+          },this.handleDisable);
     }
 
     setExampleUpDn(){
@@ -189,15 +276,21 @@ class SignatureSearch extends Component {
             up: upGenes.split(","),
             dn: dnGenes.split(","),
             emptyResults:false
-          });
+          },this.handleDisable);
     }
+
+    // disableSubmit() {
+        
+    //     // this.state.dnString.length==0 && this.state.upString.length==0
+    //     return true
+    // }
 
     handleChange(event){
         // const formState = Object.assign({}, this.state.mode)
         // formState[event.target.name] = event.target.
-        console.log(event.target.name);        
-        console.log(event.target.value); 
-        this.setState({mode: event.target.name})
+        // console.log(event.target.name);        
+        // console.log(event.target.value); 
+        this.setState({mode: event.target.name},this.handleDisable)
         // setStatus({ upload_radio: e.target.value })
       }
 
@@ -229,7 +322,7 @@ class SignatureSearch extends Component {
                         Example
                     </a></Radio>
                     <br />
-                    <Button className="btn btn-primary" disabled={this.state.dnString.length==0 && this.state.upString.length==0}  onClick={() => {this.getData()} }>
+                    <Button className="btn btn-primary" disabled={this.state.disableSubmit}  onClick={() => {this.getData()} }>
                         Submit Signature
                     </Button>
                     {this.state.emptyResults && <p>There are no similar genes for a given set of genes!</p>}                        
