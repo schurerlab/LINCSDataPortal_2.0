@@ -304,29 +304,33 @@ class SignatureSearch extends Component {
         return <div>
 
         {this.state.loading == false && <form>
-                <div className="form-row" style={{padding:"20px",margin:"12px"}}>
-                <div className="col-12 col-sm-12 col-md-4 card" style={{padding:"10px", width: '80%'}}>                                        
-                    {/* <Radio name="signatureOptions" name="sigProfile" value={this.state.mode}
-                        checked={this.state.mode === 'sigProfile'}
-                        onChange={this.handleChange.bind(this)}> Signature Profile</Radio> */}
-                    <Radio name="signatureOptions" name="UpDn" value={this.state.mode} 
-                        checked={this.state.mode === 'UpDn'}
-                        onChange={this.handleChange.bind(this)}> Up and Down Genes <a className="text-right" style={{color: "#212529", fontSize:'8px'}} href="#" onClick={() => {this.setExampleUpDn()} }>
-                        Example
-                    </a></Radio>
-                    <Radio name="signatureOptions" name="geneList" value={this.state.mode}
-                        checked={this.state.mode === 'geneList'}
-                        onChange={this.handleChange.bind(this)}> Gene List <a className="text-right" style={{color: "#212529", fontSize:'8px'}} href="#" onClick={() => {this.setExampleGenes()} }>
-                        Example
-                    </a></Radio>
-                    <br />
-                    <Button className="btn btn-primary" disabled={this.state.disableSubmit}  onClick={() => {this.getData()} }>
-                        Submit Signature
-                    </Button>
-                    {this.state.emptyResults && <p>There are no similar genes for a given set of genes!</p>}                        
-                    </div>
-                    {this.state.mode === 'UpDn' && <div className="col-12 col-sm-12 col-md-8">
-                        <div className="row" style={{padding:"0 20px"}}>
+                <div className="form-row" style={{margin:"12px"}}>
+                <div className="col-12 col-sm-12 col-md-4 box">     
+                    <div className="card" style={{padding:"20px", minHeight:"177px"}}>
+                        {/* <Radio name="signatureOptions" name="sigProfile" value={this.state.mode}
+                            checked={this.state.mode === 'sigProfile'}
+                            onChange={this.handleChange.bind(this)}> Signature Profile</Radio> */}
+                        <Radio name="signatureOptions" name="UpDn" value={this.state.mode} 
+                            checked={this.state.mode === 'UpDn'}
+                            onChange={this.handleChange.bind(this)}> Up and Down Genes <a className="text-right" style={{color: "#212529", fontSize:'8px'}} href="#" onClick={() => {this.setExampleUpDn()} }>
+                            Example
+                        </a></Radio>
+                        <Radio name="signatureOptions" name="geneList" value={this.state.mode}
+                            checked={this.state.mode === 'geneList'}
+                            onChange={this.handleChange.bind(this)}> Gene List <a className="text-right" style={{color: "#212529", fontSize:'8px'}} href="#" onClick={() => {this.setExampleGenes()} }>
+                            Example
+                        </a></Radio>
+                        <br />
+                        <br />
+                        <Button className="btn btn-primary" disabled={this.state.disableSubmit}  onClick={() => {this.getData()} } style={{position: "absolute",bottom: "24px",marginRight: "auto",marginLeft: "auto"}}>
+                            Submit Signature
+                        </Button>
+                        {this.state.emptyResults && <p>There are no similar genes for a given set of genes!</p>} 
+                    </div>                                   
+                </div>
+                {this.state.mode === 'UpDn' && <div className="col-12 col-sm-12 col-md-8 box">
+                    <div className="card" style={{padding:"10px"}}>
+                        <div className="row" style={{padding:"10px"}}>
                             <div className="col col-md-6">
                                 <textarea name="styled-textarea" id="styled" type="text" value={this.state.upString} onChange={this.handleUpGenes} placeholder="Enter UP Genes either seperated by coma or new line "/>
                             </div>
@@ -334,14 +338,17 @@ class SignatureSearch extends Component {
                                 <textarea name="styled-textarea" id="styled" type="text" value={this.state.dnString} onChange={this.handleDownGenes}  placeholder="Enter Down Genes either seperated by coma or new line "/>
                             </div>
                         </div>
-                    </div>}
-                    {this.state.mode === 'geneList' && <div className="col-12 col-sm-12 col-md-8">
-                        <div className="row" style={{padding:"0 6px"}}>
+                    </div>
+                </div>}
+                {this.state.mode === 'geneList' && <div className="col-12 col-sm-12 col-md-8 box">
+                    <div className="card" style={{padding:"10px"}}>
+                        <div className="row" style={{padding:"10px"}}>
                             <div className="col col-md-12">
-                                <textarea name="styled-textarea" style={{padding:"10px", width: '100%', minHeight: "10em"}} type="text" value={this.state.geneString} onChange={this.handleGeneList} placeholder="Enter Genes either seperated by coma or new line "/>
+                                <textarea name="styled-textarea" style={{padding:"10px", width: '100%', minHeight: "8em"}} type="text" value={this.state.geneString} onChange={this.handleGeneList} placeholder="Enter Genes either seperated by coma or new line "/>
                             </div>                           
                         </div>
-                    </div>}
+                    </div>
+                </div>}
                     
                 </div>
             </form> }

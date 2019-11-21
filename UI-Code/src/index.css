@@ -199,7 +199,7 @@ body {
 textarea#styled {
     /* width: 600px; */
     width: 100%;
-    min-height: 10em;
+    min-height: 8em;
     /* border: 3px solid #cccccc; */
     padding: 0 6px;
     /* font-family: Tahoma, sans-serif; */
@@ -792,3 +792,11 @@ input[type="radio"] {
     margin: 5px 0px;
     border-bottom: 1px dashed #DDDDDD;
 }
+
+.box {
+    padding: 0 5px 0 5px;
+}
+
+/* .box .inner {
+    background-color: #fff;
+} */
