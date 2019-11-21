@@ -72,14 +72,12 @@ class SignatureSearch extends Component {
     }
 
     handleDisable() {
-        console.log("handling disabling the button");
-        console.log(this.state.mode, this.state.geneString.length);
+        // console.log("handling disabling the button");
+        // console.log(this.state.mode, this.state.geneString.length);
         
-        if (this.state.mode === 'geneList' && !this.state.geneString.length) {
-            console.log("here1");            
+        if (this.state.mode === 'geneList' && !this.state.geneString.length) {            
             this.setState({ disableSubmit: true})
-        } else if(this.state.mode === 'UpDn' && (!this.state.upString.length&&!this.state.dnString.length)) {
-            console.log("here1");
+        } else if(this.state.mode === 'UpDn' && (!this.state.upString.length&&!this.state.dnString.length)) {            
             this.setState({ disableSubmit: true})
         } else {
             this.setState({ disableSubmit: false})
@@ -135,12 +133,12 @@ class SignatureSearch extends Component {
     parseGenes = (geneString) => {
         let genes =[];
 
-        console.log(geneString);
+        // console.log(geneString);
         
-        console.log("check enters",geneString.includes("\n"));
-        console.log(geneString.split("\n"));
-        console.log(geneString.split(/,;\s\n\t/));
-        console.log(geneString.replace(/\s/g, ''));
+        // console.log("check enters",geneString.includes("\n"));
+        // console.log(geneString.split("\n"));
+        // console.log(geneString.split(/,;\s\n\t/));
+        // console.log(geneString.replace(/\s/g, ''));
         
         
 
@@ -157,7 +155,7 @@ class SignatureSearch extends Component {
             genes[0] = this.state.upString
         }
 
-        console.log(genes);        
+        // console.log(genes);        
         return genes 
     }
 
@@ -199,14 +197,14 @@ class SignatureSearch extends Component {
         }
     ).then((response) => {
             this.setState({loading:false});
-            console.log("iLINCS data ready");            
+            // console.log("iLINCS data ready");            
             // debugger;
             if (this.state.mode == "geneList") {
                 if (!response.data.sigScores.length) {
                     console.log("empty results");
                     this.setState({emptyResults:true});
                 } else {
-                    console.log(response.data.sigScores.length);
+                    // console.log(response.data.sigScores.length);
 
                     this.setState({cids:response.data.sigScores},() => this.props.history.push({
                         pathname: '/signatures/signature-search-results',
@@ -219,7 +217,7 @@ class SignatureSearch extends Component {
                     console.log("empty results");
                     this.setState({emptyResults:true});
                 } else {
-                    console.log(response.data.concordanceTable.length);
+                    // console.log(response.data.concordanceTable.length);
                 
                     this.setState({cids:response.data.concordanceTable,toResults:true},() => this.props.history.push({
                         pathname: '/signatures/signature-search-results',

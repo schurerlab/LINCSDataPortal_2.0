@@ -111,7 +111,7 @@ class SignaturesZScores extends React.Component {
             }
             ,
             {
-                Header: 'concentration',
+                Header: 'Concentration',
                 accessor: 'concentration',                
             },
             // {
