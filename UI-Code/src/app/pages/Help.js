@@ -74,8 +74,8 @@ export const Help = (props) => {
                             Portal (LDP) has been the primary access point for the compendium of
                             LINCS data and has been widely utilized. Here we report the first
                             major update of LDP (
-                            <a href="http://lincsportal.ccs.miami.edu/beta/" className="uri">
-                                http://lincsportal.ccs.miami.edu/beta/
+                            <a href="http://lincsportal.ccs.miami.edu/signatures/" className="uri">
+                                http://lincsportal.ccs.miami.edu/signatures/
                             </a>
                             ) with substantial changes in the data architecture and APIs, a
                             completely redesigned user interface, and enhanced curated metadata
