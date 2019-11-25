@@ -197,11 +197,12 @@ body {
 }
 
 textarea#styled {
-    width: 600px;
-    min-height: 20em;
-    border: 3px solid #cccccc;
-    padding: 5px;
-    font-family: Tahoma, sans-serif;
+    /* width: 600px; */
+    width: 100%;
+    min-height: 8em;
+    /* border: 3px solid #cccccc; */
+    padding: 0 6px;
+    /* font-family: Tahoma, sans-serif; */
     background-position: bottom right;
     background-repeat: no-repeat;
 }
@@ -722,8 +723,15 @@ input[type="radio"] {
 
  .btn-primary {
      color: #fff;
+     background-color: #007bff !important;
+     border-color: #c0c0c0 !important;
+ }
+
+ .btn-primary:disabled {
+     color: #ccc;
      background-color: #c0c0c0 !important;
      border-color: #c0c0c0 !important;
+     cursor: not-allowed;
  }
 
 .name-header {
@@ -784,3 +792,11 @@ input[type="radio"] {
     margin: 5px 0px;
     border-bottom: 1px dashed #DDDDDD;
 }
+
+.box {
+    padding: 0 5px 0 5px;
+}
+
+/* .box .inner {
+    background-color: #fff;
+} */
