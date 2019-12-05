@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import '../../index.css'
+import '../../titip.min.css';
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { SigHome } from "../pages/SigHome";
