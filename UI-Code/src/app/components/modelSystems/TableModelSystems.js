@@ -105,7 +105,7 @@ class TableModelSystems extends React.Component {
 
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getData();
     }
 

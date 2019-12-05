@@ -186,7 +186,7 @@ class SignaturesZScores extends React.Component {
 
     }
 
-    componentWillMount(){
+    componentDidMount(){
         // console.log("componentWillMount");
         this.getDatasets();
     }
