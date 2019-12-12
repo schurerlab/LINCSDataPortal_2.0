@@ -32,8 +32,7 @@ class Main extends React.Component {
 
     render() {
         return (
-            <BrowserRouter>
-                <Router basename="/signatures-test/"></Router>
+            <BrowserRouter basename="/signatures-test/">
                 <div>
                     <Navbar />
 
