@@ -212,12 +212,13 @@ class SignaturesZScores extends React.Component {
     handlePageClick(event) {
         if (event.selected < 1 || event.selected > this.state.totalCount) {
             this.setState({page:event.selected,active:event.selected,slicFrom:0}, () => {
-                this.getDatasets();
+                this.getDatasets();                
             });
 
         }else{
             this.setState({page:event.selected,active:event.selected,slicFrom:event.selected+1*20}, () => {
-                this.getDatasets();
+                // this.getDatasets();
+                this.getDataPage(event.selected);
             });
         }
         
@@ -280,6 +281,41 @@ class SignaturesZScores extends React.Component {
                 return input.replace('Cell Viability', 'cell viability');
             }
         }
+    }
+
+    getDataPage(page) {
+        console.log("getting page: ",page);
+
+        console.log("getting sessionID: ",this.state.sessionId);
+        
+        console.log("getting page: ",page);
+
+        // const Postbody = 'sessionID='+this.state.sessionId+'&limit=20&page='+page
+        const Postbody = 'limit=20&page='+page
+
+        axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance',
+        // {
+        //     // "mode" : "geneList",
+        //     // "mode" : "UpDn",
+        //     "mode" : this.state.mode,
+        //     "signatureProfile" : {
+        //         "genesUp" : this.state.up, 
+        //         "genesDown" : this.state.dn
+        //     }
+        // },
+        Postbody,
+        {
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            }
+        }).then((response) => {
+                console.log(response.data);                
+                // this.state.signatureIds = response.data.data;
+                // this.getStats(this.state.signatureIds);
+                // this.getSigMedata(this.state.signatureIds);
+
+        })       
     }
 
     getSigMedata(sigIds){
