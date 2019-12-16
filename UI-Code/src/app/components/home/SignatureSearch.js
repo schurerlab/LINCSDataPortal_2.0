@@ -161,25 +161,46 @@ class SignatureSearch extends Component {
 
     sendToiLlincs = () => {
         // debugger;
+        console.log(this.state.mode);
         this.setState({loading:true});
         let postBody;
         if (this.state.mode == "UpDn") {
-            postBody = {             
-                "mode" : this.state.mode,
-                "signatureProfile" : {
-                    "genesUp" : this.state.up, 
-                    "genesDown" : this.state.dn
-                }
-            }
+            // postBody = {             
+            //     "mode" : this.state.mode,
+            //     "signatureProfile" : {
+            //         "genesUp" : this.state.up, 
+            //         "genesDown" : this.state.dn
+            //     }
+            // }
+            // postBody = {             
+            //     mode : this.state.mode,
+            //     upGene : this.state.upString,
+            //     downGene : this.state.dnString                
+            // }
+            // postBody = 'mode=UpDn&upGene=ZNF740%2CPFKP%2CRPL12%2CABAT%2CEIF4A3%2CMAP3K2%2CRPS6KA1%2CBRAF%2CPLEC%2CFASN%2CDPF2&downGene=EGFR%2CABI1%2CSMARCC1%2CMAP3K7%2COCIAD1%2CCHAMP1%2CMAPK8%2CRBM15%2CYWHAZ%2CPIK3CA%2CSTAT6%2CBRCA1%2CCDKN1A'
+            postBody = 'mode='+this.state.mode+'&upGene='+this.state.upString+'&downGene='+this.state.dnString
         } else {
-            postBody = {             
-                "mode" : this.state.mode,
-                "signatureProfile" : {
-                    "genes" : this.state.geneList
-                }
-            }
+            // postBody = {             
+            //     "mode" : this.state.mode,
+            //     "signatureProfile" : {
+            //         "genes" : this.state.geneList
+            //     }
+            // }
+            // postBody = {             
+            //     "mode" : this.state.mode,
+            //     "upGene" : this.state.geneString
+            //     // "genesDown" : this.state.dn                
+            // }
+            postBody = 'mode='+this.state.mode+'&upGene='+this.state.geneString
         }
-        axios.post('http://www.ilincs.org/api/ilincsR/findConcordancesSC',
+        console.log(postBody)
+        // axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
+        // axios.post('http://dev.ilincs.org/api/ilincsR/findConcordancesSC',
+        // axios.post('http://www.ilincs.org/api/ilincsR/findConcordancesSC',
+        // axios.post('http://nightly.ilincs.org/api/ilincsR/findConcordancesSC',
+        axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance',
+        // axios.post('http://dev3.ccs.miami.edu:8080/sigc-api/frontend/concordance',
+
         // {
         //     // "mode" : "geneList",
         //     // "mode" : "UpDn",
@@ -192,44 +213,52 @@ class SignatureSearch extends Component {
         postBody,
         {
             headers: {
-                'Accept' : 'application/json'
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/x-www-form-urlencoded'
             }
         }
     ).then((response) => {
             this.setState({loading:false});
-            // console.log("iLINCS data ready");            
+            console.log("iLINCS data ready");
+            console.log(response.data);            
             // debugger;
-            if (this.state.mode == "geneList") {
-                if (!response.data.sigScores.length) {
+            // if (this.state.mode == "geneList") {
+                // if (!response.data.sigScores.length) {
+                if (!response.data.data.length) {
                     console.log("empty results");
                     this.setState({emptyResults:true});
                 } else {
                     // console.log(response.data.sigScores.length);
-
-                    this.setState({cids:response.data.sigScores},() => this.props.history.push({
+                    // this.setState({cids:response.data.sigScores},() => this.props.history.push({
+                    this.setState({cids:response.data.data},() => this.props.history.push({
                         pathname: '/signatures/signature-search-results',
-                        state: { mode: this.state.mode, data: this.state.cids}
+                        state: { mode: this.state.mode,
+                                 sessionId: response.data.sessionID,
+                                 sigCount: response.data.count,
+                                 data: this.state.cids}
                     }));
                     // mode={this.state.mode} data={this.state.cids}
                 }
-            } else {
-                if (!response.data.concordanceTable.length) {
-                    console.log("empty results");
-                    this.setState({emptyResults:true});
-                } else {
-                    // console.log(response.data.concordanceTable.length);
+            // } else {
+            //     // if (!response.data.concordanceTable.length) {
+            //     if (!response.data.data.length) {
+            //         console.log("empty results");
+            //         this.setState({emptyResults:true});
+            //     } else {
+            //         // console.log(response.data.concordanceTable.length);
                 
-                    this.setState({cids:response.data.concordanceTable,toResults:true},() => this.props.history.push({
-                        pathname: '/signatures/signature-search-results',
-                        state: { mode: this.state.mode, data: this.state.cids}
-                    }))
-                }
+            //         // this.setState({cids:response.data.concordanceTable,toResults:true},() => this.props.history.push({
+            //         this.setState({cids:response.data.data,toResults:true},() => this.props.history.push({
+            //             pathname: '/signatures/signature-search-results',
+            //             state: { mode: this.state.mode, data: this.state.cids}
+            //         }))
+            //     }
                 
-                // .then(
-                //     () => this.props.history.push('/signatures/signatures')
-                // );
-                // mode={this.state.mode} data={this.state.cids}
-            }          
+            //     // .then(
+            //     //     () => this.props.history.push('/signatures/signatures')
+            //     // );
+            //     // mode={this.state.mode} data={this.state.cids}
+            // }          
 
         }).catch((error) => {
             console.log("error from iLINCS"); 
@@ -266,7 +295,9 @@ class SignatureSearch extends Component {
         
         let upGenes,dnGenes;
         upGenes = "ESR1,GREB1,LRRC6,GPR143,CCDC170,SCUBE2,ABAT,ST6GALNAC2,CACNA2D2,RHOH,TFF3,IQSEC1,CLSTN2,REPS2,CACNA1H,MRFAP1L1,ATP7B,CA5B,ARMT1,PRLR,CACNG4,XBP1,CRYL1,SLC9A2,ANXA9,ZMAT4,KIAA1324,KIAA1467,SULT2B1,BCAS1,MED13L,SEPT8,ADD1,ZFYVE21,BCAS3,CYFIP2,CHRD,COX6C,TOB1,MREG,SIAH2,GHR,GATA3,KDM2A,COLQ,HTT,SCGN,CA12,KIF16B,PVALB,SOX2,SIRT4,CBFA2T3,BEX4,GPD1L,SPDEF,TGFB3,KIAA0513,ASTN2,RAB5B,SHROOM2,SUOX,CYP46A1,CLU,EFHD1,ASAH1,SIDT1,SLC22A5,ALDH3B2,RHOB,KDM5B,MAGED2,SLC7A8,GADD45G,NCAM2,ETNK2,PTGER3,MCCC2,SUPT4H1,CTPS2,GRIK4,SLC1A2,TCTN1,CERS4,TTC39A,ELOVL2,IGSF3,C11orf80,SLC35E3,ALDH6A1,ADIRF,CPT1A,KIAA0100,ARSD,UNC13B,LCMT1,SNF8,HOXC4,IGFBP2,ZNF652";
+        // upGenes = "ZNF740,PFKP,RPL12,ABAT,EIF4A3,MAP3K2,RPS6KA1,BRAF,PLEC,FASN,DPF2";
         dnGenes = "SLC35G2,THEMIS2,MED17,CDKL1,CCDC88A,STAC,IFI16,MICAL2,GSTP1,SNRNP40,GNAI1,HOXA7,PRKCDBP,BATF3,ETV4,YEATS2,SNAI2,RASAL2,USB1,ISG15,GART,AKR1C1,BIRC3,SKI,CSRP2,TGFBI,TRIP10,PTX3,FST,MMP14,COLGALT1,HPSE,C1R,FXYD5,MICALL1,PSAT1,CERK,GLIPR1,CAPN2,SPTBN1,GPX1,NASP,PRSS12,SPRY2,EPHA2,DSE,TOMM22,MIEF1,PTK7,BCL11A,IGFBP7,MAP1B,COL4A1,FOSL1,TAP2,CSNK1E,SPCS3,POLR2F,JOSD1,BTG3,MEIS2,PHC2,CAV1,NRP2,MAP7D1,SERPINB7,LUZP1,MDFIC,TINAGL1,ADAM19,EGFR,CXCL3,HDAC9,CAV2,ADCY7,SERPINB8,SLC7A1,GPR3,STX11,SRSF4,CASP4,PLAUR,NABP1,ACSL5,BIN1,FSCN1,MSN,TNFAIP3,PIK3CD,YBX1,ETS1,AGPAT4,PDGFC,CXCL8,CXCL2,COL4A2,HRH1,GADD45A,SDHAF3,CTSC";
+        // dnGenes = "EGFR,ABI1,SMARCC1,MAP3K7,OCIAD1,CHAMP1,MAPK8,RBM15,YWHAZ,PIK3CA,STAT6,BRCA1,CDKN1A"
         
         this.setState({
             upString: upGenes,

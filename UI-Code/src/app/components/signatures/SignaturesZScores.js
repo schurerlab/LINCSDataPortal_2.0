@@ -75,6 +75,7 @@ class SignaturesZScores extends React.Component {
 
     constructor(props){
         super(props);
+        // debugger;
 
         var lincsSigIDs = props.data.map(el =>{
             return el.lincsSigID
@@ -160,16 +161,20 @@ class SignaturesZScores extends React.Component {
             slicFrom:0,
             types:'',
             sids:[],
-            totalCount:'',
+            totalCount: Math.ceil(props.sigCount/20) || '',
             id:'',
             page:'0',
-            signatureIds:[],
+            // signatureIds:[],
+            signatureIds: props.data,
+            sessionId: props.sessionId,
+            sigCount: props.sigCount,
             centerIds: lincsSigIDs,
             iLincsData: props.data,
             iLincsMode: props.mode,
             zScores: zScores,
             text:'MCF-10A',
             data:[],
+            // data: props.data,
             signature: this.rename('Gene Expressions'),
             selected: 0,
             data_table_modelsystems:[],
@@ -278,8 +283,8 @@ class SignaturesZScores extends React.Component {
     }
 
     getSigMedata(sigIds){
-        
-        this.setState({totalCount:sigIds.length/20})
+        // debugger;
+        // this.setState({totalCount:sigIds.length/20})
         let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
         // let idUrl ='id='+sigIds.join('&id=');
         let zScores = this.state.zScores;
@@ -384,7 +389,7 @@ class SignaturesZScores extends React.Component {
 
     getSigIds(sigCenterIds) {
         let centerIdsApiString = sigCenterIds.join("&id=");
-
+        
         axios.request({
             method: 'get',
             url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/search-center-ids?id=' + centerIdsApiString
@@ -397,10 +402,60 @@ class SignaturesZScores extends React.Component {
         });
     }
 
+    formatMedata(datatable) {
+        const iLincsData = this.state.iLincsData
+        const iLincsMode = this.state.iLincsMode
+        
+        datatable.forEach(function (value, i) {
+            console.log(value);                
+            // value.zScore = zScores[i];
+            // let sig = iLincsData.find( ({ lincsSigID }) => lincsSigID === value.sig_id );
+
+            // let ms =  this.state.data_table_modelsystems.find(ms => {
+
+            //     return ms.name == name
+            // })
+            // return ms.id
+            // console.log(sig);
+            
+            if (iLincsMode == "geneList") {
+                // console.log(sig.zScores)
+                value.zScore = Number(value.zScores).toPrecision(3)
+            } else {
+                // console.log(sig.pValue)
+                // console.log(sig.similarity)
+                value.pValue = Number(value.pValue).toExponential(2)
+                value.similarity = Number(value.similarity).toPrecision(3)
+                if (value.pValue > 0.0001) {                    
+                    value.pValue = value.pValue.toPrecision(3)
+                }
+            }
+            value.pertname = value.metadata.perturbagen
+            value.assay_category = value.metadata.category
+            value.assay = value.metadata.assay
+            value.cellName = value.metadata.cell
+            value.organ = value.metadata.organ
+            value.timepoint = value.metadata.timepoint
+            value.concentration = value.metadata.concentration
+        });
+
+        this.setState({data:datatable})
+    }
+
     getDatasets() {
 
         this.setState({text:""})
-        this.getSigIds(this.state.centerIds);
+        // this.getSigIds(this.state.centerIds);
+        console.log(this.state.sessionId);
+        console.log(this.state.totalCount);
+        console.log(this.state.data);
+        // Cannot get get stats from just first page ids
+        //getStats needs to be changed preferable to use sessionId
+        // this.getSigMedata(this.state.signatureIds);
+        this.formatMedata(this.state.signatureIds);
+
+
+
 
     }
 

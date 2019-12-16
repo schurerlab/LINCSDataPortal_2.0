@@ -60,7 +60,11 @@ class Main extends React.Component {
                         />
                         <Route path="/signatures/structure-search" render={(props) => <SigReadouts />} />
                         <Route path="/signatures/signatures" render={(props) => <SigSignatures />} />
-                        <Route path="/signatures/signature-search-results" render={(props) => <SignaturesZScores mode={props.location.state.mode} data={props.location.state.data}/>} />
+                        <Route path="/signatures/signature-search-results" render={(props) => <SignaturesZScores 
+                                                                                                            mode={props.location.state.mode}
+                                                                                                            sessionId={props.location.state.sessionId}
+                                                                                                            sigCount={props.location.state.sigCount}
+                                                                                                            data={props.location.state.data}/>} />
                         <Route path="/signatures/help" render={(props) => <Help/>} />
                     </div>
                     <Footer />
