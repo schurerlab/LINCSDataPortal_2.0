@@ -1,6 +1,6 @@
 {
   "name": "sigcomm-ui",
-  "homepage": "http://lincsportal.ccs.miami.edu/signatures",
+  "homepage": "http://lincsportal.ccs.miami.edu/signatures-test",
   "version": "1.0.0",
   "description": "demo",
   "main": "index.js",
