@@ -212,6 +212,7 @@ class SignatureSearch extends Component {
         // },
         postBody,
         {
+            withCredentials: true,
             headers: {
                 'Accept' : 'application/json',
                 'Content-Type' : 'application/x-www-form-urlencoded'

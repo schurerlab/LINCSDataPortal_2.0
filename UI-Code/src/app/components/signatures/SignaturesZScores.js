@@ -288,12 +288,12 @@ class SignaturesZScores extends React.Component {
 
         console.log("getting sessionID: ",this.state.sessionId);
         
-        console.log("getting page: ",page);
+        // console.log("getting page: ",page);
 
         // const Postbody = 'sessionID='+this.state.sessionId+'&limit=20&page='+page
-        const Postbody = 'limit=20&page='+page
+        // const Postbody = 'limit=20&page='+page
 
-        axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance',
+        axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance?limit=20&page='+(page+1),
         // {
         //     // "mode" : "geneList",
         //     // "mode" : "UpDn",
@@ -303,14 +303,20 @@ class SignaturesZScores extends React.Component {
         //         "genesDown" : this.state.dn
         //     }
         // },
-        Postbody,
+        {},
         {
+            withCredentials: true,
             headers: {
                 'Accept' : 'application/json',
                 'Content-Type' : 'application/x-www-form-urlencoded'
             }
         }).then((response) => {
-                console.log(response.data);                
+            console.log(response.data);  
+                
+            this.setState({ signatureIds: response.data.data}, () => {
+                // this.getStats(this.state.signatureIds);
+                this.formatMedata(this.state.signatureIds);
+             });            
                 // this.state.signatureIds = response.data.data;
                 // this.getStats(this.state.signatureIds);
                 // this.getSigMedata(this.state.signatureIds);
@@ -387,6 +393,7 @@ class SignaturesZScores extends React.Component {
                 // })
                 // return ms.id
                 // console.log(sig);
+                // console.log(sig.pValue);
                 
                 if (iLincsMode == "geneList") {
                     // console.log(sig.zScores)
@@ -433,7 +440,7 @@ class SignaturesZScores extends React.Component {
 
                 this.state.signatureIds = response.data.data;
                 this.getStats(this.state.signatureIds);
-                this.getSigMedata(this.state.signatureIds);
+                // this.getSigMedata(this.state.signatureIds);
 
         });
     }
@@ -443,7 +450,7 @@ class SignaturesZScores extends React.Component {
         const iLincsMode = this.state.iLincsMode
         
         datatable.forEach(function (value, i) {
-            console.log(value);                
+            // console.log(value);                
             // value.zScore = zScores[i];
             // let sig = iLincsData.find( ({ lincsSigID }) => lincsSigID === value.sig_id );
 
@@ -455,16 +462,25 @@ class SignaturesZScores extends React.Component {
             // console.log(sig);
             
             if (iLincsMode == "geneList") {
-                // console.log(sig.zScores)
+                // console.log(value.zScores)
                 value.zScore = Number(value.zScores).toPrecision(3)
             } else {
-                // console.log(sig.pValue)
-                // console.log(sig.similarity)
-                value.pValue = Number(value.pValue).toExponential(2)
-                value.similarity = Number(value.similarity).toPrecision(3)
-                if (value.pValue > 0.0001) {                    
-                    value.pValue = value.pValue.toPrecision(3)
+                // console.log(value.pValue)
+                // console.log(value.similarity)
+                try {
+                    value.pValue = Number(value.pValue).toExponential(2)
+                    if (value.pValue > 0.0001) {                    
+                        value.pValue = Number(value.pValue).toPrecision(3)
+                    }
+                } catch (error) {
+                    console.log(error);
                 }
+                try {
+                    value.similarity = Number(value.similarity).toPrecision(3)
+                } catch(error) {
+                    console.log(error);
+                }
+                
             }
             value.pertname = value.metadata.perturbagen
             value.assay_category = value.metadata.category
