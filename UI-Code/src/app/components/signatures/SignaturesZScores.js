@@ -316,6 +316,7 @@ class SignaturesZScores extends React.Component {
             this.setState({ signatureIds: response.data.data}, () => {
                 // this.getStats(this.state.signatureIds);
                 this.formatMedata(this.state.signatureIds);
+                // this.getSummary();
              });            
                 // this.state.signatureIds = response.data.data;
                 // this.getStats(this.state.signatureIds);
@@ -424,11 +425,25 @@ class SignaturesZScores extends React.Component {
         let idUrl ='id='+sigIds.join('&id=');
         axios.request({
             method:'get',
-            url:'http://dev3.ccs.miami.edu:8080/sigc-api/search/summary?'+idUrl
+            url:'http://dev3.ccs.miami.edu:8080/sigc-api/search/summary?'+idUrl            
         }).then((response) => {
             this.setState({"perturbagenCount":response.data.data.perturbation,"modelSystemCount":response.data.data.cellLine});
         })
     }
+    
+    getSummary(){
+        
+        axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordanceSummary',{},
+        {
+            withCredentials: true,
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            }
+        }).then((response) => {
+            this.setState({"perturbagenCount":response.data.data.perturbation,"modelSystemCount":response.data.data.cellLine});
+        })
+    }   
 
     getSigIds(sigCenterIds) {
         let centerIdsApiString = sigCenterIds.join("&id=");
@@ -505,9 +520,7 @@ class SignaturesZScores extends React.Component {
         //getStats needs to be changed preferable to use sessionId
         // this.getSigMedata(this.state.signatureIds);
         this.formatMedata(this.state.signatureIds);
-
-
-
+        this.getSummary();
 
     }
 
