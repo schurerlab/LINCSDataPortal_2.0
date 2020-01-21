@@ -445,20 +445,20 @@ class SignaturesZScores extends React.Component {
         })
     }   
 
-    getSigIds(sigCenterIds) {
-        let centerIdsApiString = sigCenterIds.join("&id=");
+    // getSigIds(sigCenterIds) {
+    //     let centerIdsApiString = sigCenterIds.join("&id=");
         
-        axios.request({
-            method: 'get',
-            url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/search-center-ids?id=' + centerIdsApiString
-        }).then((response) => {
+    //     axios.request({
+    //         method: 'get',
+    //         url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/search-center-ids?id=' + centerIdsApiString
+    //     }).then((response) => {
 
-                this.state.signatureIds = response.data.data;
-                this.getStats(this.state.signatureIds);
-                // this.getSigMedata(this.state.signatureIds);
+    //             this.state.signatureIds = response.data.data;
+    //             this.getStats(this.state.signatureIds);
+    //             // this.getSigMedata(this.state.signatureIds);
 
-        });
-    }
+    //     });
+    // }
 
     formatMedata(datatable) {
         const iLincsData = this.state.iLincsData
