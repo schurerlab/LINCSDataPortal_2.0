@@ -521,6 +521,7 @@ class SignaturesZScores extends React.Component {
         //getStats needs to be changed preferable to use sessionId
         // this.getSigMedata(this.state.signatureIds);
         this.formatMedata(this.state.signatureIds);
+        this.getSigMetadata(this.state.signatureIds[0])
         this.getSummary();
 
     }
@@ -555,6 +556,47 @@ class SignaturesZScores extends React.Component {
 
         this.setState({ showModal: false });
     };
+
+    getSigMetadata = (signature) => {
+        console.log(signature);
+        // let sig_metadata = {};
+
+        axios.request({
+            method:'get',
+            url:'http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-metadata?id='+signature.signature_id
+        }).then((response) => {
+
+            // let datatable =[]                
+
+            response.data.data.map(type => {
+
+            let sig_metadata = {
+                    "id": type.signature_id,
+                    "pertid":  type['small molecule'] ? type['small molecule'][0].perturbagenID :'',
+                    "assay":  type['epigenetics assay'] ? type['epigenetics assay'][0].generating_activity_name : type['proteomics assay'] ? type['proteomics assay'][0].generating_activity_name : type['gene expression assay'] ? type['gene expression assay'][0].generating_activity_name : type['imaging'] ? type['imaging'][0].generating_activity_name : '-',
+                    "pertname": type['small molecule'] ? type['small molecule'][0].name :  type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].nucleic_acid_reagent_target_locus : type['protein perturbagen'][0].protein_perturbagen_name.toString() ? type['protein perturbagen'][0].protein_perturbagen_name.toString() : ''  ,
+                    "pertClass": type['small molecule'] ? type['small molecule'][0].perturbationClass :  type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].perturbationClass : '' ,
+                        // "mechanismOfAction": type['small molecule'][0].mechanismOfAction ? type['small molecule'][0].mechanismOfAction.toString() :'',
+                    "timepoint": type['small molecule'] ? type['small molecule'][0].timepoint: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].gettimepoint : type['protein perturbagen'][0].timepoint.toString() ? type['protein perturbagen'][0].timepoint.toString() : ''  ,
+                    "timepointunit": type['small molecule'] ? type['small molecule'][0].timepointUnit: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].gettimepointUnit : '',
+                    "concentration": type['small molecule']? type['small molecule'][0].concentration: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].getconcentration : type['protein perturbagen'][0].concentration.toString() ? type['protein perturbagen'][0].concentration.toString() : ''  ,
+                    "concentrationunit": type['small molecule'] ? type['small molecule'][0].concentrationUnit: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].getconcentrationUnit : '',
+                    "cellName": type['cell line'] ? type['cell line'][0].name :'-',
+                    "organ": type['cell line'] ? type['cell line'][0].organ :'-',
+                    "diseases": type['cell line']? type['cell line'][0].diseases :'-',
+                    "cl_id": type['cell line']? type['cell line'][0].celllineID : '-',
+                    "assay_category": type.assay_category ? type.assay_category : '_',
+                    "dataset_id":type.dataset_id? type.dataset_id : '_',
+                    "data_level":type.data_level ? type.data_level : '_',
+                    "sig_id" : type['gene expression assay'] ? type['gene expression assay'][0].dataset_sample_id : ''
+                };                
+            //    datatable.push(smet);
+            // return sig_metadata;
+            this.setState({ currentSignature: sig_metadata });
+            });
+        });
+        // return signature;
+    }
 
     render() {
 
@@ -619,7 +661,8 @@ class SignaturesZScores extends React.Component {
                             {this.state.data !=''  && this.state.selectedButton === 'Details' ?
                                 <div >
 
-                                    <SignaturePanel data={this.state.data[this.state.selected]} ></SignaturePanel>
+                                    {/* <SignaturePanel data={this.state.data[this.state.selected]} ></SignaturePanel> */}
+                                    <SignaturePanel data={this.state.currentSignature} ></SignaturePanel>
 
                                 </div>
                                 :"" }
@@ -700,8 +743,9 @@ class SignaturesZScores extends React.Component {
                             getTdProps={(state, rowInfo, column, instance) => {
                       return {
                       onClick: (e) => {
-                      this.changeShowModelSystem(rowInfo["original"]["id"])
-                          this.setState({ selected: rowInfo.index})
+                        this.changeShowModelSystem(rowInfo["original"]["id"])
+                        this.setState({ selected: rowInfo.index})
+                        this.getSigMetadata(this.state.data[rowInfo.index])
                       },
                         style: {
                           background: rowInfo && rowInfo.index == this.state.selected ? 'orange' : 'white',
