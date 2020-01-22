@@ -210,15 +210,16 @@ class SignaturesZScores extends React.Component {
     }
 
     handlePageClick(event) {
-        if (event.selected < 1 || event.selected > this.state.totalCount) {
+        if (event.selected < 0 || event.selected > this.state.totalCount) {
             this.setState({page:event.selected,active:event.selected,slicFrom:0}, () => {
+                //TODO:check if this is needed
                 this.getDatasets();                
             });
 
         }else{
-            this.setState({page:event.selected,active:event.selected,slicFrom:event.selected+1*20}, () => {
+            this.setState({page:event.selected,active:event.selected,slicFrom:(event.selected+1)*20}, () => {
                 // this.getDatasets();
-                this.getDataPage(event.selected);
+                this.getDataPage(event.selected+1);
             });
         }
         
@@ -293,7 +294,7 @@ class SignaturesZScores extends React.Component {
         // const Postbody = 'sessionID='+this.state.sessionId+'&limit=20&page='+page
         // const Postbody = 'limit=20&page='+page
 
-        axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance?limit=20&page='+(page+1),
+        axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance?limit=20&page='+(page),
         // {
         //     // "mode" : "geneList",
         //     // "mode" : "UpDn",
