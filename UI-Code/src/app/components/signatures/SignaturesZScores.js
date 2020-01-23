@@ -239,7 +239,8 @@ class SignaturesZScores extends React.Component {
 
 
     download() { 
-
+        // console.log(this.state.signatureIds);
+        
         let idUrl ='id='+this.state.signatureIds.slice(0,100).join('&id=');
         if(this.state.signature=='cell phenotype'){
             window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?onlyLandmarkGenes=false&"+idUrl,"_self");
@@ -687,11 +688,11 @@ class SignaturesZScores extends React.Component {
                                 </div>
                             </div>
                         <div className="col-1">
-                            <Button
+                            {/* <Button
                                 bsStyle="primary"
                                 style={{fontSize:"0.8em"}}
                                 onClick={this.handleOpenModal} >Download Signatures
-                            </Button>
+                            </Button> */}
                             <ReactModal
                                 className="modal-dialog modal-content"
                                 bodyOpenClassName="modal-open"
