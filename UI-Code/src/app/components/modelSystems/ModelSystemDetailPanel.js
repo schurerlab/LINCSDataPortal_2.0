@@ -42,7 +42,7 @@ class ModelSystemDetailPanel extends React.Component {
         <div className = "text-center details-header-font">Model System Details</div>
         <div className = "text-center">
           <a className = "text-center name-header"
-            href={`/beta/models/${sms.id}`}
+            href={`/signatures/models/${sms.id}`}
             style={{color: "green"}}
           >
             {sms.name}

@@ -14,7 +14,7 @@ class SignaturesHeader extends React.Component {
 
         return (
 
-            <Link to={"/beta/signatures"} style={{ color: '#FF9900' }}>
+            <Link to={"/signatures/signatures"} style={{ color: '#FF9900' }}>
                 <div className="row">
                     <span className="col-md-4" style={{ textAlign: 'right' }}>  <img className="img-fluid" style={{ maxWidth: '30%' }} src="/media/icons/Signatures.png" /> </span>
                     <span  className="col-md-8"  style={{ textAlign: 'left' }}>Signatures</span>
