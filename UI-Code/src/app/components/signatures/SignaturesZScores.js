@@ -332,6 +332,8 @@ class SignaturesZScores extends React.Component {
                 'Content-Type' : 'application/x-www-form-urlencoded'
             }
         }).then((response) => {
+            // console.log(response.data.data);
+            // response needs signatureCount
             this.setState({"perturbagenCount":response.data.data.perturbation,"modelSystemCount":response.data.data.cellLine});
         })
     }   
@@ -416,15 +418,11 @@ class SignaturesZScores extends React.Component {
     };
 
     getSigMetadata = (signature) => {
-        console.log(signature);
-        // let sig_metadata = {};
 
         axios.request({
             method:'get',
             url:'http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-metadata?id='+signature.signature_id
-        }).then((response) => {
-
-            // let datatable =[]                
+        }).then((response) => {           
 
             response.data.data.map(type => {
 
@@ -448,12 +446,10 @@ class SignaturesZScores extends React.Component {
                     "data_level":type.data_level ? type.data_level : '_',
                     "sig_id" : type['gene expression assay'] ? type['gene expression assay'][0].dataset_sample_id : ''
                 };                
-            //    datatable.push(smet);
-            // return sig_metadata;
+
             this.setState({ currentSignature: sig_metadata });
             });
         });
-        // return signature;
     }
 
     render() {

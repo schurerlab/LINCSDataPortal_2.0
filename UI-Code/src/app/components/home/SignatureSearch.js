@@ -72,8 +72,6 @@ class SignatureSearch extends Component {
     }
 
     handleDisable() {
-        // console.log("handling disabling the button");
-        // console.log(this.state.mode, this.state.geneString.length);
         
         if (this.state.mode === 'geneList' && !this.state.geneString.length) {            
             this.setState({ disableSubmit: true})
@@ -160,18 +158,9 @@ class SignatureSearch extends Component {
     }
 
     sendToiLlincs = () => {
-        // debugger;
-        console.log(this.state.mode);
         this.setState({loading:true});
         let postBody;
         if (this.state.mode == "UpDn") {
-            // postBody = {             
-            //     "mode" : this.state.mode,
-            //     "signatureProfile" : {
-            //         "genesUp" : this.state.up, 
-            //         "genesDown" : this.state.dn
-            //     }
-            // }
             // postBody = {             
             //     mode : this.state.mode,
             //     upGene : this.state.upString,
@@ -182,22 +171,12 @@ class SignatureSearch extends Component {
         } else {
             // postBody = {             
             //     "mode" : this.state.mode,
-            //     "signatureProfile" : {
-            //         "genes" : this.state.geneList
-            //     }
-            // }
-            // postBody = {             
-            //     "mode" : this.state.mode,
             //     "upGene" : this.state.geneString
             //     // "genesDown" : this.state.dn                
             // }
             postBody = 'mode='+this.state.mode+'&upGene='+this.state.geneString
         }
-        console.log(postBody)
-        // axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
-        // axios.post('http://dev.ilincs.org/api/ilincsR/findConcordancesSC',
-        // axios.post('http://www.ilincs.org/api/ilincsR/findConcordancesSC',
-        // axios.post('http://nightly.ilincs.org/api/ilincsR/findConcordancesSC',
+        // console.log(postBody)
         axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance',
         // axios.post('http://dev3.ccs.miami.edu:8080/sigc-api/frontend/concordance',
 
@@ -220,46 +199,18 @@ class SignatureSearch extends Component {
         }
     ).then((response) => {
             this.setState({loading:false});
-            console.log("iLINCS data ready");
-            console.log(response.data);            
-            // debugger;
-            // if (this.state.mode == "geneList") {
-                // if (!response.data.sigScores.length) {
-                if (!response.data.data.length) {
-                    console.log("empty results");
-                    this.setState({emptyResults:true});
-                } else {
-                    // console.log(response.data.sigScores.length);
-                    // this.setState({cids:response.data.sigScores},() => this.props.history.push({
-                    this.setState({cids:response.data.data},() => this.props.history.push({
-                        pathname: '/signatures/signature-search-results',
-                        state: { mode: this.state.mode,
-                                 sessionId: response.data.sessionID,
-                                 sigCount: response.data.count,
-                                 data: this.state.cids}
-                    }));
-                    // mode={this.state.mode} data={this.state.cids}
-                }
-            // } else {
-            //     // if (!response.data.concordanceTable.length) {
-            //     if (!response.data.data.length) {
-            //         console.log("empty results");
-            //         this.setState({emptyResults:true});
-            //     } else {
-            //         // console.log(response.data.concordanceTable.length);
-                
-            //         // this.setState({cids:response.data.concordanceTable,toResults:true},() => this.props.history.push({
-            //         this.setState({cids:response.data.data,toResults:true},() => this.props.history.push({
-            //             pathname: '/signatures/signature-search-results',
-            //             state: { mode: this.state.mode, data: this.state.cids}
-            //         }))
-            //     }
-                
-            //     // .then(
-            //     //     () => this.props.history.push('/signatures/signatures')
-            //     // );
-            //     // mode={this.state.mode} data={this.state.cids}
-            // }          
+            if (!response.data.data.length) {
+                console.log("empty results");
+                this.setState({emptyResults:true});
+            } else {
+                this.setState({cids:response.data.data},() => this.props.history.push({
+                    pathname: '/signatures/signature-search-results',
+                    state: { mode: this.state.mode,
+                                sessionId: response.data.sessionID,
+                                sigCount: response.data.count,
+                                data: this.state.cids}
+                }));
+            }         
 
         }).catch((error) => {
             console.log("error from iLINCS"); 
@@ -309,19 +260,8 @@ class SignatureSearch extends Component {
           },this.handleDisable);
     }
 
-    // disableSubmit() {
-        
-    //     // this.state.dnString.length==0 && this.state.upString.length==0
-    //     return true
-    // }
-
     handleChange(event){
-        // const formState = Object.assign({}, this.state.mode)
-        // formState[event.target.name] = event.target.
-        // console.log(event.target.name);        
-        // console.log(event.target.value); 
         this.setState({mode: event.target.name},this.handleDisable)
-        // setStatus({ upload_radio: e.target.value })
       }
 
     render() {
