@@ -18,64 +18,10 @@ import { saveAs } from 'file-saver';
 let FileSaver = require('file-saver');
 let csl = { 'fontSize': '0.7em' };
 
-
-// const columns = [
-//     {
-//         Header: 'Category',
-//         accessor: 'assay_category',
-//         // filterable:true// String-based value accessors!
-//     },
-//     {
-//         Header: 'Assay',
-//         accessor: 'assay',
-//         // filterable:true
-//     },
-//     {
-//     Header: 'Perturbagen',
-//     accessor: 'pertname',
-//         // filterable:true
-//     },
-
-
-//     // {
-//     //     Header: 'MOA',
-//     //     accessor: 'mechanismOfAction'
-//     // },
-//     {
-//         Header: 'Cell Line',
-//         accessor: 'cellName',
-//         // filterable:true
-
-//     },
-
-//     {
-//         Header: 'Organ',
-//         accessor: 'organ',
-//         // filterable:true// String-based value accessors!
-//     },
-//     {
-//         Header: 'Time Point',
-//         accessor: 'timepoint',
-//         // filterable:true
-//     }
-//     ,
-//     {
-//         Header: 'concentration',
-//         accessor: 'concentration',
-//         // filterable:true
-//     },
-//     {
-//         Header: 'zScore',
-//         accessor: 'zScore',
-//         // filterable:true
-//     }
-// ];
-
 class SignaturesZScores extends React.Component {
 
     constructor(props){
         super(props);
-        // debugger;
 
         var lincsSigIDs = props.data.map(el =>{
             return el.lincsSigID
@@ -105,6 +51,7 @@ class SignaturesZScores extends React.Component {
             {
                 Header: 'Organ',
                 accessor: 'organ',
+                // filterable:true// String-based value accessors!
             },
             {
                 Header: 'Time Point',
@@ -114,21 +61,8 @@ class SignaturesZScores extends React.Component {
             {
                 Header: 'Concentration',
                 accessor: 'concentration',                
-            },
-            // {
-            //     Header: 'zScore',
-            //     accessor: 'zScore',          
-            // }
-            // {
-            //     Header: 'P Value',
-            //     accessor: 'pValue',                
-            // },
-            // {
-            //     Header: 'similarity',
-            //     accessor: 'Similarity',                
-            // }
+            }
         ];
-        // debugger;
 
         var lincsSigIDs = props.data.map(el =>{
             return el.lincsSigID
@@ -139,9 +73,6 @@ class SignaturesZScores extends React.Component {
                     Header: 'zScore',
                     accessor: 'zScore',          
                 })
-            // var zScores = props.data.map(el =>{
-            //     return el.zScores
-            // });
         } else {
             columns.push({
                 Header: 'P Value',
@@ -151,9 +82,6 @@ class SignaturesZScores extends React.Component {
                 Header: 'Similarity',
                 accessor: 'similarity',   
             })
-            // var pValues = props.data.map(el =>{
-            //     return el.pValue
-            // });
         }
 
         this.state = {
@@ -285,15 +213,9 @@ class SignaturesZScores extends React.Component {
         }
     }
 
-    getDataPage(page) {
-        console.log("getting page: ",page);
+    getDataPage(page) {        
 
-        console.log("getting sessionID: ",this.state.sessionId);
-        
-        // console.log("getting page: ",page);
-
-        // const Postbody = 'sessionID='+this.state.sessionId+'&limit=20&page='+page
-        // const Postbody = 'limit=20&page='+page
+        // console.log("getting sessionID: ",this.state.sessionId); 
 
         axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance?limit=20&page='+(page),
         // {
@@ -313,7 +235,6 @@ class SignaturesZScores extends React.Component {
                 'Content-Type' : 'application/x-www-form-urlencoded'
             }
         }).then((response) => {
-            console.log(response.data);  
                 
             this.setState({ signatureIds: response.data.data}, () => {
                 // this.getStats(this.state.signatureIds);
@@ -328,7 +249,6 @@ class SignaturesZScores extends React.Component {
     }
 
     getSigMedata(sigIds){
-        // debugger;
         // this.setState({totalCount:sigIds.length/20})
         let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
         // let idUrl ='id='+sigIds.join('&id=');
@@ -369,41 +289,13 @@ class SignaturesZScores extends React.Component {
                 };                
                datatable.push(smet);
             });
-            // datatable.forEach(function (value, i) {
-            //     value.zScore = zScores[i];
-            // });
-            // debugger;
-            // if (props.mode == "geneList") {
-            //     datatable.forEach(function (value, i) {
-            //         value.zScore = zScores[i];
-            //     });
-            // } else {
-            //     datatable.forEach(function (value, i) {
-            //         value.pValue = pValues[i];
-            //         value.similarity = similarities[i];
-            //     });
-            // }
 
-            // debugger
             datatable.forEach(function (value, i) {
-                // console.log(value);                
-                // value.zScore = zScores[i];
                 let sig = iLincsData.find( ({ lincsSigID }) => lincsSigID === value.sig_id );
-
-                // let ms =  this.state.data_table_modelsystems.find(ms => {
-
-                //     return ms.name == name
-                // })
-                // return ms.id
-                // console.log(sig);
-                // console.log(sig.pValue);
-                
+               
                 if (iLincsMode == "geneList") {
-                    // console.log(sig.zScores)
                     value.zScore = sig.zScores.toPrecision(3)
                 } else {
-                    // console.log(sig.pValue)
-                    // console.log(sig.similarity)
                     value.pValue = sig.pValue.toExponential(2)
                     value.similarity = sig.similarity.toPrecision(3)
                     if (sig.pValue < 0.0001) {
@@ -413,9 +305,6 @@ class SignaturesZScores extends React.Component {
                     }
                 }
             });
-              
-            //   const result = inventory.find( ({ name }) => name === 'cherries' );
-            //   lo
 
             this.setState({data:datatable})
         })
@@ -447,43 +336,16 @@ class SignaturesZScores extends React.Component {
         })
     }   
 
-    // getSigIds(sigCenterIds) {
-    //     let centerIdsApiString = sigCenterIds.join("&id=");
-        
-    //     axios.request({
-    //         method: 'get',
-    //         url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/search-center-ids?id=' + centerIdsApiString
-    //     }).then((response) => {
-
-    //             this.state.signatureIds = response.data.data;
-    //             this.getStats(this.state.signatureIds);
-    //             // this.getSigMedata(this.state.signatureIds);
-
-    //     });
-    // }
-
     formatMedata(datatable) {
         const iLincsData = this.state.iLincsData
         const iLincsMode = this.state.iLincsMode
         
         datatable.forEach(function (value, i) {
-            // console.log(value);                
-            // value.zScore = zScores[i];
-            // let sig = iLincsData.find( ({ lincsSigID }) => lincsSigID === value.sig_id );
-
-            // let ms =  this.state.data_table_modelsystems.find(ms => {
-
-            //     return ms.name == name
-            // })
-            // return ms.id
-            // console.log(sig);
             
             if (iLincsMode == "geneList") {
-                // console.log(value.zScores)
                 value.zScore = Number(value.zScores).toPrecision(3)
             } else {
-                // console.log(value.pValue)
-                // console.log(value.similarity)
+
                 try {
                     value.pValue = Number(value.pValue).toExponential(2)
                     if (value.pValue > 0.0001) {                    
@@ -515,12 +377,7 @@ class SignaturesZScores extends React.Component {
 
         this.setState({text:""})
         // this.getSigIds(this.state.centerIds);
-        console.log(this.state.sessionId);
-        console.log(this.state.totalCount);
-        console.log(this.state.data);
-        // Cannot get get stats from just first page ids
-        //getStats needs to be changed preferable to use sessionId
-        // this.getSigMedata(this.state.signatureIds);
+
         this.formatMedata(this.state.signatureIds);
         this.getSigMetadata(this.state.signatureIds[0])
         this.getSummary();
