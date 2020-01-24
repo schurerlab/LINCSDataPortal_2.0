@@ -179,7 +179,7 @@ class SignatureSearch extends Component {
                 }
             }
         }
-        axios.post('http://dev.ilincs.org/api/ilincsR/findConcordancesSC',
+        axios.post('http://www.ilincs.org/api/ilincsR/findConcordancesSC',
         // {
         //     // "mode" : "geneList",
         //     // "mode" : "UpDn",

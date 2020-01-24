@@ -25,7 +25,7 @@ class AssaysDetailsPanel extends React.Component {
 
                         <div className = "text-center">
                             <a className = "text-center  name-header"
-                               href={`/beta/assays/${assays.id}`}
+                               href={`/signatures/assays/${assays.id}`}
                                style={{color: "orange"}}
                             >
                                 {assays.title}
