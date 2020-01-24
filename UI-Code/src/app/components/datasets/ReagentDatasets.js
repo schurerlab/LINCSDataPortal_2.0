@@ -48,7 +48,7 @@ class ReagentDatasets extends React.Component {
                     <tr key={id}>
                         <td style={{fontSize: "0.8rem",padding: ".3rem"}}>
                             <a style={{  color: "#337ab7"}} className="data-button"
-                               href={`/beta/datasets/${dataset.datasetgroup}`}>{id}</a>
+                               href={`/signatures/datasets/${dataset.datasetgroup}`}>{id}</a>
                         </td>
                         <td style={{fontSize: "0.8rem",padding: ".3rem"}}>
                             {title}

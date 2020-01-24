@@ -19,13 +19,13 @@ class StructureSearch extends Component {
         ChemicalizeMarvinJs.createEditor("#marvin-test").then(function (marvin) {
             function subStructure() {
                 marvin.exportStructure("smiles").then(function (smiles) {
-                    window.open("/beta/perturbations?smiles="+smiles+"&class=substructure","_self");
+                    window.open("/signatures/perturbations?smiles="+smiles+"&class=substructure","_self");
                     console.log(smiles);
                 });
             }
             function similarity() {
                 marvin.exportStructure("smiles").then(function (smiles) {
-                    window.open("/beta/perturbations?smiles="+smiles+"&class=similar","_self");
+                    window.open("/signatures/perturbations?smiles="+smiles+"&class=similar","_self");
                 });
             }
 
