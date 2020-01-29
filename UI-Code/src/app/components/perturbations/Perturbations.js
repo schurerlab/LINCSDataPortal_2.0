@@ -112,7 +112,7 @@ class Perturbations extends React.Component {
 
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getData();
     }
 

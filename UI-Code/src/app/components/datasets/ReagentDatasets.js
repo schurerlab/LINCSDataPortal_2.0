@@ -16,7 +16,7 @@ class ReagentDatasets extends React.Component {
         this.handleSerice = props.handleChange;
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getDatasets();
     }
 

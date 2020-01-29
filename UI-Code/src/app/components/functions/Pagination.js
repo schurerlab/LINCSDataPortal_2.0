@@ -23,7 +23,8 @@ export default class Pagination extends React.Component {
         nextText: PropTypes.string
     };
 
-    componentWillReceiveProps(nextProps) {
+    // componentWillReceiveProps(nextProps) {
+    static getDerivedStateFromProps(nextProps) {
         if (this.props.pages !== nextProps.pages) {
             this.setState({
                 visiblePages: this.getVisiblePages(null, nextProps.pages)
