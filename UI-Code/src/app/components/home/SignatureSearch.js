@@ -168,6 +168,7 @@ class SignatureSearch extends Component {
             // }
             // postBody = 'mode=UpDn&upGene=ZNF740%2CPFKP%2CRPL12%2CABAT%2CEIF4A3%2CMAP3K2%2CRPS6KA1%2CBRAF%2CPLEC%2CFASN%2CDPF2&downGene=EGFR%2CABI1%2CSMARCC1%2CMAP3K7%2COCIAD1%2CCHAMP1%2CMAPK8%2CRBM15%2CYWHAZ%2CPIK3CA%2CSTAT6%2CBRCA1%2CCDKN1A'
             postBody = 'mode='+this.state.mode+'&upGene='+this.state.upString+'&downGene='+this.state.dnString
+            // postBody = 'mode='+this.state.mode+'&upGene='+this.state.up+'&downGene='+this.state.dn
         } else {
             // postBody = {             
             //     "mode" : this.state.mode,
@@ -175,6 +176,7 @@ class SignatureSearch extends Component {
             //     // "genesDown" : this.state.dn                
             // }
             postBody = 'mode='+this.state.mode+'&upGene='+this.state.geneString
+            // postBody = 'mode='+this.state.mode+'&upGene='+this.state.up
         }
         // console.log(postBody)
         axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance',
@@ -198,19 +200,22 @@ class SignatureSearch extends Component {
             }
         }
     ).then((response) => {
+            console.log(response);
+            
             this.setState({loading:false});
-            if (!response.data.data.length) {
-                console.log("empty results");
-                this.setState({emptyResults:true});
-            } else {
+            // if (!response.data.data.length) {
+            //     console.log("empty results");
+            //     this.setState({emptyResults:true});
+            // } else {
                 this.setState({cids:response.data.data},() => this.props.history.push({
                     pathname: '/signatures/signature-search-results',
-                    state: { mode: this.state.mode,
-                                sessionId: response.data.sessionID,
-                                sigCount: response.data.count,
-                                data: this.state.cids}
+                    state: { mode: this.state.mode//,
+                                // sessionId: response.data.sessionID,
+                                // sigCount: response.data.count,
+                                // data: this.state.cids
+                            }
                 }));
-            }         
+            // }         
 
         }).catch((error) => {
             console.log("error from iLINCS"); 

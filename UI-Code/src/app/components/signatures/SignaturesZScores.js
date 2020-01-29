@@ -23,12 +23,12 @@ class SignaturesZScores extends React.Component {
     constructor(props){
         super(props);
 
-        var lincsSigIDs = props.data.map(el =>{
-            return el.lincsSigID
-        });
-        var zScores = props.data.map(el =>{
-            return el.zScores
-        });
+        // var lincsSigIDs = props.data.map(el =>{
+        //     return el.lincsSigID
+        // });
+        // var zScores = props.data.map(el =>{
+        //     return el.zScores
+        // });
 
         let columns = [
             {
@@ -64,9 +64,9 @@ class SignaturesZScores extends React.Component {
             }
         ];
 
-        var lincsSigIDs = props.data.map(el =>{
-            return el.lincsSigID
-        });
+        // var lincsSigIDs = props.data.map(el =>{
+        //     return el.lincsSigID
+        // });
         
         if (props.mode == "geneList") {
             columns.push({
@@ -89,18 +89,18 @@ class SignaturesZScores extends React.Component {
             slicFrom:0,
             types:'',
             sids:[],
-            totalCount: Math.ceil(props.sigCount/20) || '',
+            totalCount: 0,//Math.ceil(props.sigCount/20) || '',
             id:'',
             page:'0',
-            // signatureIds:[],
-            signatureIds: props.data,
-            sessionId: props.sessionId,
-            sigCount: props.sigCount,
-            centerIds: lincsSigIDs,
-            iLincsData: props.data,
+            signatureIds:[],
+            // signatureIds: props.data,
+            // sessionId: props.sessionId,
+            sigCount: 0,//props.sigCount,
+            centerIds: [],//lincsSigIDs,
+            // iLincsData: props.data,
             iLincsMode: props.mode,
-            zScores: zScores,
-            text:'MCF-10A',
+            // zScores: zScores,
+            // text:'MCF-10A',
             data:[],
             // data: props.data,
             signature: this.rename('Gene Expressions'),
@@ -121,7 +121,8 @@ class SignaturesZScores extends React.Component {
 
     componentDidMount(){
         // console.log("componentWillMount");
-        this.getDatasets();
+        // this.getDatasets();
+        this.getDataPage(1);
     }
 
     changeShowModelSystem(id) {
@@ -141,7 +142,8 @@ class SignaturesZScores extends React.Component {
         if (event.selected < 0 || event.selected > this.state.totalCount) {
             this.setState({page:event.selected,active:event.selected,slicFrom:0}, () => {
                 //TODO:check if this is needed
-                this.getDatasets();                
+                // this.getDatasets(); 
+                this.getDataPage(1);               
             });
 
         }else{
@@ -214,28 +216,35 @@ class SignaturesZScores extends React.Component {
     }
 
     getDataPage(page) {        
-
+        console.log("retriving signatures for page: ",page); 
         // console.log("getting sessionID: ",this.state.sessionId); 
 
-        axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance?limit=20&page='+(page),
-        // {
-        //     // "mode" : "geneList",
-        //     // "mode" : "UpDn",
-        //     "mode" : this.state.mode,
-        //     "signatureProfile" : {
-        //         "genesUp" : this.state.up, 
-        //         "genesDown" : this.state.dn
-        //     }
-        // },
-        {},
-        {
+        // axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance?limit=20&page='+(page),
+        axios.request({
+            method:'get',
             withCredentials: true,
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type' : 'application/x-www-form-urlencoded'
-            }
+            url:'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/retrieveSignatures?limit=20&page=1'//+page
+        // })
+        // axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/retrieveSignatures?limit=20&page='+(page),
+        // // {
+        // //     // "mode" : "geneList",
+        // //     // "mode" : "UpDn",
+        // //     "mode" : this.state.mode,
+        // //     "signatureProfile" : {
+        // //         "genesUp" : this.state.up, 
+        // //         "genesDown" : this.state.dn
+        // //     }
+        // // },
+        // {},
+        // {
+        //     withCredentials: true,
+        //     headers: {
+        //         'Accept' : 'application/json',
+        //         'Content-Type' : 'application/x-www-form-urlencoded'
+        //     }
         }).then((response) => {
-                
+            console.log(response);
+             
             this.setState({ signatureIds: response.data.data}, () => {
                 // this.getStats(this.state.signatureIds);
                 this.formatMedata(this.state.signatureIds);
