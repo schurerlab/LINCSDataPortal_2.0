@@ -21,7 +21,7 @@ class DatasetsTable extends Component {
                 return (
                     <tr key={id}>
 
-                        <td><a  style={{  color: "#337ab7"}} className="data-button" href={`/beta/datasets/${dataset.datasetid}`}>{title}</a></td>
+                        <td><a  style={{  color: "#337ab7"}} className="data-button" href={`/signatures/datasets/${dataset.datasetid}`}>{title}</a></td>
                         <td ><img className="listcenterimage" src={center} role="presentation" />
                         </td>
                         <td>{assay}</td>

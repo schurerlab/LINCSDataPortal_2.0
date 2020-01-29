@@ -40,7 +40,7 @@ class Assays extends React.Component {
         console.log(props.location.search)
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getAssays();
     }
 

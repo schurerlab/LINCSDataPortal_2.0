@@ -10,7 +10,7 @@ class GetSmallMolecue extends Component {
         }
         this.onSelect = this.onSelect.bind(this);
     }
-    componentWillMount(){
+    componentDidMount(){
         this.onSelect(this.props.id);
     }
     onSelect (value) {

@@ -52,7 +52,7 @@ class SignaturePanel extends React.Component {
                         <hr style={{borderTop: "1px solid #CC3300"}}/>
                         <div className="body-text">
                             <span><b>Category: </b>{this.props.data.pertClass}</span><br/>
-                            <span><b>Name: </b> <a href={`/beta/perturbations/${this.props.data.pertid}`}>{this.props.data.pertname} </a></span><br/>
+                            <span><b>Name: </b> <a href={`/signatures/perturbations/${this.props.data.pertid}`}>{this.props.data.pertname} </a></span><br/>
                             <span><b>MOA: </b> {this.props.data.mechanismOfAction}</span><br/>
 
                             <span><b>Timepoint: </b>{this.props.data.timepoint} ({this.props.data.timepointunit})</span><br/>
@@ -62,7 +62,7 @@ class SignaturePanel extends React.Component {
                             <hr style={{borderTop: "1px solid green"}}/>
 
                             <span><b>Category: </b>Cell Line</span><br/>
-                            <span><b>Name: </b> <a href={`/beta/models/${this.props.data.cl_id}`}>{this.props.data.cellName} </a></span><br/>
+                            <span><b>Name: </b> <a href={`/signatures/models/${this.props.data.cl_id}`}>{this.props.data.cellName} </a></span><br/>
                             <span><b>Organ: </b> {this.props.data.organ}</span><br/>
 
                             <span><b>Diseases: </b> </span><br/>
@@ -71,8 +71,8 @@ class SignaturePanel extends React.Component {
                             <hr style={{borderTop: "1px solid orange"}}/>
 
                             <span ><b>Category: </b></span><span style={{marginLeft:"1em"}} >{this.props.data.assay_category}</span><br/>
-                            <span ><b>Assay: </b></span><span  style={{marginLeft:"2.5em"}}><a href={`/beta/assays/${this.props.data.assay ==="P100 Assay" ? "13" : this.props.data.assay ==="L1000 Assay" ? "2" : this.props.data.assay ==="GCP Assay" ? "18" :this.props.data.assay ==="Fluorescence imaging cell viability" ? "27": this.props.data.assay ==="MEP Processing" ? "19":""}`}>{this.props.data.assay}</a></span><br/>
-                            <span  ><b>Dataset: </b></span><span  style={{marginLeft:"1.6em"}}><a href={`/beta/datasets/${this.props.data.dataset_id }`}>{this.props.data.dataset_id}</a></span><br/>
+                            <span ><b>Assay: </b></span><span  style={{marginLeft:"2.5em"}}><a href={`/signatures/assays/${this.props.data.assay ==="P100 Assay" ? "13" : this.props.data.assay ==="L1000 Assay" ? "2" : this.props.data.assay ==="GCP Assay" ? "18" :this.props.data.assay ==="Fluorescence imaging cell viability" ? "27": this.props.data.assay ==="MEP Processing" ? "19":""}`}>{this.props.data.assay}</a></span><br/>
+                            <span  ><b>Dataset: </b></span><span  style={{marginLeft:"1.6em"}}><a href={`/signatures/datasets/${this.props.data.dataset_id }`}>{this.props.data.dataset_id}</a></span><br/>
                             <span ><b>Data Level: </b></span><span style={{marginLeft:"0.6em"}} >{this.props.data.data_level}</span><br/>
 
                             <span><b>Download :  </b></span><span><button className="btn btn-primary  btn-sm" style={{marginLeft:"0.6em"}} onClick={() => {this.download()}} > Metadata</button></span><span><button className="btn btn-primary btn-sm " style={{marginLeft:"0.6em"}} onClick={() => {this.downloadData()}}> Data</button></span><br/>

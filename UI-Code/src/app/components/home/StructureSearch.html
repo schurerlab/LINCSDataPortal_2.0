@@ -15,7 +15,7 @@
     ChemicalizeMarvinJs.createEditor("#marvin-test").then(function (marvin) {
         function subStructure() {
             marvin.exportStructure("smiles").then(function (smiles) {
-                window.open("/beta/perturbation/smiles?"+smiles+"?type=subStructure")
+                window.open("/signatures/perturbation/smiles?"+smiles+"?type=subStructure")
                 console.log(smiles);
             });
         }

@@ -27,7 +27,7 @@ class ModelSystemLandingPage extends React.Component {
 
 
 
-    componentWillMount(){
+    componentDidMount(){
         this.getDatasetInfo();
         let newTitle = document.querySelector('title')
         newTitle.innerHTML = "SignatureCommonsUI"

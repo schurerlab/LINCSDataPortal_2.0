@@ -8,7 +8,7 @@ import ReactPaginate from 'react-paginate';
 import 'react-table/react-table.css';
 import axios from 'axios';
 import queryString from 'query-string';
-import Pagination from "../functions/Pagination";
+// import Pagination from "../functions/Pagination";
 import SignaturePanel from './SignaturePanel'
 import SignatureSearch from './SignatureSearch'
 import SignatureFilter from './SignatureFilter'
@@ -119,7 +119,7 @@ class SignaturesZScores extends React.Component {
 
     }
 
-    componentWillMount(){
+    componentDidMount(){
         // console.log("componentWillMount");
         this.getDatasets();
     }

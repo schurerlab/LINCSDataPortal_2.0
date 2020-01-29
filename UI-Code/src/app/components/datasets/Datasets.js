@@ -16,7 +16,7 @@ class Datasets extends React.Component {
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getDatasets();
     }
 

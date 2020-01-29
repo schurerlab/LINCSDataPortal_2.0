@@ -16,7 +16,7 @@ class Bioactivity extends React.Component {
         this.handleSerice = props.handleChange;
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getDatasets();
     }
 
