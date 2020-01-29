@@ -76,7 +76,7 @@ class Search extends  React.Component {
                     ep: res.data.data['Epigenetic'],
                     me: res.data.data['MEMA cell growth'],
                     sh: res.data.data['shRNA'],
-                    sg: res.data.data['sgRNA'],
+                    sg: res.data.data['CRISPR'],
                     loading: false,
 
 
@@ -189,7 +189,7 @@ class Search extends  React.Component {
                         <br/>
                         <Perturbations facets={this.state.results} label="Small Molecules" query={this.state.query} />
                         <Perturbations facets={this.state.sh} label="shRNA" query={this.state.query} />
-                        <Perturbations facets={this.state.sg} label="sgRNA" query={this.state.query} />
+                        <Perturbations facets={this.state.sg} label="CRISPR" query={this.state.query} />
                     </Col>
                     <Col xs={4} md={4} lg={4}>
                         <ModelSystemHeader/>

@@ -66,7 +66,7 @@ class ModelSystemSearch extends  React.Component {
                     ep: res.data.data['Epigenetic'],
                     me: res.data.data['MEMA cell growth'],
                     sh: res.data.data['shRNA'],
-                    sg: res.data.data['sgRNA'],
+                    sg: res.data.data['CRISPR'],
                     loading: false,
 
 

@@ -59,7 +59,7 @@ class PanelPerturbations extends React.Component {
                                     <span style={csl}><b> 376 </b> </span>
                                 </span>
                                 <span className="col-md-8" style={{ textAlign: 'left' }}>
-                                    <span style={csl}> sgRNA  </span>
+                                    <span style={csl}> CRISPR  </span>
                                 </span>
                             </button>
                         </div>

@@ -47,7 +47,7 @@ export default class PerturbationFilter extends React.Component {
                let temp = {
                     "Perturbagen Type": {
                         "Small Molecule": 22000,
-                        "sgRNA": 10,
+                        "CRISPR": 10,
                         "ShRNA": 200
 
                     }
