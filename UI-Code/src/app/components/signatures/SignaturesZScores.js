@@ -247,6 +247,7 @@ class SignaturesZScores extends React.Component {
              
             this.setState({ signatureIds: response.data.data}, () => {
                 // this.getStats(this.state.signatureIds);
+                // console.log(this.state.signatureIds);                
                 this.formatMedata(this.state.signatureIds);
                 // this.getSummary();
              });            
@@ -372,13 +373,20 @@ class SignaturesZScores extends React.Component {
                 }
                 
             }
-            value.pertname = value.metadata.perturbagen
-            value.assay_category = value.metadata.category
-            value.assay = value.metadata.assay
-            value.cellName = value.metadata.cell
-            value.organ = value.metadata.organ
-            value.timepoint = value.metadata.timepoint
-            value.concentration = value.metadata.concentration
+            // value.pertname = value.metadata.perturbagen
+            value.pertname = value.metadata["small molecule"][0].name
+            // value.assay_category = value.metadata.category
+            value.assay_category = value.metadata.assay_category
+            // value.assay = value.metadata.assay
+            value.assay = value.metadata["gene expression assay"][0].generating_activity_name
+            // value.cellName = value.metadata.cell
+            value.cellName = value.metadata["cell line"][0].name
+            // value.organ = value.metadata.organ
+            value.organ = value.metadata["cell line"][0].organ
+            // value.timepoint = value.metadata.timepoint
+            value.timepoint = value.metadata["small molecule"][0].timepoint
+            // value.concentration = value.metadata.concentration
+            value.concentration = value.metadata["small molecule"][0].concentration
         });
 
         this.setState({data:datatable})
