@@ -89,7 +89,7 @@ class SignaturesZScores extends React.Component {
             slicFrom:0,
             types:'',
             sids:[],
-            totalCount: 0,//Math.ceil(props.sigCount/20) || '',
+            totalPages: 0,//Math.ceil(props.sigCount/20) || '',
             id:'',
             page:'0',
             signatureIds:[],
@@ -139,7 +139,7 @@ class SignaturesZScores extends React.Component {
     }
 
     handlePageClick(event) {
-        if (event.selected < 0 || event.selected > this.state.totalCount) {
+        if (event.selected < 0 || event.selected > this.state.totalPages) {
             this.setState({page:event.selected,active:event.selected,slicFrom:0}, () => {
                 //TODO:check if this is needed
                 // this.getDatasets(); 
@@ -223,7 +223,7 @@ class SignaturesZScores extends React.Component {
         axios.request({
             method:'get',
             withCredentials: true,
-            url:'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/retrieveSignatures?limit=20&page=1'//+page
+            url:'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/retrieveSignatures?limit=20&page='+page
         // })
         // axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/retrieveSignatures?limit=20&page='+(page),
         // // {
@@ -244,12 +244,15 @@ class SignaturesZScores extends React.Component {
         //     }
         }).then((response) => {
             console.log(response);
-             
-            this.setState({ signatureIds: response.data.data}, () => {
+            this.setState({ 
+                signatureIds: response.data.data,
+                sigCount: response.data.totalCount,
+                totalPages: Math.ceil(response.data.totalCount/20)
+            }, () => {
                 // this.getStats(this.state.signatureIds);
                 // console.log(this.state.signatureIds);                
                 this.formatMedata(this.state.signatureIds);
-                // this.getSummary();
+                this.getSummary();
              });            
                 // this.state.signatureIds = response.data.data;
                 // this.getStats(this.state.signatureIds);
@@ -259,7 +262,7 @@ class SignaturesZScores extends React.Component {
     }
 
     getSigMedata(sigIds){
-        // this.setState({totalCount:sigIds.length/20})
+        // this.setState({totalPages:sigIds.length/20})
         let idUrl ='id='+sigIds.slice(this.state.slicFrom,20+this.state.slicFrom).join('&id=');
         // let idUrl ='id='+sigIds.join('&id=');
         let zScores = this.state.zScores;
@@ -334,15 +337,19 @@ class SignaturesZScores extends React.Component {
     
     getSummary(){
         
-        axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordanceSummary',{},
-        {
+        // axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordanceSummary',{},
+        // {
+        //     withCredentials: true,
+        //     headers: {
+        //         'Accept' : 'application/json',
+        //         'Content-Type' : 'application/x-www-form-urlencoded'
+        //     }
+        axios.request({
+            method:'get',
             withCredentials: true,
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type' : 'application/x-www-form-urlencoded'
-            }
+            url:'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/resultsSummary'
         }).then((response) => {
-            // console.log(response.data.data);
+            console.log(response.data.data);
             // response needs signatureCount
             this.setState({"perturbagenCount":response.data.data.perturbation,"modelSystemCount":response.data.data.cellLine});
         })
@@ -551,7 +558,7 @@ class SignaturesZScores extends React.Component {
                                         { this.state.data !=''  > 0 ?
                                             <div>
                                         <div className="filtered-by"><b>Summary:</b> </div>
-                                        <div className="filtered-by" style={{marginLeft:"0.6em",color:"orange"}}>{this.state.signatureIds.length} Signatures</div> <div className="filtered-by" style={{marginLeft:"0.6em",color:"darksalmon"}}>{this.state.perturbagenCount} Perturbagens</div> <div className="filtered-by" style={{marginLeft:"0.6em",color:"#4CC189"}}>{this.state.modelSystemCount}  Model Systems</div>
+                                        <div className="filtered-by" style={{marginLeft:"0.6em",color:"orange"}}>{this.state.sigCount} Signatures</div> <div className="filtered-by" style={{marginLeft:"0.6em",color:"darksalmon"}}>{this.state.perturbagenCount} Perturbagens</div> <div className="filtered-by" style={{marginLeft:"0.6em",color:"#4CC189"}}>{this.state.modelSystemCount}  Model Systems</div>
                                         </div>
                                                 :''}
                                             </div>
@@ -574,7 +581,7 @@ class SignaturesZScores extends React.Component {
                                 <Modal.Body>
                                     <p>Depending on the number of records, the amount of time can vary to download.  Please check your local directory.</p>
 
-                                    {this.state.totalCount > 5 ? <div><p>Your request exceeds the current download limit. You can obtain all signatures via the Google Cloud Platform (see Help>Tutorials>Data Access via GCP for instructions) <button className="btn btn-success center" style={{marginLeft:"0.6em"}} onClick={() => {this.downloadIds()}} > Download GCP Query</button></p> </div>: '' }
+                                    {this.state.totalPages > 5 ? <div><p>Your request exceeds the current download limit. You can obtain all signatures via the Google Cloud Platform (see Help>Tutorials>Data Access via GCP for instructions) <button className="btn btn-success center" style={{marginLeft:"0.6em"}} onClick={() => {this.downloadIds()}} > Download GCP Query</button></p> </div>: '' }
 
 
                                     {this.state.dowloadLoading === false ? <button className="btn btn-success center" style={{marginLeft:"0.6em"}} onClick={() => {this.download()}} > Download</button>
@@ -643,7 +650,7 @@ class SignaturesZScores extends React.Component {
                             nextLabel={'next'}
                             breakLabel={'.......'}
                             breakClassName={'break-me'}
-                            pageCount={this.state.totalCount}
+                            pageCount={this.state.totalPages}
                             marginPagesDisplayed={2}
                             pageRangeDisplayed={7}
                             onPageChange={this.handlePageClick.bind(this)} 
