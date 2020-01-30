@@ -196,7 +196,7 @@ body {
     z-index: 1;
 }
 
-textarea#styled {
+/* textarea#styled {
     width: 600px;
     min-height: 20em;
     border: 3px solid #cccccc;
@@ -204,7 +204,7 @@ textarea#styled {
     font-family: Tahoma, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
-}
+} */
 
 .tooltip2:hover .tooltiptext {
     visibility: visible;

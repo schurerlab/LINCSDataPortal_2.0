@@ -283,7 +283,7 @@ class SignatureSearch extends Component {
         {this.state.loading == false && <form>
                 <div className="form-row" style={{margin:"12px"}}>
                 <div className="col-12 col-sm-12 col-md-4 box">     
-                    <div className="card" style={{padding:"20px", minHeight:"177px"}}>
+                    <div className="card" style={{padding:"20px 20px 0px 20px", minHeight:"177px"}}>
                         {/* <Radio name="signatureOptions" name="sigProfile" value={this.state.mode}
                             checked={this.state.mode === 'sigProfile'}
                             onChange={this.handleChange.bind(this)}> Signature Profile</Radio> */}
@@ -298,21 +298,21 @@ class SignatureSearch extends Component {
                             Example
                         </a></Radio>
                         <br />
-                        <br />
-                        <Button className="btn btn-primary" disabled={this.state.disableSubmit}  onClick={() => {this.getData()} } style={{position: "absolute",bottom: "24px",marginRight: "auto",marginLeft: "auto"}}>
+                        <Button className="btn btn-primary" disabled={this.state.disableSubmit}  onClick={() => {this.getData()} }>
                             Submit Signature
                         </Button>
+                        <p className="text-right small">Connectivity analysis powered by <a href="http://ilincs.org" target="_blank">ilincs.org</a></p>
                         {this.state.emptyResults && <p>There are no similar genes for a given set of genes!</p>} 
                     </div>                                   
                 </div>
                 {this.state.mode === 'UpDn' && <div className="col-12 col-sm-12 col-md-8 box">
-                    <div className="card" style={{padding:"10px"}}>
+                    <div className="card" style={{padding:"10px 10px 16px 10px"}}>
                         <div className="row" style={{padding:"10px"}}>
                             <div className="col col-md-6">
-                                <textarea name="styled-textarea" id="styled" type="text" value={this.state.upString} onChange={this.handleUpGenes} placeholder="Enter UP Genes either seperated by coma or new line "/>
+                                <textarea name="styled-textarea" className="textarea-styled" type="text" value={this.state.upString} onChange={this.handleUpGenes} placeholder="Enter UP Genes either seperated by coma or new line "/>
                             </div>
                             <div className="col col-md-6">
-                                <textarea name="styled-textarea" id="styled" type="text" value={this.state.dnString} onChange={this.handleDownGenes}  placeholder="Enter Down Genes either seperated by coma or new line "/>
+                                <textarea name="styled-textarea" className="textarea-styled" type="text" value={this.state.dnString} onChange={this.handleDownGenes}  placeholder="Enter Down Genes either seperated by coma or new line "/>
                             </div>
                         </div>
                     </div>

@@ -196,7 +196,7 @@ body {
     z-index: 1;
 }
 
-textarea#styled {
+.textarea-styled {
     /* width: 600px; */
     width: 100%;
     min-height: 8em;
