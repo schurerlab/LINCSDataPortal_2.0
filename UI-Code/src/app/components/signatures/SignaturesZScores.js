@@ -253,6 +253,7 @@ class SignaturesZScores extends React.Component {
                 // console.log(this.state.signatureIds);                
                 this.formatMedata(this.state.signatureIds);
                 this.getSummary();
+                this.getSigMetadata(this.state.signatureIds[0])
              });            
                 // this.state.signatureIds = response.data.data;
                 // this.getStats(this.state.signatureIds);
