@@ -265,20 +265,25 @@ class SignaturesZScores extends React.Component {
         //     }
         }).then((response) => {
             console.log(response);
-            this.setState({ 
-                signatureIds: response.data.data,
-                sigCount: response.data.totalCount,
-                totalPages: Math.ceil(response.data.totalCount/20)
-            }, () => {
-                // this.getStats(this.state.signatureIds);
-                // console.log(this.state.signatureIds);                
-                this.formatMedata(this.state.signatureIds);
-                this.getSummary();
-                this.getSigMetadata(this.state.signatureIds[0])
-             });            
-                // this.state.signatureIds = response.data.data;
-                // this.getStats(this.state.signatureIds);
-                // this.getSigMedata(this.state.signatureIds);
+            if (response.data.data.length) {
+                this.setState({ 
+                    signatureIds: response.data.data,
+                    sigCount: response.data.totalCount,
+                    totalPages: Math.ceil(response.data.totalCount/20)
+                }, () => {
+                    // this.getStats(this.state.signatureIds);
+                    // console.log(this.state.signatureIds);                
+                    this.formatMedata(this.state.signatureIds);
+                    this.getSummary();
+                    this.getSigMetadata(this.state.signatureIds[0])
+                 });            
+                    // this.state.signatureIds = response.data.data;
+                    // this.getStats(this.state.signatureIds);
+                    // this.getSigMedata(this.state.signatureIds);
+            } else {
+                console.log("empty page");
+                
+            }          
 
         })       
     }
