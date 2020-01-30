@@ -169,15 +169,36 @@ class SignaturesZScores extends React.Component {
 
 
     download() { 
-        // console.log(this.state.signatureIds);
+        // console.log(this.state.signatureIds);        
         
-        let idUrl ='id='+this.state.signatureIds.slice(0,100).join('&id=');
-        if(this.state.signature=='cell phenotype'){
-            window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?onlyLandmarkGenes=false&"+idUrl,"_self");
-        }
-        window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?includeMetadata=true&onlyLandmarkGenes=false&"+idUrl,"_self");
+        // let idUrl ='id='+this.state.signatureIds.slice(0,100).join('&id=');
+        // if(this.state.signature=='cell phenotype'){
+        //     window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?onlyLandmarkGenes=false&"+idUrl,"_self");
+        // }
+        // window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?includeMetadata=true&onlyLandmarkGenes=false&"+idUrl,"_self");
         this.setState({dowloadLoading:true});
-        this.setState({dowloadLoading:false});
+        // this.setState({dowloadLoading:false});
+
+        // http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/downloadSignatures
+
+        axios.request({
+            method:'get',
+            withCredentials: true,
+            url:'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/downloadSignatures',
+            responseType: 'blob'
+        }).then((response) => {
+        //     console.log(response);            
+        //     this.setState({dowloadLoading:false});
+        //     // this.setState({"perturbagenCount":response.data.data.perturbation,"modelSystemCount":response.data.data.cellLine});
+        // })
+            let blob = new Blob([response.data], { type: mimeType });
+            saveAs(blob, "downloadedSigs.json");
+            this.setState({dowloadLoading:false});
+        })
+        .catch(function (error) {
+            console.log("_downloadWeb", error);
+            this.setState({dowloadLoading:false});
+        });;
     }
 
 
@@ -566,11 +587,11 @@ class SignaturesZScores extends React.Component {
                                 </div>
                             </div>
                         <div className="col-1">
-                            {/* <Button
+                            <Button
                                 bsStyle="primary"
                                 style={{fontSize:"0.8em"}}
                                 onClick={this.handleOpenModal} >Download Signatures
-                            </Button> */}
+                            </Button>
                             <ReactModal
                                 className="modal-dialog modal-content"
                                 bodyOpenClassName="modal-open"
