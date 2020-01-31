@@ -238,6 +238,8 @@ class SignaturesZScores extends React.Component {
 
     getDataPage(page) {        
         console.log("retriving signatures for page: ",page); 
+        // this.setState({dowloadLoading:true});
+        document.body.style.cursor='wait';
         // console.log("getting sessionID: ",this.state.sessionId); 
 
         // axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance?limit=20&page='+(page),
@@ -275,14 +277,19 @@ class SignaturesZScores extends React.Component {
                     // console.log(this.state.signatureIds);                
                     this.formatMedata(this.state.signatureIds);
                     this.getSummary();
-                    this.getSigMetadata(this.state.signatureIds[0])
+                    this.getSigMetadata(this.state.signatureIds[0]);
+                    // this.setState({dowloadLoading:true});
                  });            
                     // this.state.signatureIds = response.data.data;
                     // this.getStats(this.state.signatureIds);
                     // this.getSigMedata(this.state.signatureIds);
+                // window.onload=function(){document.body.style.cursor='default';}
+                document.body.style.cursor='default'
             } else {
                 console.log("empty page");
-                
+                // this.setState({dowloadLoading:true});
+                // window.onload=function(){document.body.style.cursor='default';}
+                document.body.style.cursor='default'
             }          
 
         })       
@@ -376,9 +383,9 @@ class SignaturesZScores extends React.Component {
             withCredentials: true,
             url:'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/resultsSummary'
         }).then((response) => {
-            console.log(response.data.data);
+            // console.log(response.data);
             // response needs signatureCount
-            this.setState({"perturbagenCount":response.data.data.perturbation,"modelSystemCount":response.data.data.cellLine});
+            this.setState({"perturbagenCount":response.data.perturbation,"modelSystemCount":response.data.cellLine});
         })
     }   
 
