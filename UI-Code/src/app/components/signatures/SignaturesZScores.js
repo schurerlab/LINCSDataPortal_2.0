@@ -530,7 +530,7 @@ class SignaturesZScores extends React.Component {
 
                 <div className="row">
                 <div className="col-3" >
-                    {/* <ButtonToolbar >
+                    <ButtonToolbar >
                         <ButtonGroup bsSize="medium" >
                             <Button className={this.state.selectedButton === 'Details' ? "ms_active" : "btn-default"}  onClick={() => {this.buttonSelected('Details')} }>
                                 <i className="fa fa-info fa-2x" style={{    color:"gray" }}></i>
@@ -551,7 +551,7 @@ class SignaturesZScores extends React.Component {
 
 
                         </ButtonGroup>
-                    </ButtonToolbar> */}
+                    </ButtonToolbar>
                      {this.state.data !='' ?   <div className="details-panel" style={{minHeight:"40em"}}>
                         <div>
 
@@ -585,9 +585,9 @@ class SignaturesZScores extends React.Component {
                         <div className="row">
                             <div className="col-10">
                                 <div className="row">
-                                    {/* <div className="col-11" >
+                                    <div className="col-11" >
                                         <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div>
-                                    </div> */}
+                                    </div>
                                     <div className="col-11">
                                         { this.state.data !=''  > 0 ?
                                             <div>
