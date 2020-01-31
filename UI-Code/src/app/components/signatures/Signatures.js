@@ -264,7 +264,7 @@ class Signatures extends React.Component {
                datatable.push(smet);
                 // this.state.data.push(smet)
             });
-            console.log(datatable.length)
+            // console.log(datatable.length)
             this.setState({data:datatable})
         })
 
@@ -285,7 +285,7 @@ class Signatures extends React.Component {
 
         if (this.state.text === "MCF-10A" && this.state.signature === "cell viability") {
             this.state.signatureIds = ["605673&","605674&","605675&","605676&","605677&","605678&","605679&","605680&","605681&","605682&","605683&","605684&","605685&","605686&","605687&","605688&","605689&","605690&","605691&","605692&","605693&","605694&","605695&","605696&","605697&","605698&","605699&","605700&","605701&","605702&"];
-            console.log(this.state.signatureIds.length);
+            // console.log(this.state.signatureIds.length);
             this.getStats(this.state.signatureIds);
             this.getSigMedata(this.state.signatureIds);
 
@@ -293,7 +293,7 @@ class Signatures extends React.Component {
         else if(this.state.text === "MCF-10A" && this.state.signature === "binding"){
             this.state.signatureIds = ["1&","2&","3&","4&","5&","6&","7&","8&","9&","10&","11&","12&","13&","14&","15&","16&","17&","18&","19&","20&","21&","22&","23&","24&","25&","26&","27&","28&","29&","30&","31&","32&","33&","34&","35&","36&","37&","38&","39&","40&","41&","42&","43&","44&","45&","46&","47&","48&","49&","50&","51&","52&","53&","54&","55&","56&","57&","58&","59&","60&","61&","62&","63&","64&","65&","66&","67&","68&","69&","70&","71&","72&","73&","74&","75&","76&","77&","78&","79&","80&","81&","82&","83&","84&","85&","86&","87&","88&","89&","90&","91&","92&","93&","94&","95&","96&","97&","98&","99&","100&","101&","102&","103&","104&","105&","106&","107&","108&","109&","110&","111&","112&","113&","114&","115&","116&","117&","118&","118169&","118170&","118171&","118172&","118173&","118174&","118175&","118176&","118177&","118178&","118179&","118180&","118181&","118182&","118183&","118184&","118185&","118186&","118187&","118188&","118189&","118190&","118191&","118192&","118193&","118194&","118195&","118196&","118197&","118198&","118199&","118200&","118201&","118202&","118203&","118204&","118205&","118206&","118207&","118208&","118209&","118210&","118211&","118212&","118213&","118214&","118215&","118216&","118217&","118218&","118219&","118220&","118221&","118222&","118223&","118224&","118225&","118226&","118227&","118228&","118229&","118230&","118231&","118232&","118233&","118234&","118235&","118236&","118237&","118238&","118239&","118240&","118241&","118242&","118243"];
             this.setState({text:""})
-            console.log(this.state.signatureIds.length);
+            // console.log(this.state.signatureIds.length);
             this.getStats(this.state.signatureIds);
             this.getSigMedata(this.state.signatureIds);
         }
@@ -343,7 +343,7 @@ class Signatures extends React.Component {
                                 }
 
                             })
-                            console.log(this.state.signatureIds.length);
+                            // console.log(this.state.signatureIds.length);
                             this.getStats(this.state.signatureIds);
                             this.getSigMedata(this.state.signatureIds);
                         }));
@@ -375,7 +375,7 @@ class Signatures extends React.Component {
                                 }
 
                             })
-                            console.log(this.state.signatureIds.length);
+                            // console.log(this.state.signatureIds.length);
                             this.getStats(this.state.signatureIds);
                             this.getSigMedata(this.state.signatureIds);
                         }));
@@ -402,7 +402,7 @@ class Signatures extends React.Component {
                                 }
 
                             })
-                            console.log(this.state.signatureIds.length);                            
+                            // console.log(this.state.signatureIds.length);                            
                             this.getStats(this.state.signatureIds);
                             this.getSigMedata(this.state.signatureIds);
                         }));
@@ -641,8 +641,8 @@ class Signatures extends React.Component {
                             </Row>
                         }
                         { this.state.data.length > 0 ?     <ReactPaginate 
-                            previousLabel={'<'} 
-                            nextLabel={'>'} 
+                            previousLabel={'previous'} 
+                            nextLabel={'next'} 
                             breakLabel={'.......'} 
                             breakClassName={'break-me'} 
                             pageCount={this.state.totalCount} 
