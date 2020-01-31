@@ -9,9 +9,11 @@ import 'react-table/react-table.css';
 import axios from 'axios';
 import queryString from 'query-string';
 // import Pagination from "../functions/Pagination";
+import LoadingGrid from '../common/LoadingGrid'
 import SignaturePanel from './SignaturePanel'
 import SignatureSearch from './SignatureSearch'
 import SignatureFilter from './SignatureFilter'
+import SignatureAppliedFilters from './SignatureAppliedFilters'
 import { saveAs } from 'file-saver';
 
 
@@ -239,7 +241,7 @@ class SignaturesZScores extends React.Component {
     getDataPage(page) {        
         console.log("retriving signatures for page: ",page); 
         // this.setState({dowloadLoading:true});
-        document.body.style.cursor='wait';
+        // document.body.style.cursor='wait';
         // console.log("getting sessionID: ",this.state.sessionId); 
 
         // axios.post('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/concordance?limit=20&page='+(page),
@@ -284,12 +286,12 @@ class SignaturesZScores extends React.Component {
                     // this.getStats(this.state.signatureIds);
                     // this.getSigMedata(this.state.signatureIds);
                 // window.onload=function(){document.body.style.cursor='default';}
-                document.body.style.cursor='default'
+                // document.body.style.cursor='default'
             } else {
                 console.log("empty page");
                 // this.setState({dowloadLoading:true});
                 // window.onload=function(){document.body.style.cursor='default';}
-                document.body.style.cursor='default'
+                // document.body.style.cursor='default'
             }          
 
         })       
@@ -586,7 +588,8 @@ class SignaturesZScores extends React.Component {
                             <div className="col-10">
                                 <div className="row">
                                     <div className="col-11" >
-                                        <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div>
+                                        {/* <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div> */}
+                                        <SignatureAppliedFilters tags={[this.state.text]} type={this.state.signature} />
                                     </div>
                                     <div className="col-11">
                                         { this.state.data !=''  > 0 ?
@@ -666,18 +669,7 @@ class SignaturesZScores extends React.Component {
                       }
                       }
                       }
-                        /> :
-                            <Row>
-                                <Col xs={4} md={4} lg={4}>
-
-                                </Col>
-                                <Col xs={4} md={4} lg={4}>
-                                    <div className="container-fluid center lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-                                </Col>
-                                <Col xs={4} md={4} lg={4}>
-
-                                </Col>
-                            </Row>
+                        /> : <LoadingGrid />
                         }
 { this.state.data.length > 0 ?   <ReactPaginate
                             previousLabel={'previous'}

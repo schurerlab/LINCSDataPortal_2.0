@@ -9,6 +9,7 @@ import 'react-table/react-table.css';
 import axios from 'axios';
 import queryString from 'query-string';
 // import Pagination from "../functions/Pagination";
+import LoadingGrid from '../common/LoadingGrid'
 import SignaturePanel from './SignaturePanel'
 import SignatureSearch from './SignatureSearch'
 import SignatureFilter from './SignatureFilter'
@@ -626,18 +627,7 @@ class Signatures extends React.Component {
                       }
 
 
-                        />   :
-                            <Row>
-                                <Col xs={4} md={4} lg={4}>
-
-                                </Col>
-                                <Col xs={4} md={4} lg={4}>
-                                    <div className="container-fluid center lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-                                </Col>
-                                <Col xs={4} md={4} lg={4}>
-
-                                </Col>
-                            </Row>
+                        />   : <LoadingGrid />
                         }
                         { this.state.data.length > 0 ?     <ReactPaginate 
                             previousLabel={'previous'} 

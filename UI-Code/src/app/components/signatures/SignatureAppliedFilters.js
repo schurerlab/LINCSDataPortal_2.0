@@ -19,10 +19,11 @@ export default class SignatureAppliedFilters extends React.Component {
     }
 
     render() {
-        var tags = this.state.tags.map(function(tag){
-        return (<div><div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{tag}</div><div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div></div>);
+        var tags = this.state.tags.map(function(tag,index){
+        if (tag) return (<div key="index"><div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{tag}</div><div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div></div>);
           })
-
+        // console.log(tags);
+        
         return (
             < div >
                 {true  &&
