@@ -11,12 +11,19 @@ export default class SignatureAppliedFilters extends React.Component {
 
         this.state = {
         //    tags: props.tags || [],
+            class: props.class || "",   
+            type: props.type || "",
            term: props.term || "",
-           type: props.type || ""
+           removeTag: props.removeTag
 
         };
         this.cancel = '';
 
+    }
+
+    removeTag = () => {
+        console.log("remove tag");
+        this.state.removeTag(this.state.class, this.state.type, this.state.term);
     }
 
     render() {
@@ -37,7 +44,7 @@ export default class SignatureAppliedFilters extends React.Component {
                         <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> */}
                         <div>
                             {/* <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.type}</div> */}
-                            <div className="suggestion-chip" style={{marginLeft:"0.6em"}}><b>{this.state.type}: </b>{ this.state.term }</div>
+                            <div className="suggestion-chip" style={{marginLeft:"0.6em"}}><b>{this.state.type}: </b>{ this.state.term }<i className="close" onClick={this.removeTag}>x</i></div>
                         </div>
                         
                     </Row> }

@@ -485,6 +485,38 @@ class SignaturesZScores extends React.Component {
         this.setState({ showModal: false });
     };
 
+    handleRemovingTags = (tagClass, tagType, tagTerm) => {
+        
+        console.log("handleRemovingTags");
+        console.log(tagClass, tagType, tagTerm);
+        const empty = {
+            class:null,type:null,term:null
+        }
+        let url = encodeURI('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/removeFacet?class='+tagClass.toLowerCase()+'&type='+tagType+'&term='+tagTerm);
+        console.log(url);
+        // const url = 'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/removeFacet?class=cell%20line&term=blood&type=organ%2Ftissue'
+        this.setState({ params: empty },() => {
+            axios.request({
+                method:'get',
+                withCredentials: true,
+                url:url
+            })
+            .then((res) => {
+                console.log(res.data);
+                // const query = { class: type.toLowerCase(), type: cat, term: k };
+                // const searchString = qs.stringify(query);
+
+                this.props.history.push({
+                pathname: '/signatures/signature-search-results',
+                search: null,
+                state: { mode: this.state.iLincsMode
+                        }
+                })
+                this.getDataPage(1);                
+                })            
+        })        
+    };
+
     getSigMetadata = (signature) => {
 
         axios.request({
@@ -598,7 +630,8 @@ class SignaturesZScores extends React.Component {
                                     <div className="col-11" >
                                         {/* <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div> */}
                                         {/* <SignatureAppliedFilters tags={[this.state.text]} type={this.state.signature} />*/}
-                                        {(this.state.params.term ||this.state.params.type) && <SignatureAppliedFilters term={this.state.params.term} type={this.state.params.type} class={this.state.params.class} /> }
+                                        {/* this.state.params.class,this.state.params.type,this.state.params.term */}
+                                        {(this.state.params.term ||this.state.params.type) && <SignatureAppliedFilters term={this.state.params.term} type={this.state.params.type} class={this.state.params.class} removeTag={this.handleRemovingTags} /> }
                                     </div>
                                     <div className="col-11">
                                         { this.state.data !=''  > 0 ?
