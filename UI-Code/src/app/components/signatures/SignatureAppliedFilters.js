@@ -10,7 +10,8 @@ export default class SignatureAppliedFilters extends React.Component {
         
 
         this.state = {
-           tags: props.tags || [],
+        //    tags: props.tags || [],
+           term: props.term || "",
            type: props.type || ""
 
         };
@@ -19,9 +20,9 @@ export default class SignatureAppliedFilters extends React.Component {
     }
 
     render() {
-        var tags = this.state.tags.map(function(tag,index){
-        if (tag) return (<div key="index"><div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{tag}</div><div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div></div>);
-          })
+        // var tags = this.state.tags.map(function(tag,index){
+        // if (tag) return (<div key="index"><div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{tag}</div><div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div></div>);
+        //   })
         // console.log(tags);
         
         return (
@@ -31,11 +32,12 @@ export default class SignatureAppliedFilters extends React.Component {
                         <div className="filtered-by">
                             <b>Filtered by: </b>
                         </div>
-                        { tags }
+                        {/* { tags } */}
                         {/* <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.tags[0]}</div>
                         <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> */}
                         <div>
-                            <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.type}</div>
+                            {/* <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.type}</div> */}
+                            <div className="suggestion-chip" style={{marginLeft:"0.6em"}}><b>{this.state.type}: </b>{ this.state.term }</div>
                         </div>
                         
                     </Row> }

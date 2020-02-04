@@ -25,6 +25,9 @@ class SignaturesZScores extends React.Component {
     constructor(props){
         super(props);
 
+        console.log(this.props.location);
+        const params = queryString.parse(this.props.location.search);
+        console.log(params);
         // var lincsSigIDs = props.data.map(el =>{
         //     return el.lincsSigID
         // });
@@ -87,6 +90,7 @@ class SignaturesZScores extends React.Component {
         }
 
         this.state = {
+            params: params,
             dowloadLoading: false,
             processingResults: true,
             slicFrom:0,
@@ -565,7 +569,7 @@ class SignaturesZScores extends React.Component {
                                 <div>
 
 
-                                    <SignatureSearch></SignatureSearch>
+                                    <SignatureSearch mode="concordance"></SignatureSearch>
                                 </div>
                                 :''
                             }
@@ -593,7 +597,8 @@ class SignaturesZScores extends React.Component {
                                 <div className="row">
                                     <div className="col-11" >
                                         {/* <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div> */}
-                                        <SignatureAppliedFilters tags={[this.state.text]} type={this.state.signature} />
+                                        {/* <SignatureAppliedFilters tags={[this.state.text]} type={this.state.signature} />*/}
+                                        {(this.state.params.term ||this.state.params.type) && <SignatureAppliedFilters term={this.state.params.term} type={this.state.params.type} class={this.state.params.class} /> }
                                     </div>
                                     <div className="col-11">
                                         { this.state.data !=''  > 0 ?
