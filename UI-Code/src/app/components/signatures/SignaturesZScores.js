@@ -88,6 +88,7 @@ class SignaturesZScores extends React.Component {
 
         this.state = {
             dowloadLoading: false,
+            processingResults: true,
             slicFrom:0,
             types:'',
             sids:[],
@@ -270,7 +271,8 @@ class SignaturesZScores extends React.Component {
         }).then((response) => {
             console.log(response);
             if (response.data.data.length) {
-                this.setState({ 
+                this.setState({
+                    processingResults:false,
                     signatureIds: response.data.data,
                     sigCount: response.data.totalCount,
                     totalPages: Math.ceil(response.data.totalCount/20)
@@ -288,8 +290,10 @@ class SignaturesZScores extends React.Component {
                 // window.onload=function(){document.body.style.cursor='default';}
                 // document.body.style.cursor='default'
             } else {
+                console.log(this.state.data);
+                console.log(this.state.data.length);
                 console.log("empty page");
-                // this.setState({dowloadLoading:true});
+                this.setState({processingResults:false});
                 // window.onload=function(){document.body.style.cursor='default';}
                 // document.body.style.cursor='default'
             }          
@@ -483,7 +487,7 @@ class SignaturesZScores extends React.Component {
             method:'get',
             url:'http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-metadata?id='+signature.signature_id
         }).then((response) => {           
-
+            
             response.data.data.map(type => {
 
             let sig_metadata = {
@@ -540,11 +544,11 @@ class SignaturesZScores extends React.Component {
                                 <br/>
                                 <span style={{fontSize:"0.8em"}}>Details </span>
                             </Button>
-                            <Button  className={this.state.selectedButton === 'Filter' ? "ms_active" : " btn-default"}  onClick={() => {this.buttonSelected('Filter')}}>
+                            {/* <Button  className={this.state.selectedButton === 'Filter' ? "ms_active" : " btn-default"}  onClick={() => {this.buttonSelected('Filter')}}>
                                 <i className="fa fa-filter fa-2x" style={{    color:"gray" }}></i>
                                 <br/>
                                 <span style={{fontSize:"0.8em"}}> Filter </span>
-                            </Button>
+                            </Button> */}
                             <Button  className={this.state.selectedButton === 'Search' ? "ms_active" : " btn-default"}  onClick={() => {this.buttonSelected('Search')}}>
                                 <i className="fa fa-search fa-2x" style={{    color:"gray" }}></i>
                                 <br/>
@@ -601,6 +605,7 @@ class SignaturesZScores extends React.Component {
                                             </div>
                                 </div>
                             </div>
+                        { this.state.data.length > 0 &&
                         <div className="col-1">
                             <Button
                                 bsStyle="primary"
@@ -642,9 +647,9 @@ class SignaturesZScores extends React.Component {
                                     </Button>
                                 </Modal.Footer>
                             </ReactModal>
-                        </div>
+                        </div> }
                             </div>
-                        { this.state.data !=''  > 0 ?
+                        { this.state.data.length > 0 ?
                             < ReactTable
                             data={this.state.data}
                             columns={this.state.columns}
@@ -669,8 +674,10 @@ class SignaturesZScores extends React.Component {
                       }
                       }
                       }
-                        /> : <LoadingGrid />
+                        /> : null
                         }
+                        {this.state.processingResults && <LoadingGrid />}
+                        { (this.state.data.length<1&&!this.state.processingResults) && <div className="alert alert-secondary">Current search criteria provided <b>no results</b>.</div>}
 { this.state.data.length > 0 ?   <ReactPaginate
                             previousLabel={'previous'}
                             nextLabel={'next'}
