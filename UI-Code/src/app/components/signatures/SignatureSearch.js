@@ -51,32 +51,31 @@ class SignatureSearch extends  React.Component {
                 cancelToken: this.cancel.token,
             })
             .then((res) => {
-                console.log(Object.keys(res.data.data).length );
-                const resultNotFoundMsg = ! Object.keys(res.data.data).length > 2
+                // console.log(res.data.data);                
+                // console.log(Object.keys(res.data.data).length );
+                const resultNotFoundMsg = Object.keys(res.data.data).length < 2
                     ? 'There are no more search results. Please try a new search.'
                     : '';
                 this.setState({
-                    results: res.data.data['small molecule'],
-                    len:Object.keys(res.data.data).length > 1 ? Object.keys(res.data.data).length : 0 ,
-                    cells: res.data.data['cell line'],
-                    ge: res.data.data['Gene expression'],
+                    results: res.data.data['small molecule']||null,
+                    // len:Object.keys(res.data.data).length > 1 ? Object.keys(res.data.data).length : 0 ,
+                    cells: res.data.data['cell line']||null,
+                    ge: res.data.data['Gene expression']||null,
                     message: resultNotFoundMsg,
-                    pb: res.data.data['Protein binding'],
-                    pe: res.data.data['Protein expression'],
-                    ep: res.data.data['Epigenetic'],
-                    me: res.data.data['MEMA cell growth'],
-                    sh: res.data.data['shRNA'],
-                    sg: res.data.data['sgRNA'],
+                    pb: res.data.data['Protein binding']||null,
+                    pe: res.data.data['Protein expression']||null,
+                    ep: res.data.data['Epigenetic']||null,
+                    me: res.data.data['MEMA cell growth']||null,
+                    sh: res.data.data['shRNA']||null,
+                    sg: res.data.data['sgRNA']||null,
                     loading: false,
-
-
                 });
             })
             .catch( error => {
-                if ( axios.isCancel(error) || error ) {
+                if ( /*axios.isCancel(error) ||*/ error ) {
                     this.setState({
                         loading: false,
-                        message: 'Failed to fetch the data. Please check network'
+                        // message: 'Failed to fetch the data. Please check network'
                     })
                 }
             } )
@@ -138,25 +137,33 @@ class SignatureSearch extends  React.Component {
 
 
 
-                    {  message && <p className="message">{message}</p> }
+                    {  (this.state.message) && <p className="message">{message}</p> }
 
 
 
 
 
                 </div>
-                { this.state.len > 1 ?
                     <Row className="col-12">
-
-
-                        <GeneExpression facets={this.state.ge} label="Gene Expression" />
-                        <GeneExpression facets={this.state.pe} label="Protein Expression" />
-                        <GeneExpression facets={this.state.ep} label="Epigenetic" />
-                        <GeneExpression facets={this.state.pb} label="Protein binding" />
-                        <GeneExpression facets={this.state.me} label="MEMA cell growth" />
-
-
-                    </Row> :"" }
+                        {this.state.ge && 
+                            <GeneExpression facets={this.state.ge} label="Gene Expression" />
+                        }
+                        {this.state.pe && 
+                            <GeneExpression facets={this.state.pe} label="Protein Expression" />
+                        }
+                        {this.state.ep && 
+                            <GeneExpression facets={this.state.ep} label="Epigenetic" />
+                        }
+                        {this.state.pb && 
+                            <GeneExpression facets={this.state.pb} label="Protein binding" />
+                        }
+                        {this.state.me && 
+                            <GeneExpression facets={this.state.me} label="MEMA cell growth" />
+                        } 
+                        {this.state.cells && 
+                            <GeneExpression facets={this.state.cells} label="Cell line" />
+                        }
+                    </Row> 
             </div>
         )
     }
