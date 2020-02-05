@@ -294,10 +294,10 @@ class SignaturesZScores extends React.Component {
                 // window.onload=function(){document.body.style.cursor='default';}
                 // document.body.style.cursor='default'
             } else {
-                console.log(this.state.data);
-                console.log(this.state.data.length);
-                console.log("empty page");
-                this.setState({processingResults:false});
+                // console.log(this.state.data);
+                // console.log(this.state.data.length);
+                // console.log("empty page");
+                this.setState({data:[],processingResults:false});
                 // window.onload=function(){document.body.style.cursor='default';}
                 // document.body.style.cursor='default'
             }          
