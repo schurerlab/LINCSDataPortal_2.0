@@ -641,7 +641,7 @@ class SignaturesZScores extends React.Component {
                             {this.state.data !=''   && this.state.selectedButton === 'Filter' ?
                                 <div>
                                     <br/>
-                                    <SignatureFilter></SignatureFilter>
+                                    <SignatureFilter mode="concordance" addFacet={this.handleAddingFacet}></SignatureFilter>
                                 </div>
                                 :''
                             }

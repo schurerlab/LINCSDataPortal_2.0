@@ -26,7 +26,8 @@ class GeneExpression extends Component {
         
         if(this.props.facets ){
             // console.log(this.props.facets);
-            console.log(this.props.mode);
+            // console.log(this.props.mode);
+            // console.log(this.props.label);
             assaydesignmethod = Object.entries(this.props.facets).map(([key,value])=>{
                 return (
 
