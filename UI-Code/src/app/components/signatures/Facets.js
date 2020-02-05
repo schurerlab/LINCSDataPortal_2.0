@@ -19,30 +19,31 @@ class Facets extends Component {
     }
 
     handleSearch(e,k,type,cat) {
-        console.log(type, cat, k);
-        let url = encodeURI('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/addFacet?class='+type.toLowerCase()+'&term='+k+'&type='+cat);
-        // const url = 'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/addFacet?class=cell%20line&term=blood&type=organ%2Ftissue'
-        console.log(url);
-        axios.request({
-                method:'get',
-                withCredentials: true,
-                url:url
-            })
-            .then((res) => {
-                console.log(res.data);
-                const query = { class: type.toLowerCase(), type: cat, term: k };
-                const searchString = qs.stringify(query);
+        // console.log(type, cat, k);
+        this.props.addFacet(type.toLowerCase(),cat,k);
+        // let url = encodeURI('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/addFacet?class='+type.toLowerCase()+'&term='+k+'&type='+cat);
+        // // const url = 'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/addFacet?class=cell%20line&term=blood&type=organ%2Ftissue'
+        // console.log(url);
+        // axios.request({
+        //         method:'get',
+        //         withCredentials: true,
+        //         url:url
+        //     })
+        //     .then((res) => {
+        //         console.log(res.data);
+        //         const query = { class: type.toLowerCase(), type: cat, term: k };
+        //         const searchString = qs.stringify(query);
 
-                this.props.history.push({
-                    pathname: '/signatures/signature-search-results',
-                    search: searchString,
-                    state: { mode: "UpDn"//this.state.mode,
-                                // sessionId: response.data.sessionID,
-                                // sigCount: response.data.count,
-                                // data: this.state.cids
-                            }
-                })                
-            })
+        //         this.props.history.push({
+        //             pathname: '/signatures/signature-search-results',
+        //             search: searchString,
+        //             state: { mode: "UpDn"//this.state.mode,
+        //                         // sessionId: response.data.sessionID,
+        //                         // sigCount: response.data.count,
+        //                         // data: this.state.cids
+        //                     }
+        //         })                
+        //     })
     }
 
 

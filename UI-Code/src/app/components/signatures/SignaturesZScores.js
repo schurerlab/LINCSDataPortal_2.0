@@ -502,7 +502,7 @@ class SignaturesZScores extends React.Component {
                 url:url
             })
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 // const query = { class: type.toLowerCase(), type: cat, term: k };
                 // const searchString = qs.stringify(query);
 
@@ -516,6 +516,39 @@ class SignaturesZScores extends React.Component {
                 })            
         })        
     };
+
+    handleAddingFacet = (facetClass, facetType, facetTerm) => {
+        // console.log("handleAddingFacet");
+        // console.log(facetClass, facetType, facetTerm);
+        let url = encodeURI('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/addFacet?class='+facetClass+'&type='+facetType+'&term='+facetTerm);
+        // const url = 'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/addFacet?class=cell%20line&term=blood&type=organ%2Ftissue'
+        // console.log(url);
+        axios.request({
+                method:'get',
+                withCredentials: true,
+                url:url
+            })
+            .then((res) => {
+                // console.log(res.data);
+                const query = { class: facetClass, type: facetType, term: facetTerm };
+                const searchString = queryString.stringify(query);
+
+                this.props.history.push({
+                    pathname: '/signatures/signature-search-results',
+                    search: searchString,
+                    state: { 
+                                mode: this.state.mode
+                            }
+                });
+                this.setState({params : {
+                        class: facetClass,
+                        type: facetType,
+                        term: facetTerm
+                    } 
+                });
+                this.getDataPage(1);                
+            })
+    }
 
     getSigMetadata = (signature) => {
 
@@ -580,11 +613,11 @@ class SignaturesZScores extends React.Component {
                                 <br/>
                                 <span style={{fontSize:"0.8em"}}>Details </span>
                             </Button>
-                            {/* <Button  className={this.state.selectedButton === 'Filter' ? "ms_active" : " btn-default"}  onClick={() => {this.buttonSelected('Filter')}}>
+                            <Button  className={this.state.selectedButton === 'Filter' ? "ms_active" : " btn-default"}  onClick={() => {this.buttonSelected('Filter')}}>
                                 <i className="fa fa-filter fa-2x" style={{    color:"gray" }}></i>
                                 <br/>
                                 <span style={{fontSize:"0.8em"}}> Filter </span>
-                            </Button> */}
+                            </Button>
                             <Button  className={this.state.selectedButton === 'Search' ? "ms_active" : " btn-default"}  onClick={() => {this.buttonSelected('Search')}}>
                                 <i className="fa fa-search fa-2x" style={{    color:"gray" }}></i>
                                 <br/>
@@ -601,7 +634,7 @@ class SignaturesZScores extends React.Component {
                                 <div>
 
 
-                                    <SignatureSearch mode="concordance"></SignatureSearch>
+                                    <SignatureSearch mode="concordance" addFacet={this.handleAddingFacet}></SignatureSearch>
                                 </div>
                                 :''
                             }

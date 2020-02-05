@@ -147,22 +147,22 @@ class SignatureSearch extends  React.Component {
                 </div>
                     <Row className="col-12">
                         {this.state.ge && 
-                            <GeneExpression facets={this.state.ge} label="Gene Expression" mode={this.props.mode} />
+                            <GeneExpression facets={this.state.ge} label="Gene Expression" mode={this.props.mode} addFacet={this.props.addFacet} />
                         }
                         {this.state.pe && 
-                            <GeneExpression facets={this.state.pe} label="Protein Expression" mode={this.props.mode}/>
+                            <GeneExpression facets={this.state.pe} label="Protein Expression" mode={this.props.mode} addFacet={this.props.addFacet} />
                         }
                         {this.state.ep && 
-                            <GeneExpression facets={this.state.ep} label="Epigenetic" mode={this.props.mode}/>
+                            <GeneExpression facets={this.state.ep} label="Epigenetic" mode={this.props.mode} addFacet={this.props.addFacet} />
                         }
                         {this.state.pb && 
-                            <GeneExpression facets={this.state.pb} label="Protein binding" mode={this.props.mode}/>
+                            <GeneExpression facets={this.state.pb} label="Protein binding" mode={this.props.mode} addFacet={this.props.addFacet} />
                         }
                         {this.state.me && 
-                            <GeneExpression facets={this.state.me} label="MEMA cell growth" mode={this.props.mode}/>
+                            <GeneExpression facets={this.state.me} label="MEMA cell growth" mode={this.props.mode} addFacet={this.props.addFacet} />
                         } 
                         {this.state.cells && 
-                            <GeneExpression facets={this.state.cells} label="Cell line" mode={this.props.mode}/>
+                            <GeneExpression facets={this.state.cells} label="Cell line" mode={this.props.mode} addFacet={this.props.addFacet} />
                         }
                     </Row> 
             </div>
