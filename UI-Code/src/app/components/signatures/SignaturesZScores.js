@@ -536,7 +536,7 @@ class SignaturesZScores extends React.Component {
                 // const query = { class: filterClass, type: filterType, term: filterTerm };                
                 
                 const searchString = queryString.stringify(query);
-                this.props.history.push({
+                this.props.history.replace({
                     pathname: '/signatures/signature-search-results',
                     search: searchString,
                     state: { mode: this.state.iLincsMode
@@ -576,7 +576,7 @@ class SignaturesZScores extends React.Component {
                 const query = { class: this.state.filterClass, type: this.state.filterType, term: this.state.filterTerm };
                 const searchString = queryString.stringify(query);
 
-                this.props.history.push({
+                this.props.history.replace({
                     pathname: '/signatures/signature-search-results',
                     search: searchString,
                     state: { 

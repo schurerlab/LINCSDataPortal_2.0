@@ -41,7 +41,7 @@ class GeneExpression extends Component {
                             }
                             
                         </Panel.Body>
-                        <br/>
+                        {/* <br/> */}
                     </Panel>
 
                 );
