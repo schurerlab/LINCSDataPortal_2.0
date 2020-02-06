@@ -59,34 +59,34 @@ export default class SignatureFilter extends React.Component {
         let cl={};
         let temp1 ={};
         let temp2 ={};
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=disease')
+        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/getFacets?type=disease')
             .then((res) => {
 
                 disease = res.data.data['cell line']
                 this.setState({disease:disease})
 
             })
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=organ%2Ftissue')
+        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/getFacets?type=organ%2Ftissue')
             .then((res) => {
 
                 organ = res.data.data['cell line'];
-                console.log(organ);
+                // console.log(organ);
                 
                 this.setState({organ:organ})
             })
 
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=small%20molecule%20target')
+        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/getFacets?type=small%20molecule%20target')
             .then((res) => {
                 smt  = res.data.data['small molecule'];
                 this.setState({smallmoleculetarget:smt})
 
             })
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=name')
+        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/getFacets?type=name')
             .then((res) => {
                 smt  = res.data.data['small molecule'];
                 this.setState({sm:res.data.data['small molecule'],cells:res.data.data['cell line']})
             })
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=mechanism%20of%20action')
+        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/getFacets?type=mechanism%20of%20action')
             .then((res) => {
                     moa = res.data.data['small molecule'];
                     this.setState({moa:moa})
@@ -97,10 +97,10 @@ export default class SignatureFilter extends React.Component {
                     // this.setState({cells:cls})
                 }
             })
-        // axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets')
-        // .then((res) => {
-        //     console.log(res.data);            
-        // })
+        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/getFacets')
+        .then((res) => {
+            console.log(res.data);            
+        })
     }
 
     render() {

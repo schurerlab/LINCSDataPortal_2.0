@@ -56,7 +56,7 @@ class Facets extends Component {
     }
     
   showText(e,type,k) {
-      console.log("showText",e,type,k);
+    //   console.log("showText",e,type,k);
       
       axios.request({
           method:'get',
@@ -81,7 +81,7 @@ class Facets extends Component {
 
 
         let items;
-        console.log(this.props.facets);
+        // console.log(this.props.facets);
         
         if (this.props.facets) {
 
@@ -97,14 +97,14 @@ class Facets extends Component {
 
                         {key}  {key.includes()}
 
-                            { this.props.query ?
+                            {/* { this.props.query ?
                             <a className="titip-bottom" >
 
                     <span className="titip-content thick-border" style={{fontSize:"0.8em"}}>
                         {this.state.syn ? "  synonyms: "+ this.state.syn : '' }
                     </span>
                       <i className="fa fa-question-circle" style={{color:"#D3D3D3"}} onMouseEnter={(e) => {this.showText(this.props.query,this.props.type,key)}} onMouseLeave={(e) => {this.hideText(this.props.query,this.props.type,key)}}></i>
-                            </a> : ''}
+                            </a> : ''} */}
 
 
                     </button>

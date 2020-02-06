@@ -89,8 +89,19 @@ class SignaturesZScores extends React.Component {
             })
         }
 
+        const filterClass = (typeof params.class === 'string' || params.class instanceof String) ? [params.class] : params.class;
+        const filterType = (typeof params.type === 'string' || params.type instanceof String) ? [params.type] : params.type;
+        const filterTerm = (typeof params.term === 'string' || params.term instanceof String) ? [params.term] : params.term;
+        // console.log(filterClass);
+        // debugger
+
+        
+
         this.state = {
-            params: params,
+            // params: params,
+            filterClass: filterClass||[],
+            filterType: filterType||[],
+            filterTerm: filterTerm||[],
             dowloadLoading: false,
             processingResults: true,
             slicFrom:0,
@@ -123,6 +134,9 @@ class SignaturesZScores extends React.Component {
             showModal: false,
             downloadUrl:''
         }
+
+        console.log(this.state.filterTerm);
+        
 
     }
 
@@ -485,10 +499,10 @@ class SignaturesZScores extends React.Component {
         this.setState({ showModal: false });
     };
 
-    handleRemovingTags = (tagClass, tagType, tagTerm) => {
+    handleRemovingTags = (tagClass, tagType, tagTerm, tagIndex) => {
         
         console.log("handleRemovingTags");
-        console.log(tagClass, tagType, tagTerm);
+        console.log(tagClass, tagType, tagTerm, tagIndex);
         const empty = {
             class:null,type:null,term:null
         }
@@ -503,18 +517,42 @@ class SignaturesZScores extends React.Component {
             })
             .then((res) => {
                 // console.log(res.data);
-                // const query = { class: type.toLowerCase(), type: cat, term: k };
-                // const searchString = qs.stringify(query);
 
+                //mutating state
+                this.state.filterClass.splice(tagIndex,1);
+                this.state.filterType.splice(tagIndex,1);
+                this.state.filterTerm.splice(tagIndex,1);
+                const query = { class: this.state.filterClass, type: this.state.filterType, term: this.state.filterTerm };
+
+                //TODO: without mutating state directly (does not refresh the tags for some reasons)
+                // debugger
+                // const filterClass = [...this.state.filterClass]; // make a separate copy of the array
+                // const filterType = [...this.state.filterType]; // make a separate copy of the array
+                // const filterTerm = [...this.state.filterTerm]; // make a separate copy of the array
+                // filterClass.splice(tagIndex,1);
+                // filterType.splice(tagIndex,1);
+                // filterTerm.splice(tagIndex,1);
+                // this.setState({filterClass: filterClass,filterType: filterType,filterTerm: filterTerm});                
+                // const query = { class: filterClass, type: filterType, term: filterTerm };                
+                
+                const searchString = queryString.stringify(query);
                 this.props.history.push({
-                pathname: '/signatures/signature-search-results',
-                search: null,
-                state: { mode: this.state.iLincsMode
-                        }
+                    pathname: '/signatures/signature-search-results',
+                    search: searchString,
+                    state: { mode: this.state.iLincsMode
+                            }
                 })
                 this.getDataPage(1);                
-                })            
-        })        
+            })            
+        })   
+        // console.log(this.state.params);
+        // this.state.params.class.splice(tagIndex,1);
+        // this.state.params.type.splice(tagIndex,1);
+        // this.state.params.term.splice(tagIndex,1);
+
+        // console.log(newTags);
+        // console.log(this.state.params.term);
+             
     };
 
     handleAddingFacet = (facetClass, facetType, facetTerm) => {
@@ -529,8 +567,13 @@ class SignaturesZScores extends React.Component {
                 url:url
             })
             .then((res) => {
+                //mutating state directly
+                this.state.filterClass.push(facetClass);
+                this.state.filterType.push(facetType);
+                this.state.filterTerm.push(facetTerm);
+                
                 // console.log(res.data);
-                const query = { class: facetClass, type: facetType, term: facetTerm };
+                const query = { class: this.state.filterClass, type: this.state.filterType, term: this.state.filterTerm };
                 const searchString = queryString.stringify(query);
 
                 this.props.history.push({
@@ -540,12 +583,13 @@ class SignaturesZScores extends React.Component {
                                 mode: this.state.mode
                             }
                 });
-                this.setState({params : {
-                        class: facetClass,
-                        type: facetType,
-                        term: facetTerm
-                    } 
-                });
+                // this.setState({params : {
+                //         class: [facetClass,"sadfa"],
+                //         type: [facetType,"xzcvxv"],
+                //         term: [facetTerm,"sdfasdf"]
+                //     } 
+                // });
+
                 this.getDataPage(1);                
             })
     }
@@ -664,7 +708,8 @@ class SignaturesZScores extends React.Component {
                                         {/* <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div> */}
                                         {/* <SignatureAppliedFilters tags={[this.state.text]} type={this.state.signature} />*/}
                                         {/* this.state.params.class,this.state.params.type,this.state.params.term */}
-                                        {(this.state.params.term ||this.state.params.type) && <SignatureAppliedFilters term={this.state.params.term} type={this.state.params.type} class={this.state.params.class} removeTag={this.handleRemovingTags} /> }
+                                        {(this.state.filterTerm ||this.state.filterType) && <SignatureAppliedFilters term={this.state.filterTerm} type={this.state.filterType} class={this.state.filterClass} removeTag={this.handleRemovingTags} /> }
+                                        {/* <SignatureAppliedFilters term={this.state.filterTerm} type={this.state.filterType} class={this.state.filterClass} removeTag={this.handleRemovingTags} /> */}
                                     </div>
                                     <div className="col-11">
                                         { this.state.data !=''  > 0 ?
