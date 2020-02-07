@@ -57,11 +57,35 @@ const SignatureAppliedFilter = (props) => {
         props.removeFilter(props.filterClass, props.filterType, props.filterTerm, props.filterIndex);
     }
 
+    function colorTag() {   
+        console.log(props.filterClass);
+        
+        var tagColor="#5f6368"     
+        switch (props.filterClass) {
+            case "cell line":
+                tagColor="rgb(76, 193, 137)"
+                break;
+            case "small molecule":
+                tagColor="darksalmon"
+                break;
+            case "gene expression":
+                tagColor="orange"
+                break;
+        }
+
+        return { 
+            color: tagColor,
+            borderColor: tagColor,
+            marginLeft:"0.6em",
+            padding: "8px"
+         } 
+    }
+
     return (
         <div key={props.filterIndex}>
-            <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>
-                {props.filterType}: {props.filterTerm}
-                <i className="close" onClick={removeTag}>x</i>
+            <div className="suggestion-chip" style={colorTag()}>
+                <b>{props.filterType}:</b> {props.filterTerm} &nbsp;&nbsp;
+                <span className="close text-right" onClick={removeTag} style={{fontSize: "12px", cursor: "pointer"}}>x</span>
             </div>
         </div>
     )
