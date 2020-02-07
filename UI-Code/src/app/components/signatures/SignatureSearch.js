@@ -146,7 +146,7 @@ class SignatureSearch extends  React.Component {
 
                 </div>
                     <Row className="col-12">
-                        {this.state.ge && 
+                        {/* {this.state.ge && 
                             <GeneExpression facets={this.state.ge} label="Gene Expression" mode={this.props.mode} addFacet={this.props.addFacet} />
                         }
                         {this.state.pe && 
@@ -160,9 +160,12 @@ class SignatureSearch extends  React.Component {
                         }
                         {this.state.me && 
                             <GeneExpression facets={this.state.me} label="MEMA cell growth" mode={this.props.mode} addFacet={this.props.addFacet} />
-                        } 
+                        }  */}
                         {this.state.cells && 
                             <GeneExpression facets={this.state.cells} label="Cell line" mode={this.props.mode} addFacet={this.props.addFacet} />
+                        }
+                        {this.state.results && 
+                            <GeneExpression facets={this.state.results} label="small molecule" mode={this.props.mode} addFacet={this.props.addFacet} />
                         }
                     </Row> 
             </div>

@@ -25,6 +25,7 @@ class GeneExpression extends Component {
         let facetItems;
         
         if(this.props.facets ){
+            // console.log(this.props);
             // console.log(this.props.facets);
             // console.log(this.props.mode);
             // console.log(this.props.label);
@@ -36,8 +37,9 @@ class GeneExpression extends Component {
                            <b> {this.props.label } </b> <span>{this.props.label ? '|' : ''}</span><span style={{fontWeight:"500"}}> {jsUcfirst(key)} </span>
                         </div>
                         <Panel.Body  style={{  overflow:"scroll", maxHeight:"110px"}} >
-                            {this.props.mode=="concordance" ? <Facets facets={value} type={this.props.label} cat={key} mode={this.props.mode} addFacet={this.props.addFacet}></Facets> :
-                            <Element facets={value} type={this.props.label} cat={key} mode="signature" ></Element>
+                            {this.props.mode=="concordance" ? 
+                                <Facets facets={value} type={this.props.label} cat={key} mode={this.props.mode} addFacet={this.props.addFacet}></Facets>
+                                : <Element facets={value} type={this.props.label} cat={key} mode="signature" ></Element>
                             }
                             
                         </Panel.Body>
