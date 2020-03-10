@@ -73,6 +73,8 @@ class PerturbationsSearch extends  React.Component {
                 });
             })
             .catch( error => {
+                // console.log(error);
+                
                 if ( axios.isCancel(error) || error ) {
                     this.setState({
                         loading: false,

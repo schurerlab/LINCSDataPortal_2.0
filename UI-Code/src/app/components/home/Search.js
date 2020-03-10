@@ -62,6 +62,7 @@ class Search extends  React.Component {
                 cancelToken: this.cancel.token,
             })
             .then((res) => {
+                // console.log(res);
                 const resultNotFoundMsg = ! Object.keys(res.data.data).length > 2
                     ? 'There are no more search results. Please try a new search.'
                     : '';
@@ -182,7 +183,7 @@ class Search extends  React.Component {
             </div> : ""}
                 { this.state.selectedButton ==="Metadata" ?
                 <div>
-                { this.state.len > 0  ?
+                {/* { this.state.len > 0  ? */}
                 <Row className="col-12">
                     <Col xs={4} md={4} lg={4}>
                         <PerturbationsHeader/>
@@ -204,6 +205,7 @@ class Search extends  React.Component {
                         <GeneExpression facets={this.state.ep} label="Epigenetic" query={this.state.query} />
                         <GeneExpression facets={this.state.pb} label="Protein binding" query={this.state.query} />
                         <GeneExpression facets={this.state.me} label="MEMA cell growth" query={this.state.query} />
+                        <GeneExpression facets={this.state.cells} label="Cell line" query={this.state.query} />
                     </Col>
                 </Row> :
                 <Row className="col-12">
@@ -217,7 +219,7 @@ class Search extends  React.Component {
                             <PanelSignatures />
                     </Col>
                 </Row>
-                }
+                // }
                     </div> :
                     <SignatureSearch>
 
