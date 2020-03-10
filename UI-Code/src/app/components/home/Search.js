@@ -183,7 +183,7 @@ class Search extends  React.Component {
             </div> : ""}
                 { this.state.selectedButton ==="Metadata" ?
                 <div>
-                {/* { this.state.len > 0  ? */}
+                { this.state.len > 0  ?
                 <Row className="col-12">
                     <Col xs={4} md={4} lg={4}>
                         <PerturbationsHeader/>
@@ -219,7 +219,7 @@ class Search extends  React.Component {
                             <PanelSignatures />
                     </Col>
                 </Row>
-                // }
+                }
                     </div> :
                     <SignatureSearch>
 
