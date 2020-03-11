@@ -1,6 +1,6 @@
 {
   "name": "sigcomm-ui",
-  "homepage": "http://lincsportal.ccs.miami.edu/beta",
+  "homepage": "http://lincsportal.ccs.miami.edu/signatures",
   "version": "1.0.0",
   "description": "demo",
   "main": "index.js",
@@ -29,6 +29,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.1.2",
     "css-loader": "^1.0.0",
+    "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",

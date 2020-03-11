@@ -168,7 +168,7 @@ class Search extends  React.Component {
                           </InputGroup>
                         </FormGroup>
                 </Well>
-                <a style={{color:"black",fontWeight: 200}} href="/beta/structure-search" className="pull-right"  >
+                <a style={{color:"black",fontWeight: 200}} href="/signatures/structure-search" className="pull-right"  >
                     Structure Search
                 </a>
 

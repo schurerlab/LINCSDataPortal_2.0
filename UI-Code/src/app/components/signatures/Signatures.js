@@ -8,9 +8,11 @@ import ReactPaginate from 'react-paginate';
 import 'react-table/react-table.css';
 import axios from 'axios';
 import queryString from 'query-string';
+// import Pagination from "../functions/Pagination";
 import SignaturePanel from './SignaturePanel'
 import SignatureSearch from './SignatureSearch'
 import SignatureFilter from './SignatureFilter'
+import SignatureAppliedFilters from './SignatureAppliedFilters'
 import { saveAs } from 'file-saver';
 
 
@@ -73,6 +75,7 @@ class Signatures extends React.Component {
             let params = queryString.parse(props.location.search)
             this.state = {
                 dowloadLoading: false,
+                tags: [],
                 types:params.class,
                 sids:[],
                 totalCount:'',
@@ -91,13 +94,12 @@ class Signatures extends React.Component {
                 pages:[],
                 showModal: false,
                 downloadUrl:'',
-                slicFrom:0,
-
-
+                slicFrom:0
             }
         }else {
             this.state = {
                 dowloadLoading: false,
+                tags: [],
                 slicFrom:0,
                 types:'',
                 sids:[],
@@ -128,9 +130,8 @@ class Signatures extends React.Component {
 
 
 
-    componentWillMount(){
-
-
+    componentDidMount(){
+        
         this.getDatasets();
     }
 
@@ -261,7 +262,8 @@ class Signatures extends React.Component {
                 }
                datatable.push(smet);
                 // this.state.data.push(smet)
-            })
+            });
+            // console.log(datatable.length)
             this.setState({data:datatable})
         })
 
@@ -282,6 +284,7 @@ class Signatures extends React.Component {
 
         if (this.state.text === "MCF-10A" && this.state.signature === "cell viability") {
             this.state.signatureIds = ["605673&","605674&","605675&","605676&","605677&","605678&","605679&","605680&","605681&","605682&","605683&","605684&","605685&","605686&","605687&","605688&","605689&","605690&","605691&","605692&","605693&","605694&","605695&","605696&","605697&","605698&","605699&","605700&","605701&","605702&"];
+            // console.log(this.state.signatureIds.length);
             this.getStats(this.state.signatureIds);
             this.getSigMedata(this.state.signatureIds);
 
@@ -289,6 +292,7 @@ class Signatures extends React.Component {
         else if(this.state.text === "MCF-10A" && this.state.signature === "binding"){
             this.state.signatureIds = ["1&","2&","3&","4&","5&","6&","7&","8&","9&","10&","11&","12&","13&","14&","15&","16&","17&","18&","19&","20&","21&","22&","23&","24&","25&","26&","27&","28&","29&","30&","31&","32&","33&","34&","35&","36&","37&","38&","39&","40&","41&","42&","43&","44&","45&","46&","47&","48&","49&","50&","51&","52&","53&","54&","55&","56&","57&","58&","59&","60&","61&","62&","63&","64&","65&","66&","67&","68&","69&","70&","71&","72&","73&","74&","75&","76&","77&","78&","79&","80&","81&","82&","83&","84&","85&","86&","87&","88&","89&","90&","91&","92&","93&","94&","95&","96&","97&","98&","99&","100&","101&","102&","103&","104&","105&","106&","107&","108&","109&","110&","111&","112&","113&","114&","115&","116&","117&","118&","118169&","118170&","118171&","118172&","118173&","118174&","118175&","118176&","118177&","118178&","118179&","118180&","118181&","118182&","118183&","118184&","118185&","118186&","118187&","118188&","118189&","118190&","118191&","118192&","118193&","118194&","118195&","118196&","118197&","118198&","118199&","118200&","118201&","118202&","118203&","118204&","118205&","118206&","118207&","118208&","118209&","118210&","118211&","118212&","118213&","118214&","118215&","118216&","118217&","118218&","118219&","118220&","118221&","118222&","118223&","118224&","118225&","118226&","118227&","118228&","118229&","118230&","118231&","118232&","118233&","118234&","118235&","118236&","118237&","118238&","118239&","118240&","118241&","118242&","118243"];
             this.setState({text:""})
+            // console.log(this.state.signatureIds.length);
             this.getStats(this.state.signatureIds);
             this.getSigMedata(this.state.signatureIds);
         }
@@ -338,6 +342,7 @@ class Signatures extends React.Component {
                                 }
 
                             })
+                            // console.log(this.state.signatureIds.length);
                             this.getStats(this.state.signatureIds);
                             this.getSigMedata(this.state.signatureIds);
                         }));
@@ -369,6 +374,7 @@ class Signatures extends React.Component {
                                 }
 
                             })
+                            // console.log(this.state.signatureIds.length);
                             this.getStats(this.state.signatureIds);
                             this.getSigMedata(this.state.signatureIds);
                         }));
@@ -395,6 +401,7 @@ class Signatures extends React.Component {
                                 }
 
                             })
+                            // console.log(this.state.signatureIds.length);                            
                             this.getStats(this.state.signatureIds);
                             this.getSigMedata(this.state.signatureIds);
                         }));
@@ -530,11 +537,17 @@ class Signatures extends React.Component {
                     </div> : ''}
                     </div>
                     <div className="col-9" style={ csl }>
+                        {/* <div className="row"> 
+                            <div className="col-10" >
+                                <SignatureAppliedFilters tags={[this.state.text,"MCF-7"]} type={this.state.signature} />
+                            </div>                                                       
+                        </div> */}
                         <div className="row">
                             <div className="col-10">
                                 <div className="row">
                                     <div className="col-11" >
-                                        <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div>
+                                        {/* <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div> */}
+                                        <SignatureAppliedFilters tags={[this.state.text]} type={this.state.signature} />
                                     </div>
                                     <div className="col-11">
                                         { this.state.data !=''  > 0 ?
@@ -597,6 +610,7 @@ class Signatures extends React.Component {
                             minRows={1}
                             // filterable={true}
                             showPagination={false}
+                            // PaginationComponent={Pagination}
                             getTdProps={(state, rowInfo, column, instance) => {
                       return {
                       onClick: (e) => {

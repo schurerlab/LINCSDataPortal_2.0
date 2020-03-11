@@ -85,33 +85,33 @@ class ModelSystemShowPage extends React.Component {
                                 <tr  >
                                     <th style={{width:"50%",padding:".25em",fontWeight:"200"}} >Gene Expression :</th>
                                     <td className="pull-left" style={{padding:".25em"}}>
-                                        <a href={'/beta/signatures?signature=Gene Expressions&class=cell line&term='+sms.name}> <b>{sms.signatures["gene expression"] ? sms.signatures["gene expression"]: "-"}</b> </a>
+                                        <a href={'/signatures/signatures?signature=Gene Expressions&class=cell line&term='+sms.name}> <b>{sms.signatures["gene expression"] ? sms.signatures["gene expression"]: "-"}</b> </a>
                                     </td>
                                 </tr>
                                 <tr  >
                                     <th  scope="row" style={{width:"50%",padding:".25em",fontWeight:"200"}}>Epigenetic</th>
                                     <td style={{padding:".25em"}}>
-                                        <a href={'/beta/signatures?signature=epigenetic&class=cell line&term='+sms.name}>  <b>  {sms.signatures["epigenetic"] ? sms.signatures["epigenetic"]: "-"}</b> </a>
+                                        <a href={'/signatures/signatures?signature=epigenetic&class=cell line&term='+sms.name}>  <b>  {sms.signatures["epigenetic"] ? sms.signatures["epigenetic"]: "-"}</b> </a>
 
                                     </td>
                                 </tr>
                                 <tr  >
                                     <th  scope="row" style={{width:"50%",padding:".25em",fontWeight:"200"}}>Protein Binding : </th>
                                     <td style={{padding:".25em"}}>
-                                        <a href={'/beta/signatures?signature=binding&class=cell line&term='+sms.name}> <b>  {sms.signatures["binding"] ? sms.signatures["binding"]: "-"} </b> </a>
+                                        <a href={'/signatures/signatures?signature=binding&class=cell line&term='+sms.name}> <b>  {sms.signatures["binding"] ? sms.signatures["binding"]: "-"} </b> </a>
 
                                     </td>
                                 </tr>
                                 <tr  >
                                     <th  scope="row" style={{width:"50%",padding:".25em",fontWeight:"200"}}>Protein Expression:</th>
                                     <td style={{padding:".25em"}}>
-                                        <a href={'/beta/signatures?signature=proteomics&class=cell line&term='+sms.name}>  <b>  {sms.signatures["proteomics"] ? sms.signatures["proteomics"]: "-"}</b> </a>
+                                        <a href={'/signatures/signatures?signature=proteomics&class=cell line&term='+sms.name}>  <b>  {sms.signatures["proteomics"] ? sms.signatures["proteomics"]: "-"}</b> </a>
                                     </td>
                                 </tr>
                                 <tr  >
                                     <th  scope="row" style={{width:"50%",padding:".25em",fontWeight:"200"}}>Cell Phenotype :</th>
                                     <td style={{padding:".25em"}}>
-                                        <a href={'/beta/signatures?signature=imaging&class=cell line&term='+sms.name}>  <b>   {sms.signatures["cell phenotype"] ? sms.signatures["imaging"]: "-"} </b> </a>
+                                        <a href={'/signatures/signatures?signature=imaging&class=cell line&term='+sms.name}>  <b>   {sms.signatures["cell phenotype"] ? sms.signatures["imaging"]: "-"} </b> </a>
                                     </td>
                                 </tr>
 

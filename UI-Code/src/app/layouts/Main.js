@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import '../../index.css'
+import '../../titip.min.css';
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { SigHome } from "../pages/SigHome";
@@ -17,6 +18,7 @@ import PerturbationShowPage from "../components/perturbations/PerturbationShowPa
 import ModelSystemLandingPage from "../components/modelSystems/ModelSystemLandingPage";
 import AssayLandingPage from "../components/assays/AssayLandingPage";
 import DatasetLandingPage from "../components/datasetLandingPages/DatasetLandingPage";
+import SignaturesZScores from "../components/signatures/SignaturesZScores";
 
 // import { getCounts } from "../redux/fetch/get-counts";
 
@@ -58,6 +60,7 @@ class Main extends React.Component {
                         />
                         <Route path="/signatures/structure-search" render={(props) => <SigReadouts />} />
                         <Route path="/signatures/signatures" render={(props) => <SigSignatures />} />
+                        <Route path="/signatures/signature-search-results" render={(props) => <SignaturesZScores mode={props.location.state.mode} data={props.location.state.data}/>} />
                         <Route path="/signatures/help" render={(props) => <Help/>} />
                     </div>
                     <Footer />

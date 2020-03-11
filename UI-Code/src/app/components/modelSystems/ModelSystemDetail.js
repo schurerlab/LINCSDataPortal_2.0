@@ -15,7 +15,7 @@ class ModelSystemDetail extends React.Component {
                         
                         <div className = "text-center">
                             <a className = "text-center name-header"
-                               href={'/beta/models/'+this.props.data.id}
+                               href={'/signatures/models/'+this.props.data.id}
                                style={{color: "green"}}
                             >
                                 {this.props.data.name}
@@ -39,25 +39,25 @@ class ModelSystemDetail extends React.Component {
                     <span>
                      <img style={{maxHeight: "30px"}}
                           src="http://dev3.ccs.miami.edu:8080/SignatureCommons/images/u151.svg"/>
-                        Gene Expression:   <a href={'/beta/signatures?signature=Gene Expressions&class=cell line&term='+this.props.data.name}>{this.props.data.signature_category_count['gene expression']}</a>
+                        Gene Expression:   <a href={'/signatures/signatures?signature=Gene Expressions&class=cell line&term='+this.props.data.name}>{this.props.data.signature_category_count['gene expression']}</a>
                     </span>
                             <br/>
                     <span> <img
                         style={{maxHeight: "30px"}}
                         src="/media/icons/Protein_Expression_Icon.png"/>
-                             Protein Expression:   <a href={'/beta/signatures?signature=proteomics&class=cell line&term='+this.props.data.name}>{this.props.data.signature_category_count['proteomics']}</a>
+                             Protein Expression:   <a href={'/signatures/signatures?signature=proteomics&class=cell line&term='+this.props.data.name}>{this.props.data.signature_category_count['proteomics']}</a>
                     </span>
                             <br/>
                      <span> <img
                          style={{maxHeight: "30px"}}
                          src="/media/icons/Epigenomic_Icon.png"/>
-                           Epigenomic:   <a href={'/beta/signatures?signature=epigenetic&class=cell line&term='+this.props.data.name}>{this.props.data.signature_category_count['epigenetic']}</a>
+                           Epigenomic:   <a href={'/signatures/signatures?signature=epigenetic&class=cell line&term='+this.props.data.name}>{this.props.data.signature_category_count['epigenetic']}</a>
                     </span>
                             <br/>
                      <span> <img
                          style={{maxHeight: "30px"}}
                          src="/media/icons/Cell_Phenotype_Icon.png"/>
-                             Cell Phenotype: <a href={'/beta/signatures?signature=Cell Phenotype&class=cell line&term='+this.props.data.name}>{this.props.data.signature_category_count['cell phenotype']}</a>
+                             Cell Phenotype: <a href={'/signatures/signatures?signature=Cell Phenotype&class=cell line&term='+this.props.data.name}>{this.props.data.signature_category_count['cell phenotype']}</a>
                     </span>
                             <br/>
 

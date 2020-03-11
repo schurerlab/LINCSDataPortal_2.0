@@ -11,12 +11,12 @@ export const Navbar = (props) => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-4">
-                        <a href="http://lincsportal.ccs.miami.edu/signatures">
+                        <a href="/signatures">
                             <img className="navbar-brand" src="/media/nav/logo.png" height="60px" />
                         </a>
                     </div>
                     <div className="col-sm-8" style={{ color: 'white',marginTop:"1em"}} >
-                        <a style={{ color: 'white',fontSize:"20px"}} href="http://lincsportal.ccs.miami.edu/signatures"> LINCS
+                        <a style={{ color: 'white',fontSize:"20px"}} href="/signatures"> LINCS
                         Data Portal 2.0
                         </a>
                     </div>

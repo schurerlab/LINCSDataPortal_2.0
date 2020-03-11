@@ -30,7 +30,7 @@ class AssayLandingPage extends React.Component {
         newTitle.innerHTML = "Assay Landing Page"
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getDatasetInfo();
     }
 

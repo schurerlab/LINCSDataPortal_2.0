@@ -60,25 +60,25 @@ export default class SmallMoleculeDetail extends React.Component {
           <span>
                      <img style={{maxHeight: "30px"}}
                           src="http://dev3.ccs.miami.edu:8080/SignatureCommons/images/u151.svg"/>
-                        Gene Expression:   <a href={'/beta/signatures?signature=Gene Expressions&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['gene expression']}</a>
+                        Gene Expression:   <a href={'/signatures/signatures?signature=Gene Expressions&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['gene expression']}</a>
                     </span>
           <br/>
                     <span> <img
                         style={{maxHeight: "30px"}}
                         src="/media/icons/Protein_Expression_Icon.png"/>
-                             Protein Expression:   <a href={'/beta/signatures?signature=proteomics&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['proteomics']}</a>
+                             Protein Expression:   <a href={'/signatures/signatures?signature=proteomics&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['proteomics']}</a>
                     </span>
           <br/>
                      <span> <img
                          style={{maxHeight: "30px"}}
                          src="/media/icons/Epigenomic_Icon.png"/>
-                           Epigenomic:   <a href={'/beta/signatures?signature=epigenetic&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['epigenetic']}</a>
+                           Epigenomic:   <a href={'/signatures/signatures?signature=epigenetic&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['epigenetic']}</a>
                     </span>
           <br/>
                      <span> <img
                          style={{maxHeight: "30px"}}
                          src="/media/icons/Cell_Phenotype_Icon.png"/>
-                             Cell Phenotype: <a href={'/beta/signatures?signature=Cell Phenotype&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['cell phenotype']}</a>
+                             Cell Phenotype: <a href={'/signatures/signatures?signature=Cell Phenotype&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['cell phenotype']}</a>
                     </span>
           <br/>
 
