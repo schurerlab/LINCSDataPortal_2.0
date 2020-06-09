@@ -19,6 +19,8 @@ import ModelSystemLandingPage from "../components/modelSystems/ModelSystemLandin
 import AssayLandingPage from "../components/assays/AssayLandingPage";
 import DatasetLandingPage from "../components/datasetLandingPages/DatasetLandingPage";
 import SignaturesZScores from "../components/signatures/SignaturesZScores";
+import KnockdownShowPage from "../components/perturbations/KnockdownShowPage";
+
 
 // import { getCounts } from "../redux/fetch/get-counts";
 
@@ -51,8 +53,11 @@ class Main extends React.Component {
                           (props) => <DatasetLandingPage id={props.match.params.dataset_id}/>}
                         />
                         <Route exact path="/signatures/perturbations" render={(props) => <SigPerturbations />} />
-                        <Route exact path="/signatures/perturbations/:perturbation_id" render={
+                        <Route exact path="/signatures/smallmolecule/:perturbation_id" render={
                           (props) => <PerturbationShowPage id={props.match.params.perturbation_id}/>}
+                        />
+                        <Route exact path="/signatures/knockdown/:perturbation_id" render={
+                          (props) => <KnockdownShowPage id={props.match.params.perturbation_id}/>}
                         />
                         <Route exact path="/signatures/models" render={(props) => <SigModels />} />
                         <Route exact path="/signatures/models/:id" render={

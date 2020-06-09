@@ -23,11 +23,10 @@ class Bioactivity extends React.Component {
     getDatasets(){
         axios.request({
             method:'get',
-            url:'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch-bioactivity?id='+this.props.sp.perturbagen_id
+            url:'http://dev3.ccs.miami.edu:8080/dcic/api/SigC-bioactivity?id='+this.props.sp.perturbagen_id
         }).then((response) => {
 
-
-            this.setState({datasets: response.data.data[0].bioactivity, totaldocuments:  response.data.data[0].count}, () => {
+            this.setState({datasets: response.data, totaldocuments:  response.data.length}, () => {
 
             });
         }).catch((error) => {
@@ -39,10 +38,10 @@ class Bioactivity extends React.Component {
     render() {
         let datasetItems;
         datasetItems = this.state.datasets.map(function(dataset, index)  {
-            let endpoint = dataset.endpointType;
-            let uniprotAcession = dataset.uniprotAcession;
-            let geneSymbol = dataset.geneSymbol;
-            let value = dataset.value;
+            let endpoint = dataset.endpoint;
+            let uniprotAcession = dataset.uniprot_id;
+            let geneSymbol = dataset.gene;
+            let value = dataset.endpoint_value;
             return (
                 <tr key={index}>
                     <td style={{fontSize: "0.8rem",padding: ".3rem"}} >
@@ -60,9 +59,10 @@ class Bioactivity extends React.Component {
 
             )
         });
-        return (
+        console.log(this.state.totaldocuments);
+        return ( this.state.totaldocuments > 0 ?
             <div >
-                <h5 style={{color:"#CC3300"}}>Aggregated Bioactivity Data : {this.state.totaldocuments}</h5>
+                <h5 style={{color:"#CC3300"}}>Aggregated Bioactivity Data </h5>
                 <hr style={{borderTop: "1px solid #CC3300"}} />
                 <Table  bordered >
                     <thead>
@@ -80,7 +80,7 @@ class Bioactivity extends React.Component {
                     </tbody>
 
                 </Table>
-            </div>
+            </div> :''
         );
     }
 }

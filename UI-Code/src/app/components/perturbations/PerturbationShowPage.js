@@ -5,6 +5,9 @@ import { changeShowPerturbation } from "../../redux/fetch/get-perturbation"
 import PhysicochemicalProperties from "./PhysicochemicalProperties"
 import ReagentDatasets from "../../components/datasets/ReagentDatasets"
 import Bioactivity  from "./Bioactivity"
+import Clinical from "./Clinical"
+import Pharma from "./Pharma"
+import Drug from "./Drug"
 import axios from 'axios'
 
 let csl = { 'fontSize': '0.8em', 'fontWeight':'500' };
@@ -226,8 +229,12 @@ class PerturbationShowPage extends React.Component {
           </div>
           <br/>
           <PhysicochemicalProperties sp={sp}/>
+            <ReagentDatasets id={'smlincsidentifier:"'+sp["LINCS Data Portal"][0]} />
             <Bioactivity sp={sp}/>
-          <ReagentDatasets id={'smlincsidentifier:"'+sp["LINCS Data Portal"][0]} />
+            <Clinical sp={sp}/>
+            <Pharma sp={sp}/>
+            <Drug sp={sp}/>
+
         </div>
       )
     } else if (this.state.notFound) {

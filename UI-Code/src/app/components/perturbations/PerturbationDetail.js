@@ -14,7 +14,7 @@ class PerturbationDetail extends React.Component {
     return (
         <div>
         <div className = "text-center">
-          <a href={`/signatures/perturbations/${sp.id}`}
+          <a href={`/signatures/smallmolecule/${sp.id}`}
           className = "name-header">
             {sp.sm_name}
           </a>
