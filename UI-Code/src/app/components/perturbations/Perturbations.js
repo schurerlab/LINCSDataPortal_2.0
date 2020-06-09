@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem,ButtonToolbar,FormGroup,InputGroup,ToggleButtonGroup,ToggleButton,ButtonGroup, Button,Table,Well,FormControl,Modal} from 'react-bootstrap';
+import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem,ButtonToolbar,FormGroup,InputGroup,ToggleButtonGroup,ToggleButton,ButtonGroup, Button,Table,Well,FormControl,Modal,Tabs,Tab} from 'react-bootstrap';
 import ReactTable from "react-table";
 import { withRouter } from 'react-router-dom';
 import 'react-table/react-table.css'
@@ -67,6 +67,7 @@ class Perturbations extends React.Component {
         if(props.location.search){
             let params = queryString.parse(props.location.search)
             this.state = {
+                key: 'SM',
                 slicFrom:0,
                 types:params.class,
                 smiles:params.smiles,
@@ -320,7 +321,7 @@ class Perturbations extends React.Component {
         }else {
             axios.request({
                 method: 'get',
-                url: 'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch?limit=20&page='+this.state.page+'&returnSignatures=false'
+                url: 'http://dev3.ccs.miami.edu:8080/sigc-api-test/small-molecule/fetch?limit=20&page='+this.state.page+'&returnSignatures=false'
             }).then((response) => {
 
 
