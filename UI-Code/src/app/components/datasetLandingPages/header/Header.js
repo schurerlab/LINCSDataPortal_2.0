@@ -42,7 +42,7 @@ class Header extends React.Component {
             eventElement = <DatasetDescription datasetinfo={sp.datasetgroup}/>
             // download = <DatasetDownload datasetinfo={sp}/>
         }
-    
+
 
         if(this.state.key === 1){
             if(this.props.datasetinfo) {
@@ -78,7 +78,7 @@ class Header extends React.Component {
                 </div>
                {eventElement}
                 <hr style={{borderTop: "1px solid gray"}} />
-                
+
 
         </div>
 

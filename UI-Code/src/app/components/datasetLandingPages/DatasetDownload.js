@@ -19,7 +19,7 @@ class DatasetDownload extends React.Component {
         let size = this.props.datasetinfo.datalevels.length;
         let datasetlevels = this.props.datasetinfo.datasetlevels;
         let path = this.props.datasetinfo.levelspath;
-        let sizeof = this.props.datasetinfo['size'];
+        let sizeof = this.props.datasetinfo['size'] ? this.props.datasetinfo['size'] : "-";
         // function renderElements(value, index) {
         //     console.log(levels)
         //     console.log(levels[index])

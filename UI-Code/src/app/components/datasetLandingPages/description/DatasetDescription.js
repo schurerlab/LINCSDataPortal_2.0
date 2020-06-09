@@ -253,11 +253,11 @@ class DatasetDescription extends React.Component {
                              <b>Download</b>
                          </Col>
                          <Col  xs={10} md={10} lg={10}>
-                             <DatasetDownload datasetinfo={this.props.datasetinfo}/>
-                             
+                            <DatasetDownload datasetinfo={this.props.datasetinfo}/>
+
                          </Col>
                          <div className="separator"></div>
-                         
+
                       </div>
 
 
