@@ -9,6 +9,14 @@ import AssayTable from '../../components/assays/AssayTable';
 import Facets from '../../components/datasets/Facets';
 import AssaysDetailsPanel from '../../components/assays/AssaysDetailsPanel';
 
+// let csl = { 'fontSize': '0.7em' };
+// var columns = [
+//     { Header: "Assay", accessor: 'Name'},
+//     { Header: "Center", accessor: 'center_name'},
+//     { Header: "Area of study", accessor: 'area_of_study'},
+//     { Header: "Method", accessor: 'assay_technology'},
+//     { Header: "Datasets", accessor: 'counts'}
+// ];
 class Assays extends React.Component {
     constructor(props){
         super(props);
@@ -42,6 +50,7 @@ class Assays extends React.Component {
 
     componentDidMount(){
         this.getAssays();
+
     }
 
     handlePageClick = (event) => {
@@ -53,6 +62,7 @@ class Assays extends React.Component {
     }
 
     getAssays(){
+        this.state.data =[];
         axios.request({
             method:'get',
             url:'http://lincsportal.ccs.miami.edu/dcic/api/fetchassayinfo?searchTerm='+this.state.types+':'+this.state.text+'&limit=20'+'&skip='+this.state.skip+'&sort=total_entities desc'
@@ -64,7 +74,7 @@ class Assays extends React.Component {
                     let smet = {
                         "id": dataset.entityId,
                    "title": dataset.Name,
-                    "center" : dataset.center_name.toString(),
+                    "center" : dataset.center_name ? dataset.center_name.toString(): '',
                     "area" : dataset.area_of_study,
                     "method": dataset.assay_technology,
                     "datasets": dataset.dataset_count,
@@ -77,11 +87,13 @@ class Assays extends React.Component {
 
                     }
                     this.state.data.push(smet)
+
                 }));
             
         }).catch((error) => {
             console.log(error);
         });
+    // console.log( );
     }
 
     handleChange(text){
@@ -93,6 +105,7 @@ class Assays extends React.Component {
 
 
     render() {
+
         return (
             <div className="row">
             <div className="col-12">
@@ -101,6 +114,9 @@ class Assays extends React.Component {
 
             </div>
                 <div className="offset-3 col-9">
+
+
+
                     { this.state.data.length > 0 ?  <ReactPaginate
                         previousLabel={'previous'}
                         nextLabel={'next'}
