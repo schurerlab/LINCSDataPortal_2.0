@@ -48,7 +48,19 @@ class KnockdownDetail extends React.Component {
           <span>
                      <img style={{maxHeight: "30px"}}
                           src="http://dev3.ccs.miami.edu:8080/SignatureCommons/images/u151.svg"/>
-                        Gene Expression:   <a href={'/signatures/signatures?signature=Gene Expressions&class=nuclicacid reagnet&term='+sp.name}>-</a>
+                        Gene Expression:   <a href={'/signatures/signatures?signature=Gene Expressions&class=sgRNA&term='+sp.name}>{sp.signature_category_count['gene expression']}</a>
+                    </span>
+                    <br/>
+                    <span> <img
+                        style={{maxHeight: "30px"}}
+                        src="/media/icons/Protein_Expression_Icon.png"/>
+                             Protein Expression:   <a href={'/signatures/signatures?signature=Proteomics&class=sgRNA&term='+sp.name}>{sp.signature_category_count['proteomics']}</a>
+                    </span>
+                    <br/>
+                     <span> <img
+                         style={{maxHeight: "30px"}}
+                         src="/media/icons/Epigenomic_Icon.png"/>
+                           Epigenomic:   <a href={'/signatures/signatures?signature=Epigenetic&class=sgRNA&term='+sp.name}>{sp.signature_category_count['epigenetic']}</a>
                     </span>
                     <br/>
 

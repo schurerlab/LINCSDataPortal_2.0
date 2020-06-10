@@ -5,7 +5,7 @@ export function changeShowPerturbation(id) {
         let sp = {}
 
         function datafetch(url, id, stateVar) {
-            return axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/nucleic-acid/' + url + id)
+            return axios.get('http://dev3.ccs.miami.edu:8080/sigc-api-test/nucleic-acid/' + url + id)
                 .then((response) => {
                     sp = {...sp, ...response.data.data[0]}
                 })

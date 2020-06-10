@@ -44,7 +44,19 @@ class PanelPerturbations extends React.Component {
                             <button className="btn  d-flex w-100"
                                     style={{ borderColor: 'white', color:'gray' }}>
                                 <span className="col-md-4" style={{ textAlign: 'right' }}>
-                                    <span style={csl}><b> 745 </b> </span>
+                                    <span style={csl}><b> 56 </b> </span>
+                                </span>
+                                <span className="col-md-8" style={{ textAlign: 'left' }}>
+                                    <span style={csl}> sgRNA  </span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div className="row">
+                            <button className="btn  d-flex w-100"
+                                    style={{ borderColor: 'white', color:'gray' }} disabled>
+                                <span className="col-md-4" style={{ textAlign: 'right' }}>
+                                    <span style={csl}><b>Pending</b></span>
                                 </span>
                                 <span className="col-md-8" style={{ textAlign: 'left' }}>
                                     <span style={csl}> shRNA  </span>
@@ -52,17 +64,7 @@ class PanelPerturbations extends React.Component {
                             </button>
                         </div>
 
-                        <div className="row">
-                            <button className="btn  d-flex w-100"
-                                    style={{ borderColor: 'white', color:'gray' }}>
-                                <span className="col-md-4" style={{ textAlign: 'right' }}>
-                                    <span style={csl}><b> 376 </b> </span>
-                                </span>
-                                <span className="col-md-8" style={{ textAlign: 'left' }}>
-                                    <span style={csl}> sgRNA  </span>
-                                </span>
-                            </button>
-                        </div>
+
 
                         <div className="row">
                             <button className="btn   d-flex w-100"

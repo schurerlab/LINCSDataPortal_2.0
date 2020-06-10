@@ -21,7 +21,6 @@ var columns = [
     { Header: "Perturbagen class", accessor: 'class' },
     { Header: "Reagent type", accessor: 'type' },
     { Header: "Subtype", accessor: 'subtype' },
-    { Header: "Species", accessor: 'species' },
     { Header: "Entrez id", accessor: 'entrez' },
     { Header: <img
     style={{maxHeight: "20px"}}
@@ -31,6 +30,18 @@ src="/media/icons/Gene_Expression_Icon.png"/>,
     return <div><img height={15} src={row.original.g}/></div>
 },
 width: 30},
+    {Header: <img
+        style={{maxHeight: "20px"}}
+        src="/media/icons/Protein_Expression_Icon.png"/>,
+        accessor: 'p',
+        Cell: (row) => {
+            return <div><img height={15} src={row.original.p}/></div>
+        }, width: 30},
+    { Header: <img
+        style={{maxHeight: "20px"}}
+        src="/media/icons/Epigenomic_Icon.png"/>, accessor: 'e',Cell: (row) => {
+        return <div><img height={15} src={row.original.e}/></div>
+    }, width: 30}
 
 ];
 
@@ -128,10 +139,8 @@ getData() {
 
         axios.request({
             method: 'get',
-            url: 'http://dev3.ccs.miami.edu:8080/dcic/api/knockdown'
+            url: 'http://dev3.ccs.miami.edu:8080/sigc-api/nucleic-acid/fetch?limit=100&page=1&returnSignatures=false'
         }).then((response) => {
-
-
             let json_d = response.data.data;
         var gcol = "";
         var pcol = "";
@@ -141,26 +150,44 @@ getData() {
         let json_m = Object.keys(json_d).map(function (key) {
 
 
-
+            if (json_d[key].signature_category_count['gene expression'] != undefined) {
                 gcol = "/media/icons/Circle_Perturbation.png";
+            } else {
+                gcol = "/media/icons/Circle_Unselected.png"
+            }
+            if (json_d[key].signature_category_count['proteomics'] != undefined) {
+                pcol = "/media/icons/Circle_Perturbation.png";
+            } else {
+                pcol = "/media/icons/Circle_Unselected.png"
+            }
+
+            if (json_d[key].signature_category_count['epigenetic'] != undefined) {
+                ecol = "/media/icons/Circle_Perturbation.png";
+            } else {
+                ecol = "/media/icons/Circle_Unselected.png"
+            }
+
+
 
 
             return {
-
-                "id": json_d[key].nucleic_acid_reagent_entrez_gene_id,
-                "name": json_d[key].nucleic_acid_reagent_target_locus,
-                "class": json_d[key].perturbagen_class,
+                "id": json_d[key].perturbagen_id ,
+                "name": json_d[key].nucleic_acid_reagent_target_locus ? json_d[key].nucleic_acid_reagent_target_locus : json_d[key].name,
+                "class": 'nucleic acid reagent',
                 "subtype": json_d[key].nucleic_acid_reagent_subtype,
-                "type": json_d[key].nucleic_acid_reagent_type,
-                "species" : json_d[key].nucleic_acid_reagent_target_locus_species,
+                "type": 'knockdown',
                 "entrez": json_d[key].nucleic_acid_reagent_entrez_gene_id,
-                "g": gcol
+                "signature_category_count": json_d[key].signature_category_count,
+                "g": gcol,
+                "p": pcol,
+                "e": ecol
             }
         });
 
         this.setState({data_table_perturbagens: json_m});
 
         if (this.state.data_table_perturbagens.length > 0) {
+            console.log("passing this",this.state.data_table_perturbagens)
 
             this.changeShowModelSystem(this.state.data_table_perturbagens[0].id);
         }

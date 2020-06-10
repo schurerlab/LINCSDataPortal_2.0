@@ -11,6 +11,7 @@ class Element extends Component {
 
     constructor(props) {
 
+
         super(props);
         this.state = {
             id:"",
@@ -100,7 +101,26 @@ class Element extends Component {
                     function findIndex(jsonData, findThis){
                         var indexNum = data.findIndex(obj => obj.preferred_term == findThis);
                         objectid =res.data.data.name[indexNum].hit_object_id;
-                        url= "/signatures/perturbations/"+objectid;
+                        url= "/signatures/smallmolecule/"+objectid;
+                        window.open(url,'_self');
+                    }
+                    findIndex(data, k);
+                })
+        }
+        if(type==="sgRNA" && cat==="gene target"){
+            let findID = `http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term=${k}`;
+            let objectid;
+            let objectType;
+            var id;
+            axios
+                .get(findID)
+                .then((res) => {
+                    console.log(res)
+                    var data= res.data.data['gene target'];
+                    function findIndex(jsonData, findThis){
+                        var indexNum = data.findIndex(obj => obj.preferred_term == findThis);
+                        objectid =res.data.data['gene target'][indexNum].hit_object_id;
+                        url= "/signatures/knockdown/"+objectid;
                         window.open(url,'_self');
                     }
                     findIndex(data, k);

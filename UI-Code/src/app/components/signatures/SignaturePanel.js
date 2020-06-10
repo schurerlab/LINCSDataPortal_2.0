@@ -37,6 +37,7 @@ class SignaturePanel extends React.Component {
 
             let ms = this.props.data
 
+      
 
 
             return (
@@ -51,9 +52,9 @@ class SignaturePanel extends React.Component {
                         </div>
                         <hr style={{borderTop: "1px solid #CC3300"}}/>
                         <div className="body-text">
-                            <span><b>Category: </b>{this.props.data.pertClass}</span><br/>
+                            <span><b>Category: </b>{this.props.data.pertClass } </span><br/>
                             <span><b>Name: </b> <a href={`/signatures/perturbations/${this.props.data.pertid}`}>{this.props.data.pertname} </a></span><br/>
-                            <span><b>MOA: </b> {this.props.data.mechanismOfAction}</span><br/>
+                            <span> <b> MOA:</b> {this.props.data.mechanismOfAction}</span><br/>
 
                             <span><b>Timepoint: </b>{this.props.data.timepoint} ({this.props.data.timepointunit})</span><br/>
                             <span><b>Concentration: </b>{this.props.data.concentration}  ({this.props.data.concentrationunit})</span><br/>

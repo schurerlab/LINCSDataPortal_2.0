@@ -241,12 +241,13 @@ class Signatures extends React.Component {
            response.data.data.map(type => {
 
 
+
                 let smet = {
                     "id": type.signature_id,
                     "pertid":  type['small molecule'] ? type['small molecule'][0].perturbagenID :'',
                     "assay":  type['epigenetics assay'] ? type['epigenetics assay'][0].generating_activity_name : type['proteomics assay'] ? type['proteomics assay'][0].generating_activity_name : type['gene expression assay'] ? type['gene expression assay'][0].generating_activity_name : type['imaging'] ? type['imaging'][0].generating_activity_name : '-',
-                    "pertname": type['small molecule'] ? type['small molecule'][0].name :  type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].nucleic_acid_reagent_target_locus : type['protein perturbagen'][0].protein_perturbagen_name.toString() ? type['protein perturbagen'][0].protein_perturbagen_name.toString() : ''  ,
-                    "pertClass": type['small molecule'] ? type['small molecule'][0].perturbationClass :  type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].perturbationClass : '' ,
+                    "pertname": type['small molecule'] ? type['small molecule'][0].name :  type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].gettargetLocus : type['protein perturbagen'][0].protein_perturbagen_name.toString() ? type['protein perturbagen'][0].protein_perturbagen_name.toString() : ''  ,
+                    "pertClass": type['small molecule'] ? type['small molecule'][0].perturbationClass :  type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].getsubtype : '' ,
                      // "mechanismOfAction": type['small molecule'][0].mechanismOfAction ? type['small molecule'][0].mechanismOfAction.toString() :'',
                     "timepoint": type['small molecule'] ? type['small molecule'][0].timepoint: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].gettimepoint : type['protein perturbagen'][0].timepoint.toString() ? type['protein perturbagen'][0].timepoint.toString() : ''  ,
                     "timepointunit": type['small molecule'] ? type['small molecule'][0].timepointUnit: type['nucleic acid reagent'] ? type['nucleic acid reagent'][0].gettimepointUnit : '',
@@ -297,8 +298,6 @@ class Signatures extends React.Component {
             this.getSigMedata(this.state.signatureIds);
         }
         else {
-
-
             axios.request({
                 method: 'get',
                 url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term=' + this.state.text
@@ -321,6 +320,31 @@ class Signatures extends React.Component {
                         id: ids,
                         types: response.data.data[this.state.types][0].hit_type
                     });
+
+                }
+
+                if (this.state.types === "sgRNA"){
+                    axios.request({
+                        method: 'get',
+                        url: 'http://dev3.ccs.miami.edu:8080/sigc-api-test/nucleic-acid/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
+                    }).then((response) => {
+
+
+                        this.setState(response.data.data.map(type => {
+                            this.state.signatureIds = []
+
+                            type.signature.map(sigids => {
+                                if (sigids.assay_category === this.state.signature) {
+                                    this.state.signatureIds.push(sigids.signature_id + "&")
+                                }
+
+                            })
+                            // console.log(this.state.signatureIds.length);
+                            this.getStats(this.state.signatureIds);
+                            this.getSigMedata(this.state.signatureIds);
+                        }));
+
+                    })
 
                 }
 

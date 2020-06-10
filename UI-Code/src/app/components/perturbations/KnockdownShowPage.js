@@ -115,26 +115,20 @@ class KnockdownShowPage extends React.Component {
                  <tr  >
                     <th scope="row" style={{width: "25%"}}>Gene Expression :</th>
                     <td>
-                        <a href={'/signatures/signatures?signature=Gene Expressions&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['gene expression']}</a>
+                        <a href={'/signatures/signatures?signature=Gene Expressions&class=sgRNA&term='+sp.nucleic_acid_reagent_target_locus}>{sp.signature_category_count['gene expression']}</a>
                     </td>
                 </tr>
 
                  <tr  >
                     <th scope="row" >Epigenetic :</th>
                     <td>
-                        <a href={'/signatures/signatures?signature=Epigenetic&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['epigenetic']}</a>
-                    </td>
-                </tr>
-               <tr  >
-                    <th scope="row" >Protein Binding :</th>
-                    <td>
-                        <a href={'/signatures/signatures?signature=Protein Binding&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['binding']}</a>
+                        <a href={'/signatures/signatures?signature=Epigenetic&class=sgRNA&term='+sp.nucleic_acid_reagent_target_locus}>{sp.signature_category_count['epigenetic']}</a>
                     </td>
                 </tr>
                 <tr  >
                     <th scope="row" >Protein Expression :</th>
                     <td>
-            <a href={'/signatures/signatures?signature=Proteomics&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['proteomics']}</a>                    </td>
+            <a href={'/signatures/signatures?signature=Proteomics&class=sgRNA&term='+sp.nucleic_acid_reagent_target_locus}>{sp.signature_category_count['proteomics']}</a>                    </td>
                 </tr>
                 <tr  >
                     <th scope="row" >Cell Phenotype :</th>

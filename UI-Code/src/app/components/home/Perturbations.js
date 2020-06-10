@@ -22,6 +22,7 @@ class Perturbations extends Component {
         let assaydesignmethod;
         let facetItems;
         if(this.props.facets ){
+            
                 assaydesignmethod = Object.entries(this.props.facets).map(([key,value])=>{
                     return (
 
