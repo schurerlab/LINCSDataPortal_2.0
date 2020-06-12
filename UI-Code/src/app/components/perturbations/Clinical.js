@@ -47,7 +47,7 @@ class Clinical extends React.Component {
                 <tr key={index}>
                     <td style={{fontSize: "0.8rem",padding: ".3rem"}} >
                         <a style={{  color: "#337ab7"}} className="data-button"
-                           href={`tps://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=/${efo_id}`}> {efo} </a>
+                           href={`https://www.ebi.ac.uk/ols/ontologies/efo/terms?short_form=/${efo_id}`}> {efo} </a>
                     </td>
                     <td style={{fontSize: "0.8rem",padding: ".3rem"}}>
                         <a style={{  color: "#337ab7"}} className="data-button"
@@ -87,4 +87,3 @@ class Clinical extends React.Component {
 }
 
 export default Clinical;
-
