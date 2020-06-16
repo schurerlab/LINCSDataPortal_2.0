@@ -47,7 +47,7 @@ class AssaysDetailsPanel extends React.Component {
                             <span><b>Format:</b> {assays.format}</span><br/>
 
 
-                            <div className="properties-header" style= {{color: "orange"}}>Participants</div>
+                            <div className="properties-header" style= {{color: "orange"}}>Reagents</div>
                             <hr style={{borderTop: "1px solid orange"}}/>
                             {listItems}
                             <div className="properties-header" style= {{color: "orange"}}>Datasets</div>

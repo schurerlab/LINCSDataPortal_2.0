@@ -42,7 +42,7 @@ export default class SigPerturbations extends React.Component{
         </Button>
         <Button  className={this.state.selectedButton === 'Knock down' ? "ms_active" : " btn-default"}  onClick={() => {this.buttonSelected('Knock down')}}>
         <br/>
-        <span style={{fontSize:"1.5em"}}> Knock down </span>
+        <span style={{fontSize:"1.5em"}}> Gene knockdown </span>
         </Button>
 
         </ButtonGroup>

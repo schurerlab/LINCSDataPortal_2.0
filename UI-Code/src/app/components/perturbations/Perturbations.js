@@ -230,7 +230,7 @@ class Perturbations extends React.Component {
 
 
                )
-            
+
         }
         else if(this.state.types!=''){
             axios.request({
@@ -321,7 +321,7 @@ class Perturbations extends React.Component {
         }else {
             axios.request({
                 method: 'get',
-                url: 'http://dev3.ccs.miami.edu:8080/sigc-api-test/small-molecule/fetch?limit=20&page='+this.state.page+'&returnSignatures=false'
+                url: 'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch?limit=20&page='+this.state.page+'&returnSignatures=false'
             }).then((response) => {
 
 
