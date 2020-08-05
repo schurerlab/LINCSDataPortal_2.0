@@ -247,6 +247,7 @@ hr {
 ::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 
@@ -479,7 +480,7 @@ div.-sort-asc::after {
     /*max-height: 1em;*/
 }
 .footer-lincs-image{
-    fontSize:20px;
+    font-size:20px;
 }
 
 
@@ -565,7 +566,7 @@ footer,
 
 
 .facet_border{
-    /*border-bottom: 1px solid #c0c0c0;*/
+    border-bottom: 1px solid #c0c0c0;
     /*margin-left: 1.8em*/
     /*border-radius: 3px;*/
 }
@@ -577,7 +578,7 @@ footer,
     border-left: 1px solid #c0c0c0;
     border-right: 1px solid #c0c0c0;
     border-bottom: 1px solid #c0c0c0;
-    border-top-radius:3px
+    border-top:3px
 }
 .facet_heading {
     background-color: #c0c0c03d;
