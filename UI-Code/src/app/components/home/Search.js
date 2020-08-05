@@ -135,7 +135,7 @@ class Search extends  React.Component {
         const { query } = this.state;
         return (
             <div >
-                <h2  className="col-12 text-center" >Explore and Analyze all LINCS Signatures</h2>
+                <h2  className="col-12 text-center" style={{marginTop:'1em'}} >Explore and Analyze all LINCS Signatures</h2>
                 <ButtonToolbar style={{marginTop:'2em'}}>
                     <ButtonGroup bsSize="large" >
                         <Button className={this.state.selectedButton === "Metadata" ? "ms_active" : "btn-default"}  onClick={() => {this.buttonSelected('Metadata')} }>

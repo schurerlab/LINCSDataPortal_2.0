@@ -7,18 +7,20 @@ export const Navbar = (props) => {
     let menuStyle = { cursor: 'pointer' };
 
     return (
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <nav className="navbar  navbar-expand-md navbar-dark bg-dark fixed-top">
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-4">
-                        <a href="/signatures">
+                    <NavLink to={"/signatures"} className={"nav-link"} style={{ color: 'white',fontSize:"20px"}}>
+                        {/* <a Link="/signatures"> */}
                             <img className="navbar-brand" src="/media/nav/logo.png" height="60px" />
-                        </a>
+                        {/* </a> */}
+                        </NavLink>
                     </div>
-                    <div className="col-sm-8" style={{ color: 'white',marginTop:"1em"}} >
-                        <a style={{ color: 'white',fontSize:"20px"}} href="/signatures"> LINCS
-                        Data Portal 2.0
-                        </a>
+                    <div className="col-sm-8" style={{ color: 'white'}} >
+                        <NavLink to={"/signatures"} className={"nav-link"} style={{ color: 'white',fontSize:"20px",marginTop:"1em",marginLeft:"-1em"}}>
+                                LINCS Data Portal 2.0
+                        </NavLink>
                     </div>
                 </div>
 
