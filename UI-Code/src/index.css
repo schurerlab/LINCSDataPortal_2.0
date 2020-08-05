@@ -216,7 +216,14 @@ textarea#styled {
 
 }
 
+.navbar{
+    padding: 0 !important;
+}
 
+.footer{
+    padding-top: 0 !important;
+    padding: .5rem 1rem !important;
+}
 
 hr {
     margin-top: 0.1rem !important;
