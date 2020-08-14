@@ -82,19 +82,27 @@ pre code {
     transition-property: transform,border,box-shadow,margin,opacity,width;
     transition: all 200ms cubic-bezier(0.4,0.0,0.2,1);
 }
-
+.table td, .table th {
+    padding: .5rem !important;
+    vertical-align: top;
+    border-bottom: 1px solid #dee2e6;
+    border-top: 1px solid transparent;
+}
+.form-control{
+    height: calc(0.7em + .75rem + 2px) !important; 
+}
 .suggestion-chip {
     background: #fff;
     border-radius: 8px;
     border: 1px solid #dadce0;
     box-sizing: border-box;
     color: #5f6368;
-    cursor: pointer;
+    /* cursor: pointer; */
     display: inline-block;
     font-size: 0.8em;
     /*margin: 0 4px 10px 4px;*/
     overflow: hidden;
-    padding: 7px 19px;
+    padding: 3px 5px;
     /*position: relative;*/
     transition-property: transform,border,box-shadow,margin,opacity,width;
     transition: all 200ms cubic-bezier(0.4,0.0,0.2,1);
@@ -214,6 +222,21 @@ textarea#styled {
 .ms_active {
     text-decoration: underline overline #000 !important;
 
+}
+
+.filer-chip {
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #dadce0;
+    box-sizing: border-box;
+    color: #5f6368;
+    display: inline-block;
+    font-size: 0.8em;
+}
+
+
+.table-tr-click{
+    cursor: pointer;
 }
 
 .navbar{

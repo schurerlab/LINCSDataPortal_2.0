@@ -1,24 +1,33 @@
-import React, { Component } from 'react';
+import React,{Component} from 'react';
 import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem, Button,Table} from 'react-bootstrap';
 let csl = { 'fontSize': '0.8em' };
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom'
 import { Link } from "react-router-dom";
 
 
 let syn;
 class Element extends Component {
 
+
     constructor(props) {
+
+        // const provider = Context;
 
         super(props);
         this.state = {
             id:"",
             loading:true,
             url:"",
+            
         }
         this.handleSerice = props.handleChange;
+        console.log(props)
     }
+
+   
+    // const provider = useContext(Context);
 
 
 
@@ -55,7 +64,6 @@ class Element extends Component {
 
     handleSearch(e,k,type,cat) {
 
-
         let url;
         if(type==="Cell line" && cat==="organ/tissue"){
 
@@ -89,6 +97,7 @@ class Element extends Component {
                 window.open(url,'_self');
         }
         if(type==="Small Molecules" && cat==="name"){
+        
             let findID = `http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term=${k}`;
             let objectid;
             let objectType;

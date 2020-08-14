@@ -14,6 +14,7 @@ import SignatureSearch from './SignatureSearch'
 import SignatureFilter from './SignatureFilter'
 import SignatureAppliedFilters from './SignatureAppliedFilters'
 import { saveAs } from 'file-saver';
+import SignatureSummary from './SignatureSummary'
 
 
 let FileSaver = require('file-saver');
@@ -549,14 +550,15 @@ class Signatures extends React.Component {
                                         {/* <div className="filtered-by"><b>Filtered by: </b></div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.text}</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>+</div> <div className="suggestion-chip" style={{marginLeft:"0.6em"}}>{this.state.signature}</div> */}
                                         <SignatureAppliedFilters tags={[this.state.text]} type={this.state.signature} />
                                     </div>
-                                    <div className="col-11">
+                                    <SignatureSummary/>
+                                    {/* <div className="col-11">
                                         { this.state.data !=''  > 0 ?
                                             <div>
                                         <div className="filtered-by"><b>Summary:</b> </div>
                                         <div className="filtered-by" style={{marginLeft:"0.6em",color:"orange"}}>{this.state.signatureIds.length} Signatures</div> <div className="filtered-by" style={{marginLeft:"0.6em",color:"darksalmon"}}>{this.state.perturbagenCount} Perturbagens</div> <div className="filtered-by" style={{marginLeft:"0.6em",color:"#4CC189"}}>{this.state.modelSystemCount}  Model Systems</div>
                                         </div>
                                                 :''}
-                                            </div>
+                                            </div> */}
                                 </div>
                             </div>
                         <div className="col-1">
@@ -576,7 +578,7 @@ class Signatures extends React.Component {
                                 <Modal.Body>
                                     <p>Depending on the number of records, the amount of time can vary to download.  Please check your local directory.</p>
 
-                                    {this.state.totalCount > 5 ? <div><p>Your request exceeds the current download limit. You can obtain all signatures via the Google Cloud Platform (see Help>Tutorials>Data Access via GCP for instructions) <button className="btn btn-success center" style={{marginLeft:"0.6em"}} onClick={() => {this.downloadIds()}} > Download GCP Query</button></p> </div>: '' }
+                                    {this.state.totalCount > 5 ? <div><p>`Your request exceeds the current download limit. You can obtain all signatures via the Google Cloud Platform (see Help Tutorials Data Access via GCP for instructions) `<button className="btn btn-success center" style={{marginLeft:"0.6em"}} onClick={() => {this.downloadIds()}} > Download GCP Query</button></p> </div>: '' }
 
 
                                     {this.state.dowloadLoading === false ? <button className="btn btn-success center" style={{marginLeft:"0.6em"}} onClick={() => {this.download()}} > Download</button>
@@ -626,7 +628,7 @@ class Signatures extends React.Component {
                       }
 
 
-                        />   :
+                        /> :
                             <Row>
                                 <Col xs={4} md={4} lg={4}>
 
@@ -639,21 +641,7 @@ class Signatures extends React.Component {
                                 </Col>
                             </Row>
                         }
-                        { this.state.data.length > 0 ?     <ReactPaginate 
-                            previousLabel={'previous'} 
-                            nextLabel={'next'} 
-                            breakLabel={'.......'} 
-                            breakClassName={'break-me'} 
-                            pageCount={this.state.totalCount} 
-                            marginPagesDisplayed={2} 
-                            pageRangeDisplayed={7} 
-                            onPageChange={this.handlePageClick.bind(this)} 
-                            containerClassName={'pagination '} 
-                            subContainerClassName={'pages pagination'} 
-                             activeClassName={'active'} 
-                            // activeLinkClassName={'btn-page'}
-                            forcePage={this.state.active}
-                        />     : '' }
+                        { this.state.data.length > 0 ?    <ReactPaginate previousLabel={'previous'} nextLabel={'next'} breakLabel={'.......'} breakClassName={'break-me'} pageCount={this.state.totalCount} marginPagesDisplayed={2}   pageRangeDisplayed={7}   onPageChange={this.handlePageClick.bind(this)}   containerClassName={'pagination '}    subContainerClassName={'pages pagination'}   activeClassName={'active'}   forcePage={this.state.active} />  : '' }
 
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import React from "react";
 
 
-import Signatures from '../components/signatures/Signatures';
+import SignatureCatelog from "../components/signatures/SignatureCatelog";
 
 export const SigSignatures = (props) => {
 
@@ -9,7 +9,7 @@ export const SigSignatures = (props) => {
         <div >
 
 
-                    <Signatures />
+                    <SignatureCatelog />
 
 
         </div>

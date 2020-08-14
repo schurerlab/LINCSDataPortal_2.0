@@ -19,6 +19,7 @@ import ModelSystemLandingPage from "../components/modelSystems/ModelSystemLandin
 import AssayLandingPage from "../components/assays/AssayLandingPage";
 import DatasetLandingPage from "../components/datasetLandingPages/DatasetLandingPage";
 import SignaturesZScores from "../components/signatures/SignaturesZScores";
+import { ContextProvider } from '../Context';
 
 // import { getCounts } from "../redux/fetch/get-counts";
 
@@ -32,7 +33,9 @@ class Main extends React.Component {
 
     render() {
         return (
+
             <BrowserRouter>
+            <ContextProvider>
                 <div>
                     <Navbar />
 
@@ -65,6 +68,7 @@ class Main extends React.Component {
                     </div>
                     <Footer />
                 </div>
+                </ContextProvider>
             </BrowserRouter>
         )
     };

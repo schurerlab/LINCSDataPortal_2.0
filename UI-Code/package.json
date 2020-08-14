@@ -12,7 +12,7 @@
   "keywords": [
     "reactjs"
   ],
-  "author": "jeffsocal",
+  "author": "akoleti",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -34,7 +34,7 @@
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
     "query-string": "^6.7.0",
-    "react": "^16.4.1",
+    "react": "^16.13.0",
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-table": "^4.3.1",
     "react-dom": "^16.4.1",

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import GeneExpression from  '../../components/home/GeneExpression';
+import SearchResultsPanel from './SearchResultsPanel';
 import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem,ButtonToolbar,FormGroup,InputGroup,ToggleButtonGroup,ToggleButton,ButtonGroup, Button,Table,Well,FormControl,Modal} from 'react-bootstrap';
 
 
@@ -149,11 +150,15 @@ class SignatureSearch extends  React.Component {
                     <Row className="col-12">
 
 
-                        <GeneExpression facets={this.state.ge} label="Gene Expression" />
+                      {this.state.cells ? <SearchResultsPanel facets={this.state.cells} label="cell line" /> : ''}
+                      {this.state.results ?  <SearchResultsPanel facets={this.state.results} label="small molecule" /> :''}
+                        {/* <SearchResultsPanel facets={this.state.pe} label="Protein expression" />
+                        <SearchResultsPanel facets={this.state.ge} label="Gene expression" /> */}
+                        {/* <GeneExpression facets={this.state.ge} label="Gene Expression" />
                         <GeneExpression facets={this.state.pe} label="Protein Expression" />
                         <GeneExpression facets={this.state.ep} label="Epigenetic" />
                         <GeneExpression facets={this.state.pb} label="Protein binding" />
-                        <GeneExpression facets={this.state.me} label="MEMA cell growth" />
+                        <GeneExpression facets={this.state.me} label="MEMA cell growth" /> */}
 
 
                     </Row> :"" }
