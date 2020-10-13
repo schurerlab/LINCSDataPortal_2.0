@@ -204,7 +204,7 @@ class Element extends Component {
                         {key}  {key.includes()}
 
                             { this.props.query ?
-                            <a className="titip-bottom" >
+                            <a className="titip-right" >
 
                     <span className="titip-content thick-border" style={{fontSize:"0.8em"}}>
                         {this.state.syn ? "  synonyms: "+ this.state.syn : '' }
