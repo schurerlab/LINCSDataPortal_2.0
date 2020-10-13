@@ -51,7 +51,7 @@ export default class PhysicochemicalProperties extends React.Component {
                 <tr>
                   <th scope="row" >Rule of three <a className="titip-top">
                         <span className="titip-content">
-                          Number of violations of Jorgensen’s rule of three; <br/> LogAqSol > -5.7, QPPCaco > 22 nm/s,<br/> number of primary metabolites <br/>  7; compounds with fewer preferably zero <br/> violations are more likely to <br/> be orally available. </span>
+                          Number of violations of Jorgensen’s rule of three; <br/> LogAqSol  -5.7, QPPCaco  22 nm/s,<br/> number of primary metabolites <br/>  7; compounds with fewer preferably zero <br/> violations are more likely to <br/> be orally available. </span>
                     <i className="fa fa-question-circle" ></i></a></th>
                   <td>
                     {sp.Ro3 == 0 ?
@@ -152,10 +152,10 @@ export default class PhysicochemicalProperties extends React.Component {
 
                   </td>
                 </tr>
-                <tr>
+                <tr >
                   <th scope="row" >PSA <a className="titip-top">
                      <span className="titip-content">
-                    Polar Van der Waals surface area in A^2; <br/> PSA > 140 is a benchmark for poor membrane <br/>  permeability; a PSA  90 is a benchmark for <br/>  blood-brain barrier permeability.
+                    Polar Van der Waals surface area in A^2; <br/> PSA  140 is a benchmark for poor membrane <br/>  permeability; a PSA  90 is a benchmark for <br/>  blood-brain barrier permeability.
                     </span>
                     <i className="fa fa-question-circle" ></i></a></th>
                   <td>
@@ -211,7 +211,7 @@ export default class PhysicochemicalProperties extends React.Component {
 
                   <tr>
                     <th scope="row" >Log10 HERG K+ channels <a className="titip-top">
-                      <span className="titip-content">Predicted log10(IC50) value (in M concentration) <br/> for blockage of HERG K+ channels; <br/> concerns below -5 (> 10 uM). </span>
+                      <span className="titip-content">Predicted log10(IC50) value (in M concentration) <br/> for blockage of HERG K+ channels; <br/> concerns below -5 ( 10 uM). </span>
                       <i className="fa fa-question-circle" ></i></a></th>
                     <td>
                       {sp["Log10 HERG K+ channels"] >=-5 ?

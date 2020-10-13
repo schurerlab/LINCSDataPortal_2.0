@@ -12,10 +12,7 @@ const SigTable = () => {
     const retrieveSignatures = 'retrieveSignatures';
     // const [selectedRow, setSelectedRow] = useState(0);
    
-   
-
     useEffect(() => {
-        console.log("########");
         fetch(
             provider.apiUrl+retrieveSignatures+'?limit=20&page='+provider.page,{ method: 'GET',credentials: 'include'}
         ) .then(res => res.json())
@@ -41,13 +38,6 @@ const SigTable = () => {
   </thead>
   {provider.data ? 
   <tbody>
-
-{/* onClick={e => (selectedRow=index)}  */}
-{/* style={ {
-        background: index === selectedRow ? 'orange' : 'white',
-        color: index === selectedRow ? 'white' : 'black'
-      }} */}
-
     {provider.data.map((row,index) => (
     <tr  onClick={e =>  provider.setSelectedRow(index)} className="table-tr-click" key={index} style={ {
         background: index === provider.selectedRow ? 'orange' : 'white',

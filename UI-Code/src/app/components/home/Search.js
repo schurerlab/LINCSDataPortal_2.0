@@ -12,6 +12,8 @@ import SignatureSearch from './SignatureSearch';
 import PerturbationsHeader from './PerturbationsHeader';
 import SignaturesHeader from './SignaturesHeader';
 import ModelSystemHeader from './ModelSystemHeader'
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
+
 // import Loader from '../../../media/icons/cells.png"';
 
 
@@ -48,7 +50,7 @@ class Search extends  React.Component {
 
         // const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : '';
 
-        const searchUrl = `http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?term=${query}`;
+        const searchUrl = `http://dev3.ccs.miami.edu:8080/sigc-api-test/search/get-facets?term=${query}`;
 
         if (this.cancel) {
             // Cancel the previous request before making a new request
@@ -120,8 +122,6 @@ class Search extends  React.Component {
         if(this.state.selectedButton!=key){
             this.setState({selectedButton: key })
         }
-        console.log(this.state.selectedButton);
-
     }
 
 
@@ -145,19 +145,24 @@ class Search extends  React.Component {
                         <Button className={this.state.selectedButton === "Signature" ? "ms_active" : "btn-default"}  onClick={() => {this.buttonSelected('Signature')} }>
                             Signature Search
                         </Button>
+                        <Button disabled > | </Button>
+                        <Button className={this.state.selectedButton === "Structure" ? "ms_active" : "btn-default"}  onClick={() => {this.buttonSelected('Structure')} }>
+                            Chemical Structure Search
+                             
+                        </Button>
 
                     </ButtonGroup>
                 </ButtonToolbar>
                 { this.state.selectedButton ==="Metadata" ?
-            <div className="col-12" style={{marginBottom:'2em'}}>
+                   <div className="col-12" style={{marginBottom:'2em'}}>
                 {/*Heading*/}
 
 
-                <Well  className="form-group-lg" >
+                <Well  className="form-group-lg " >
                     <FormGroup  style={{   display: "block", width:"100%",background:"#F2F2F2", borderRadius: "6px",border: "1px solid #ced4da",  marginBottom: "0" }}>
                         <InputGroup  style={{ marginBottom: "none" }} >
 
-                                <FormControl style={{  background:"#F2F2F2",border:"none"}}
+                                <FormControl style={{  background:"#F2F2F2",border:"none" }} 
                                  type="text"
                                  value={query}
                                  id="search-input"
@@ -168,9 +173,9 @@ class Search extends  React.Component {
                           </InputGroup>
                         </FormGroup>
                 </Well>
-                <a style={{color:"black",fontWeight: 200}} href="/signatures/structure-search" className="pull-right"  >
+                {/* <a style={{color:"black",fontWeight: 200}} href="/signatures/structure-search" className="pull-right"  >
                     Structure Search
-                </a>
+                </a> */}
 
                 
                  {  message && <p className="message">{message}</p> }
@@ -199,8 +204,8 @@ class Search extends  React.Component {
                     <Col xs={4} md={4} lg={4}>
                         <SignaturesHeader/>
                         <br/>
-                        <GeneExpression facets={this.state.ge} label="Gene Expression" query={this.state.query} />
-                        <GeneExpression facets={this.state.pe} label="Protein Expression" query={this.state.query} />
+                        <GeneExpression facets={this.state.ge} label="Gene expression" query={this.state.query} />
+                        <GeneExpression facets={this.state.pe} label="Protein expression" query={this.state.query} />
                         <GeneExpression facets={this.state.ep} label="Epigenetic" query={this.state.query} />
                         <GeneExpression facets={this.state.pb} label="Protein binding" query={this.state.query} />
                         <GeneExpression facets={this.state.me} label="MEMA cell growth" query={this.state.query} />
@@ -222,6 +227,7 @@ class Search extends  React.Component {
                     <SignatureSearch>
 
                 </SignatureSearch>}
+                { this.state.selectedButton ==="Structure" ?  <Redirect to="/signatures/structure-search" /> :''}
             </div>
         )
     }

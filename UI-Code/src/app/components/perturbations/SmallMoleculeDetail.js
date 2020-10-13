@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import SignatureLink from '../modelSystems/SignatureLink';
 
 export default class SmallMoleculeDetail extends React.Component {
 
@@ -15,6 +16,7 @@ export default class SmallMoleculeDetail extends React.Component {
 
   render() {
     let sp = this.props.showPerturbation
+   
     return (
       <div className="body-text">
         <div>
@@ -57,7 +59,9 @@ export default class SmallMoleculeDetail extends React.Component {
         <hr className="border-line"/>
         <span>Signature Categories</span><br/>
         <hr style={{borderTop: "1px solid whitesmoke"}} />
-          <span>
+        <SignatureLink data={this.props.showPerturbation} type='small molecule' name={sp.sm_name}></SignatureLink>
+
+          {/* <span>
                      <img style={{maxHeight: "30px"}}
                           src="http://dev3.ccs.miami.edu:8080/SignatureCommons/images/u151.svg"/>
                         Gene Expression:   <a href={'/signatures/signatures?signature=Gene Expressions&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['gene expression']}</a>
@@ -79,7 +83,7 @@ export default class SmallMoleculeDetail extends React.Component {
                          style={{maxHeight: "30px"}}
                          src="/media/icons/Cell_Phenotype_Icon.png"/>
                              Cell Phenotype: <a href={'/signatures/signatures?signature=Cell Phenotype&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['cell phenotype']}</a>
-                    </span>
+                    </span> */}
           <br/>
 
           <br/>

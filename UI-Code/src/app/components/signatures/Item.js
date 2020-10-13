@@ -31,13 +31,6 @@ const Item =(props) => {
           setSearch(e.target.value.toLowerCase());
       }
 
-    //   const elements = (key,index)=>{
-    //       return (
-    //         <div key={index}> 
-    //         <label>
-    //         <input name={key}  type="checkbox" checked="true" onChange={ handleInputChange}/>  {key}</label> </div>
-    //       )
-    //   }
 
 
     const handleInputChange=(e)=> {
@@ -48,8 +41,6 @@ const Item =(props) => {
           
             fetch(
 
-                // small%20molecule&term=Buparlisib&type=name
-                // apiUrl+'clearFacets',
                 provider.apiUrl+'addFacet?class='+props.cls+'&term='+term+'&type='+props.type,
                 { method: 'GET',headers: {
                    'Content-Type': 'application/json'

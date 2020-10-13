@@ -9,6 +9,7 @@ import { Footer } from "./Footer";
 import { SigHome } from "../pages/SigHome";
 import { Help } from "../pages/Help";
 import { SigAssays } from "../pages/SigAssays";
+import { BigQuery } from "../pages/BigQuery";
 import { SigDatasets } from "../pages/SigDatasets";
 import SigPerturbations from "../pages/SigPerturbations";
 import { SigModels } from "../pages/SigModels";
@@ -65,6 +66,7 @@ class Main extends React.Component {
                         <Route path="/signatures/signatures" render={(props) => <SigSignatures />} />
                         <Route path="/signatures/signature-search-results" render={(props) => <SignaturesZScores mode={props.location.state.mode} data={props.location.state.data}/>} />
                         <Route path="/signatures/help" render={(props) => <Help/>} />
+                        <Route path="/signatures/bigquery" render={(props) => <BigQuery/>} />
                     </div>
                     <Footer />
                 </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 
-import ReagentDatasets from "../../components/datasets/ReagentDatasets"
+import ReagentDatasets from "../../components/datasets/ReagentDatasets";
+import EntitySignatureTable from '../modelSystems/EntitySignatureTable';
 let csl = { 'fontSize': '0.8em', 'fontWeight':'350', fontFamily:"Helvetica Neue"};
 class ModelSystemShowPage extends React.Component {
 
@@ -34,6 +35,7 @@ class ModelSystemShowPage extends React.Component {
             title.innerHTML = `${this.props.showModelSystem.name}`
 
             let sms = this.props.showModelSystem
+            let data = this.props.showModelSystem
             return (
                 <div style={csl}>
                     <div>
@@ -81,7 +83,8 @@ class ModelSystemShowPage extends React.Component {
                             <br/>
                             <h5 className="text-center" style={{color:"#4CC189"}}>{sms.name} Signatures</h5>
                             <table className="table-pert"  >
-                                <tbody>
+                            <EntitySignatureTable data={sms} type='model system' name={sms.name}></EntitySignatureTable>
+                                {/* <tbody>
                                 <tr  >
                                     <th style={{width:"50%",padding:".25em",fontWeight:"200"}} >Gene Expression :</th>
                                     <td className="pull-left" style={{padding:".25em"}}>
@@ -115,7 +118,7 @@ class ModelSystemShowPage extends React.Component {
                                     </td>
                                 </tr>
 
-                                </tbody>
+                                </tbody> */}
                             </table>
                         </div>
                     </div>

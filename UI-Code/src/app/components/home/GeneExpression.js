@@ -3,7 +3,8 @@ import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem, Button,Table
 import FacetItem from '../../components/datasets/FacetItem';
 import FacetShowHide from '../../components/datasets/FacetShowHide';
 import Element from  '../../components/home/Element';
-
+import SearchItem from '../../components/home/SearchItem';
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 
 class GeneExpression extends Component {
@@ -30,7 +31,7 @@ class GeneExpression extends Component {
                            <b> {this.props.label } </b> <span>{this.props.label ? '|' : ''}</span><span style={{fontWeight:"500"}}> {jsUcfirst(key)} </span>
                         </div>
                         <Panel.Body  style={{  overflow:"scroll", maxHeight:"110px"}} >
-                            <Element facets={value} type={this.props.label} cat={key} ></Element>
+                            <SearchItem facets={value} type={this.props.label} cat={key} ></SearchItem>
                         </Panel.Body>
                         <br/>
                     </Panel>

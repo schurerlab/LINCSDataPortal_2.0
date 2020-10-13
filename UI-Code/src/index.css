@@ -88,8 +88,11 @@ pre code {
     border-bottom: 1px solid #dee2e6;
     border-top: 1px solid transparent;
 }
+.form-control-main{
+    height:calc(1.5em + .75rem + 2px) !important; 
+}
 .form-control{
-    height: calc(0.7em + .75rem + 2px) !important; 
+    /* height: calc(0.7em + .75rem + 2px) !important;  */
 }
 .suggestion-chip {
     background: #fff;

@@ -6,11 +6,13 @@ import PhysicochemicalProperties from "./PhysicochemicalProperties"
 import ReagentDatasets from "../../components/datasets/ReagentDatasets"
 import Bioactivity  from "./Bioactivity"
 import axios from 'axios'
+import EntitySignatureTable from '../modelSystems/EntitySignatureTable'
 
 let csl = { 'fontSize': '0.8em', 'fontWeight':'500' };
 let synonyms;
 let synAssay;
 class PerturbationShowPage extends React.Component {
+
 
   state = {
     SMILESclicked: false,
@@ -37,6 +39,7 @@ class PerturbationShowPage extends React.Component {
     }
 
   componentDidMount() {
+   
     if (!this.props.showPerturbation && this.state.notFound === false)
     this.props.changeShowPerturbation(parseInt(this.props.id, 10))
       this.getSynonyms();
@@ -56,7 +59,13 @@ class PerturbationShowPage extends React.Component {
   render() {
 
     if (this.props.showPerturbation) {
-      let sp = this.props.showPerturbation
+      let sp = this.props.showPerturbation;
+      let data = new Object();
+
+      data = { "signatures":this.props.showPerturbation.signature_category_count};
+
+      // let data = data.signatures=[this.props.showPerturbation.signature_category_count];
+      // console.log(data);
 
       // Change title of the page to perturbation name
       let title = document.querySelector('title')
@@ -122,7 +131,7 @@ class PerturbationShowPage extends React.Component {
                     <th scope="row">ChEMBL (ID)</th>
                     <td><b>{[...new Set(sp.ChEMBL)].map(id =>{
                       return (
-                        <span>
+                        <span key={id}>
                           <a href={`https://www.ebi.ac.uk/chembl/compound/inspect/${id}`}
                           target="_blank">{id}</a>{" "}
                         </span>
@@ -181,44 +190,7 @@ class PerturbationShowPage extends React.Component {
           <span>
             <div className = "row">
                <table className="table-pert col-lg-6 col-sm-12"  >
-                <tbody>
-
-                 <tr  >
-                    <th scope="row" >Gene Expression :</th>
-                    <td>
-                        <a href={'/signatures/signatures?signature=Gene Expressions&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['gene expression']}</a>
-                    </td>
-                </tr>
-
-                 <tr  >
-                    <th scope="row" >Epigenetic :</th>
-                    <td>
-                        <a href={'/signatures/signatures?signature=Epigenetic&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['epigenetic']}</a>
-                    </td>
-                </tr>
-               <tr  >
-                    <th scope="row" >Protein Binding :</th>
-                    <td>
-                        <a href={'/signatures/signatures?signature=Protein Binding&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['binding']}</a>
-                    </td>
-                </tr>
-                  </tbody>
-               </table>
-                 <table className="table-pert  col-lg-6 col-sm-12"   >
-                <tbody>
-              <tr  >
-                    <th scope="row" >Protein Expression :</th>
-                    <td>
-            <a href={'/signatures/signatures?signature=Proteomics&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['proteomics']}</a>                    </td>
-                </tr>
-                <tr  >
-                    <th scope="row" >Cell Phenotype :</th>
-                    <td>
-                    <a href={'/signatures/signatures?signature=Cell Phenotype&class=small molecule&term='+sp.sm_name}>{sp.signature_category_count['cell phenotype']}</a>
-                    </td>
-                </tr>
-
-                </tbody>
+               <EntitySignatureTable data={data} type='small molecule' name={sp.sm_name}></EntitySignatureTable>
                </table>
             </div>
           </span><br/>

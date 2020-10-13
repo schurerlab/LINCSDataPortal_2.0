@@ -3,8 +3,9 @@ import {Grid, Row, Col, Accordion, Panel, ListGroup, ListGroupItem, Button,Table
 let csl = { 'fontSize': '0.8em' };
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import { Router, Route } from 'react-router-dom'
+import { Router, Route } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import {Item} from '../signatures/Item';
 
 
 let syn;
@@ -117,7 +118,9 @@ class Element extends Component {
         }
         if(type==="Gene Expression" ){
 
-            url= "/signatures/signatures?signature="+type+"&class="+cat+"&term="+ k
+            <Item term={k} cls={cat} type={type}></Item>
+
+            url= "/signatures/signatures"
             window.open(url,'_self');
         }
         if(type==="Protein Expression" ){

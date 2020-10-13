@@ -6,9 +6,7 @@ import ReactPaginate from 'react-paginate';
 const SignaturePagenation = () => {
     const provider = useContext(Context);
     useEffect(() => {
-        provider.setTotalPages(provider.totalPages);
-        console.log(provider.totalPages)
-       
+        provider.setTotalPages(provider.totalPages);   
      }, [provider.totalPages]);
 
     return(

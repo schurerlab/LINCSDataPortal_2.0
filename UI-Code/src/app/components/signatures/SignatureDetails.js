@@ -9,7 +9,6 @@ const SignatureDetails = () => {
     useEffect(() => {
 
          setData(provider.data[provider.selectedRow]);
-         console.log(data)
       }, [provider.data,provider.selectedRow,data]);
 
     return (

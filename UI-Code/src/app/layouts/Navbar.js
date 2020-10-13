@@ -67,6 +67,13 @@ export const Navbar = (props) => {
                         </li>
 
                         <li className="nav-item">
+                            <NavLink to={"/signatures/bigquery"} className={"nav-link"}>
+                                <div><img className="mx-auto d-block" src="/media/nav/query.png" height="24px" /></div>
+                                <div><span style={{ fontSize: '0.8em' }}> Big Query </span>  </div>
+                            </NavLink>
+                        </li>
+
+                        <li className="nav-item">
                             <a href="http://dev3.ccs.miami.edu:8080/sigc-api/swagger-ui.html" target="_blank" className={"nav-link"} >
                                 <div><img className="mx-auto d-block" src="/media/nav/api_icon2.png" height="24px" /></div>
                                 <div><span style={{ fontSize: '0.8em' }}> Data Access </span>  </div>
