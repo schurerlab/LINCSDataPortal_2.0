@@ -50,7 +50,7 @@ class Search extends  React.Component {
 
         // const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : '';
 
-        const searchUrl = `http://dev3.ccs.miami.edu:8080/sigc-api-test/search/get-facets?term=${query}`;
+        const searchUrl = `http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?term=${query}`;
 
         if (this.cancel) {
             // Cancel the previous request before making a new request

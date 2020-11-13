@@ -12,7 +12,7 @@ const AppliedFilters =() => {
     useEffect(() => {
         
         fetch(
-            `http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/getCurrentFacets`, { method: 'GET',headers: {
+            `http://dev3.ccs.miami.edu:8080/sigc-api/frontend/getCurrentFacets`, { method: 'GET',headers: {
   
              'Content-Type': 'application/json'
           },

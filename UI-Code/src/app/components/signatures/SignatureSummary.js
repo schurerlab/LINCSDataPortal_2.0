@@ -10,7 +10,7 @@ const SignatureSummary =() => {
     // let summary = []; 
     useEffect(() => {
         fetch(
-          'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/resultsSummary', { method: 'GET',headers: {
+          'http://dev3.ccs.miami.edu:8080/sigc-api/frontend/resultsSummary', { method: 'GET',headers: {
             'Content-Type': 'application/json'
          },
          credentials: 'include'}

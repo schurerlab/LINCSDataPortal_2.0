@@ -11,7 +11,7 @@ export const ContextProvider = (props) =>{
     const [pertquery, setPertQuery] = useState([]);
     const [data, setData] =  useState([]);
     const [selectedRow, setSelectedRow] = useState(0);
-    const apiUrl  = 'http://dev3.ccs.miami.edu:8080/sigc-api-test/frontend/';
+    const apiUrl  = 'http://dev3.ccs.miami.edu:8080/sigc-api/frontend/';
     const [totalPages, setTotalPages] = useState();
     const [filters,setFil] = useState([]);
     const providerValue = React.useMemo(() => ({
