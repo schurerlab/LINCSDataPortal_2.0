@@ -68,7 +68,7 @@ export const Navbar = (props) => {
 
                         <li className="nav-item">
                             <NavLink to={"/signatures/bigquery"} className={"nav-link"}>
-                                <div><img className="mx-auto d-block" src="/media/nav/query.png" height="24px" /></div>
+                                <div><img className="mx-auto d-block" src="/media/nav/readoutsLogo.png" height="24px" /></div>
                                 <div><span style={{ fontSize: '0.8em' }}> Big Query </span>  </div>
                             </NavLink>
                         </li>
