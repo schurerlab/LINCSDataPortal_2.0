@@ -1,10 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component,useContext,useEffect,useState,useRef } from 'react';
 import {Grid, Row, Col, Panel, ListGroup, ListGroupItem, Button,ButtonGroup,Table} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton,AccordionItemPanel } from 'react-accessible-accordion';
 import '../../../node_modules/react-accessible-accordion/dist/fancy-example.css';
 export const BigQuery = (props) => {
+
+   
+
+    const [copySuccess, setCopySuccess] = useState('');
+    const textAreaRef = useRef(null);
+  
+    function copyToClipboard(e) {
+      textAreaRef.current.defaultValue;
+      document.execCommand('copy');
+      console.log(textAreaRef.current.defaultValue);
+      // This is just personal preference.
+      // I prefer to not show the whole text area selected.
+      e.target.focus();
+      setCopySuccess('Copied!');
+    };
+
     return (
 
         <div className="container-fluid main-container" >
@@ -25,19 +41,19 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                        Find signatures by assay eg: KINOMEscan, L1000, P100, GCP, KiNativ, ATAC-seq, RNA-seq
+                        Find signatures by assay eg: KINOMEscan, L1000, P100, GCP, KiNativ, ATAC-seq, Cell Phenotype
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                        Select * from bigquery-public-data.umiami_lincs.signature where assay_category = 'Kinomescan' 
+                         select * from golden-medium-291202.BQ_Final.signature where assay_category  = 'KINOMEscan'
                      </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("select * from golden-medium-291202.BQ_Final.signature where assay_category  = 'KINOMEscan'")}}>
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:187cb2995f2340f4a41bc75302300759" target="_blank" style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup> 
@@ -46,19 +62,19 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    Find signatures by dataset id eg: LDS-4212, LDS-1005
+                    Find signatures by dataset id eg: LDS-1481, LDS-1484, LDS-41235
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where dataset_id = 'LDS-4212' 
+                    select * from golden-medium-291202.BQ_Final.signature where dataset_id = 'LDS-1481'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select * from golden-medium-291202.BQ_Final.signature where dataset_id = 'LDS-1481'")}}>
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:37048580d7874e48808a0d636bc9bae5" target="_blank" style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup> 
@@ -67,19 +83,23 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    Find signatures by area of area of study eg: binding, imaging, proteomics, transcriptomics, epigenomics
+                    Find signatures by area of area of study eg: Binding, Imaging, Proteomics, Transcriptomics, Epigenomics
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
+                    select s.* 
+                    from golden-medium-291202.BQ_Final.signature s
+                        join golden-medium-291202.BQ_Final.dataset d on (d.dataset_id = s.dataset_id)
+                        join golden-medium-291202.BQ_Final.assay a on (a.assay_id = d.assay_id)
+                    where a.area_of_study  = 'Imaging'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select s.*  from golden-medium-291202.BQ_Final.signature s join golden-medium-291202.BQ_Final.dataset d on (d.dataset_id = s.dataset_id)   join golden-medium-291202.BQ_Final.assay a on (a.assay_id = d.assay_id)  where a.area_of_study  = 'Imaging' ")}}>
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:1c37b633cfd6414e96b4cc753ebb07b4" target="_blank" style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup> 
@@ -88,19 +108,23 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    Find signatures by Model System (Name) eg: A375, PC-3, MCF-7
+                    Find signatures by Model System (Name) eg: A-549, MCF-7, HT-29, A-375, PC-3, VCaP
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
+                    select distinct * from golden-medium-291202.BQ_Final.signature s
+  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )
+    inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )
+    where c.cl_name = 'A-549' 
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("  select distinct * from golden-medium-291202.BQ_Final.signature s inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )   inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )   where c.cl_name = 'A-549' ")}}>
+
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:05b6f82749bd43d8b742ce5191b71ac2" target="_blank" style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup> 
@@ -109,19 +133,23 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    Find signatures by Tissue eg: Lung, Breast,  Skin
+                    Find signatures by Tissue eg: lung, breast,  skin, pancreas
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
+                    select distinct * from golden-medium-291202.BQ_Final.signature s
+  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )
+    inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )
+    where c.cl_organ = 'lung' 
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("   select distinct * from golden-medium-291202.BQ_Final.signature s  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )   inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )   where c.cl_organ = 'lung' ")}}>
+
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:5bf26a4e3d2f4e87873ac2c61eeaed2d" target="_blank" style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup> 
@@ -130,19 +158,23 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    Find signatures by Disease eg: malignant melanoma, carcinoma
+                    Find signatures by Disease eg: colon carcinoma melanoma, carcinoma, breast ductal carcinoma, lung adenocarcinoma
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
+                    select *  from golden-medium-291202.BQ_Final.signature s
+  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )
+    inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )
+     where c.cl_disease = 'lung adenocarcinoma' 
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *  from golden-medium-291202.BQ_Final.signature s  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )    inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )    where c.cl_disease = 'lung adenocarcinoma' ")}}>
+
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:c4a366858abe46838acf186362b79f97" target="_blank" style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup> 
@@ -151,19 +183,22 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    Find signatures by Perturbation Type eg: Small Molecule, Gene knockdown
+                    Find signatures by Perturbation Type eg: small_molecule, protein_perturbagen, nucleic_acid_reagent
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
+                    select *   from golden-medium-291202.BQ_Final.signature s
+  inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)
+  where perturbagen_class = 'small_molecule'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *   from golden-medium-291202.BQ_Final.signature s  inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)   where perturbagen_class = 'small_molecule' ")}}>
+
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:2d4de7bcef5849f2a0221ba8abbfcbe2" target="_blank"  style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup> 
@@ -172,19 +207,23 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    Find signatures by Perturbation Name eg: Seliciclib, EGFR
+                    Find signatures by Perturbation Name eg: Taxol, Vorinostat, Neratinib, Dasatinib
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
+                    select *   from golden-medium-291202.BQ_Final.signature s
+  inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)
+    inner join golden-medium-291202.BQ_Final.small_molecule sm on (sm.perturbagne_id = p.perturbagen_id and p.perturbagen_class = sm.perturbagne_class)
+    where sm.sm_name = 'Taxol'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("  select *   from golden-medium-291202.BQ_Final.signature s   inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)    inner join golden-medium-291202.BQ_Final.small_molecule sm on (sm.perturbagne_id = p.perturbagen_id and p.perturbagen_class = sm.perturbagne_class)   where sm.sm_name = 'Taxol'")}}>
+
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:bd6755871b344488a14f5770488ce75d"  target="_blank"  style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup> 
@@ -193,61 +232,22 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    Find signatures by MOA eg: Cyclin-dependent kinase, ALK tyrosine kinase receptor inhibitor
+                    Find signatures by Gene symbol eg: EGFR, ETFA, JAK1
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
+                    select *  from golden-medium-291202.BQ_Final.signature s
+  inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)
+    inner join golden-medium-291202.BQ_Final.nucleic_acid_reagent nr on (nr.perturbagen_id = p.perturbagen_id and p.perturbagen_class = nr.perturbagen_class )
+    where na_name = 'EGFR'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *  from golden-medium-291202.BQ_Final.signature s   inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)   inner join golden-medium-291202.BQ_Final.nucleic_acid_reagent nr on (nr.perturbagen_id = p.perturbagen_id and p.perturbagen_class = nr.perturbagen_class )    where na_name = 'EGFR'")}}>
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
-                            Execute in console
-                    </Button>
-                     </ButtonGroup> 
-                </AccordionItemPanel>
-            </AccordionItem>
-            <AccordionItem>
-                <AccordionItemHeading>
-                    <AccordionItemButton>
-                    Find signatures by Target eg: Hepatocyte growth factor receptor, ALK tyrosine kinase receptor inhibitor
-                    </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel>
-                    <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
-                    </code></p>
-                    {/* <hr></hr> */}
-                    <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
-                            Copy
-                    </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
-                            Execute in console
-                    </Button>
-                     </ButtonGroup> 
-                </AccordionItemPanel>
-            </AccordionItem>
-            <AccordionItem>
-                <AccordionItemHeading>
-                    <AccordionItemButton>
-                    Find signatures by Gene symbol eg: EGFR, EGFP
-                    </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel>
-                    <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
-                    </code></p>
-                    {/* <hr></hr> */}
-                    <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
-                            Copy
-                    </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:893a80f7df0a4a31ae3f185990cefee2" target="_blank" style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup> 
@@ -261,14 +261,17 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
+                    select *  from golden-medium-291202.BQ_Final.signature s
+  inner join golden-medium-291202.BQ_Final.readout r on (r.signature_id = s.signature_id )
+  inner join golden-medium-291202.BQ_Final.gene g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )
+  where gene_symbol  =  'EGFR'
                    </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *  from golden-medium-291202.BQ_Final.signature s   inner join golden-medium-291202.BQ_Final.readout r on (r.signature_id = s.signature_id )  inner join golden-medium-291202.BQ_Final.gene g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )  where gene_symbol  =  'EGFR'")}}>
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:15f3c3097df9418fb0dcee32f323af27" target="_blank" style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup>  
@@ -277,19 +280,22 @@ export const BigQuery = (props) => {
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                    Find gene Proteomics signatures by Measured entity (Protein symbol) 
+                    Find  Proteomics signatures by Measured entity (Protein symbol) eg:   PFKP, MAP3K2, BRAF
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    Select * from bigquery-public-data.umiami_lincs.signature where subject_area = 'binding'  
+                    select * from golden-medium-291202.BQ_Final.signature s
+  inner join golden-medium-291202.BQ_Final.readout r on (r.signature_id = s.signature_id )
+  inner join golden-medium-291202.BQ_Final.probe_p100  g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )
+   where pp_gene_symbol  =  'BRAF'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select * from golden-medium-291202.BQ_Final.signature s    inner join golden-medium-291202.BQ_Final.readout r on (r.signature_id = s.signature_id )     inner join golden-medium-291202.BQ_Final.probe_p100  g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )   where pp_gene_symbol  =  'BRAF'")}}>
                             Copy
                     </Button>
-                    <Button href="#" style={{ border: "1px solid #6c757d"}}>
+                    <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:27dd9de77068440d83393c43a34f9d54" target="_blank" style={{ border: "1px solid #6c757d"}}>
                             Execute in console
                     </Button>
                      </ButtonGroup>   
