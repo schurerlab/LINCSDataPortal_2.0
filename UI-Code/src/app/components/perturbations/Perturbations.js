@@ -157,9 +157,9 @@ class Perturbations extends React.Component {
                         this.state.sids.push (type.perturbagen_id+"&");
                         this.setState({totalCount:this.state.sids.length/20})
                     })
-
+                    let idUrl ='id='+this.state.sids.join('id=');
                        // let slicFrom = this.state.page*20;
-                       let idUrl ='id='+this.state.sids.slice(this.state.slicFrom,20+this.state.slicFrom).join('id=');
+                    //    let idUrl ='id='+this.state.sids.slice(this.state.slicFrom,20+this.state.slicFrom).join('id=');
 
                    axios.request({
                        method: 'get',
