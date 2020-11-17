@@ -37,11 +37,11 @@ export default class SignatureFilter extends React.Component {
 
 
    getDiseases() {
-        return axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=disease');
+        return axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=disease');
     }
 
     getMoa() {
-        return axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=mechanism%20of%20action');
+        return axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=mechanism%20of%20action');
     }
 
     getData() {
@@ -54,26 +54,26 @@ export default class SignatureFilter extends React.Component {
         let cl={};
         let temp1 ={};
         let temp2 ={};
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=disease')
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=disease')
             .then((res) => {
 
                 disease = res.data.data['cell line']
 
             })
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=organ%2Ftissue')
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=organ%2Ftissue')
             .then((res) => {
 
                 organ = res.data.data['cell line'];
 
             })
 
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=small%20molecule%20target')
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=small%20molecule%20target')
             .then((res) => {
                 smt  = res.data.data['small molecule'];
 
 
             })
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=mechanism%20of%20action')
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=mechanism%20of%20action')
             .then((res) => {
                     moa = res.data.data['small molecule'];
                 if(organ!= undefined && disease != undefined && moa != undefined && smt != undefined){

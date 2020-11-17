@@ -41,7 +41,7 @@ export default class PerturbationFilter extends React.Component {
         let disease = {}
         let organ= {}
         let cells= {}
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=small%20molecule%20target')
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=small%20molecule%20target')
             .then((res) => {
 
                let temp = {
@@ -56,7 +56,7 @@ export default class PerturbationFilter extends React.Component {
                 organ= Object.assign(temp, res.data.data['small molecule'])
 
             })
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=mechanism%20of%20action')
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=mechanism%20of%20action')
             .then((res) => {
              disease = res.data.data['small molecule'];
                     cells = Object.assign(organ, disease)

@@ -9,12 +9,15 @@ import SignatureDetails from './SignatureDetails';
 import SignaturePagenation from './SignaturePagenation';
 import AppliedFilters from './AppliedFilters';
 import FilterPanel from './FilterPanel';
+import DownloadSignatures from './DownloadSignatures'
 
 let csl = { 'fontSize': '0.7em' };
 
 const SignatureCatelog = () => {
 
     const [selectedButton,buttonSelected] = useState('Details');
+   
+    
     
     return(
         <div className="row">
@@ -79,6 +82,7 @@ const SignatureCatelog = () => {
         </div>
         <div className="col-9" >
             <AppliedFilters/>
+            <DownloadSignatures/>
             <SignatureSummary/>
             <SigTable/>
             <SignaturePagenation/>

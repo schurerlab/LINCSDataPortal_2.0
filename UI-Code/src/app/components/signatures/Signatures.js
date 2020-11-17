@@ -183,9 +183,9 @@ class Signatures extends React.Component {
 
         let idUrl ='id='+this.state.signatureIds.slice(0,100).join('id=');
         if(this.state.signature=='cell phenotype'){
-            window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?onlyLandmarkGenes=false&"+idUrl,"_self");
+            window.open("http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-by-id-download?onlyLandmarkGenes=false&"+idUrl,"_self");
         }
-        window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?includeMetadata=true&onlyLandmarkGenes=false&"+idUrl,"_self");
+        window.open("http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-by-id-download?includeMetadata=true&onlyLandmarkGenes=false&"+idUrl,"_self");
         this.setState({dowloadLoading:true});
         this.setState({dowloadLoading:false});
     }
@@ -234,7 +234,7 @@ class Signatures extends React.Component {
         this.setState( {data:[]});
         axios.request({
             method:'get',
-            url:'http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-metadata?'+idUrl
+            url:'http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-metadata?'+idUrl
         }).then((response) => {
 
             let datatable =[]
@@ -274,7 +274,7 @@ class Signatures extends React.Component {
         let idUrl ='id='+sigIds.join('id=');
         axios.request({
             method:'get',
-            url:'http://dev3.ccs.miami.edu:8080/sigc-api/search/summary?'+idUrl
+            url:'http://lincsportal.ccs.miami.edu/sigc-api/search/summary?'+idUrl
         }).then((response) => {
             this.setState({"perturbagenCount":response.data.data.perturbation,"modelSystemCount":response.data.data.cellLine});
         })
@@ -302,7 +302,7 @@ class Signatures extends React.Component {
 
             axios.request({
                 method: 'get',
-                url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term=' + this.state.text
+                url: 'http://lincsportal.ccs.miami.edu/sigc-api/search/exact?term=' + this.state.text
             }).then((response) => {
                 if (response.data.data.name) {
                     var ids = "";
@@ -330,7 +330,7 @@ class Signatures extends React.Component {
 
                     axios.request({
                         method: 'get',
-                        url: 'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
+                        url: 'http://lincsportal.ccs.miami.edu/sigc-api/small-molecule/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
                     }).then((response) => {
 
 
@@ -361,7 +361,7 @@ class Signatures extends React.Component {
 
                     axios.request({
                         method: 'get',
-                        url: 'http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
+                        url: 'http://lincsportal.ccs.miami.edu/sigc-api/cell-line/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
                     }).then((response) => {
                         this.setState(response.data.data.map(type => {
                             this.state.signatureIds = []
@@ -388,7 +388,7 @@ class Signatures extends React.Component {
 
                     axios.request({
                         method: 'get',
-                        url: 'http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
+                        url: 'http://lincsportal.ccs.miami.edu/sigc-api/cell-line/fetch-by-id?' + this.state.id + '&returnSignatureIDs=true'
                     }).then((response) => {
                         this.setState(response.data.data.map(type => {
                             this.state.signatureIds = []

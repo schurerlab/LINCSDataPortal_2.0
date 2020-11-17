@@ -232,7 +232,7 @@ export const Help = (props) => {
                     <span className="hljs-keyword">library</span>(data.table)
                     {"\n"}url{"  "}&lt;-{" "}
                   <span className="hljs-string">
-                    "http://dev3.ccs.miami.edu:8080"
+                    "http://lincsportal.ccs.miami.edu/"
                   </span>
                     {"\n"}
                     {"\n"}

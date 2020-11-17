@@ -41,12 +41,12 @@ export default class ModelSystemFilter extends React.Component {
         let disease = {} ;
         let organ = {};
         let cells = {};
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=disease')
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=disease')
             .then((res) => {
 
                 organ = res.data.data['cell line']
             })
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?type=organ%2Ftissue')
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?type=organ%2Ftissue')
             .then((res) => {
 
                     disease = res.data.data['cell line'];

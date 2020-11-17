@@ -8,7 +8,7 @@ export function getDataTablePerturbagens(array_terms, result_group) {
     // perturbagens and then dispatches that data to the store. 
 
     // let target_url = url_server + "fetch-perturbagens?term=" + encodeURI(array_terms.join())
-    let target_url = 'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch?limit=100'
+    let target_url = 'http://lincsportal.ccs.miami.edu/sigc-api/small-molecule/fetch?limit=100'
 
     console.log(target_url);
 

@@ -8,7 +8,7 @@ export function getDataTableModelSystems() {
 
 
     // let target_url = url_server + "fetch-modelsystems?term=" + encodeURI(array_terms.join())
-    let target_url = "http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch?limit=1000&page=1&returnSignatureIDs=false"
+    let target_url = "http://lincsportal.ccs.miami.edu/sigc-api/cell-line/fetch?limit=1000&page=1&returnSignatureIDs=false"
 
     console.log(target_url);
 

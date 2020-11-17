@@ -13,6 +13,37 @@ const SearchItem = (props) => {
 
     const handleInputChange=(e,k,type,cat)=> {
   
+      let cls=[];
+      let term=[];
+      let ty=[];
+      if(type=='Protein expression'){
+        term.push('proteomics assay')
+        cls.push("generating_activity_class")
+        ty.push('assay')
+      }else if(type=='Gene expression'){
+        term.push('gene expression assay')
+        cls.push("generating_activity_class")
+        ty.push('assay')
+      }else if(type=='Protein binding'){
+        term.push('binding assay')
+        cls.push("generating_activity_class")
+        ty.push('assay')
+      }else if(type=='Epigenetic'){
+        term.push('epigenetics assay')
+        cls.push("generating_activity_class")
+        ty.push('assay')
+      }
+      if(cat==='model system'){
+        cls.push("cell line")
+        ty.push("name")
+        term.push(k)
+      }else{
+        cls.push(cat)
+        ty.push("name")
+        term.push(k)
+      }
+      
+      
         fetch(
             provider.apiUrl+'clearFacets',
             { method: 'GET',headers: {
@@ -20,20 +51,22 @@ const SearchItem = (props) => {
             },
             credentials: 'include'} ) .then(res => res.json())
           .then(response => {
+            for(var i=0;i< cls.length;i++){
+           
         fetch(
 
-           
-            provider.apiUrl+'addFacet?class='+type+'&term='+k+'&type='+cat,
+          
+           provider.apiUrl+'addFacet?class='+cls[i]+'&term='+term[i]+'&type='+ty[i],
             { method: 'GET',headers: {
                'Content-Type': 'application/json'
             },
             credentials: 'include'} ) .then(res => res.json())
           .then(response => {
-            provider.setQuery([{class:type,term:k,type:cat}]);
+            provider.setQuery([{class:cls[i],term:term[i],type:ty[i]}]);
             {!provider.filters.includes(k) ?  provider.setFil(prefiltered => [...prefiltered,k])  :''}
-            {provider.setQuery([{class:type,term:k,type:cat}]) ?  <Redirect to="/signatures/signatures" /> :''}
+            {provider.setQuery([{class:cls[i],term:term[i],type:ty[i]}]) ?  <Redirect to="/signatures/signatures" /> :''}
            
-          })
+          })}
         })
 
     }

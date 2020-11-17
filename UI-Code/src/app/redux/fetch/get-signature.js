@@ -3,7 +3,7 @@ import { setSignature } from "../actions/signatures"
 
 export function changeSignature(id) {
     return function (dispatch) {
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id?id=' + id + '&onlyLandmarkGenes=false')
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-by-id?id=' + id + '&onlyLandmarkGenes=false')
             .then((response) => {
                 let ms = response.data.data[0]
                 console.log(ms);
@@ -28,7 +28,7 @@ export function changeSignature(id) {
 
 
             })
-        axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-metadata?id=' + id )
+        axios.get('http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-metadata?id=' + id )
             .then((response) => {
                 let res = response.data.data[0]
                 console.log(res);

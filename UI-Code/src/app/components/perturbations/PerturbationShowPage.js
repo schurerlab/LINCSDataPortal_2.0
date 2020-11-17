@@ -5,6 +5,9 @@ import { changeShowPerturbation } from "../../redux/fetch/get-perturbation"
 import PhysicochemicalProperties from "./PhysicochemicalProperties"
 import ReagentDatasets from "../../components/datasets/ReagentDatasets"
 import Bioactivity  from "./Bioactivity"
+import Clinical from "./Clinical"
+import Pharma from "./Pharma"
+import Drug from "./Drug"
 import axios from 'axios'
 import EntitySignatureTable from '../modelSystems/EntitySignatureTable'
 
@@ -29,7 +32,7 @@ class PerturbationShowPage extends React.Component {
         let id = this.props.id
         axios.request({
             method:'get',
-            url:'http://dev3.ccs.miami.edu:8080/sigc-api/search/synonyms?class=small%20molecule&id='+this.props.id
+            url:'http://lincsportal.ccs.miami.edu/sigc-api/search/synonyms?class=small%20molecule&id='+this.props.id
         }).then((response) => {
             synAssay =response.data.synonyms[id];
              synonyms = response.data.synonyms[id].toString()
@@ -198,8 +201,12 @@ class PerturbationShowPage extends React.Component {
           </div>
           <br/>
           <PhysicochemicalProperties sp={sp}/>
-            <Bioactivity sp={sp}/>
+          
           <ReagentDatasets id={'smlincsidentifier:"'+sp["LINCS Data Portal"][0]} />
+          <Bioactivity sp={sp}/>
+          <Clinical sp={sp}/>
+            <Pharma sp={sp}/>
+            <Drug sp={sp}/>
         </div>
       )
     } else if (this.state.notFound) {

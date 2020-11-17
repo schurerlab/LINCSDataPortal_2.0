@@ -4,12 +4,12 @@ import { setShowModelSystem } from "../actions/modelsystems"
 export function changeShowModelSystem(id) {
   return function (dispatch) {
       let lincsid;
-      axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/search/identifiers?id=' + id + '&object_class=cell line')
+      axios.get('http://lincsportal.ccs.miami.edu/sigc-api/search/identifiers?id=' + id + '&object_class=cell line')
           .then((response) => {
               lincsid = response.data.data[0]['LINCS Data Portal'][0];
               // Object.assign(ms2, {lcl: lincsid});
           });
-  axios.get('http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch-by-id?id=' + id + '&returnSignatureIDs=false')
+  axios.get('http://lincsportal.ccs.miami.edu/sigc-api/cell-line/fetch-by-id?id=' + id + '&returnSignatureIDs=false')
     .then((response) => {
       let ms = response.data.data[0];
         let ms2;

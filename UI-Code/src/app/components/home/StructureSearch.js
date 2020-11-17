@@ -49,7 +49,7 @@ render() {
 
     return (
         <div align="center"  >
-            <div  style={{width: 800, height: 600}}  id="marvin-test" />
+            <div  style={{width: 800, height: 500}}  id="marvin-test" />
             <div align="center">
                 <button id="getSmilesButton" style={{backgroundColor: "#3a5278",borderColor: "#578fc7",color: "whitesmoke"}} >Substructure Search</button>
                 <button id="getSimarButton" style={{backgroundColor: "#3a5278",borderColor: "#578fc7",color: "whitesmoke"}} >Similarity Search</button>

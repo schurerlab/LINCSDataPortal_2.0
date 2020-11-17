@@ -11,7 +11,7 @@ const FilterPanel = () => {
 
     useEffect(() => {
         fetch(
-          'http://dev3.ccs.miami.edu:8080/sigc-api/frontend/getFacets', { method: 'GET',headers: {
+          'http://lincsportal.ccs.miami.edu/sigc-api/frontend/getFacets', { method: 'GET',headers: {
             'Content-Type': 'application/json'
          },
          credentials: 'include'}

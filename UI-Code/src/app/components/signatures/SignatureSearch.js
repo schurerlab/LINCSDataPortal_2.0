@@ -38,7 +38,7 @@ class SignatureSearch extends  React.Component {
     fetchSearchResults = ( query ) => {
 
 
-        const searchUrl = `http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?term=${query}`;
+        const searchUrl = `http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?term=${query}`;
 
         if (this.cancel) {
             // Cancel the previous request before making a new request

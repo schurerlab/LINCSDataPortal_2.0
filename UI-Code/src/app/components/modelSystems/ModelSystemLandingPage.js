@@ -38,7 +38,7 @@ class ModelSystemLandingPage extends React.Component {
     getDatasetInfo(){
         axios.request({
             method:'get',
-            url:'http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch-by-id?id='+this.props.id
+            url:'http://lincsportal.ccs.miami.edu/sigc-api/cell-line/fetch-by-id?id='+this.props.id
         }).then((response) => {
 
              this.setState({ms2: {

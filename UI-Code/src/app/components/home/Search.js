@@ -11,7 +11,8 @@ import PanelSignatures from "../../components/home/PanelSignatures";
 import SignatureSearch from './SignatureSearch';
 import PerturbationsHeader from './PerturbationsHeader';
 import SignaturesHeader from './SignaturesHeader';
-import ModelSystemHeader from './ModelSystemHeader'
+import ModelSystemHeader from './ModelSystemHeader';
+import StructureSearch from './StructureSearch';
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 // import Loader from '../../../media/icons/cells.png"';
@@ -50,7 +51,7 @@ class Search extends  React.Component {
 
         // const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : '';
 
-        const searchUrl = `http://dev3.ccs.miami.edu:8080/sigc-api/search/get-facets?term=${query}`;
+        const searchUrl = `http://lincsportal.ccs.miami.edu/sigc-api/search/get-facets?term=${query}`;
 
         if (this.cancel) {
             // Cancel the previous request before making a new request
@@ -223,11 +224,8 @@ class Search extends  React.Component {
                     </Col>
                 </Row>
                 }
-                    </div> :
-                    <SignatureSearch>
-
-                </SignatureSearch>}
-                { this.state.selectedButton ==="Structure" ?  <Redirect to="/signatures/structure-search" /> :''}
+                    </div> : this.state.selectedButton === "Signature" ? <SignatureSearch/>: <StructureSearch></StructureSearch>}
+                {/* { this.state.selectedButton ==="Structure" ?  <Redirect to="/signatures/structure-search" /> :''} */}
             </div>
         )
     }

@@ -143,7 +143,7 @@ class TableModelSystems extends React.Component {
         if(this.state.types!=''){
             axios.request({
                 method:'get',
-                url:'http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term='+this.state.text
+                url:'http://lincsportal.ccs.miami.edu/sigc-api/search/exact?term='+this.state.text
             }).then((response) => {
                 if (response.data.data[this.state.types]) {
 
@@ -159,7 +159,7 @@ class TableModelSystems extends React.Component {
 
                 axios.request({
                     method: 'get',
-                    url: 'http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch-by-id?'+idUrl+'&returnSignatureIDs=false'
+                    url: 'http://lincsportal.ccs.miami.edu/sigc-api/cell-line/fetch-by-id?'+idUrl+'&returnSignatureIDs=false'
                 }).then((response) => {
 
                     let json_d = response.data.data;
@@ -227,7 +227,7 @@ class TableModelSystems extends React.Component {
         }else {
             axios.request({
                 method: 'get',
-                url: 'http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch?limit=20&page='+this.state.page+'&returnSignatureIDs=false'
+                url: 'http://lincsportal.ccs.miami.edu/sigc-api/cell-line/fetch?limit=20&page='+this.state.page+'&returnSignatureIDs=false'
             }).then((response) => {
 
                 let json_d = response.data.data;
@@ -293,34 +293,16 @@ class TableModelSystems extends React.Component {
 
 
 
-    findId = (name) => { 
-       let ms =  this.state.data_table_modelsystems.find(ms => { 
-
-           return ms.name == name 
-       }) 
-        return ms.id 
-
-    }
-    buttonSelected(key){
-        if(this.state.selectedButton!=key){
-            this.setState({selectedButton: key })
-
-        }
-
-
-    }
-
-
-
+    findId = (name) => {
+        // This function finds the perturbagen id given the name from the table.
+        // used in getTdProps in the ReactTable
+        // This enables the SigPerturbation component to fetch the perturbagen by id.
+        let ms =  this.props.data_table_modelsystems.find(ms => {
+          return  ms.name == name
+        })
+        return ms.id
+      }
     render() {
-
-        if(this.state.selected===0){
-            // console.log(this.state.selected)
-            // this.changeShowModelSystem(this.props.data[0].id);
-        }
-
-
-
         return (
 
             <div  >
@@ -406,7 +388,7 @@ class TableModelSystems extends React.Component {
                       }
 
 
-                />   :
+                /> :
                     <Row xs={12} md={12} lg={12}>
                         <Col xs={4} md={4} lg={4}>
 
@@ -419,7 +401,7 @@ class TableModelSystems extends React.Component {
                         </Col>
                     </Row>
                 }
-        { this.state.data_table_modelsystems.length > 0 ?     <ReactPaginate
+        { this.state.data_table_modelsystems.length > 0 ?    <ReactPaginate
             previousLabel={'previous'}
             nextLabel={'next'}
             breakLabel={'.......'}
@@ -433,7 +415,7 @@ class TableModelSystems extends React.Component {
             activeClassName={'active'}
             // activeLinkClassName={'btn-page'}
             forcePage={this.state.active}
-        />     : '' }
+        />    : '' }
         </div>
 </div>
             </div>
@@ -441,7 +423,5 @@ class TableModelSystems extends React.Component {
 
     };
 }
-
-
 
 export default withRouter(TableModelSystems);

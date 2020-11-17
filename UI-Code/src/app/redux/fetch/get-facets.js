@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { setFacetsData } from "../actions/set-suggest"
 
-let url_server = "http://dev3.ccs.miami.edu:8080/sigc-api/search/"
+let url_server = "http://lincsportal.ccs.miami.edu/sigc-api/search/"
 
 export function getFacets(str_term, str_type) {
 

@@ -235,9 +235,9 @@ class SignaturesZScores extends React.Component {
 
         let idUrl ='id='+this.state.signatureIds.slice(0,100).join('&id=');
         if(this.state.signature=='cell phenotype'){
-            window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?onlyLandmarkGenes=false&"+idUrl,"_self");
+            window.open("http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-by-id-download?onlyLandmarkGenes=false&"+idUrl,"_self");
         }
-        window.open("http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id-download?includeMetadata=true&onlyLandmarkGenes=false&"+idUrl,"_self");
+        window.open("http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-by-id-download?includeMetadata=true&onlyLandmarkGenes=false&"+idUrl,"_self");
         this.setState({dowloadLoading:true});
         this.setState({dowloadLoading:false});
     }
@@ -290,7 +290,7 @@ class SignaturesZScores extends React.Component {
         this.setState( {data:[]});
         axios.request({
             method:'get',
-            url:'http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-metadata?'+idUrl
+            url:'http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-metadata?'+idUrl
         }).then((response) => {
 
             let datatable =[]
@@ -376,7 +376,7 @@ class SignaturesZScores extends React.Component {
         let idUrl ='id='+sigIds.join('&id=');
         axios.request({
             method:'get',
-            url:'http://dev3.ccs.miami.edu:8080/sigc-api/search/summary?'+idUrl
+            url:'http://lincsportal.ccs.miami.edu/sigc-api/search/summary?'+idUrl
         }).then((response) => {
             this.setState({"perturbagenCount":response.data.data.perturbation,"modelSystemCount":response.data.data.cellLine});
         })
@@ -387,7 +387,7 @@ class SignaturesZScores extends React.Component {
 
         axios.request({
             method: 'get',
-            url: 'http://dev3.ccs.miami.edu:8080/sigc-api/search/search-center-ids?id=' + centerIdsApiString
+            url: 'http://lincsportal.ccs.miami.edu/sigc-api/search/search-center-ids?id=' + centerIdsApiString
         }).then((response) => {
 
                 this.state.signatureIds = response.data.data;
@@ -539,7 +539,7 @@ class SignaturesZScores extends React.Component {
                                 <Modal.Body>
                                     <p>Depending on the number of records, the amount of time can vary to download.  Please check your local directory.</p>
 
-                                    {this.state.totalCount > 5 ? <div><p>Your request exceeds the current download limit. You can obtain all signatures via the Google Cloud Platform (see Help>Tutorials>Data Access via GCP for instructions) <button className="btn btn-success center" style={{marginLeft:"0.6em"}} onClick={() => {this.downloadIds()}} > Download GCP Query</button></p> </div>: '' }
+                                    {this.state.totalCount > 5 ? <div><p>Your request exceeds the current download limit. You can obtain all signatures via the Google Cloud Platform (see Help Tutorials Data Access via GCP for instructions) <button className="btn btn-success center" style={{marginLeft:"0.6em"}} onClick={() => {this.downloadIds()}} > Download GCP Query</button></p> </div>: '' }
 
 
                                     {this.state.dowloadLoading === false ? <button className="btn btn-success center" style={{marginLeft:"0.6em"}} onClick={() => {this.download()}} > Download</button>
@@ -610,9 +610,9 @@ class SignaturesZScores extends React.Component {
                             pageCount={this.state.totalCount}
                             marginPagesDisplayed={2}
                             pageRangeDisplayed={7}
-                            onPageChange={this.handlePageClick.bind(this)} 
+                            onPageChange={this.handlePageClick.bind(this)}
                             containerClassName={'pagination '}
-                            subContainerClassName={'pages pagination'} 
+                            subContainerClassName={'pages pagination'}
                              activeClassName={'active'}
                             // activeLinkClassName={'btn-page'}
                             forcePage={this.state.active}

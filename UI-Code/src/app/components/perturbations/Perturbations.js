@@ -149,7 +149,7 @@ class Perturbations extends React.Component {
 
                axios.request({
                    method:'get',
-                   url:'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/structure-search?queryStructure='+this.state.smiles+"&queryType="+this.state.types+"&similarityCutoff=0.8"
+                   url:'http://lincsportal.ccs.miami.edu/sigc-api/small-molecule/structure-search?queryStructure='+this.state.smiles+"&queryType="+this.state.types+"&similarityCutoff=0.8"
                }).then((response) => {
 
               response.data.data.map(
@@ -163,7 +163,7 @@ class Perturbations extends React.Component {
 
                    axios.request({
                        method: 'get',
-                       url: 'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch-by-id?'+idUrl+'&returnSignatureIDs=false'
+                       url: 'http://lincsportal.ccs.miami.edu/sigc-api/small-molecule/fetch-by-id?'+idUrl+'&returnSignatureIDs=false'
                    }).then((response) => {
 
                        let json_d = response.data.data;
@@ -234,7 +234,7 @@ class Perturbations extends React.Component {
         else if(this.state.types!=''){
             axios.request({
                 method:'get',
-                url:'http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term='+this.state.text
+                url:'http://lincsportal.ccs.miami.edu/sigc-api/search/exact?term='+this.state.text
             }).then((response) => {
 
                 if (response.data.data[this.state.types]) {
@@ -252,7 +252,7 @@ class Perturbations extends React.Component {
 
                 axios.request({
                     method: 'get',
-                    url: 'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch-by-id?'+idUrl+'&returnSignatureIDs=false'
+                    url: 'http://lincsportal.ccs.miami.edu/sigc-api/small-molecule/fetch-by-id?'+idUrl+'&returnSignatureIDs=false'
                 }).then((response) => {
 
                     let json_d = response.data.data;
@@ -320,7 +320,7 @@ class Perturbations extends React.Component {
         }else {
             axios.request({
                 method: 'get',
-                url: 'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch?limit=20&page='+this.state.page+'&returnSignatures=false'
+                url: 'http://lincsportal.ccs.miami.edu/sigc-api/small-molecule/fetch?limit=20&page='+this.state.page+'&returnSignatures=false'
             }).then((response) => {
 
 
@@ -495,7 +495,7 @@ class Perturbations extends React.Component {
                       }
 
 
-                        />   :
+                        /> :
                             <Row>
                                 <Col xs={4} md={4} lg={4}>
 
@@ -508,7 +508,7 @@ class Perturbations extends React.Component {
                                 </Col>
                             </Row>
                         }
-                        { this.state.data_table_perturbagens.length > 0 ?     <ReactPaginate
+                        { this.state.data_table_perturbagens.length > 0 ?    <ReactPaginate
                             previousLabel={'previous'}
                             nextLabel={'next'}
                             breakLabel={'.......'}
@@ -522,7 +522,7 @@ class Perturbations extends React.Component {
                             activeClassName={'active'}
                             // activeLinkClassName={'btn-page'}
                             forcePage={this.state.active}
-                        />     : '' }
+                        />    : '' }
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ class SignaturePanel extends React.Component {
 
         }else{
 
-            let url="http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-metadata?id="+this.props.data.id
+            let url="http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-metadata?id="+this.props.data.id
 
             FileSaver.saveAs(url, "Signature_meatadata.json");
         }
@@ -24,7 +24,7 @@ class SignaturePanel extends React.Component {
         if(!this.props.data){
 
         }else{
-            let url="http://dev3.ccs.miami.edu:8080/sigc-api/signature/fetch-by-id?includeMetadata=false&onlyLandmarkGenes=false&id="+this.props.data.id
+            let url="http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-by-id?includeMetadata=false&onlyLandmarkGenes=false&id="+this.props.data.id
 
             FileSaver.saveAs(url, "Signature_data.json");
         }

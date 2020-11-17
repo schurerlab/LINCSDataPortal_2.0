@@ -1,10 +1,27 @@
 import React,{useContext,useEffect,useState} from 'react';
 import { Context } from '../../Context';
 import axios from 'axios';
+import { saveAs } from 'file-saver';
+
+let FileSaver = require('file-saver');
 
 const SignatureDetails = () => {
     const provider = useContext(Context);
     const [data, setData] = useState();
+
+   const download =(id)=> {
+     
+          let url="http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-metadata?id="+id
+
+          FileSaver.saveAs(url, "Signature_meatadata.json");
+  }
+
+  const  downloadData=(id)=> {
+     
+          let url="http://lincsportal.ccs.miami.edu/sigc-api/signature/fetch-by-id?includeMetadata=false&onlyLandmarkGenes=false&id="+id
+
+          FileSaver.saveAs(url, "Signature_data.json");
+  }
 
     useEffect(() => {
 
@@ -52,7 +69,7 @@ const SignatureDetails = () => {
                             <span  ><b>Dataset: </b></span><span  style={{marginLeft:"1.6em"}}><a href={`/signatures/datasets/${data.dataset_id }`}>{data.dataset_id}</a></span><br/>
                             <span ><b>Data Level: </b></span><span style={{marginLeft:"0.6em"}} >{data.data_level}</span><br/>  
 
-                            {/* <span><b>Download :  </b></span><span><button className="btn btn-primary  btn-sm" style={{marginLeft:"0.6em"}} onClick={() => {this.download()}} > Metadata</button></span><span><button className="btn btn-primary btn-sm " style={{marginLeft:"0.6em"}} onClick={() => {this.downloadData()}}> Data</button></span><br/> */}
+                            <span><b>Download :  </b></span><span><button className="btn btn-primary  btn-sm" style={{marginLeft:"0.6em"}} onClick={() => {download(data.signature_id)}} > Metadata</button></span><span><button className="btn btn-primary btn-sm " style={{marginLeft:"0.6em"}} onClick={() => {downloadData(data.signature_id)}}> Data</button></span><br/>
 
                         </div>
 

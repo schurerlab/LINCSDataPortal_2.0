@@ -34,7 +34,7 @@ class Element extends Component {
 
     getLincsID (k,type,cat){
 
-        let findID = `http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term=${k}`;
+        let findID = `http://lincsportal.ccs.miami.edu/sigc-api/search/exact?term=${k}`;
         let id;
         let objectid;
         let objectType;
@@ -44,7 +44,7 @@ class Element extends Component {
             .then((res) => {
                 objectid =res.data.data.name[0].hit_object_id;
                 objectType = res.data.data.name[0].hit_object_class;
-               let linsId = `http://dev3.ccs.miami.edu:8080/sigc-api/search/identifiers?id=${objectid}&object_class=${objectType}`;
+               let linsId = `http://lincsportal.ccs.miami.edu/sigc-api/search/identifiers?id=${objectid}&object_class=${objectType}`;
                     axios
                         .get(linsId)
                         .then((r) => {
@@ -72,7 +72,7 @@ class Element extends Component {
             window.open(url,'_self');
         }
         if(type==="Cell line" && cat==="name"){
-            let findID = `http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term=${k}`;
+            let findID = `http://lincsportal.ccs.miami.edu/sigc-api/search/exact?term=${k}`;
             let objectid;
             let objectType;
             var id;
@@ -99,7 +99,7 @@ class Element extends Component {
         }
         if(type==="Small Molecules" && cat==="name"){
         
-            let findID = `http://dev3.ccs.miami.edu:8080/sigc-api/search/exact?term=${k}`;
+            let findID = `http://lincsportal.ccs.miami.edu/sigc-api/search/exact?term=${k}`;
             let objectid;
             let objectType;
             var id;
@@ -168,7 +168,7 @@ class Element extends Component {
 
       axios.request({
           method:'get',
-          url:'http://dev3.ccs.miami.edu:8080/sigc-api/search/synonyms?class='+this.rename(this.props.type)+'&preferred_term='+k
+          url:'http://lincsportal.ccs.miami.edu/sigc-api/search/synonyms?class='+this.rename(this.props.type)+'&preferred_term='+k
       }).then((response) => {
           let synonyms_temp =response.data.synonyms[k];
           let q = e

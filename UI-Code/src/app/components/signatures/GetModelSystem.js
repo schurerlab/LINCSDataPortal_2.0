@@ -13,7 +13,7 @@ class GetModelSystem extends Component {
         if(this.props.id){
             axios.request({
                 method:'get',
-                url:'http://dev3.ccs.miami.edu:8080/sigc-api/cell-line/fetch-by-id?id='+this.props.id+'&returnSignatureIDs=false'
+                url:'http://lincsportal.ccs.miami.edu/sigc-api/cell-line/fetch-by-id?id='+this.props.id+'&returnSignatureIDs=false'
             }).then((response) => {
                 this.setState({name:response.data.data[0].cell_line_name})
 

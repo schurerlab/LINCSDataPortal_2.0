@@ -17,7 +17,7 @@ class GetSmallMolecue extends Component {
 
             axios.request({
                 method:'get',
-                url:'http://dev3.ccs.miami.edu:8080/sigc-api/small-molecule/fetch-by-id?id='+value+'&returnSignatureIDs=false'
+                url:'http://lincsportal.ccs.miami.edu/sigc-api/small-molecule/fetch-by-id?id='+value+'&returnSignatureIDs=false'
             }).then((response) => {
                 this.setState({name:response.data.data[0].sm_name})
 
