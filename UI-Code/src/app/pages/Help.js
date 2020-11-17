@@ -94,7 +94,14 @@ export const Help = (props) => {
                         </p>
                         <p>
                             <strong>How to Cite</strong> <br />
-                            Coming soon
+                            <p><em><mark>
+            Koleti, Amar, et al. "Data Portal for the Library of Integrated Network-based Cellular Signatures (LINCS) program: integrated access to diverse large-scale cellular perturbation response data." Nucleic acids research 46.D1 (2017): D558-D566;
+        <a href="https://doi.org/10.1093/nar/gkx1063" target="_blank">https://doi.org/10.1093/nar/gkx1063</a>.
+        </mark> </em></p>
+        <p><em><mark>
+            Stathias, Vasileios et al. “LINCS Data Portal 2.0: next generation access point for perturbation-response signatures.” Nucleic acids research vol. 48,D1 (2020): D431-D439; <a href="https://doi.org/10.1093/nar/gkz1023"
+         target="_blank">https://doi.org/10.1093/nar/gkz1023</a>.
+        </mark> </em></p>
                         </p>
                         <p>
                             <br />
