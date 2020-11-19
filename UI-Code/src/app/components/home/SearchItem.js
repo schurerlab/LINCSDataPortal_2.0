@@ -13,6 +13,7 @@ const SearchItem = (props) => {
 
     const handleInputChange=(e,k,type,cat)=> {
   
+      console.log(k,':',type,':',cat)
       let cls=[];
       let term=[];
       let ty=[];
@@ -37,7 +38,12 @@ const SearchItem = (props) => {
         cls.push("cell line")
         ty.push("name")
         term.push(k)
-      }else{
+      }else if(cat==='sgRNA'){
+        cls.push("sgRNA")
+        ty.push("gene target")
+        term.push(k)
+      }
+      else{
         cls.push(cat)
         ty.push("name")
         term.push(k)

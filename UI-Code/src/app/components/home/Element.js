@@ -34,6 +34,7 @@ class Element extends Component {
 
     getLincsID (k,type,cat){
 
+        
         let findID = `http://lincsportal.ccs.miami.edu/sigc-api/search/exact?term=${k}`;
         let id;
         let objectid;
@@ -58,6 +59,8 @@ class Element extends Component {
             url = 'http://lincsportal.ccs.miami.edu/SmallMolecules/view/'+id;
             return 'http://lincsportal.ccs.miami.edu/SmallMolecules/view/'+id;
 
+        }else if(type==='Small Molecules' && cat === 'name' && id.length > 1){
+
         }
     }
 
@@ -70,6 +73,20 @@ class Element extends Component {
 
             url= "/signatures/models?type="+type+"&class="+cat+"&term="+ k
             window.open(url,'_self');
+        }
+        if(type==="sgRNA" && cat==="gene target"){
+            let findID = `http://lincsportal.ccs.miami.edu/sigc-api/search/exact?term=${k}`;
+            let objectid;
+            let objectType;
+            var id;
+            axios
+                .get(findID)
+                .then((res) => {
+                    objectid =res.data.data.sgRNA[0].hit_object_id;
+                    url= "/signatures/knockdown/"+objectid;
+                    window.open(url,'_self');
+
+                })
         }
         if(type==="Cell line" && cat==="name"){
             let findID = `http://lincsportal.ccs.miami.edu/sigc-api/search/exact?term=${k}`;
