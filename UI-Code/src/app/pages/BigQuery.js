@@ -25,17 +25,17 @@ export const BigQuery = (props) => {
 
         <div className="container-fluid main-container" >
         <ButtonGroup className="d-flex justify-content-center">
-        <a href="https://docs.google.com/document/d/1z9oZS46Tn02yRZpm3SBnryN2b9_2oKkpoVVUjlZt06U" target="_blank">
+        <a href="https://docs.google.com/document/d/1Bddq9cNGzrfEWSRlMy36JC3yD6c8-BH-6K-Qvs3__M0/" target="_blank">
             <Button  bsStyle="primary" style={{margin: "2em"}}>
                 LINCS BigQuery Documentation
             </Button>
         </a>
-        <a href="https://console.cloud.google.com/bigquery?project=lincsdatasets&page=queries" target="_blank">
+        <a href="https://console.cloud.google.com/marketplace/product/umiami-lincs/umiami-lincs?filter=solution-type:dataset&q=lincs&id=2000bf1c-07e6-496e-896e-df1f4d47ee63" target="_blank">
             <Button  bsStyle="primary" style={{margin: "2em"}}>Google BigQuery Console</Button>
         </a>
-        <a href="https://docs.google.com/document/d/1z9oZS46Tn02yRZpm3SBnryN2b9_2oKkpoVVUjlZt06U" target="_blank">
+        {/* <a href="https://docs.google.com/document/d/1z9oZS46Tn02yRZpm3SBnryN2b9_2oKkpoVVUjlZt06U" target="_blank">
             <Button  bsStyle="primary" style={{margin: "2em"}}>Integrate with LINCS BigQuery</Button>
-         </a>   
+         </a>    */}
         </ButtonGroup>
         <Accordion>
             <AccordionItem>
