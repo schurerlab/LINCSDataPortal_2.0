@@ -352,6 +352,8 @@ class SignatureSearch extends Component {
                     
                 </div>
             </form> }
+            <div className="pull-right">Powered by <a href="https://www.ilincs.org/ilincs/" target="_blank">iLINCS</a> <img src=" https://www.ilincs.org/ilincs/images/logo/iLINCSnewLogo.png" alt="ilincs" width="20" height="20"></img> </div>
+           
             {/* {this.state.loading == false && this.state.cids.length == 0 ?  <form>
                 <div className="form-row">
                     <div className="col">
