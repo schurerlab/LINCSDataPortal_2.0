@@ -212,7 +212,7 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select *   from lincs-gbq-nov2020.bq_final.signature s
+                    select *   from lincs-gbq-nov2020.bq_final.signature s 
   inner join lincs-gbq-nov2020.bq_final.perturbation p on (p.signature_id = s.signature_id)
     inner join lincs-gbq-nov2020.bq_final.small_molecule sm on (sm.perturbagne_id = p.perturbagen_id and p.perturbagen_class = sm.perturbagne_class)
     where sm.sm_name = 'Taxol'
