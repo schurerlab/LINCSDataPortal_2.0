@@ -46,11 +46,11 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                         select * from golden-medium-291202.BQ_Final.signature where assay_category  = 'KINOMEscan'
+                         select * from lincs-gbq-nov2020.bq_final.signature where assay_category  = 'KINOMEscan'
                      </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("select * from golden-medium-291202.BQ_Final.signature where assay_category  = 'KINOMEscan'")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("select * from lincs-gbq-nov2020.bq_final.signature where assay_category  = 'KINOMEscan'")}}>
                             Copy
                     </Button>
                     <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:187cb2995f2340f4a41bc75302300759" target="_blank" style={{ border: "1px solid #6c757d"}}>
@@ -67,11 +67,11 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select * from golden-medium-291202.BQ_Final.signature where dataset_id = 'LDS-1481'
+                    select * from lincs-gbq-nov2020.bq_final.signature where dataset_id = 'LDS-1481'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select * from golden-medium-291202.BQ_Final.signature where dataset_id = 'LDS-1481'")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select * from lincs-gbq-nov2020.bq_final.signature where dataset_id = 'LDS-1481'")}}>
                             Copy
                     </Button>
                     <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:37048580d7874e48808a0d636bc9bae5" target="_blank" style={{ border: "1px solid #6c757d"}}>
@@ -89,14 +89,14 @@ export const BigQuery = (props) => {
                 <AccordionItemPanel>
                     <p><code>
                     select s.* 
-                    from golden-medium-291202.BQ_Final.signature s
-                        join golden-medium-291202.BQ_Final.dataset d on (d.dataset_id = s.dataset_id)
-                        join golden-medium-291202.BQ_Final.assay a on (a.assay_id = d.assay_id)
+                    from lincs-gbq-nov2020.bq_final.signature s
+                        join lincs-gbq-nov2020.bq_final.dataset d on (d.dataset_id = s.dataset_id)
+                        join lincs-gbq-nov2020.bq_final.assay a on (a.assay_id = d.assay_id)
                     where a.area_of_study  = 'Imaging'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select s.*  from golden-medium-291202.BQ_Final.signature s join golden-medium-291202.BQ_Final.dataset d on (d.dataset_id = s.dataset_id)   join golden-medium-291202.BQ_Final.assay a on (a.assay_id = d.assay_id)  where a.area_of_study  = 'Imaging' ")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select s.*  from lincs-gbq-nov2020.bq_final.signature s join lincs-gbq-nov2020.bq_final.dataset d on (d.dataset_id = s.dataset_id)   join lincs-gbq-nov2020.bq_final.assay a on (a.assay_id = d.assay_id)  where a.area_of_study  = 'Imaging' ")}}>
                             Copy
                     </Button>
                     <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:1c37b633cfd6414e96b4cc753ebb07b4" target="_blank" style={{ border: "1px solid #6c757d"}}>
@@ -113,14 +113,14 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select distinct * from golden-medium-291202.BQ_Final.signature s
-  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )
-    inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )
+                    select distinct * from lincs-gbq-nov2020.bq_final.signature s
+  inner join lincs-gbq-nov2020.bq_final.model_system m on (m.signature_id = s.signature_id )
+    inner join lincs-gbq-nov2020.bq_final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )
     where c.cl_name = 'A-549' 
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("  select distinct * from golden-medium-291202.BQ_Final.signature s inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )   inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )   where c.cl_name = 'A-549' ")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("  select distinct * from lincs-gbq-nov2020.bq_final.signature s inner join lincs-gbq-nov2020.bq_final.model_system m on (m.signature_id = s.signature_id )   inner join lincs-gbq-nov2020.bq_final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )   where c.cl_name = 'A-549' ")}}>
 
                             Copy
                     </Button>
@@ -138,14 +138,14 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select distinct * from golden-medium-291202.BQ_Final.signature s
-  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )
-    inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )
+                    select distinct * from lincs-gbq-nov2020.bq_final.signature s
+  inner join lincs-gbq-nov2020.bq_final.model_system m on (m.signature_id = s.signature_id )
+    inner join lincs-gbq-nov2020.bq_final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )
     where c.cl_organ = 'lung' 
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("   select distinct * from golden-medium-291202.BQ_Final.signature s  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )   inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )   where c.cl_organ = 'lung' ")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("   select distinct * from lincs-gbq-nov2020.bq_final.signature s  inner join lincs-gbq-nov2020.bq_final.model_system m on (m.signature_id = s.signature_id )   inner join lincs-gbq-nov2020.bq_final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )   where c.cl_organ = 'lung' ")}}>
 
                             Copy
                     </Button>
@@ -163,14 +163,14 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select *  from golden-medium-291202.BQ_Final.signature s
-  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )
-    inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )
+                    select *  from lincs-gbq-nov2020.bq_final.signature s
+  inner join lincs-gbq-nov2020.bq_final.model_system m on (m.signature_id = s.signature_id )
+    inner join lincs-gbq-nov2020.bq_final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )
      where c.cl_disease = 'lung adenocarcinoma' 
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *  from golden-medium-291202.BQ_Final.signature s  inner join golden-medium-291202.BQ_Final.model_system m on (m.signature_id = s.signature_id )    inner join golden-medium-291202.BQ_Final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )    where c.cl_disease = 'lung adenocarcinoma' ")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *  from lincs-gbq-nov2020.bq_final.signature s  inner join lincs-gbq-nov2020.bq_final.model_system m on (m.signature_id = s.signature_id )    inner join lincs-gbq-nov2020.bq_final.cell_line c on (c.model_system_id = m.model_system_id and c.model_system_class = m.model_system_type )    where c.cl_disease = 'lung adenocarcinoma' ")}}>
 
                             Copy
                     </Button>
@@ -188,13 +188,13 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select *   from golden-medium-291202.BQ_Final.signature s
-  inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)
+                    select *   from lincs-gbq-nov2020.bq_final.signature s
+  inner join lincs-gbq-nov2020.bq_final.perturbation p on (p.signature_id = s.signature_id)
   where perturbagen_class = 'small_molecule'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *   from golden-medium-291202.BQ_Final.signature s  inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)   where perturbagen_class = 'small_molecule' ")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *   from lincs-gbq-nov2020.bq_final.signature s  inner join lincs-gbq-nov2020.bq_final.perturbation p on (p.signature_id = s.signature_id)   where perturbagen_class = 'small_molecule' ")}}>
 
                             Copy
                     </Button>
@@ -212,14 +212,14 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select *   from golden-medium-291202.BQ_Final.signature s
-  inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)
-    inner join golden-medium-291202.BQ_Final.small_molecule sm on (sm.perturbagne_id = p.perturbagen_id and p.perturbagen_class = sm.perturbagne_class)
+                    select *   from lincs-gbq-nov2020.bq_final.signature s
+  inner join lincs-gbq-nov2020.bq_final.perturbation p on (p.signature_id = s.signature_id)
+    inner join lincs-gbq-nov2020.bq_final.small_molecule sm on (sm.perturbagne_id = p.perturbagen_id and p.perturbagen_class = sm.perturbagne_class)
     where sm.sm_name = 'Taxol'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("  select *   from golden-medium-291202.BQ_Final.signature s   inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)    inner join golden-medium-291202.BQ_Final.small_molecule sm on (sm.perturbagne_id = p.perturbagen_id and p.perturbagen_class = sm.perturbagne_class)   where sm.sm_name = 'Taxol'")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText("  select *   from lincs-gbq-nov2020.bq_final.signature s   inner join lincs-gbq-nov2020.bq_final.perturbation p on (p.signature_id = s.signature_id)    inner join lincs-gbq-nov2020.bq_final.small_molecule sm on (sm.perturbagne_id = p.perturbagen_id and p.perturbagen_class = sm.perturbagne_class)   where sm.sm_name = 'Taxol'")}}>
 
                             Copy
                     </Button>
@@ -237,14 +237,14 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select *  from golden-medium-291202.BQ_Final.signature s
-  inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)
-    inner join golden-medium-291202.BQ_Final.nucleic_acid_reagent nr on (nr.perturbagen_id = p.perturbagen_id and p.perturbagen_class = nr.perturbagen_class )
+                    select *  from lincs-gbq-nov2020.bq_final.signature s
+  inner join lincs-gbq-nov2020.bq_final.perturbation p on (p.signature_id = s.signature_id)
+    inner join lincs-gbq-nov2020.bq_final.nucleic_acid_reagent nr on (nr.perturbagen_id = p.perturbagen_id and p.perturbagen_class = nr.perturbagen_class )
     where na_name = 'EGFR'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *  from golden-medium-291202.BQ_Final.signature s   inner join golden-medium-291202.BQ_Final.perturbation p on (p.signature_id = s.signature_id)   inner join golden-medium-291202.BQ_Final.nucleic_acid_reagent nr on (nr.perturbagen_id = p.perturbagen_id and p.perturbagen_class = nr.perturbagen_class )    where na_name = 'EGFR'")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *  from lincs-gbq-nov2020.bq_final.signature s   inner join lincs-gbq-nov2020.bq_final.perturbation p on (p.signature_id = s.signature_id)   inner join lincs-gbq-nov2020.bq_final.nucleic_acid_reagent nr on (nr.perturbagen_id = p.perturbagen_id and p.perturbagen_class = nr.perturbagen_class )    where na_name = 'EGFR'")}}>
                             Copy
                     </Button>
                     <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:893a80f7df0a4a31ae3f185990cefee2" target="_blank" style={{ border: "1px solid #6c757d"}}>
@@ -261,14 +261,14 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select *  from golden-medium-291202.BQ_Final.signature s
-  inner join golden-medium-291202.BQ_Final.readout r on (r.signature_id = s.signature_id )
-  inner join golden-medium-291202.BQ_Final.gene g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )
+                    select *  from lincs-gbq-nov2020.bq_final.signature s
+  inner join lincs-gbq-nov2020.bq_final.readout r on (r.signature_id = s.signature_id )
+  inner join lincs-gbq-nov2020.bq_final.gene g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )
   where gene_symbol  =  'EGFR'
                    </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *  from golden-medium-291202.BQ_Final.signature s   inner join golden-medium-291202.BQ_Final.readout r on (r.signature_id = s.signature_id )  inner join golden-medium-291202.BQ_Final.gene g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )  where gene_symbol  =  'EGFR'")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select *  from lincs-gbq-nov2020.bq_final.signature s   inner join lincs-gbq-nov2020.bq_final.readout r on (r.signature_id = s.signature_id )  inner join lincs-gbq-nov2020.bq_final.gene g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )  where gene_symbol  =  'EGFR'")}}>
                             Copy
                     </Button>
                     <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:15f3c3097df9418fb0dcee32f323af27" target="_blank" style={{ border: "1px solid #6c757d"}}>
@@ -285,14 +285,14 @@ export const BigQuery = (props) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <p><code>
-                    select * from golden-medium-291202.BQ_Final.signature s
-  inner join golden-medium-291202.BQ_Final.readout r on (r.signature_id = s.signature_id )
-  inner join golden-medium-291202.BQ_Final.probe_p100  g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )
+                    select * from lincs-gbq-nov2020.bq_final.signature s
+  inner join lincs-gbq-nov2020.bq_final.readout r on (r.signature_id = s.signature_id )
+  inner join lincs-gbq-nov2020.bq_final.probe_p100  g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )
    where pp_gene_symbol  =  'BRAF'
                     </code></p>
                     {/* <hr></hr> */}
                     <ButtonGroup className="d-flex justify-content-center" >
-                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select * from golden-medium-291202.BQ_Final.signature s    inner join golden-medium-291202.BQ_Final.readout r on (r.signature_id = s.signature_id )     inner join golden-medium-291202.BQ_Final.probe_p100  g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )   where pp_gene_symbol  =  'BRAF'")}}>
+                    <Button href="#" style={{ border: "1px solid #6c757d"}} onClick={() => {navigator.clipboard.writeText(" select * from lincs-gbq-nov2020.bq_final.signature s    inner join lincs-gbq-nov2020.bq_final.readout r on (r.signature_id = s.signature_id )     inner join lincs-gbq-nov2020.bq_final.probe_p100  g on (g.measured_entity_id = r.measured_entity_id and g.measured_entity_class = r.measured_entity_class )   where pp_gene_symbol  =  'BRAF'")}}>
                             Copy
                     </Button>
                     <Button href="https://console.cloud.google.com/bigquery?sq=798315654593:27dd9de77068440d83393c43a34f9d54" target="_blank" style={{ border: "1px solid #6c757d"}}>
