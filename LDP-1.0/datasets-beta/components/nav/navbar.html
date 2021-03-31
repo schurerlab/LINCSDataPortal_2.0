@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default navbar-fixed-top main-nav">
+    <div class="main-content nav-margin" >
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/dcic-portal"> <img class="pull-left nav-logo"  ng-src="images/ldp_logo.png"/></a>
+            <a class="navbar-brand" href="/datasets">LINCS Data Portal <span style="font-size: larger">|</span> Datasets</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" >
+            <ul class="nav navbar-nav navbar-right">
+
+                    <a ng-controller="DownloadController" type="button" class="btn btn-warning" aria-label="Add"  ng-click="showCreateModal()">
+                    <i class="fa fa-shopping-cart fa-2x">
+                        <span ng-if="downloadservice.cart.length!=undefined ">
+                    <span class="nav-cart-count" ng-if="downloadservice.cart.length>0 ">
+                    {{downloadservice.cart.length}}
+                    </span>
+                    </span>
+                    </i>
+                    </a>
+
+                <a ng-controller="GlobalCtrl" href="http://localhost:8180/auth/realms/dst/protocol/openid-connect/auth?client_id=test-app&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fdatasets-beta&state=b96fa015-6665-4aaf-a484-f4f287be24b8&nonce=13e820ae-5f7f-452e-a92f-e5bbda63fd87&response_mode=fragment&response_type=code&scope=openid" type="button" class="btn btn-warning" aria-label="Add"  ng-click="showCreateModal()">
+                    <i class="fa fa-sign-in fa-2x">
+                    </i>
+                </a>
+            </ul>
+        </div>
+    </div>
+</nav>

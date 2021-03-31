@@ -1,0 +1,16 @@
+<!--<a href="http://amp.pharm.mssm.edu/Harmonizome/">-->
+    <div class="col-md-2 panel panel-default tool">
+        <div>
+            <hr class="harmonizome">
+            <img src="images/harmonizome.png" class="tool-image">
+            <b class="tool-name">
+                Harmonizome</b></div>
+        <hr class="harmonizome">
+
+        <p class="tool-desc">
+            A knowledge engine for discovery of relationships across diverse sets of omics resources. Access knowledge
+            about genes and proteins from 70 resources and 116 datasets.
+        </p>
+        <!--<hr style="border-top: 3px double darkred">-->
+    </div>
+<!--</a>-->

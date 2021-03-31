@@ -1,0 +1,106 @@
+<!DOCTYPE html >
+<html ng-app="datasets" >
+<head >
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet" type="text/css">
+	<link href="http://localhost:8080/datasets-beta/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://localhost:8080/datasets-beta/styles/core.css"/>
+	<link rel="stylesheet" href="http://localhost:8080/datasets-beta/components/facet/facet.css"/>
+	<link href="http://localhost:8080/datasets-beta/components/nav/navbar.css" rel="stylesheet" >
+	<link href="http://localhost:8080/datasets-beta/components/footer/footer.css" rel="stylesheet" >
+	<link href="http://localhost:8080/datasets-beta/components/datasetLandingPages/header/header.css" rel="stylesheet" >
+	<link href="http://localhost:8080/datasets-beta/libs/bootstrap-additions/dist/bootstrap-additions.min.css" rel="stylesheet" >
+	<link href="http://localhost:8080/datasets-beta/libs/angularjs-toaster/toaster.min.css" rel="stylesheet" >
+	<link href="http://localhost:8080/datasets-beta/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+	<link href="http://localhost:8080/datasets-beta/libs/ladda/dist/ladda-themeless.min.css" rel="stylesheet" >
+	<link href="http://localhost:8080/datasets-beta/libs/angular-tour/introjs.css" rel="stylesheet" >
+	<link href="http://localhost:8080/datasets-beta/titip.min.css" rel="stylesheet" >
+	<link rel="stylesheet" href="http://localhost:8080/datasets-beta/libs/angucomplete-alt/angucomplete-alt.css"/>
+	<link rel="stylesheet" href="http://localhost:8080/datasets-beta/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" type="text/css"/>
+	<link rel="icon"   href="images/ldp_logo.png" type="image/x-icon">
+	<link rel="shortcut icon" href="images/ldp_logo.png" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="/datasets-beta/">
+
+
+</head >
+
+<body>
+
+<nav-bar></nav-bar>
+<div class="main-content" >
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-67731314-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<div ng-include="'components/feedback/feedback.html'"></div>
+
+	<div ng-view> </div>
+	</div >
+<foot-bar></foot-bar>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="libs/angular/angular.min.js" ></script >
+<script src="libs/angular-resource/angular-resource.min.js" ></script >
+<script src="libs/angular-animate/angular-animate.min.js" ></script >
+<script src="https://auth.ccs.miami.edu/auth/js/keycloak.js"></script>
+<script src="libs/spin.js/spin.js" ></script >
+<script src="libs/angular-spinner/angular-spinner.min.js" ></script >
+<script src="libs/ladda/dist/ladda.min.js" ></script >
+<script src="libs/angular-ladda/dist/angular-ladda.min.js" ></script >
+<script src="libs/angular-route/angular-route.js"></script>
+<script src="libs/angular-strap/dist/angular-strap.min.js" ></script >
+<script src="libs/angular-strap/dist/angular-strap.tpl.min.js" ></script >
+<script src="libs/angularjs-toaster/toaster.min.js" ></script >
+<script src="libs/ui-router/release/angular-ui-router.min.js" ></script >
+<script src="ui-bootstrap-tpls-1.1.2.min.js" ></script >
+<script src="libs/angucomplete-alt/angucomplete-alt.js"></script>
+<script type="text/javascript" src="libs/angular-tour/intro.min.js"></script>
+<script type="text/javascript" src="libs/angular-tour/angular-intro.js"></script>
+<script src="libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="libs/ng-scrollbars/dist/scrollbars.min.js"></script>
+<script src="libs/angular-file-saver/dist/angular-file-saver.min.js" ></script >
+<script src="libs/file-saver/FileSaver.js" ></script >
+<script src="libs/blob-polyfill/Blob.js" ></script >
+<script src="main.js" ></script >
+<script src="datasetFactory.js" ></script >
+<script src="datasetCtrl.js" ></script >
+<script src="detailsFactory.js" ></script >
+<script src="viewService.js" ></script >
+<script src="viewCtrl.js" ></script >
+<script src="routeConfig.js" ></script >
+<script src="components/facet/facetview.js" ></script >
+<script src="components/searchBar/searchCtrl.js" ></script >
+<script src="datasetfilters.js" ></script >
+<script src="download.js" ></script >
+<script src="pagination.js" ></script >
+<script src="spinnerCtrl.js" ></script >
+<script src="tooltipCtrl.js" ></script >
+<script src="packCtrl.js" ></script >
+<script src="wordCtrl.js" ></script >
+<script src="proteinCtrl.js" ></script >
+<script src="geneCtrl.js" ></script >
+<script src="cellCtrl.js" ></script >
+<script src="ipscCtrl.js" ></script >
+<script src="loginCtrl.js" ></script >
+<script src="differentiatedipscCtrl.js" ></script >
+<script src="smallMoleculeCtrl.js" ></script >
+<script src="otherCtrl.js" ></script >
+<script src="antibodyCtrl.js" ></script >
+<script src="peptideCtrl.js" ></script >
+<script src="primaryCellCtrl.js" ></script >
+<script src="nar.js" ></script >
+<script src="escellCtrl.js" ></script >
+<script src="unCtrl.js" ></script >
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="libs/d3/d3.layout.cloud.js"></script>
+<script src="libs/d3/d3.tip.v0.6.3.js"></script>
+
+
+</body >
+</html >

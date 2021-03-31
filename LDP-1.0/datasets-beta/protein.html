@@ -1,0 +1,59 @@
+<main ng-controller="ProteinCtrl">
+    <div class="row">
+        <span class="col-sm-3 pull-left">
+            <form ng-submit="proteinSearch(searchString) ">
+                <input ng-model="searchString" type="text" class="form-control input-sm" style="height: 39px;margin-left: -1.6em;border-color: #8DC449" placeholder="Search here...">
+            </form>
+        </span>
+    </div>
+    <table ng-init="viewData.loadProtein()" id="table" style="margin-top: 0.5em"
+           class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+        <tr>
+            <th class="protein" >Name</th>
+            <th class="protein" >UniProt ID</th>
+            <th class="protein">Center ID</th>
+            <th class="protein" >Gene ID</th>
+            <th class="protein">Gene Symbol</th>
+
+        </tr>
+        <tbody>
+        <tr ng-repeat="docs in viewData.pr">
+            <td><a ng-href="/entities/#/view/{{docs.lincsidentifier.toString()}}" ng-bind="docs.entityName.toString()"></a>
+            </td>
+            <td><a ng-href="http://www.uniprot.org/uniprot/{{docs.PR_UniProt_ID.toString()}}" ng-bind="docs.PR_UniProt_ID.toString()"></a>
+            </td>
+            <td >
+                <span ng-if="docs.source.toString().includes('HMS_LINCS')">
+                <a
+                    ng-href="http://lincs.hms.harvard.edu/db/proteins/{{docs.lincsidentifier.toString()}}" ng-bind="docs.lincsidentifier.toString()"></a>
+                </span>
+                <span ng-if="docs.source.toString().includes('HMS_LINCS') ==false">
+                    {{docs.lincsidentifier.toString()}}
+                </span>
+            </td>
+            <td><a
+                    ng-href="http://www.ncbi.nlm.nih.gov/gene/?term={{docs.PR_Gene_ID.toString()}}" ng-bind="docs.PR_Gene_ID.toString()"></a>
+            </td>
+            <td  ng-bind="docs.PR_Gene_Symbol.toString()">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="pagenation_matgin">
+        <span class="pull-right">
+            Showing {{viewData.prSkip+1}} to <span ng-if="viewData.prTotal<5">{{viewData.prTotal}} </span>
+            <span ng-if="viewData.prTotal>5">
+                <span ng-if="viewData.prLimit+viewData.prSkip>viewData.prTotal">{{viewData.prTotal}}
+                </span>
+                <span ng-if="viewData.prLimit+viewData.prSkip<=viewData.prTotal"> {{viewData.prLimit+viewData.prSkip}}
+                </span>
+           </span> of {{viewData.prTotal}} proteins
+        </span>
+        <uib-pagination items-per-page=5 total-items="viewData.prTotal" ng-model="entityPage" style="margin-top: 1px"
+                        ng-click="proteinPagination(entityPage)" max-size="9" class="col-md-6 pull-left"
+                        boundary-link-numbers="true" rotate="false">
+        </uib-pagination>
+
+    </div>
+</main>
+

@@ -1,0 +1,57 @@
+<div class="tab-pane active row">
+    <div class="col-md-10 col-md-offset-1" ng-if="viewData.totalDatasets>0">
+        <div class="pull-left tile"  >
+        <span  class="pull-right datasets-small-box smallmolecule-button">
+           Participated in: <span>{{viewData.totalDatasets}} Datasets</span>
+        </span>
+        </div>
+        <table id="table" style="margin-top: 1em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+            <tr >
+                <th  class="smallmolecule" style="width: 40%">Name</th>
+                <th   class="smallmolecule" style="width: 10%">Center</th>
+                <th   class="smallmolecule" style="width: 20%">Assay</th>
+                <th   class="smallmolecule" style="width: 20%">Method</th>
+                <th   class="smallmolecule" style="width: 10%">Subject Area</th>
+
+            </tr>
+            <tbody>
+            <tr ng-repeat="docs in viewData.clDatasets">
+                <td> <a class="data-button" ng-href="/datasets-beta/#/view/{{docs.datasetid}}">{{docs.datasetname}}</a>
+                </td>
+                <td><a href="{{docs.centerurl.toString()}}"><img class="listcenterimage"
+                                                                       ng-src="images/{{docs.centerletter}}.png"/></a>
+                </td>
+                <td>
+                    {{docs.assayname.toString()}}
+                </td>
+                <td>
+                    <div ng-repeat="designmethod in docs.assaydesignmethod ">
+                    {{designmethod }}
+                    <br>
+                </div>
+                </td>
+                <td ><div>
+                    {{docs.biologicalbucket }}
+                    <br>
+                </div>
+                </td>
+
+
+            </tr>
+            </tbody>
+        </table>
+        <div ng-if="viewData.totalDatasets<7">
+            <div class="datasets-content">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 col-md-offset-1" ng-if="viewData.totalDatasets==0">
+        <div class="text-center">
+            <h1>No associated datasets</h1>
+        </div>
+        <div class="datasets-content">
+
+        </div>
+    </div>
+</div>

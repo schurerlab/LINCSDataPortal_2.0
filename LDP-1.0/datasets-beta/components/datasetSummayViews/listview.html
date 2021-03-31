@@ -1,0 +1,63 @@
+<div class="col-md-12">
+    <div class="panel panel-default" ng-repeat="docs in datasets.documents">
+        <div class="panel-heading pannel-list-head" >
+            <div class="row">
+                <button  class=" btn btn-warning add-list-button pull-left"  aria-label="Add" ng-click="addToCart(docs['datasetid'])">
+                    <i class="fa fa-cart-plus"></i>
+                </button>
+                <span>
+                    <a  ng-href="view/{{docs.datasetid}}">
+                     <div class="default-left"> {{docs.datasetname}}</div></a>
+                    </span>
+            </div>
+
+        </div>
+        <div class="panel-body tile">
+            <div>
+                <span><b>Assay</b>: {{docs.assayname.toString() }}</span>
+                <span><img  class="pull-right listcenterimage" style="max-height: 1.5em" ng-src="images/{{docs.centerletter}}.png"/></span>
+            </div>
+            <div>
+                <span ><b>Method</b>: {{docs.assaydesignmethod.toString()}}</span>
+                <span class="pull-right"><b>Format</b>: {{docs.assayformat }}</span>
+            </div>
+            <div>
+                <span><b>Subject Area</b>: {{docs.biologicalbucket.toString() }}</span>
+            </div>
+            <div class="pull-right">
+                <b>Data Level</b>:<a  ng-if="docs.datasetstage=='Released'" ng-repeat="i in getSize(docs.datalevels.length) track by $index" ng-href="/dcic/api/download?path={{docs.levelspath[$index] | ftppath}}&file={{docs.datasetlevels[$index]}}.tar.gz">
+                {{docs.datalevels[$index]}}
+                </a>
+                <a  ng-if="docs.datasetstage!='Released'" style="color: black" ng-repeat="i in getSize(docs.datalevels.length) track by $index" >
+                    {{docs.datalevels[$index]}}
+                </a>
+            </div>
+            <div>
+                <a class ="col-md-2 titip-top  text-center" data-title="Source link" ng-href="{{docs.centerdatasetid}}" target="_blank"><i class="fa fa-external-link tile_icon">
+                </i></a>
+                <a class ="col-md-2 titip-top  text-center" data-title="Dataset stats"   ng-click="showStatsModal(docs.statsfields,docs.statsvalues)">
+                    <i class="fa fa-bar-chart tile_icon"></i>
+                   </a>
+                <a ng-if="docs.datasetstage=='Released'"  class ="col-md-2 titip-top  text-center" data-title="Download" ng-href="/dcic/api/download?path={{docs.path | ftppath}}&file={{docs.datasetid}}.tar.gz">
+                    <i class="fa fa-download tile_icon">
+                    </i></a>
+                <div ng-if="docs.endpoints.toString()==='percentControl'">
+                    <a class="col-md-2 titip-top text-center" data-title="Word cloud" ng-href="WordCloud/{{docs.datasetid}}/{{docs.endpoints.toString()}}" >
+                        <img class="list-image" ng-src="images/WordCloud.png"/>
+                    </a>
+                <span ng-if="docs.endpoints.toString()==='percentControl'">
+                <a class="col-md-2 titip-top text-center" data-title="Pack cloud" ng-href="Packcloud/{{docs.datasetid}}/{{docs.endpoints.toString()}}" >
+                    <img class="list-pack" ng-src="images/packlayout.png"/>
+                </a>
+                </span>
+                </div>
+                <span ng-if="docs.ilincs">
+                <a  class="col-md-2 titip-top text-center" data-title="Analyse using ilincs" ng-href="http://eh3.uc.edu/GenomicsPortals/DatasetLandingPage.do?data_set={{docs.datasetid}}" target="_blank" >
+                    <i class="fa fa-cog text-warning list-ilincs" ></i>
+                </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'pagination.html'"></div>
+</div>

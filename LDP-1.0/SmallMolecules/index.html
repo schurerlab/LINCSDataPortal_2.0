@@ -1,0 +1,84 @@
+<!DOCTYPE html >
+<html ng-app="compounds" ng-controller="titleCtrl" >
+<meta>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet" type="text/css">
+	<link href="http://localhost:8080/SmallMolecules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://localhost:8080/SmallMolecules/styles/core.css"/>
+	<link rel="stylesheet" href="http://localhost:8080/SmallMolecules/components/facet/facet.css"/>
+	<link href="http://localhost:8080/SmallMolecules/components/nav/navbar.css" rel="stylesheet" >
+	<link href="http://localhost:8080/SmallMolecules/components/footer/footer.css" rel="stylesheet" >
+	<link href="http://localhost:8080/SmallMolecules/components/datasetLandingPages/header/header.css" rel="stylesheet" >
+	<link href="http://localhost:8080/SmallMolecules/libs/bootstrap-additions/dist/bootstrap-additions.min.css" rel="stylesheet" >
+	<link href="http://localhost:8080/SmallMolecules/libs/angularjs-toaster/toaster.min.css" rel="stylesheet" >
+	<link href="http://localhost:8080/SmallMolecules/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+	<link href="http://localhost:8080/SmallMolecules/libs/ladda/dist/ladda-themeless.min.css" rel="stylesheet" >
+	<link href="http://localhost:8080/SmallMolecules/libs/angular-tour/introjs.css" rel="stylesheet" >
+	<link href="http://localhost:8080/SmallMolecules/styles/titip.min.css" rel="stylesheet" >
+	<link rel="stylesheet" href="http://localhost:8080/SmallMolecules/libs/angucomplete-alt/angucomplete-alt.css"/>
+	<link rel="stylesheet" href="http://localhost:8080/SmallMolecules/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" type="text/css"/>
+	<link rel="stylesheet" href="http://localhost:8080/SmallMolecules/libs/angular-chart.js/dist/angular-chart.css"/>
+	<link rel="icon"   href="http://localhost:8080/SmallMolecules/images/ldp_logo.png" type="image/x-icon">
+	<link rel="shortcut icon" href="http://localhost:8080/SmallMolecules/images/ldp_logo.png" type="image/x-icon">
+	<title>{{ Page.title() }}</title>
+	<meta name="description" content="Search for Small Molecules used in lincs datasets "/>
+	<meta name="keywords"  content = {{Page.keywords()}} />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link type="text/css" rel="stylesheet" href="http://localhost:8080/SmallMolecules/gui/css/editor.min.css" media="screen" />
+	<base href="/SmallMolecules/">
+</head >
+
+<body >
+<nav-bar></nav-bar>
+<div class="main-content" >
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-67731314-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<div ng-include="'components/feedback/feedback.html'"></div>
+	<div ng-view> </div>
+	</div >
+<foot-bar></foot-bar>
+<script src="http://localhost:8080/SmallMolecules/js/lib/jquery-1.9.1.min.js"></script>
+<script src="http://localhost:8080/SmallMolecules/js/webservices.js"></script>
+<script src="http://localhost:8080/SmallMolecules/js/util.js"></script>
+<script src="http://localhost:8080/SmallMolecules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="http://localhost:8080/SmallMolecules/libs/angular/angular.min.js" ></script >
+<script src="http://localhost:8080/SmallMolecules/libs/angular-resource/angular-resource.min.js" ></script >
+<script src="http://localhost:8080/SmallMolecules/libs/angular-animate/angular-animate.min.js" ></script >
+<script src="http://localhost:8080/SmallMolecules/libs/angular-route/angular-route.js"></script>
+<script src="http://localhost:8080/SmallMolecules/libs/angular-strap/dist/angular-strap.min.js" ></script >
+<script src="http://localhost:8080/SmallMolecules/libs/angular-strap/dist/angular-strap.tpl.min.js" ></script >
+<script src="http://localhost:8080/SmallMolecules/libs/ui-router/release/angular-ui-router.min.js" ></script >
+<script src="http://localhost:8080/SmallMolecules/ui-bootstrap-tpls-1.1.2.min.js" ></script >
+<script src="http://localhost:8080/SmallMolecules/libs/chart.js/dist/Chart.min.js"></script>
+<script src="http://localhost:8080/SmallMolecules/libs/angular-chart.js/dist/angular-chart.js"></script>
+<script src="http://localhost:8080/SmallMolecules/libs/angular-smart-table/dist/smart-table.min.js"></script>
+<script src="http://localhost:8080/SmallMolecules/libs/angucomplete-alt/angucomplete-alt.js"></script>
+<script src="main.js" ></script >
+<script src="controllers/pageTitleCtrl.js" ></script >
+<script src="factories/datasetFactory.js" ></script >
+<script src="controllers/datasetCtrl.js" ></script >
+<script src="factories/detailsFactory.js" ></script >
+<script src="factories/pageTitleFactory.js" ></script >
+<script src="viewService.js" ></script >
+<script src="controllers/viewCtrl.js" ></script >
+<script src="routeConfig.js" ></script >
+<script src="components/facet/facetview.js" ></script >
+<script src="controllers/homeCtrl.js" ></script >
+<script src="controllers/homeSearchCtrl.js" ></script >
+<script src="components/searchBar/searchCtrl.js" ></script >
+<script src="datasetfilters.js" ></script >
+<script src="components/pagenation/pagination.js" ></script >
+<script src="components/structureSearch/structureCtrl.js" ></script >
+<script src="https://marvinjs.chemicalize.com/v1/b2454419f7a6424495b764ebfb3cab33/client-settings.js"></script>
+<script src="https://marvinjs.chemicalize.com/v1/client.js"></script>
+<script src="tooltipCtrl.js" ></script >
+</body >
+</html >

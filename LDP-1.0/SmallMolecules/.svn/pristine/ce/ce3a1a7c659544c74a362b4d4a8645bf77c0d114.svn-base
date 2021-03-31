@@ -1,0 +1,63 @@
+/**
+ * Created by akoleti on 3/8/16.
+ */
+app.service('ViewService', function (DatasetDetails,$location,$window) {
+    var self = {
+        'limit':10,
+        'skip':0,
+        'gototop': function () {
+            $window.scrollTo(0, 0)
+        },
+        'viewDatasetDetails': function (term) {
+            self.gototop();
+            temp= "lincsidentifier:"+term;
+            // self.datasetid=term;
+            DatasetDetails.get({verb: 'fetchmolecules', searchTerm: temp,limit: self.limit,skip:self.skip}, function (data) {
+                    self.datasetinfo=data.results.documents[0];
+                    self.name=data.results.documents[0].SM_Name;
+                    self.lsm=data.results.documents[0].lincsidentifier;
+                    self.loadSamples();
+                    self.loadDatasets();
+                    self.loadBioactivity();
+                    self.loadMoa();
+                    self.loadDrug();
+
+                }
+            )
+        },
+        'loadDatasets':function(){
+            clSearch="smlincsidentifier:"+"\""+self.lsm+"\"" ;
+            DatasetDetails.get({verb: 'fetchdata', searchTerm:clSearch ,limit:200,skip:self.skip,fields:'datasetname,datasetid,assayname,centerletter,centerurl,assaydesignmethod,biologicalbucket'}, function (data) {
+                self.totalDatasets = data.results.totalDocuments;
+                self.clDatasets = data.results.documents;
+            })
+        },
+        'loadMoa':function(){
+            clSearch=self.lsm ;
+            DatasetDetails.get({verb: 'mechanismOfAction', id:clSearch }, function (data) {
+                self.moa = data.documents;
+            })
+        },
+        'loadDrug':function(){
+            clSearch=self.lsm ;
+            DatasetDetails.get({verb: 'drugindication', id:clSearch }, function (data) {
+                self.drug = data.documents;
+            })
+        },
+        'loadSamples':function(){
+            clSearch="lincsidentifier:"+"\""+self.lsm+"\"" ;
+            DatasetDetails.get({verb: 'fetchbatch', searchTerm:clSearch ,limit:200,skip:self.skip,fields:'SM_Center_Sample_ID,SM_Center_Compound_ID,SM_Provider,SM_Provider_Catalog_ID,SM_SMILES_Batch'}, function (data) {
+                self.samples = data.results.documents;
+            })
+        },
+        'loadBioactivity':function(){
+            clSearch=self.lsm ;
+            DatasetDetails.get({verb: 'bioactivity', id:clSearch }, function (data) {
+                self.bioactivity = data.documents;
+            })
+        }
+    }
+
+
+    return self;
+});

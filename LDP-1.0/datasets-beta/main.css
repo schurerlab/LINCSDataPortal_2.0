@@ -1,0 +1,313 @@
+.main-nav img {
+  width: 50px;
+  float: left;
+  margin-right: 10px; }
+
+h1 { width: 50%; margin: 100px auto; text-align: center; background: lightblue; color: white;}
+
+[ui-tour] > li {
+  display: none;
+}
+.active {
+  display: block !important;
+}
+.tour-overlay {
+  display: none;
+  height: 500px;
+  width: 500px;
+  top: -4100px;
+  left: -4100px;
+  background: transparent;
+  border-radius: 8000px;
+  border: 4000px solid rgba(0,0,0,.5);
+  position: fixed;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.tour-overlay.in {
+  height: 300px;
+  width: 300px;
+  top: -4000px;
+  left: -4000px;
+}
+/*.nav-logo{*/
+  /*max-height: 70px;*/
+  /*margin-right: 0.5em;*/
+  /*margin-top: -1em*/
+/*}*/
+.nav-link{
+  color: white;
+}
+.td-mar-right{
+  margin-right: 1em
+}
+.td-pa-bottom{
+  padding-bottom: 1em;
+}
+.nav-cart{
+  margin-top:10px;
+  margin-right:20px
+}
+.nav-cart-count{
+  font-size: xx-small
+}
+.add-tocart{
+  color: white;
+  margin-left: 0.5em;
+}
+.td-width{
+  width: 20%;
+}
+.default-marign{
+  margin-top: 2em;
+}
+.download-margin{
+  margin-bottom: 1em
+}
+
+.tabs-margin{
+  margin-top: -1em;
+}
+.default-left{
+  margin-left:2em;
+}
+.data-button{
+  margin-left: 0.5em;
+}
+.list-image{
+  max-height: 1em;
+}
+.list-pack{
+ max-height: 1.3em;
+}
+.list-ilincs{
+  margin-left: 0.2em;
+  font-size: 1.3em;
+}
+.table-datasetname{
+  width: 30%;
+}
+.table-width{
+  width: 10%;
+}
+.data-panel{
+  margin-top: 1em;
+}
+.details-margin{
+  margin-top: -1.8em;
+}
+.popover {
+  position: absolute;
+  z-index: 100;
+}
+
+title.tip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.form-control {
+  height: 50px;
+  border: 1px solid #3593b1;
+
+}
+
+.logo{
+  max-width: 160px;
+  margin-left: 5em;
+  margin-bottom: 1em;
+}
+
+
+.listcenterimage{
+ max-width: 70px;
+}
+.filters-list {
+  background-color: #e6e6e6;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  border-radius: 1.5em;
+  margin-right: 8px;
+  display: inline-block;
+  margin-bottom: 3px;
+}
+.active-page{
+  background-color: #002a80;
+}
+.pannel-list-head{
+  padding: 1px 15px;
+}
+.small-box{
+  border: groove thin beige ;
+  padding: 5px;
+}
+.add {
+  display: inline-block;
+  background: url('http://life.ccs.miami.edu/life/web/images/add.png') no-repeat;
+  height: 32px;
+  width: 32px;
+  float: left;
+
+}
+.add-button {
+  display: inline-block;
+  /*background: url('images/Add_button.png') no-repeat;*/
+  height: 20px;
+  width: 22px;
+  float: left;
+  background-color: orange;
+}
+
+.tile{
+  margin-left: 1em;
+}
+.tile_header{
+  background-color: #CFD8DC;
+  height: 30px;
+  font-size: 0.5em;
+  align-content: center;
+}
+@media only screen
+and (min-device-width: 205px)
+and (max-device-width: 667px) {
+  div.deck-container {
+    position: relative;
+  }
+}
+
+@media only screen
+and (min-device-width: 667px)
+and (max-device-width: 4600px) {
+  div.deck-container {
+    position: relative;
+  }
+
+  div.deck-container li {
+    width: 170px;
+    min-height: 190px;
+    margin-left: 8px;
+    margin-top: 8px;
+    background-color: #fff;
+    position: relative;
+    border: 1px solid darkgray;
+    display: inline-block;
+    -webkit-transition: all 500ms ease-out 100ms;
+    -moz-transition: all 500ms ease-out 100ms;
+    -o-transition: all 500ms ease-out 100ms;
+    transition: all 500ms ease-out 100ms;
+  }
+
+  .logo_grid {
+    /*margin-top: 5px;*/
+    margin-left: 2px;
+    width: 100px;
+    height: 25px;
+  }
+
+  .centerimage {
+    margin-top: 5px;
+    margin-left: 5px;
+    max-height: 20px;
+    max-width: 80px;;
+    margin-right: .1em;
+  }
+
+  .grid_tile_header {
+    background-color: #f0f0f0;
+    height: 44px;
+    align-content: center;
+  }
+
+  .table_header {
+    height: 40px;
+    font-size: 1em;
+    align-content: center;
+  }
+
+  .tile_icon {
+    margin-left: 5px;
+    color: #09505b;
+    font: normal normal normal 1em/1 FontAwesome
+  }
+
+  .external_icon {
+    color: #09505b;
+    font: normal normal normal 1em/1 FontAwesome
+  }
+
+  .tile_text {
+    font-size: 1em;
+    margin-left: 5px;
+  }
+}
+
+.sidebar-badge {
+  font-weight: bold;
+  color: #286090;
+}
+.panel-body {
+  padding: 5px;
+}
+table {
+  /*table-layout: fixed;*/
+  /*word-wrap: break-word;*/
+}
+/*body {*/
+  /*padding-top: 50px; }*/
+
+.main-content {
+  padding: 40px 15px; }
+
+.spinner {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  padding: 40px 0; }
+  .spinner p {
+    margin-top: 20px; }
+
+.table tr td {
+  vertical-align: middle; }
+.table tr > td:first-child {width:3%;}
+
+.modal-backdrop.am-fade {
+  opacity: .5;
+  transition: opacity .15s linear; }
+.modal-backdrop.am-fade.ng-enter {
+  opacity: 0; }
+.modal-backdrop.am-fade.ng-enter.ng-enter-active {
+  opacity: .5; }
+.modal-backdrop.am-fade.ng-leave {
+  opacity: .5; }
+.modal-backdrop.am-fade.ng-leave.ng-leave-active {
+  opacity: 0; }
+
+.sortables {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle; }
+  .sortables span:first-child {
+    position: absolute;
+    top: 0; }
+  .sortables span:last-child {
+    position: absolute;
+    bottom: 0; }
+  .sortables span {
+    color: lightgray;
+    font-size: 18px; }
+  .sortables span:hover {
+    color: #002a80; }

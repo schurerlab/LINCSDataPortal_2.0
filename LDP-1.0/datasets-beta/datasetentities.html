@@ -1,0 +1,29 @@
+<div id="entities" class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default" style="margin-top: 1em">
+        <div class="panel-heading">Entities
+        </div>
+        <uib-tabset>
+            <uib-tab ng-repeat="tab in viewData.tabs" heading="{{tab | rename}}" ng-click="viewData.loadGrid(tab)" ></uib-tab>
+            <table id="table" style="margin-top: 0.5em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+                <tr >
+                    <td data-title={{keys }} ng-repeat="keys in viewData.fieldkeys">{{keys }}</td>
+                </tr>
+                <tbody>
+                <tr ng-repeat="docs in viewData.gridData">
+                    <td data-title={{keys }} ng-repeat="keys in viewData.fieldkeys" ng-if="keys=='entityName'"><a
+                            ng-href="/entities/#/view/{{docs.lincsidentifier.toString()}}">{{docs[keys].toString()}}</a>
+                    </td>
+                    <td data-title={{keys }} ng-repeat="keys in viewData.fieldkeys" ng-if="keys!='entityName'">
+                        {{docs[keys].toString()}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div  ng-if="viewData.gridDataTotal>10">
+                <uib-pagination total-items="viewData.gridDataTotal" ng-model="entityPage" ng-click="detailsCurrentPage(entityPage)" max-size="10" class="col-md-12" boundary-link-numbers="true" rotate="false">
+                </uib-pagination>
+            </div>
+        </uib-tabset>
+
+    </div>
+</div>

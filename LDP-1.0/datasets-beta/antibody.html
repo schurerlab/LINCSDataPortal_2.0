@@ -1,0 +1,59 @@
+<main ng-controller="antibodyCtrl">
+    <div class="row">
+        <span class="col-sm-3 pull-left">
+            <form ng-submit="abSearch(searchString) ">
+                <input ng-model="searchString" type="text" class="form-control input-sm" style="height: 39px;margin-left: -1.6em;border-color: #AF6385" placeholder="Search here...">
+            </form>
+        </span>
+    </div>
+    <table ng-init="viewData.loadAt()" id="table" style="margin-top: 0.5em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+        <tr >
+            <th  class="antibody">Name</th>
+            <th   class="antibody">LINCS ID</th>
+
+        </tr>
+        <tbody>
+        <tr ng-repeat="docs in viewData.anti">
+            <td>{{docs.entityName.toString()}}
+            </td>
+            <td>{{docs.lincsidentifier.toString()}}
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="pagenation_matgin">
+    <span class="pull-right">
+            Showing {{viewData.abSkip+1}} to <span ng-if="viewData.antiTotal<5">{{viewData.antiTotal}} </span>
+            <span ng-if="viewData.antiTotal>5">
+            {{viewData.abLimit+viewData.abSkip}}</span> of {{viewData.antiTotal}} Antibodies's
+    </span>
+        <uib-pagination items-per-page=5 total-items="viewData.antiTotal" ng-model="entityPage" style="margin-top: 1px"
+                        ng-click="abPagination(entityPage)" max-size="9" class="col-md-6 pull-right"
+                        boundary-link-numbers="true" rotate="false">
+        </uib-pagination>
+
+    </div>
+</main>
+
+
+<!--<table ng-init="viewData.loadAt()" id="table" style="margin-top: 0.5em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">-->
+    <!--<tr >-->
+        <!--<th  class="antibody">Name</th>-->
+        <!--<th   class="antibody">LINCS ID</th>-->
+
+    <!--</tr>-->
+    <!--<tbody>-->
+    <!--<tr ng-repeat="docs in viewData.anti">-->
+        <!--<td>{{docs.entityName.toString()}}-->
+        <!--</td>-->
+        <!--<td>{{docs.lincsidentifier.toString()}}-->
+        <!--</td>-->
+
+    <!--</tr>-->
+    <!--</tbody>-->
+<!--</table>-->
+<!--<div class="pagenation_matgin" ng-if="viewData.antiTotal>10" class="center-block">-->
+    <!--<uib-pagination total-items="viewData.antiTotal" ng-model="entityPage" ng-click="detailsCurrentPage(entityPage)" max-size="10" class="col-md-12" boundary-link-numbers="true" rotate="false">-->
+    <!--</uib-pagination>-->
+<!--</div>-->

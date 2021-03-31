@@ -1,0 +1,81 @@
+<div class="tab-pane active row">
+    <div class="container fluid">
+        <div class="text-center" >
+            <span ng-repeat="cat in viewData.tabs">
+                     <img src="images/{{cat}}.png" class="category-image">
+                <b ng-class="cat" class="between-category">{{viewData.datasetinfo.statsvalues[$index]}} {{cat | rename}}</b>
+            </span>
+        </div>
+    </div>
+    <br>
+
+    <div class="container" ng-repeat="btnColor in viewData.tabs">
+        <div >
+            <button class="btn pull-left" ng-class="btnColor+'-button'" >
+                <b class="btn-heading">{{btnColor | rename}}</b>
+            </button>
+
+            <a ng-if="btnColor=='smallmolecule'" ng-href="/dcic/api/SmDownload?searchTerm=%22{{viewData.datasetid}}%22">
+                <button class="btn pull-right btn-default">
+                    <i class="fa fa-download download-icon" ></i>Download</button>
+            </a>
+            <a ng-if="btnColor!='smallmolecule'" ng-href="/dcic/api/Results?searchTerm=%22{{viewData.datasetid}}%22&category={{btnColor | downladRename}}">
+                <button class="btn pull-right btn-default">
+                <i class="fa fa-download download-icon" ></i>Download</button></a>
+            <div ng-include="btnColor+'.html'"></div>
+            <!--<br>-->
+            <!--<br>-->
+        </div>
+    </div>
+    <div class="container" ng-if="viewData.conc">
+        <div >
+            <button class="btn pull-left antibody-button" >
+                <b class="btn-heading">Experimental Metadata</b>
+            </button>
+            <br>
+            <br>
+            <div ng-if="viewData.datasetinfo.concentrations">
+                <div class="col-sm-2">
+                    <b>Concentration(uM):</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.concentrations.toString()}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div  ng-if="viewData.datasetinfo.timepoints != undefined">
+                <div class="col-sm-2">
+                    <b>Timepoints(hr):</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.timepoints.toString()}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div ng-if="viewData.datasetinfo.expentimentalcomments != undefined">
+                <div class="col-sm-2">
+                    <b>Comments:</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.expentimentalcomments.toString()}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+</div>

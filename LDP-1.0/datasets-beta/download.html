@@ -1,0 +1,26 @@
+<div class="main-page-content" ng-controller="DownloadController">
+    <div class="row" ng-show="showflag">
+        <div class="col-md-10 col-md-offset-1" >
+            <h2 class="text-center text-primary">It takes few seconds to prepare your file. You can bookmark this page and come back to get the file in next 24 hours</h2>
+        </div>
+        <div class="default-marign">
+            <p us-spinner="{radius:20, width:10, length: 10, lines:9}" ></p >
+        </div>
+    </div >
+    <div  ng-hide="showflag">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1" >
+                <h2 class="text-center text-success">Congrats! Your download file with selected datasets is ready</h2>
+            </div>
+        </div>
+        <div class="row" class="default-marign">
+            <div class="col-md-10 col-md-offset-1 text-center" >
+                <a  ng-href="/dcic/api/download?path=Bulk_Download&file={{filename}}">
+                    <button class="btn btn-primary btn-lg"  type="submit" >Download</button ></a>
+            </div>
+        </div>
+    </div >
+</div>
+<div class="page-padding">
+
+</div>

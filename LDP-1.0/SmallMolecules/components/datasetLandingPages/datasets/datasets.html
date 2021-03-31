@@ -1,0 +1,166 @@
+<div class="tab-pane active row col-md-offset-1" >
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Biological Datasets</h2>
+            <div class="col-md-8 col-sm-3 col-xs-4" ng-if="viewData.totalDatasets==0">
+                <div class="text-center">
+                    <h1>No associated datasets</h1>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-4" ng-if="viewData.totalDatasets>0">
+                <h5 class="text-center">By Area of Study</h5>
+                <canvas id="base"  class="chart-doughnut"
+                        chart-data="viewData.datasetinfo.subject_area_count"   chart-labels="viewData.datasetinfo.subject_area" chart-options="options2" chart-colours ="colours" chart-dataset-override="override">
+                </canvas>
+            </div>
+            <div class="col-md-2 col-sm-3  col-xs-4 col-md-offset-1" ng-if="viewData.totalDatasets>0">
+                <h5 class="text-center">By Cells</h5>
+            <canvas id="cl"  class="chart-doughnut"
+                        chart-data="viewData.datasetinfo.cells_count"   chart-labels="viewData.datasetinfo.cells" chart-options="options2" chart-colours ="colours" chart-dataset-override="override">
+            </canvas>
+            </div>
+            <div class="col-md-1 col-sm-3">
+            </div>
+            <div class="col-md-3 col-sm-3  col-xs-4">
+                <img style="max-height: 15rem" class="center img-responsive" ng-src="http://life.ccs.miami.edu/life/web/images/sm-images/400/{{viewData.datasetinfo.lincsidentifier.toString()}}.png">
+                <div class="row">
+                <div style="margin-left: 5em">
+                <span>Find Similar Structures</span> <span class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Similarity Search <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                <li><button class="btn btn-primary" ng-click="submitSmiles(viewData.datasetinfo.SM_SMILES_Parent,'similarity','0.8')">80% Similar Molecules</button></li>
+                <li><button class="btn btn-primary" ng-click="submitSmiles(viewData.datasetinfo.SM_SMILES_Parent,'similarity','0.5')">50% Similar Molecules</button></li>
+                <li><button class="btn btn-primary" ng-click="submitSmiles(viewData.datasetinfo.SM_SMILES_Parent,'similarity','0.3')">30% Similar Molecules</button></li>
+                </ul>
+                </span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="viewData.totalDatasets>0">
+        <div class="col-md-10 pull-left">
+            <h2>Data Provided by Centers </h2>
+            <table id="ta" style="margin-top: 1em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+                <tr >
+                    <th   class="smallmolecule" style="width: 10%">Dataset ID</th>
+                    <th   class="smallmolecule" >Center</th>
+                    <th  class="smallmolecule" >Center Sample ID</th>
+                    <th   class="smallmolecule" >Center Compound ID</th>
+                    <th   class="smallmolecule" >Provider</th>
+                    <th   class="smallmolecule" >Provider Catalog ID</th>
+                </tr>
+                <tbody>
+                <tr ng-repeat="docs in viewData.samples">
+                    <td >
+                        <div ng-repeat="datasets in docs.datasets">
+                           <a ng-href="/datasets/#/view/{{datasets}}">{{datasets}}</a>
+                            <span ng-if="!$last">, </span></div>
+                    </td>
+                    <td><div ng-repeat="source in docs.source">{{source}}</div>
+                    </td>
+                    <td ng-if="docs.SM_Center_Sample_ID != undefined"> {{docs.SM_Center_Sample_ID.toString()}}
+                    </td>
+                    <td ng-if="docs.SM_Center_Sample_ID != undefined">{{docs.SM_Center_Compound_ID.toString()}}
+                    </td>
+                    <td ng-if="docs.SM_Center_Sample_ID != undefined">
+                        {{docs.SM_Provider.toString()}}
+                    </td>
+                    <td ng-if="docs.SM_Center_Sample_ID != undefined">
+                        {{docs.SM_Provider_Catalog_ID.toString() }}
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-10" ng-if="viewData.totalDatasets>0">
+          <h2>Participated in: <span>{{viewData.totalDatasets}} Datasets</span></h2>
+        <table id="table" style="margin-top: 1em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+            <tr >
+                <th  class="smallmolecule" style="width: 40%">Name</th>
+            <th   class="smallmolecule" style="width: 10%">Center</th>
+            <th   class="smallmolecule" style="width: 20%">Assay</th>
+            <th   class="smallmolecule" style="width: 20%">Method</th>
+            <th   class="smallmolecule" style="width: 10%">Subject Area</th>
+
+            </tr>
+            <tbody>
+            <tr ng-repeat="docs in viewData.clDatasets">
+                <td> <a class="data-button" ng-href="/datasets/#/view/{{docs.datasetid}}">{{docs.datasetname}}</a>
+                </td>
+                <td><a href="{{docs.centerurl.toString()}}"><img class="listcenterimage"
+                                                                       ng-src="images/{{docs.centerletter}}.png"/></a>
+                </td>
+                <td>
+                    {{docs.assayname.toString()}}
+                </td>
+                <td>
+                    <div ng-repeat="designmethod in docs.assaydesignmethod ">
+                    {{designmethod }}
+                    <br>
+                </div>
+                </td>
+                <td ><div>
+                    {{docs.biologicalbucket }}
+                    <br>
+                </div>
+                </td>
+
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-10" ng-if="viewData.totalDatasets==0">
+        <div class="text-center">
+            <h1>No associated datasets</h1>
+        </div>
+    </div>
+
+    <div id="cells" class="col-md-10" ng-if="viewData.totalCells>0">
+         <h2>Used in: <span>{{viewData.totalCells}} Cells</span></h2>
+        <table  style="margin-top: 1em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+            <tr >
+                <th  class="smallmolecule" style="width: 10%">Name</th>
+                <th   class="smallmolecule" style="width: 10%">Category</th>
+                <th   class="smallmolecule" style="width: 20%">Organ</th>
+                <th   class="smallmolecule" style="width: 20%">Disease</th>
+                <th   class="smallmolecule" style="width: 40%">Assays</th>
+
+            </tr>
+            <tbody>
+            <tr ng-repeat="docs in viewData.cells">
+                <td> <a class="data-button" ng-href="/cells/#/view/{{docs.LINCS_ID}}">{{docs.Name}}</a>
+                </td>
+                <td>
+                    {{docs.category}}
+                </td>
+                <td >
+                    {{docs.Organ}}
+                </td>
+                <td >
+                    {{docs.Disease.toString()}}
+                </td>
+                <td >
+                    {{docs.assays.toString()}}
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-10" ng-if="viewData.totalCells<1">
+            <h1>No associated Cells</h1>
+    </div>
+    <div ng-if="viewData.totalDatasets<7">
+    <div class="datasets-content">
+
+    </div>
+    </div>
+
+</div>

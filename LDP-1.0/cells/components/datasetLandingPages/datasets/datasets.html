@@ -1,0 +1,33 @@
+<div class="tab-pane active row col-md-offset-1" >
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Biological Datasets</h2>
+            <div class="col-md-2 col-sm-3 col-xs-4">
+                <h5 class="text-center">By Area of Study</h5>
+                <canvas id="base"  class="chart-doughnut"
+                        chart-data="viewData.datasetinfo.subject_area_count"   chart-labels="viewData.datasetinfo.subject_area" chart-options="options2" chart-colours ="colours" chart-dataset-override="override">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="datasets" class="col-md-10 pull-left">
+            <h2>Datasets </h2>
+
+                <div>
+                    <a   ng-repeat="datasets in viewData.datasetinfo.datasets " ng-href="/datasets/#/view/{{datasets}}" target="_blank"> {{datasets}}   <span ng-if="!$last">, </span> </a>
+                </div>
+        </div>
+    </div>
+    <div>
+        <div id="peturbagens" class="col-md-10 pull-left">
+            <h2>Small Molecules </h2>
+
+            <div>
+                <a   ng-repeat="datasets in viewData.datasetinfo.smallmolecules" ng-href="/SmallMolecules/view/{{datasets}}" target="_blank"> {{datasets}}   <span ng-if="!$last">, </span> </a>
+            </div>
+        </div>
+    </div>
+
+</div>

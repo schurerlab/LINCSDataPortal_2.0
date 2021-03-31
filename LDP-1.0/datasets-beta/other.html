@@ -1,0 +1,41 @@
+<main ng-controller="OtherCtrl">
+    <div class="row">
+        <span class="col-sm-3 pull-left">
+            <form ng-submit="orSearch(searchString) ">
+                <input ng-model="searchString" type="text" class="form-control input-sm" style="height: 39px;margin-left: -2em;border-color: #34495e" placeholder="Search here...">
+            </form>
+        </span>
+    </div>
+    <table ng-init="viewData.loadOr()"  style="margin-top: 0.5em;" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+        <tr>
+            <th   class="other" style="width: 20%">LINCS ID</th>
+            <th  class="other">Name</th>
+
+        </tr>
+        <tbody>
+        <tr ng-repeat="docs in viewData.or"  >
+            <td >{{docs.lincsidentifier.toString()}}</a>
+            </td>
+            <td>{{docs.entityName.toString()}} </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="pagenation_matgin" >
+        <span class="pull-right">
+            Showing {{viewData.orSkip+1}} to
+            <span ng-if="viewData.orTotal<5">{{viewData.orTotal}} </span>
+            <span ng-if="viewData.orTotal>5">
+                <span ng-if="viewData.orLimit+viewData.orSkip>viewData.orTotal">{{viewData.orTotal}}
+                </span>
+                <span ng-if="viewData.orLimit+viewData.orSkip<=viewData.orTotal"> {{viewData.orLimit+viewData.orSkip}}
+                </span>
+            </span>
+            of {{viewData.orTotal}} other Reagents
+        </span>
+        <uib-pagination items-per-page=5 total-items="viewData.orTotal" ng-model="entityPage" style="margin-top: 1px"
+                        ng-click="orPagination(entityPage)" max-size="9" class="col-md-6 pull-left"
+                        boundary-link-numbers="true" rotate="false">
+        </uib-pagination>
+
+    </div>
+</main>

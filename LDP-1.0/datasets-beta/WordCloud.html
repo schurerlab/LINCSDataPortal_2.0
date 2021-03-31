@@ -1,0 +1,17 @@
+<div ng-controller="WordCloudCtrl">
+<div class="row main-page-content" ng-show="spinner" >
+    <div  >
+        <h2 class="text-center text-primary jumbotron">It takes a few seconds to load the word cloud</h2>
+    </div>
+    <div class="default-marign">
+        <p us-spinner="{radius:20, width:10, length: 10, lines:9}" ></p >
+    </div>
+    <div class="main-page-content" style="margin-bottom: 20em" >
+    </div>
+</div >
+<div class="row main-page-content"  ng-hide="spinner" >
+    <h2 class="text-primary text-center jumbotron">The size of the words is based on the endpoint percent control </h2>
+
+    <div class="col-md-offset-1" id="Wordcloud"></div>
+</div>
+</div>

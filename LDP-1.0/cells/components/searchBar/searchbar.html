@@ -1,0 +1,35 @@
+<div class="col-md-12" >
+    <form ng-controller="SearchCtrl">
+        <div class="form-group " >
+            <angucomplete-alt
+                    placeholder="Search assays, cell lines, and perturbagens..."
+                    remote-url="/dcic/api/datasetsuggest?facet=assayname,cellline,differentiatediPSC,iPSC,primarycell&searchTerm="
+                    pause="100"
+                    remote-url-data-field="suggestTerms"
+                    title-field="label"
+                    description-field="type"
+                    minlength="2"
+                    selected-object="searchWithSuggest"
+                    override-suggestions="true"
+                    match-class="highlight"
+                    clear-selected = "true"
+                    input-class="form-control form-control-small"
+                    match-class="highlight">
+            </angucomplete-alt>
+        </div >
+    </form >
+    <div ng-if=datasets.selected.length !== 0>
+        <i class="fa fa-filter fa-2x"></i>
+        Filtered by:
+            <span class='filters-list' ng-repeat="items in datasets.selectedItems" ng-click="datasets.elements(items.label,'', datasets.selected, items.type)">
+                <bold>{{items.label}}</bold>
+                <em>({{items.type}})</em>
+                <i class="fa fa-remove text-danger"></i>
+            </span>
+            <span class='filters-list text-danger' ng-click="datasets.clearAll()">
+                <bold>clear all</bold>
+                <i class="fa fa-remove text-danger"></i>
+            </span>
+    </div>
+
+</div>

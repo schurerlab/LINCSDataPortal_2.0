@@ -1,0 +1,99 @@
+<div class="col-md-12">
+    <div class="panel panel-default" ng-repeat="docs in datasets.documents">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-1" >
+                <div class="list-heading">
+                    <a class="text-left" ng-href="#/view/{{docs.LINCS_ID.toString()}}">{{docs.Name[0]}}</a>
+                </div>
+                <div class="list-font">
+                    <b >Synonyms</b>: {{docs.alternative_names[0]}}
+                </div>
+                <div ng-if="docs.organism" class="list-font">
+                    <b>Organism</b>: {{docs.organism[0]}} 
+                    <span style="margin-left: 1rem"> 
+                        <label class="label label-warning">                                 Explore 
+                            <a  style="color: whitesmoke" ng-href="/cells/#/catalog?query=organism:{{docs.organ[0]}}"> 
+                                <i class="fa fa-external-link" aria-hidden="true"></i> 
+                            </a> 
+                        </label> 
+                    </span>
+                </div>
+                <div ng-if="docs.organ" class="list-font"> <b>Organ</b>: {{docs.organ[0]}} 
+                    <span > 
+                        <label class="label label-warning"> 
+                            Explore 
+                            <a  style="color: whitesmoke" ng-href="/cells/#/catalog?query=organ:{{docs.organ[0]}}"> 
+                                <i class="fa fa-external-link" aria-hidden="true"></i> 
+                            </a> 
+                        </label> 
+                    </span> 
+                </div>
+                <div ng-if="docs.disease" class="list-font">
+                    <b>Disease</b>: {{docs.disease[0]}}
+                </div>
+
+
+                <div ng-if="docs.smallmolecules" class="list-font">
+                    <span><b>Perturbagens</b>: {{docs.sm_count}} Small Molecules used </span>
+                    <span role="group">
+                        <label class="label label-primary" ng-init="showme=false">
+                            Show
+                            <span><a  style="color: whitesmoke" ng-click="showme=true"><i ng-if="showme==false" class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                            <a  style="color: whitesmoke" ng-click="showme=false"><i ng-if="showme==true" class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                            </span>
+                        </label>
+                    </span>
+                    <span style="margin-left: 1rem">
+                            <label class="label label-warning">
+                                Explore
+                                <a  style="color: whitesmoke" ng-href="/cells/#/view/{{docs.lincsidentifier.toString()}}#perturbagens">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                                </a>
+                            </label>
+                    </span>
+                    <div ng-show="showme">
+                        <a ng-repeat="sm in docs.smallmolecules" ng-href="/SmallMolecules/catalog?query={{sm}}" target="_blank"> {{sm}}<span ng-if="!$last">,  </span> </a>
+                    </div>
+
+                </div>
+                <div ng-if="docs.datasets" class="list-font">
+                    <span><b>Datasets</b>: Used in {{docs.datasets.length}} Datasets </span>
+
+                    <span role="group">
+                        <label class="label label-primary" ng-init="showdatasets=false">
+                            Show
+                            <a  style="color: whitesmoke" ng-click="showdatasets=true"><i ng-if="showdatasets==false" class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                            <a  style="color: whitesmoke" ng-click="showdatasets=false"><i ng-if="showdatasets==true" class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                        </label>
+                    </span>
+                    <span style="margin-left: 1rem">
+                            <label class="label label-warning">
+                                Explore
+                                <a  style="color: whitesmoke" ng-href="view/{{docs.lincsidentifier.toString()}}#datasets">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                                </a>
+                            </label>
+                    </span>
+                    <div ng-show="showdatasets">
+                        <a   ng-repeat="datasets in docs.datasets" ng-href="/datasets/#/view/{{datasets}}" target="_blank"> {{datasets}}   <span ng-if="!$last">, </span> </a>
+                    </div>
+                </div>
+                <div ng-if="docs.centers" class="list-font">
+                    <b>Center</b>: <span ng-repeat="cen in docs.centers"> <img  style="max-width: 5em" src="images/{{cen}}.png"></span>
+
+                </div>
+                <div class="list-font">
+                    <b>External Links</b>:<span ng-if="docs.disease_detail"><a ng-href="{{docs.disease_detail[0]}}" target="_blank"> <img src="images/do.png" style="max-height: 1.5em;max-width: 5rem;"></a></span>  
+                </div>
+            </div>
+            <div class="col-md-3 hidden-xs" >
+                <canvas id="base" height="180rem" class="chart-horizontal-bar"
+                        chart-data="docs.subject_area_count"   chart-labels="docs.subject_area" chart-options="options2" chart-colours ="colours" chart-dataset-override="override">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div ng-if="datasets.totalDocuments > 10">
+        <div ng-include="'/SmallMolecules/components/pagenation/pagination.html'"></div>
+    </div>
+</div>

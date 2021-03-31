@@ -1,0 +1,84 @@
+<div class="container-fluid" ng-controller="HomeController">
+    <div class="row" >
+
+        <div class="col-md-8 col-md-offset-2" style="margin-top: 8rem">
+
+            <div class="row">
+
+                <div class="row">
+                    <div class="col-md-2 col-xs-2 col-sm-2"> <img class="img-responsive" src="images/cellline.png"/>  </div>
+                    <div class="col-md-9 home-margin"> <b style="font-size: 40px;"> Cells</b>
+                        <h3 style="width: auto;margin: 0%;background: none;color: grey"> Accelerate the discovery of novel therapeutics for precision medicine by unravelling LINCS cells annotations. </h3> </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div style="margin-top: 2em" class="col-md-8 col-md-offset-2"  >
+        <div ng-intro-options="IntroOptions" ng-intro-method="CallMe"
+             ng-intro-oncomplete="CompletedEvent" ng-intro-onexit="ExitEvent"
+             ng-intro-onchange="ChangeEvent" ng-intro-onbeforechange="BeforeChangeEvent"
+             ng-intro-onafterchange="AfterChangeEvent"
+             ng-intro-autostart="ShouldAutoStart">
+
+            <div>
+                <div>
+                    <form ng-controller="HomeSearchCtrl">
+                        <div class="form-group-lg">
+                            <angucomplete-alt
+                                    placeholder="Search assays, cell lines, and perturbagens..."
+                                    remote-url="/dcic/api/datasetsuggest?facet=assayname,cellline,differentiatediPSC,iPSC,primarycell&searchTerm="
+                                    pause="100"
+                                    remote-url-data-field="suggestTerms"
+                                    title-field="label"
+                                    title-header="type"
+                                    minlength="3"
+                                    selected-object="searchWithSuggest"
+                                    override-suggestions="true"
+                                    clear-selected = "true"
+                                    input-class="form-control form-control-small"
+                                    match-class="highlight">
+                            </angucomplete-alt>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div >
+        <div class="pull-right"><a href="/cells/#/catalog" style="margin: 0.5em"> Browse</a>   |   <a href="http://bd2k-lincs.org/#/about" style="margin: 0.5em">About </a>  |  <a href="/docs" style="margin: 0.5em">Help</a> </div>
+        <div class="row" style="margin-top: 2em">
+            <div class="col-md-4">
+                <h2>Search for Cells</h2>
+                <p>Search LINCS cells by generic names, synonyms, diseases and explore across LINCS datasets,  perturbagens and annotations.</p>
+                <p>Example search for <a href="/cells/#catalog?query=mcf7">mcf7</a> or explore more details through the Cell Landing Pages <a href="/cells/#/view/LCL-1460">"MCF7"</a>. A comprehensive list of generic names and synonyms are also stored and can be used as search terms.</p>
+            </div>
+            <div class="col-md-4">
+                <h2 >Explore Annotations</h2>
+                <p>Search can be performed by a wide set of annotations such as organs <a href="/cells/#/catalog?query=Organ:breast">Breast</a>,  Diseases <a href="/cells/#/catalog?query=Disease:melanoma">Melanoma</a>, Assays <a href="/cells/#/catalog?query=assays:Fluorescence%20imaging%20cell%20growth%20inhibition%20assay">Fluorescence imaging cell growth inhibition assay</a> and Small Molecules <a href="/cells/catalog?query=Enzastaurin">Enzastaurin</a>.   </p>
+            </div>
+            <div class="col-md-4">
+                <h2>Advanced Search</h2>
+                <p> Search also facilitates AND , OR , NOT queries. Some examples 1) find cells that are used in P100 and L1000 assays. 2) Find cells that are derived from Lung. </p>
+            </div>
+        </div>
+        <div class="row"  style="margin-top: 2em">
+            <h2>Statistics</h2>
+            <div class="col-md-6">
+                <h4>Cells by Disease</h4>
+                <canvas id="phase" class="chart-horizontal-bar"
+                        chart-data="phasevalues" chart-labels="phaselabels" >
+                </canvas>
+            </div>
+            <div class="col-md-6">
+                <h4>Cells by Organ</h4>
+                <canvas id="source" class="chart-horizontal-bar"
+                        chart-data="sourcevalues" chart-labels="source" >
+                </canvas>
+            </div>
+        </div>
+
+        <!--<div style="margin-top: 1em" class="text-center"> Software version: 300314 (<a ng-href="/SmallMolecules/notes">Notes</a>)</div>-->
+    </div>
+
+</div>

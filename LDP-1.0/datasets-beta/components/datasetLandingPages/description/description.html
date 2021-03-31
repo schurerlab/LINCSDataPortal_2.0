@@ -1,0 +1,275 @@
+<div class="tab-pane active row" ng-if="viewData.datasetinfo !=undefined">
+
+    <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+            <div >
+            <div class="col-sm-2">
+                <b>LINCS ID</b>
+
+
+            </div>
+            <div class="col-md-10 pull-left">
+                {{viewData.datasetinfo.datasetgroup.toString()}}:</span><span ng-repeat=" levels in viewData.datasetinfo.datasetlevels"> {{levels}}<span ng-if="!$last">, </span></span>
+            </div>
+            <div>
+                <div class="separator"></div>
+            </div>
+        </div>
+            <div>
+                <div class="col-sm-2">
+                    <b>Dataset Name</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.datasetname.toString()}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2">
+                    <b>Center</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    <a ng-href="{{viewData.datasetinfo.centerurl.toString()}}" target="_blank">{{viewData.datasetinfo.centerfullname.toString() | removeunderscore}}</a>
+                    <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2">
+                    <b>Principal Investigator</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.principalinvestigator.toString()}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div ng-if="viewData.datasetinfo.screeninglabinvestigator!=undefined">
+                <div class="col-sm-2">
+                    <b>Other Investigator</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.screeninglabinvestigator}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="col-sm-2 ">
+                    <b >Funding</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    <span ng-repeat="fund in viewData.funds">
+                        <a ng-href="https://projectreporter.nih.gov/project_description.cfm?projectnumber={{fund| removenih}}" target="_blank">{{fund}}</a>
+                    </span>
+                    <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2">
+                    <b >Description</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    <p>
+                        {{viewData.datasetinfo.description}}
+                    </p>
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div >
+                <div class="col-sm-2 ">
+                    <b class="titip-top" data-title="Link to the dataset source files" >Data Source</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    <a ng-href="{{viewData.datasetinfo.centerdatasetid.toString()}}" target="_blank">{{viewData.datasetinfo.centerdatasetid.toString()}}</a>
+                    <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+
+                </div>
+                <div>
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2 ">
+                    <b >Release Date</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.datereleased.toString() | date}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div ng-if="viewData.datasetinfo.pipeline != undefined">
+                <div class="col-sm-2 ">
+                    <b >Processing Pipeline</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left" ng-repeat="pp in viewData.datasetinfo.pipeline.split(';')" >
+
+
+                    <a ng-href="{{pp}}" target="_blank">{{pp}}</a>
+                    <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+
+            <div ng-if="viewData.datasetinfo.dockerized_container != undefined">
+                <div class="col-sm-2 ">
+                    <b >Dockerized Containers</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left" >
+
+
+                    <a ng-href="{{viewData.datasetinfo.dockerized_container}}" target="_blank">{{viewData.datasetinfo.dockerized_container}}</a>
+                    <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+
+            <div class="cite">
+                <div class="col-sm-2 ">
+                    <b >Citation</b>
+                </div>
+                <div class="col-md-10 pull-left">
+                     <div >
+                        <button class="btn btn-default btn-sm" ng-click="showCitation(viewData.datasetinfo.datasetgroup,'collection')" >Cite</button>
+                         <i>To cite a specific dataset / level go to the <a ng-href="#/view/{{viewData.datasetinfo.datasetgroup.toString()}}#downloaddataset">download tab</a></i>
+                     </div>
+                    <div> Export:
+                    <a class="label label-default  label-margin"   ng-click="bibtext(viewData.datasetinfo.datasetgroup.toString(),'bibtex')">BibTeX (.bib) </a>
+                    <a class="label label-default label-margin"   ng-click="ris(viewData.datasetinfo.datasetgroup.toString(),'ris','collection')">RIS (.ris) </a>
+                    <a class="label label-default label-margin"   ng-click="endnote(viewData.datasetinfo.datasetgroup.toString(),'enw','collection')">EndNote (.enw) </a>
+                    </div>
+
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div ng-if="viewData.datasetinfo.publication">
+                <div class="col-sm-2 ">
+                    <b >Publications</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                  PMID: <a ng-href="http://www.ncbi.nlm.nih.gov/pubmed/{{viewData.datasetinfo.publication}}" target="_blank">{{viewData.datasetinfo.publication}}</a>
+                    <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2 ">
+                    <b >Assay Name</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.assayname.toString() }}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2 ">
+                    <b >Assay Description</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    <p>
+                        {{viewData.datasetinfo.assayoverview.toString() }}
+                    </p>
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div >
+                <div class="col-sm-2 ">
+                    <b >Assay Protocol</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left" ng-if="viewData.datasetinfo.protocol !=undefined">
+                    <span ng-if="viewData.datasetinfo.protocol.includes('.pdf')">
+                       <a ng-href="/dcic/api/download?path=Protocols&file={{viewData.datasetinfo.datasetid.toString()}}_Protocol.pdf">
+                        <img src="/../datasets-beta/images/pdf.png"
+                             class="pdf_image"></a>
+                    </span>
+                    <span ng-if="viewData.datasetinfo.protocol.includes('https')" ><a ng-href={{viewData.datasetinfo.protocol}} target="_blank">{{viewData.datasetinfo.protocol}}</a></span>
+
+
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div class="cite">
+                <div class="col-sm-2 ">
+                    <b >Keywords</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                   <a ng-href="/datasets-beta/#?query=biologicalbucket:{{viewData.datasetinfo.biologicalbucket.toString() }}" target="_blank" class="link-white"> <span class="label label-danger"> {{viewData.datasetinfo.biologicalbucket.toString() }}</span></a>
+                    <a ng-href="/datasets-beta/#?query=assaydesignmethod:{{viewData.datasetinfo.assaydesignmethod.toString() }}"  target="_blank" class="link-white"> <span class="label label-danger">{{viewData.datasetinfo.assaydesignmethod.toString() }}</span></a>
+                    <a ng-href="/datasets-beta/#?query=biologicalprocess:{{viewData.datasetinfo.biologicalprocess.toString() }}"   target="_blank" class="link-white"> <span class="label label-danger">{{viewData.datasetinfo.biologicalprocess.toString() }}</span></a>
+                    <a ng-href="/datasets-beta/#?query=endpointcategorization:{{viewData.datasetinfo.endpointcategorization.toString() }}" target="_blank" class="link-white"><span class="label label-danger">{{viewData.datasetinfo.endpointcategorization.toString() }}</span></a>
+                    <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+
+
+        </div>
+    <br>
+        <div class="pull-right" style="font-size: small;color: darkgray">Last updated:June 29 2016</div>
+    </div>
+</div>

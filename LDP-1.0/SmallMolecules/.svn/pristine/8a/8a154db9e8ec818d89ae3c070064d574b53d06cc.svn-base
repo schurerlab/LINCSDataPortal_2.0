@@ -1,0 +1,46 @@
+/**
+ * Created by akoleti on 3/8/16.
+ */
+app.controller('DatasetListController', function ($scope, $window,$modal, DatasetService,$location) {
+
+    $scope.actbtn="list";
+    $scope.actviw="components/datasetSummayViews/listview.html";
+    $scope.datasets = DatasetService;
+    $scope.options={
+    scales: {
+        xAxes: [{barThickness:10,
+            ticks: {
+                beginAtZero:true,
+                min: 0,
+                max: 20
+            }
+        }],
+            yAxes:[{barThickness:20}]
+    } };
+    $scope.options2={
+        scales: {
+            xAxes: [{barThickness:10
+            }],
+            yAxes:[{barThickness:20}]
+        } };
+
+    $scope.viewdata= function(type){
+        $scope.actbtn=type;
+        if(type=='table'){
+            $scope.actbtn="table";
+            $scope.actviw="components/datasetSummayViews/tableview.html";
+        }else if(type=='tile'){
+            $scope.actbtn="tile";
+            $scope.actviw="components/datasetSummayViews/tileview.html";
+        }else if(type=='list'){
+            $scope.actbtn="list";
+            $scope.actviw="components/datasetSummayViews/listview.html";
+        }
+    }
+    if($location.search().query != null ){
+        var query = $location.search();
+        $scope.datasets.elements(query.query, '', $scope.datasets.selected, 'text');
+    }
+
+    
+});

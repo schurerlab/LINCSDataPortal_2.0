@@ -1,0 +1,14 @@
+<div id="citation"
+     class="modal"
+     role="dialog" >
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header" >
+<div>
+    <p>
+        {{viewData.datasetinfo.principalinvestigator.toString()}}: {{viewData.datasetinfo.datasetname}}, {{viewData.datasetinfo.datereleased.toString().substring(0,4)}}, LINCS ({{rtype}}), <a ng-href="http://identifiers.org/lincs.data/{{citeldsid}}">
+        http://identifiers.org/lincs.data/{{citeldsid}}</a>, <span ng-if="rtype=='dataset'"> {{version}}; </span>
+    <span> retrieved: {{date | date}} .</span>
+    </p>
+</div>
+                </div></div></div></div>

@@ -1,0 +1,52 @@
+<main ng-controller="GeneCtrl">
+    <div class="row">
+        <span class="col-sm-3 pull-left">
+            <form ng-submit="geSearch(searchString) ">
+                <input ng-model="searchString" type="text" class="form-control input-sm" style="height: 40px;margin-left: -1.6em;border-color: #EC4353" placeholder="Search here...">
+            </form>
+        </span>
+    </div>
+<table ng-init="viewData.loadGe()" id="table" style="margin-top: 0.5em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+    <tr >
+        <th  class="gene">Name</th>
+        <th   class="gene">Entrez ID</th>
+        <th   class="gene">Description</th>
+        <th   class="gene">Symbol</th>
+        <th   class="gene">Organism</th>
+    </tr>
+    <tbody>
+    <tr ng-repeat="docs in viewData.ge">
+        <td><a
+                ng-href="/entities/#/view/{{docs.lincsidentifier.toString()}}">{{docs.entityName.toString()}}</a>
+        </td>
+        <td><a
+                ng-href="http://www.ncbi.nlm.nih.gov/gene/?term={{docs.GENE_EntresID.toString()}}">{{docs.GENE_EntresID.toString()}}</a>
+        </td>
+        <td>{{docs.GENE_Description.toString()}}
+        </td>
+        <td>{{docs.GENE_Symbol.toString()}}
+        </td>
+        <td>{{docs.GENE_Organism.toString()}}
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="pagenation_matgin">
+        <span class="pull-right">
+            Showing {{viewData.geSkip+1}} to
+            <span ng-if="viewData.geTotal<5">{{viewData.geTotal}} </span>
+            <span ng-if="viewData.geTotal>5">
+                <span ng-if="viewData.geLimit+viewData.geSkip>viewData.geTotal">{{viewData.geTotal}}
+                </span>
+                <span ng-if="viewData.geLimit+viewData.geSkip<=viewData.geTotal"> {{viewData.geLimit+viewData.geSkip}}
+                </span>
+            </span>
+            of {{viewData.geTotal}} genes
+        </span>
+    <uib-pagination items-per-page=5 total-items="viewData.geTotal" ng-model="entityPage" style="margin-top: 1px"
+                    ng-click="gePagination(entityPage)" max-size="1" class="col-md-6 pull-left"
+                    boundary-link-numbers="true" rotate="false">
+    </uib-pagination>
+
+</div>
+</main>

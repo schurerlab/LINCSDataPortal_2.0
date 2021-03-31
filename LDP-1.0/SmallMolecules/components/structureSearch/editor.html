@@ -1,0 +1,14 @@
+
+<div id="marvin-test" style="width: 600px; height: 480px"></div>
+<button id="action-button" type="button">Click Me!</button>
+<script>
+	ChemicalizeMarvinJs.createEditor("#marvin-test").then(function (marvin) {
+		function showDialog() {
+			marvin.exportStructure("smiles").then(function (smiles) {
+				alert("Current molecule: " + smiles);
+			});
+		}
+
+		document.getElementById("action-button").addEventListener("click", showDialog);
+	});
+</script>

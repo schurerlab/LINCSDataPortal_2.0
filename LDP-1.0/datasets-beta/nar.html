@@ -1,0 +1,59 @@
+<main ng-controller="NarCtrl">
+    <!--<br>-->
+
+    <div class="row">
+        <span class="col-sm-3 pull-left">
+            <form ng-submit="narSearch(searchString) ">
+                <input ng-model="searchString" type="text" class="form-control input-sm" style="height: 39px;margin-left: -1.6em;border-color: #50B4E6" placeholder="Search here...">
+            </form>
+        </span>
+    </div>
+    <table ng-init="viewData.loadNar()" id="table" style="margin-top: 0.5em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+        <tr >
+            <th  class="gene">Name</th>
+            <th   class="gene">LINCS ID</th>
+            <th   class="gene">Type</th>
+            <!--<th   class="gene">Target Locus Species</th>-->
+            <th   class="gene">Transcript ID</th>
+            <th   class="gene">Provider Batch Id</th>
+            <th   class="gene">Subtype</th>
+            <th   class="gene">Gene ID</th>
+
+        </tr>
+        <tbody>
+        <tr ng-repeat="docs in viewData.nar">
+            <td><a
+                    ng-href="/entities/#/view/{{docs.lincsidentifier.toString()}}">{{docs.entityName.toString()}}</a>
+            </td>
+            <td>{{docs.lincsidentifier.toString()}}
+            </td>
+            <td>{{docs.na_type.toString()}}
+            </td>
+            <!--<td>{{docs.na_target_locus_species.toString()}}-->
+            <!--</td>-->
+            <td >{{docs.na_transcript_id.toString()}}</td>
+            <td >{{docs.na_provider_batch_id.toString()}}</td>
+            <td >{{docs.na_subtype.toString()}}</td>
+            <td >{{docs.na_target_gene_id.toString()}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="pagenation_matgin">
+        <span class="pull-right">
+            Showing {{viewData.narSkip+1}} to
+            <span ng-if="viewData.narTotal<5">{{viewData.narTotal}} </span>
+            <span ng-if="viewData.narTotal>5">
+                 <span ng-if="viewData.narLimit+viewData.narSkip>viewData.narTotal">{{viewData.narTotal}}
+                </span>
+                <span ng-if="viewData.narLimit+viewData.narSkip<=viewData.narTotal"> {{viewData.narLimit+viewData.narSkip}}
+                </span>
+            </span>
+             of {{viewData.narTotal}} cells
+        </span>
+        <uib-pagination items-per-page=5 total-items="viewData.narTotal" ng-model="entityPage" style="margin-top: 1px"
+                        ng-click="narPagination(entityPage)" max-size="9" class="col-md-6 pull-left"
+                        boundary-link-numbers="true" rotate="false">
+        </uib-pagination>
+
+    </div>
+</main>

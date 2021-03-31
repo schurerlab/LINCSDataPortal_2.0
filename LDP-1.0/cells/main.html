@@ -1,0 +1,28 @@
+<!--<link href="main.css" rel="stylesheet" >-->
+<div class="row main-page-content" >
+ <div ng-include="'components/facet/facetview.html'">
+
+ </div>
+
+<div class="col-md-9"  ng-controller="DatasetListController" >
+    <div ng-intro-options="IntroOptions" ng-intro-method="CallMe"
+         ng-intro-oncomplete="CompletedEvent" ng-intro-onexit="ExitEvent"
+         ng-intro-onchange="ChangeEvent" ng-intro-onbeforechange="BeforeChangeEvent"
+         ng-intro-onafterchange="AfterChangeEvent"
+         ng-intro-autostart="ShouldAutoStart">
+<toaster-container></toaster-container >
+
+<div>
+    <div  ng-include="'components/searchBar/searchbar.html'">
+
+    </div>
+    <div  ng-include="'components/mainPageControlls/buttunControlls.html'">
+
+    </div>
+    <div class="row container-fluid" >
+        <div ng-include=actviw ></div>
+    </div >
+    </div>
+
+</div >
+</div></div>

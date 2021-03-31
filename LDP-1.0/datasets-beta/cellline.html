@@ -1,0 +1,56 @@
+<main ng-controller="CellCtrl">
+    <!--<br>-->
+
+    <div class="row">
+        <span class="col-sm-3 pull-left">
+            <form ng-submit="clSearch(searchString) ">
+                <input ng-model="searchString" type="text" class="form-control input-sm" style="height: 39px;margin-left: -1.6em;border-color: #50B4E6" placeholder="Search here...">
+            </form>
+        </span>
+    </div>
+    <table ng-init="viewData.loadCell()" id="table" style="margin-top: 0.5em" class="table table-bordered table-hover table-condensed table-responsive container-fluid">
+        <tr >
+            <th  class="cellline">Name</th>
+            <th   class="cellline">LINCS ID</th>
+            <th   class="cellline">Disease</th>
+            <th   class="cellline">Organ</th>
+            <th   class="cellline">Provider</th>
+            <th   class="cellline">Provider Catalog ID</th>
+
+        </tr>
+        <tbody>
+        <tr ng-repeat="docs in viewData.cl">
+            <td><a
+                    ng-href="/entities/#/view/{{docs.lincsidentifier.toString()}}">{{docs.entityName.toString()}}</a>
+            </td>
+            <td>{{docs.CL_LINCS_ID.toString()}}
+            </td>
+            <td><a ng-href="{{docs.CL_Disease_Detail.toString()}}">{{docs.CL_Disease.toString()}}</a>
+            </td>
+            <td>{{docs.CL_Organ.toString()}}
+            </td>
+            <td >{{docs.CL_Provider_Name.toString()}}</td>
+            <td >{{docs.CL_Provider_Catalog_ID.toString()}}</td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="pagenation_matgin">
+        <span class="pull-right">
+            Showing {{viewData.clSkip+1}} to
+            <span ng-if="viewData.clTotal<5">{{viewData.clTotal}} </span>
+            <span ng-if="viewData.clTotal>5">
+                 <span ng-if="viewData.clLimit+viewData.clSkip>viewData.clTotal">{{viewData.clTotal}}
+                </span>
+                <span ng-if="viewData.clLimit+viewData.clSkip<=viewData.clTotal"> {{viewData.clLimit+viewData.clSkip}}
+                </span>
+            </span>
+             of {{viewData.clTotal}} cells
+        </span>
+        <uib-pagination items-per-page=5 total-items="viewData.clTotal" ng-model="entityPage" style="margin-top: 1px"
+                        ng-click="clPagination(entityPage)" max-size="9" class="col-md-6 pull-left"
+                        boundary-link-numbers="true" rotate="false">
+        </uib-pagination>
+
+    </div>
+</main>

@@ -1,0 +1,13 @@
+<div class="pull-left tile" >
+        <span  class="pull-right small-box">
+           Total Small Molecules: <span>{{datasets.totalDocuments}}</span>
+        </span>
+</div>
+<div class="pull-right td-pa-bottom td-mar-right" >
+    <button type="button" ng-class="{'btn-primary btn' :actbtn =='list' ,'btn-default btn':actbtn !='list'}" ng-click="viewdata('list')" aria-label="list">
+        <i class="fa fa-list"></i> List view</button>
+    <button type="button" ng-class="{'btn-primary btn' :actbtn =='table' ,'btn-default btn':actbtn !='table'}" ng-click="viewdata('table')" aria-label="table">
+        <i class="fa fa-table"></i> Table view</button>
+    <a type="button" class="btn-warning btn"  ng-href="/dcic/api/SmDownload?searchTerm={{datasets.searchTerm}}" aria-label="tile">
+        <i class="fa fa-download"></i> Download</a>
+</div>

@@ -1,0 +1,93 @@
+.nav-margin{
+  margin-left: 2em;
+  margin-right: 2em;
+}
+/*!*@media screen and (min-width: 480px) {*!*/
+  /*.title {*/
+    /*content: 'LINCS Data Portal';*/
+  /*}*/
+/*!*}*!*/
+.main-nav {
+  background-color: #3a5278;
+  border-radius: 0;
+  max-height: 4rem;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
+  width: 100%; }
+  .main-nav img {
+    width: 50px;
+    float: left;
+    margin-right: 10px; }
+
+
+  .active-bar{
+    border-bottom-color: grey;
+    color: wheat;
+  }
+@media screen and (min-width: 480px) {
+  .navbar-default .navbar-brand {
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+
+  .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    background-color: transparent;
+    color: #ddd;
+    text-decoration: none;
+  }
+}
+@media screen and (max-width: 580px) {
+  .navbar-default .navbar-brand {
+    font-size: 13px;
+    color: #fff;
+  }
+
+  .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    background-color: transparent;
+    color: #ddd;
+    text-decoration: none;
+  }
+}
+
+.navbar-default .navbar-nav > li > a {
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #fff; }
+  .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: transparent;
+    color: #ddd;
+    text-decoration: none; }
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+  color: #fff;
+  background-color: #3a5278; }
+
+/*.dropdown-menu > li > a {*/
+  /*display: block;*/
+  /*padding: 3px 20px;*/
+  /*padding-right: 20px;*/
+  /*padding-bottom: 3px;*/
+  /*clear: both;*/
+  /*font-weight: 400;*/
+  /*line-height: 1.42857143;*/
+  /*color: #fff;*/
+  /*background-color: #3a5278;*/
+  /*white-space: nowrap;*/
+/*}*/
+.nav-cart-btn{
+  margin-top: 0.5em;
+  margin-left: 1em;
+}
+.fa-2x{
+  font-size: 1.5em;
+}
+.nav-cart-count{
+  font-size: xx-small
+}
+
+.layer {
+  -webkit-filter: grayscale(70%);
+  filter: grayscale(70%)
+}
+/*# sourceMappingURL=navbar.css.map */

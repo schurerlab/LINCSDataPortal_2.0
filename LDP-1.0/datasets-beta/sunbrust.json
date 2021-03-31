@@ -1,0 +1,17 @@
+{
+  "flare": {
+    "Infectious And Parasitic Diseases": {
+      "Male": {
+        "Hispanic": {
+          "American Indian and Alaska Native": "red",
+          "Asian": "red",
+          "Black or African American": "red",
+          "Native Hawaiian and Other Pacific Islander": "blue",
+          "Other/Multiracial": "blue",
+          "Unknown": "blue",
+          "White or Caucasian": "green"
+        }
+      }
+    }
+  }
+}

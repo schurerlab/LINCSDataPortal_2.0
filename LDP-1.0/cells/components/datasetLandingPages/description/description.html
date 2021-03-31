@@ -1,0 +1,527 @@
+<div class="tab-pane active row" ng-if="viewData.datasetinfo !=undefined">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+            <div >
+                <div class="col-sm-2">
+                    <b>LINCS ID</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.LINCS_ID.toString()}}
+                </div>
+                <div>
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2">
+                    <b>Name</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.Name[0]}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div ng-if="viewData.datasetinfo.alternative_names.toString()!=undefined">
+                <div class="col-sm-2">
+                    <b>Alternative Names</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.alternative_names[0]}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div  ng-if="viewData.datasetinfo.alternative_ids.toString()!=undefined">
+                <div class="col-sm-2">
+                    <b>Alternative IDs</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.alternative_ids[0]}}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2">
+                    <b>Center</b>
+                </div>
+                <div class="col-md-10 pull-left">
+                    <div ng-repeat="aname in viewData.datasetinfo.source">
+                        <a>{{aname | removeunderscore }}</a>
+
+                    </div>
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2">
+                    <b>Center Specific ID</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    <div ng-repeat="aname in viewData.datasetinfo.center_canonical_id">
+                        <a>{{aname}}</a>
+
+                    </div>
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2 ">
+                    <b >LINCS Cell Classification</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    {{viewData.datasetinfo.category.toString() }}
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div ng-if="viewData.datasetinfo.category.toString()=='Differentiated Cell'">
+
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Cell Type</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.cell_type.toString() }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Cell Type Detail</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.cell_type_detail.toString() }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div ng-if="viewData.datasetinfo.category.toString()=='Primary Cell'">
+
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Cell Type</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.cell_type.toString() }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Cell Type Detail</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.cell_type_detail.toString() }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Growth Properties</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.growth_properties[0] }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Organism</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.organism[0] }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Tissue</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.tissue[0] }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Donor Age</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.donor_age.toString() }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Donor Sex</b>
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.donor_sex.toString() }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Health Status</b>
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        Healthy
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Disease</b>
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.disease[0] }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+
+
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Cell Provenance</b>
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        <a   ng-repeat="datasets in viewData.datasetinfo.cell_provenance  track by $index" ng-href="{{viewData.datasetinfo.cellprovenance_path[$index]}}&file={{viewData.datasetinfo.cellprovenance_file[$index]}}" target="_blank"> {{datasets}}   <span ng-if="!$last">, </span> </a>
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+                <div>
+                <div class="col-sm-2 ">
+                    <b >Clinical data</b>
+                </div>
+                <div class="col-md-10 pull-left">
+                    <a   ng-repeat="datasets in viewData.datasetinfo.clinicaldata  track by $index" ng-href="{{viewData.datasetinfo.clinicaldata_path[$index]}}&file={{viewData.datasetinfo.clinicaldata_file[$index]}}" target="_blank"> {{datasets}}   <span ng-if="!$last">, </span> </a>
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Sequencing</b>
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        <a   ng-repeat="datasets in viewData.datasetinfo.sequencing  track by $index" ng-href="{{viewData.datasetinfo.sequencing[$index]}}" target="_blank"> {{datasets}}   <span ng-if="!$last">, </span> </a>
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+            <div ng-if="viewData.datasetinfo.category.toString()=='Cell Line'">
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Cell Type</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.cell_type.toString() }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Organism</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+
+                       <span> <a ng-href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=9606&lvl=3&lin=f&keep=1&srchmode=1&unlock" target="_blank">{{viewData.datasetinfo.organism[0]}}</a></span>
+                        <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2">
+                        <b>Organ</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.organ.toString() }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Disease</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.disease.toString() }}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Disease_Detail</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        <a ng-href="{{viewData.datasetinfo.disease_detail[0] }}" target="_blank">{{viewData.datasetinfo.disease_detail[0] }}</a>
+                        <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="viewData.datasetinfo.category.toString()=='iPSC'">
+                <div>
+                    <div class="col-sm-2">
+                        <b>Primary Cell LINCS ID</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        <a ng-href="/cells/#/view/{{viewData.datasetinfo.precursor_cell_lincs_id.toString()}}">{{viewData.datasetinfo.precursor_cell_lincs_id.toString()}}</a>
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2">
+                        <b>Passaging Method</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.passaging_method.toString()}}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2">
+                        <b>Recommended Culture Conditions</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.recommended_culture_conditions.toString()}}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2">
+                        <b>Culture Conditions</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.culture_conditions.toString()}}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-2">
+                        <b>Reprogramming Method</b>
+
+
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        {{viewData.datasetinfo.reprogramming_method.toString()}}
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Sequencing</b>
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        <a   ng-repeat="datasets in viewData.datasetinfo.sequencing  track by $index" ng-href="{{viewData.datasetinfo.sequencing[$index]}}" target="_blank"> {{datasets}}   <span ng-if="!$last">, </span> </a>
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-sm-2 ">
+                        <b >Cell validation</b>
+                    </div>
+                    <div class="col-md-10 pull-left">
+                        <a   ng-repeat="datasets in viewData.datasetinfo.cellvalidation  track by $index" ng-href="{{viewData.datasetinfo.cellvalidation_path[$index]}}&file={{viewData.datasetinfo.cellvalidation_file[$index]}}" target="_blank"> {{datasets}}   <span ng-if="!$last">, </span> </a>
+                    </div>
+                    <div >
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div>
+                <div class="col-sm-2">
+                    <b>Provider</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    <div ng-repeat="aname in viewData.datasetinfo.provider_name">
+                        {{aname}}
+
+                    </div>
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2">
+                    <b>Provider Catalog</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left">
+                    <div ng-repeat="aname in viewData.datasetinfo.provider_catalog_id">
+                        {{aname}}
+
+                    </div>
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-2 ">
+                    <b >Assays</b>
+
+
+                </div>
+                <div class="col-md-10 pull-left" style="margin-bottom: 0.3em">
+                    <span ng-repeat="assay in viewData.datasetinfo.assays" >
+                        <span class="label label-default">{{assay }}</span>
+                    </span>
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+            <div class="cite">
+                <div class="col-sm-2 ">
+                    <b >Keywords</b>
+                </div>
+                <div class="col-md-10 pull-left">
+                   <span ng-if="viewData.datasetinfo.organ.toString() !=undefined"><a ng-href="/cells/#/catalog?query=organ:{{viewData.datasetinfo.organ[0] }}" target="_blank" class="link-white"> <span class="label label-danger"> {{viewData.datasetinfo.organ[0] }}</span></a></span>
+                    <span ng-if="viewData.datasetinfo.organism.toString() !=undefined"><a ng-href="/cells/#/catalog?query=organism:{{viewData.datasetinfo.organism[0] }}"  target="_blank" class="link-white"> <span class="label label-danger">{{viewData.datasetinfo.organism[0] }}</span></a></span>
+                    <span ng-if="viewData.datasetinfo.Disease.toString() !=undefined"> <a ng-href="/cells/#/catalog?query=disease:{{viewData.datasetinfo.disease[0] }}"   target="_blank" class="link-white"> <span class="label label-danger">{{viewData.datasetinfo.disease[0] }}</span></a></span>
+                    <span ng-repeat="assay in viewData.datasetinfo.assays">
+                        <a ng-href="/cells/#/catalog?query=assays:{{assay }}" target="_blank" class="link-white"><span class="label label-danger">{{assay }}</span></a>
+
+                    </span>
+                    <span class="titip-top" data-title="Opens link in a new tab"><i class="fa fa-external-link "   aria-hidden="true"></i></span>
+
+                </div>
+                <div >
+                    <div class="separator"></div>
+                </div>
+            </div>
+
+
+        </div>
+    <br>
+    </div>
+</div>

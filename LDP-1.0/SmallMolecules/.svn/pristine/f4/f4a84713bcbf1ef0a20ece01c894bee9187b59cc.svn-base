@@ -1,0 +1,109 @@
+<div class="tab-pane active row">
+    <div  ng-if="viewData.drug.length == 0 && viewData.moa.length == 0 && viewData.bioactivity.length == 0" class="col-md-10 col-md-offset-1"  >
+
+        <h1>No Available BioActivity Data</h1>
+    </div>
+    <div  ng-if="viewData.drug.length > 0 || viewData.moa.length > 0 || viewData.bioactivity.length > 0" class="col-md-10 col-md-offset-1"  >
+
+        <h1>The Curated Data is obtained from CHEMBL and aggregated by DCIC</h1>
+    </div>
+
+    <div  ng-if="viewData.drug.length > 0" class="col-md-10 col-md-offset-1"  >
+        <h2> Drug Summary :</h2>
+        <div style="border: 1px solid gainsboro; ">
+            <table st-table="viewData.drug" class="table table-striped" >
+                <thead>
+                <tr>
+                    <th class="col-md-5" st-sort="efo_term">EFO Term</th>
+                    <th class="col-md-5" st-sort="mesh_heading">MESH Term</th>
+                    <th class="col-md-2" st-sort="max_fda_phase_for_ind">FDA Phase</th>
+                </tr>
+                <tr>
+                    <th colspan="10">
+                        <input st-search="mesh_heading" placeholder="search for mesh term" class="form-control" type="search"/>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in viewData.drug">
+                    <td class="col-md-5"><a ng-href="http://www.ebi.ac.uk/efo/{{row.efo_id | removeefo  }}" target="_blank">{{row.efo_term}}</a></td>
+                    <td class="col-md-5"><a ng-href="https://meshb.nlm.nih.gov/#/record/ui?ui={{row.mesh_id }}" target="_blank"> {{row.mesh_heading}} </a></td>
+                    <td class="col-md-2">{{row.max_fda_phase_for_ind}}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="8" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" class="text-center">
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div  ng-if="viewData.moa.length > 0"  class="col-md-10 col-md-offset-1"  >
+        <h2> Mechanism of Action Summary :</h2>
+        <div style="border: 1px solid gainsboro; ">
+            <table st-table="viewData.moa" class="table table-striped" style="border: 1px solid gainsboro ">
+                <thead>
+                <tr>
+                    <th class="col-md-4" st-sort="mechanism_of_action">Mechanism of action</th>
+                    <th class="col-md-7" st-sort="mechanism_target">Genes</th>
+                </tr>
+                <tr>
+                    <th colspan="10">
+                        <input st-search="mechanism_target" placeholder="search for gene" class="form-control" type="search"/>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in viewData.moa">
+                    <td class="col-md-4">{{row.mechanism_of_action}}</td>
+                    <td class="col-md-7">{{row.mechanism_target.toString()}}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="8" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" class="text-center">
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div ng-if="viewData.bioactivity.length > 0"  class="col-md-10 col-md-offset-1" >
+        <h2>Bioactivity Summary :</h2>
+        <div style="border: 1px solid gainsboro; ">
+        <table st-table="viewData.bioactivity" class="table table-striped" style="border: .1px solid gainsboro ">
+            <thead>
+            <tr>
+                <th class="col-md-2" st-sort="pref_gene_symbol">Gene</th>
+                <th class="col-md-2" st-sort="endpoint_result_type">Endpoint type</th>
+                <th class="col-md-1" st-sort="relationship">Relationship</th>
+                <th class="col-md-2" st-sort="aggregated_pvalue">pValue (-log10[Value])</th>
+                <th class="col-md-3" st-sort="preferred_target_name">Target Name</th>
+            </tr>
+            <tr>
+                <th colspan="10">
+                    <input st-search="pref_gene_symbol" placeholder="search for gene" class="form-control" type="search"/>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in viewData.bioactivity">
+                <td class="col-md-2"><a ng-href="http://www.uniprot.org/uniprot/{{row.uniprot_accession}}" target="_blank">{{row.pref_gene_symbol}}</a></td>
+                <td class="col-md-2">{{row.endpoint_result_type}}</td>
+                <td class="col-md-1">{{row.relationship}}</td>
+                <td class="col-md-2">{{row.aggregated_pvalue}}</td>
+                <td class="col-md-3">{{row.preferred_target_name}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="col-md-8" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" class="text-center">
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        </div>
+    </div>
+</div>

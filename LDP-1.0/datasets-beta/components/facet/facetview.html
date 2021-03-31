@@ -1,0 +1,69 @@
+<div class="col-md-3"  ng-controller="FacetController" >
+    <!--<div ><a ng-href="http://www.lincs-dcic.org" target="_blank"><img  ng-src="images/dcic_logo2.png" class="logo center-block"  ></a></div>-->
+
+    <div  ng-repeat="facets in facetService.allfacets" class="facet_border">
+
+        <div class="tile" ng-repeat="(keys, vals) in facets"  >
+            <div class="panel facet_panel"  >
+                <div class="panel-heading facet_heading" >
+                    <h4 class="panel-title text-center facet_title" >
+                       <b class="facet_bold">{{keys |replacefirstunderscore | rename  }}</b>
+                    </h4>
+                </div>
+
+
+                <div >
+                    <div ng-if="facetService.loadmoretrue.toString().search(keys)>-1" class="main-page-font">
+                        <div class="panel-body" ng-repeat="(key, val) in vals" ng-show="$index<100">
+
+                        <span ><input type="checkbox" ng-checked="facetService.exists(key, facetService.selected)"
+                                     ng-click="facetService.elements(key,'',facetService.selected,keys)" >{{key | removeunderscore }}
+                        </span>
+                        <span class="pull-right main-page-font"  >{{val}}</span>
+                         </div>
+                    </div>
+
+                </div>
+                <div >
+                    <div ng-if="facetService.loadmoretrue.toString().search(keys)==-1" class="main-page-font">
+                        <div class="panel-body" ng-repeat="(key, val) in vals" ng-show="$index<2">
+
+                        <span><input type="checkbox" ng-checked="facetService.exists(key, facetService.selected)"
+                                     ng-click="facetService.elements(key,'',facetService.selected,keys)">{{key | removeunderscore }}
+                        </span>
+                            <span class="pull-right main-page-font" >{{val}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div ng-if="facetService.loadmoretrue.toString().search(keys)>-1"  class="facet_button_label">
+                <div class="text-center  main-page-font"  >
+                    <span  ng-show="true" ng-click="showcount=2;showless=false;moreshow=true;sideclose(keys)"  aria-label="show more" >
+                        <button class="btn btn-default facet_button facet-margin">
+                            <i class="fa fa-minus" ></i>  Less
+                        </button>
+                   </span>
+                </div>
+                </div>
+                <div ng-if="facetService.loadmoretrue.toString().search(keys)==-1" class="facet_button_label">
+                    <div class="text-center  main-page-font" >
+                    <span ng-show="moreshow" ng-click="showcount=100;showless=true;moreshow=false;sideopen(keys)"  aria-label="show more" >
+                        <button  ng-if="showcount==2" class="btn btn-default facet_button facet-margin" >
+                            <i class="fa fa-plus"  ></i> More
+                        </button>
+                    </span>
+                    <span  ng-show="showless" ng-click="showcount=2;showless=false;moreshow=true;sideclose(keys)"  aria-label="show more" >
+                        <button class="btn btn-default facet_button facet-margin">
+                            <i class="fa fa-minus" ></i>  Less
+                        </button>
+                   </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+<br>
+</div>

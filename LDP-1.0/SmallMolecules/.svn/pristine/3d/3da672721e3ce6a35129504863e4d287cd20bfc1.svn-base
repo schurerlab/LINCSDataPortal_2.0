@@ -1,0 +1,57 @@
+<div class="col-md-12">
+    <div class="panel panel-default" ng-repeat="docs in datasets.documents">
+        <div class="row">
+        <div class="col-md-2" style="border-right: .1px solid gainsboro">
+            <a  ng-href="#/view/{{docs.lincsidentifier.toString()}}"><img style="max-height: 15em;" class="center"
+                ng-src="http://life.ccs.miami.edu/life/web/images/sm-images/400/{{docs.lincsidentifier.toString()}}.png">
+            </a>
+        </div>
+        <div class="col-md-8">
+            <div>
+            <h3><a class="text-left" ng-href="#/view/{{docs.lincsidentifier.toString()}}">{{docs.SM_Name.toString()}}</a></h3>
+            </div>
+            <div>
+             <b>Synonyms</b>: {{docs.SM_Alternative_Name.toString()}}
+            </div>
+            <div ng-if="docs.FDA_PHASE">
+                <b>Max Phase</b>: {{docs.FDA_PHASE.toString()}}
+            </div>
+            <div ng-if="docs.MECH_OF_ACTION">
+                <b>Mechanism of Action</b>: {{docs.MECH_OF_ACTION.toString()}}
+            </div>
+            <div ng-if="docs.Drug_Class">
+                <b>Drug Classification</b>: {{docs.Drug_Class.toString()}}
+            </div>
+            <div ng-if="docs.cells">
+                <span><b>Model Systems</b>: {{docs.cells.length}} cell-lines used </span>
+                <span style="overflow-x:scroll; width: 600px;height: 18px; display: inline-block">
+                    <a ng-repeat="cells in docs.cells" ng-href="/cells/#?query=Name:{{cells}}" target="_blank"> {{cells}}   </a>
+                </span>
+            </div>
+            <div ng-if="docs.datasets">
+                <span><b>Datasets</b>: Used in {{docs.datasets.length}} Datasets </span>
+                <span style="overflow-x:scroll; width: 600px;height: 18px; display: inline-block">
+                    <a   ng-repeat="datasets in docs.datasets" ng-href="/datasets/#/view/{{datasets}}" target="_blank"> {{datasets}}   </a>
+                </span>
+            </div>
+            <div >
+                <b>External Links</b>: <a ng-href="https://pubchem.ncbi.nlm.nih.gov/compound/{{docs.SM_PubChem_CID}}" target="_blank"> <img src="images/pubchem.png" style="max-height: 1.5em; margin-left: 2em"></a>
+                <a ng-if="docs.SM_ChEBI_ID" ng-href="https://www.ebi.ac.uk/chebi/searchId.do?chebiId={{docs.SM_ChEBI_ID}}" target="_blank"> <img src="images/chebi.png" style="max-height: 1.5em; margin-left: 2em"></a>
+                <a ng-if="docs.Chembl" ng-href="https://www.ebi.ac.uk/chembl/compound/inspect/{{docs.Chembl.toString()}}" target="_blank"> <img src="images/chembl.png" style="max-height: 1.5em; margin-left: 2em"></a>
+
+            </div>
+        </div>
+            <div class="col-md-2">
+                <canvas id="base" height="230em" class="chart-horizontal-bar"
+                        chart-data="docs.subject_area_count"   chart-labels="docs.subject_area" chart-options="options2" chart-colours ="colours" chart-dataset-override="override">
+                </canvas>
+                <!--<canvas style="margin-top: 1em" id="doughnut" height="230em" class="chart chart-doughnut"-->
+                    <!--chart-data="docs.subject_area_count" chart-labels="docs.subject_area">-->
+                <!--</canvas>-->
+            </div>
+        </div>
+        </div>
+    <div ng-if="datasets.totalDocuments > 10">
+        <div ng-include="'/SmallMolecules/components/pagenation/pagination.html'"></div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="col-md-12">
+    <table class="table table-bordered table-hover table-condensed table-responsive container-fluid" data-height="400">
+        <tr>
+            <th>Name</th>
+            <th class="text-center">LINCS-ID</th>
+            <th class="text-center">Category</th>
+            <th class="text-center">Centers</th>
+            <th class="text-center">Organ</th>
+            <th class="text-center">Disease</th>
+            <th class="text-center">Assays</th>
+            <th>Datasets</th>
+        </tr>
+
+        <tr ng-repeat="docs in datasets.documents">
+            <td style="width: 25%">
+                <!--<button class="btn btn-warning add-button"  aria-label="Add" ng-click="addToCart(docs['datasetid'])">-->
+                    <!--<i class="fa fa-cart-plus add-tocart"></i></button>-->
+                <a class="data-button" ng-href="#/view/{{docs.LINCS_ID.toString()}}">{{docs.Name.toString()}}</a>
+            </td>
+            <td class="table-width text-center">
+                {{docs.LINCS_ID.toString()}}
+            </td>
+            <td class="table-width text-center">
+                {{docs.category.toString()}}
+            </td>
+            <!--<td class="table-width text-center">-->
+                <!--<a href="{{docs.centerdatasetid.toString()}}"><img class="listcenterimage" ng-src="images/{{docs.centerletter}}.png"/></a>-->
+            <!--</td>-->
+            <td class="table-width">
+                <div ng-repeat="aname in docs.source">
+                    {{aname | removeunderscore }}
+
+                </div>
+
+            </td>
+            <td class="table-width">
+                {{docs.Organ.toString() }}
+            </td>
+            <td class="table-width text-center">
+                <div>
+                    <a ng-href="{{docs.Disease_Detail.toString()}}">{{docs.Disease.toString() }}</a>
+                    <br>
+                </div>
+            </td>
+            <td class="table-width text-center">
+                <span>
+                    {{docs.assays.toString()}}
+                </span>
+            </td>
+
+            <td class="table-width">
+
+               <span class="label label-warning">
+                    {{docs.datasets.length}} datasets
+                </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <div ng-if="datasets.totalDocuments > 10">
+        <div ng-include="'/cells/components/pagenation/pagination.html'"></div>
+    </div>
+
+
+</div>

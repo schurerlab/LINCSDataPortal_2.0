@@ -1,0 +1,25 @@
+<div   class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default data-panel" >
+        <div class="panel-heading">Details
+            <a  ng-if="viewData.datasetinfo.datasetstatus=='Released'" class="pull-right text-danger" ng-href="http://dev3.ccs.miami.edu:8080/dcic/api/download?path={{viewData.datasetinfo.path | ftppath}}&file={{viewData.datasetinfo.datasetid}}.tar.gz"> <i class="fa fa-download  tileicon"></i>Download</a>
+        </div>
+        <div>
+
+        </div>
+            <table class="table table-hover table-bordered details-margin" >
+                <tbody >
+                <tr>
+                    <td>Source</td>
+                    <td><img  class="centerimage" ng-src="images/{{viewData.datasetinfo.centerletter}}.png"/></td>
+                </tr>
+
+                <tr ng-repeat="keys in entitykeys">
+                    <td class="td-width" ng-if="viewData.datasetinfo[keys].toString()">{{keys  | rename }}</td>
+                     
+                    <td ng-if="viewData.datasetinfo[keys].toString()">{{viewData.datasetinfo[keys].toString()}}</td>
+                     
+                </tr>
+                </tbody>
+            </table>
+    </div>
+</div>

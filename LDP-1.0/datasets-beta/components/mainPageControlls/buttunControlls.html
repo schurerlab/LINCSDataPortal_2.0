@@ -1,0 +1,16 @@
+<div class="pull-left tile" >
+        <span class="td-mar-right">
+        <button  ng-controller="DownloadController" uib-tooltip="Add to cart to download"  class="btn btn-warning" ng-click="addAllTocCart(downloadservice.searchTerm)">
+            <i class="fa fa-cart-plus"></i></button>
+        </span>
+        <span  class="pull-right small-box">
+           Total Datasets: <span>{{datasets.totalDocuments}}</span>
+        </span>
+</div>
+
+<div class="pull-right td-pa-bottom td-mar-right" >
+    <button type="button" ng-class="{'btn-primary btn' :actbtn =='table' ,'btn-default btn':actbtn !='table'}" ng-click="viewdata('table')" aria-label="table">
+        <i class="fa fa-table"></i> Table view</button>
+    <button type="button" ng-class="{'btn-primary btn' :actbtn =='list' ,'btn-default btn':actbtn !='list'}" ng-click="viewdata('list')" aria-label="list">
+        <i class="fa fa-list"></i> List view</button>
+</div>

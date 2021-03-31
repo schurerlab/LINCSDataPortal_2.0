@@ -1,0 +1,68 @@
+<div id="createModal"
+     class="modal"
+     role="dialog" >
+	<div class="modal-dialog" >
+		<div class="modal-content" >
+			<button type="button"
+					class="pull-right close"
+					ng-click="createModal.hide()" ><i class="fa fa-close"></i></button >
+			<div class="modal-header" >
+			</div >
+			<div class="modal-body"  ng-if="downloadservice.cart.length<1">
+
+					<h3  ng-if="downloadservice.cart.length<1" class="text-danger">
+						Please add items to your cart
+					</h3>
+
+
+			</div>
+			<div  ng-if="downloadservice.cart.length>0" >
+				<div class="row">
+					<h3 class="modal-title text-center" >Selected Datasets</h3 >
+					<h6 class="modal-title text-center">Cart contains the highest level for lower levels visit the dataset download tab.</h6>
+				</div>
+				<div class="modal-body" >
+				<div class="buttons pull-right download-margin"  ng-if="downloadservice.cart.length>0" >
+					<button class="btn btn-primary"
+							ng-click="downloadservice.downloadSelected();createModal.hide()"
+							type="submit" >Download
+					</button >
+					<button class="btn btn-danger"
+							ng-click="downloadservice.removeFromCart()"
+							type="submit" >Remove All
+					</button >
+				</div >
+
+
+				<table class="table table-bordered table-hover table-condensed table-responsive" >
+					<tr >
+						<th>ID</th>
+						<th>Dataset Name</th>
+						<th>Assay</th>
+						<th>Option</th>
+					</tr>
+					<tr ng-repeat=" cartitems in downloadservice.selecteddocuments">
+						<td>{{ cartitems.datasetid}}</td >
+						<td>{{ cartitems.datasetname.toString()}}</td >
+						<td>{{ cartitems.assayname.toString()}}</td >
+
+						<td><button class="btn btn-default" ng-click="removeme(cartitems.datasetid)"> <i class="fa fa-trash fa-2x text-danger" ></i></button></td >
+					</tr >
+				</table>
+				</div>
+			</div>
+			<div  ng-if="downloadservice.cart.length>10">
+				<uib-pagination total-items="downloadservice.cart.length" ng-model="currentDownloadPage" ng-click="downloadCurrentPage(currentDownloadPage)" max-size="5" class="col-md-12" boundary-link-numbers="true" rotate="false">
+				</uib-pagination>
+			</div>
+
+			<div class="buttons" ng-if="downloadservice.cart.length>0" >
+				<button class="btn btn-primary btn-block"
+						ng-click="downloadservice.downloadSelected();createModal.hide()"
+						type="submit" >Download
+				</button >
+			</div >
+		</div >
+	</div >
+
+</div >

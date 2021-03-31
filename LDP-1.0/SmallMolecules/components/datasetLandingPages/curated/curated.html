@@ -1,0 +1,135 @@
+<div class="tab-pane active row">
+    <div  ng-if="viewData.drug.length == 0 && viewData.moa.length == 0 && viewData.bioactivity.length == 0" class="col-md-10 col-md-offset-1"  >
+
+        <h1>No Available BioActivity Data</h1>
+    </div>
+
+    <div ng-if="viewData.bioactivity.length > 0"  class="col-md-10 col-md-offset-1" >
+        <h2>Aggregated Bioactivity Data<sup>*</sup> </h2>
+        <div style="border: 1px solid gainsboro; ">
+        <table st-table="viewData.bioactivity" class="table table-bordered table-responsive">
+            <thead>
+            <tr>
+                <th class="col-md-2" st-sort="pref_gene_symbol">Target</th>
+                <th class="col-md-2" st-sort="pref_gene_symbol">UniProt Accession</th>
+                <th class="col-md-2" st-sort="endpoint_result_type">Endpoint Type</th>
+                <th class="col-md-1" st-sort="relationship">Relationship</th>
+                <th class="col-md-2" st-sort="aggregated_pvalue">pValue (-log10[Value])</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in viewData.bioactivity  track by $index">
+                <td class="col-md-2">{{row.target}}</td>
+                <td class="col-md-2"><a ng-href="http://www.uniprot.org/uniprot/{{row.target_uniprot_accession}}" target="_blank">{{row.target_uniprot_accession}}</a></td>
+                <td class="col-md-2">{{row.endpoint_result_type}}</td>
+                <td class="col-md-1">{{row.relationship}}</td>
+                <td class="col-md-2">{{row.median_pvalue}}</td>
+
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="col-md-12" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" class="text-center">
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+            </div>
+    </div>
+
+    <div  ng-if="viewData.drug.length > 0" class="col-md-10 col-md-offset-1"  >
+        <h2>Clinical Annotations<sup>*</sup> </h2>
+        <div style="border: 1px solid gainsboro; ">
+            <table st-table="viewData.drug" class="table table-striped" >
+                <thead>
+                <tr>
+                    <th class="col-md-5" st-sort="efo_term">EFO Term</th>
+                    <th class="col-md-5" st-sort="mesh_heading">MESH Term</th>
+                    <th class="col-md-2" st-sort="max_fda_phase_for_ind">FDA Phase</th>
+                </tr>
+                <tr>
+                    <th colspan="10">
+                        <input st-search="mesh_heading" placeholder="search for mesh term" class="form-control" type="search"/>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in viewData.drug  track by $index">
+                    <td class="col-md-5"><a ng-href="http://www.ebi.ac.uk/efo/{{row.efo_id | removeefo  }}" target="_blank">{{row.efo_term}}</a></td>
+                    <td class="col-md-5"><a ng-href="https://meshb.nlm.nih.gov/#/record/ui?ui={{row.mesh_id }}" target="_blank"> {{row.mesh_heading}} </a></td>
+                    <td class="col-md-2">{{row.max_fda_phase_for_ind}}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="8" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" class="text-center">
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div id="moa" ng-if="viewData.moa.length > 0"  class="col-md-10 col-md-offset-1"  >
+        <h2>Mechanism of action<sup>*</sup> </h2>
+        <div style="border: 1px solid gainsboro; ">
+            <table st-table="viewData.moa" class="table table-striped" style="border: 1px solid gainsboro ">
+                <thead>
+                <tr>
+                    <th class="col-md-3" st-sort="mechanism_of_action">Mechanism of action</th>
+                    <th class="col-md-3" st-sort="target_type">Target Type</th>
+                    <th class="col-md-3">Targets</th>
+                    <th class="col-md-3">References</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in viewData.moa track by $index">
+                    <td class="col-md-3">{{row.mechanism_of_action}}</td>
+                    <td class="col-md-3">{{row.target_type}}</td>
+                    <td class="col-md-3"><div ng-repeat="acc in row.target_component_accession   track by $index"><a ng-href="http://www.uniprot.org/uniprot/{{acc}}" target="_blank">{{row.targets[$index]}}</a></div></td>
+                    <td class="col-md-3"><div ng-repeat="ref in row.references_type   track by $index"><a ng-href="{{row.references_url[$index]}}" target="_blank">{{ref}}</a></div></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="8" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" class="text-center">
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div id="dc" ng-if="viewData.drug_class.length > 0"  class="col-md-10 col-md-offset-1"  >
+        <h2>Drug Classification<sup>*</sup> </h2>
+        <div style="border: 1px solid gainsboro; ">
+            <table st-table="viewData.drug_class" class="table table-striped" style="border: 1px solid gainsboro ">
+                <thead>
+                <tr>
+                    <th class="col-md-3" st-sort="classification">Classification</th>
+                    <th class="col-md-3" st-sort="classification_name">Classification Name</th>
+                    <th class="col-md-3">Organization</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in viewData.drug_class track by $index">
+                    <td class="col-md-3">{{row.classification}}</td>
+                    <td class="col-md-3">{{row.classification_name}}</td>
+                    <td class="col-md-3">{{row.organization}}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="8" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" class="text-center">
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div  ng-if="viewData.drug.length > 0 || viewData.moa.length > 0 || viewData.bioactivity.length > 0" class="col-md-10 col-md-offset-1"  >
+
+        <p><sup>*</sup>Content
+            in this page is based on the best public information available from ChEMBL.
+            Please report any problems/errors associated with this data to
+            <a href="mailto:ldp@bd2k-lincs.org">ldp@bd2k-lincs.org</a></p>
+    </div>
+</div>

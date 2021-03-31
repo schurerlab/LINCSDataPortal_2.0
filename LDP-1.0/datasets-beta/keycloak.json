@@ -1,0 +1,7 @@
+{
+  "realm": "Lincs",
+  "auth-server-url": "https://auth.ccs.miami.edu/auth",
+  "ssl-required": "external",
+  "resource": "test-app",
+  "public-client": true
+}

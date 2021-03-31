@@ -1,0 +1,219 @@
+<div class="tab-pane active row" ng-if="viewData.datasetinfo !=undefined">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Compound Information</h2>
+                    <table class="table table-bordered table-responsive" >
+                        <tbody>
+                        <thead>
+                        <tr>
+                            <th style="padding: 0px" class="col-md-3"></th>
+                            <th  style="padding: 0px" class="col-md-8"></th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td class="col-md-3"><b>Name</b></td>
+                            <td class="col-md-8">{{viewData.datasetinfo.Name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3"><b>LINCS (ID)</b></td>
+                            <td class="col-md-8">{{viewData.datasetinfo.lincsidentifier}}</td>
+                        </tr>
+                        <tr ng-if="viewData.datasetinfo.SM_PubChem_CID">
+                            <td class="col-md-3"><b>PubChem (CID)</b></td>
+                            <td class="col-md-8"><a  ng-href="https://pubchem.ncbi.nlm.nih.gov/compound/{{viewData.datasetinfo.SM_PubChem_CID.toString()}}" target="_blank">{{viewData.datasetinfo.SM_PubChem_CID.toString()}}</a></td>
+                        </tr>
+                        <tr ng-if="viewData.datasetinfo.SM_ChEBI_ID">
+                            <td class="col-md-3"><b>ChEBI (ID)</b></td>
+                            <td class="col-md-8">
+                                <span ng-repeat="chembl in viewData.datasetinfo.SM_ChEBI_ID.split(',')">
+                                  <a  ng-href="https://www.ebi.ac.uk/chebi/searchId.do?chebiId={{chembl.trim()}}" target="_blank">{{chembl.trim()}}</a>
+                                    <span ng-if="!$last">, </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr ng-if="viewData.datasetinfo.Chembl">
+                            <td class="col-md-3"><b>ChEMBL (ID)</b></td>
+                            <td class="col-md-8">
+                                <span ng-repeat="chebi in viewData.datasetinfo.Chembl.toString().split(',')">
+                                    <a  ng-href="https://www.ebi.ac.uk/chembl/compound/inspect/{{chebi.trim()}}" target="_blank"> {{chebi.trim()}}</a>
+                                    <span ng-if="!$last">, </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3"><b>Alternative Names</b></td>
+                            <td class="col-md-8"><span ng-repeat="al in viewData.datasetinfo.SM_Alternative_Name"> {{al}}
+                             <span ng-if="!$last">, </span>
+                            </span> </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3" ><b>SMILES</b> <span class ="titip-right  text-center" data-title="SMILES created using Biovia, Pipeline Pilot v16.1" ><i class="fa fa-info-circle" aria-hidden="true"></i></span></td>
+                            <td class="col-md-8">
+                            <span role="group">
+                                <label class="label label-primary" ng-init="showsmiles=false">
+                                    Show
+                                    <span><a  style="color: whitesmoke" ng-click="showsmiles=true"><i ng-if="showsmiles==false" class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <a  style="color: whitesmoke" ng-click="showsmiles=false"><i ng-if="showsmiles==true" class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                                    </span>
+                                </label>
+                            </span>
+                                <div ng-show="showsmiles">
+                                    {{viewData.datasetinfo.SM_SMILES_Parent}} <span class ="titip-top  text-center" data-title="SMILES created using Biovia, Pipeline Pilot v16.1" ><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3"><b>InChI</b></td>
+                            <td class="col-md-8">
+                            <span role="group">
+                                <label class="label label-primary" ng-init="showme=false">
+                                    Show
+                                    <span><a  style="color: whitesmoke" ng-click="showme=true"><i ng-if="showme==false" class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <a  style="color: whitesmoke" ng-click="showme=false"><i ng-if="showme==true" class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                                    </span>
+                                </label>
+                            </span>
+                                <div ng-show="showme">
+                                    {{viewData.datasetinfo.SM_InChi_Parent}}
+                                </div>
+                           </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                </div>
+                    <div class="col-md-4" >
+                        <div class="row">
+                            <img class="center img-responsive" ng-src="http://life.ccs.miami.edu/life/web/images/sm-images/400/{{viewData.datasetinfo.lincsidentifier.toString()}}.png">
+                        </div>
+                        <div class="row">
+                        <div style="margin-left: 5em">
+                           <span>Find Similar Structures</span> <span class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Similarity Search <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><button class="btn btn-primary" ng-click="submitSmiles(viewData.datasetinfo.SM_SMILES_Parent,'similarity','0.95')">95% Similar Molecules</button></li>
+                                    <li><button class="btn btn-primary" ng-click="submitSmiles(viewData.datasetinfo.SM_SMILES_Parent,'similarity','0.9')">90% Similar Molecules</button></li>
+                                    <li><button class="btn btn-primary" ng-click="submitSmiles(viewData.datasetinfo.SM_SMILES_Parent,'similarity','0.8')">80% Similar Molecules</button></li>
+                                </ul>
+                            </span>
+                            <span><a href = "http://www.chemaxon.com" target = "blank"><img style="max-width: 10em" src = "https://www.chemaxon.com/app/uploads/2009/08/powered_by_chemaxon_GOLD_M.png"></a></span>
+
+                            <!--<button  ng-click="submitSmiles(viewData.datasetinfo.SM_SMILES_Parent,'substructure')" style="background-color: #3a5278;border-color: #578fc7;color: whitesmoke"  >Substructure Search</button>-->
+                            <!--<button  ng-click="submitSmiles(viewData.datasetinfo.SM_SMILES_Parent,'similarity')" style="background-color: #3a5278;border-color: #578fc7;color: whitesmoke" >Similarity Search</button>-->
+                        </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-8">
+                <h2>Related Entries by chemical structure (similarity ≥ 0.9)</h2>
+                    <div ng-if="viewData.similarids.length<=1">
+                    There are no structurally related LINCS Compounds for this molecule.
+                    </div>
+                    <table class="table table-bordered table-responsive" >
+                        <tbody>
+                        <thead>
+                        <tr>
+                            <th  style="padding: 0px" class="col-md-8"></th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="ids in viewData.similarids">
+                            <td class="col-md-8" ng-if="ids!=viewData.datasetinfo.lincsidentifier"><a ng-href="view/{{ids}}">{{ids}}</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <h2 class="col-md-12">Predicted Physiochemical Properties</h2>
+                <div class="col-md-6">
+
+                    <table class="table table-bordered table-responsive" >
+                        <tbody>
+                        <thead>
+                        <tr>
+                            <th style="padding: 0px" class="col-md-6"></th>
+                            <th  style="padding: 0px" class="col-md-6"></th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td class="col-md-6"><b>Molecular formula</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.MOLECULAR_FORMULA}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>Molecular weight</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.MW}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>Lipinski 3</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.RO3}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>Lipinski 5</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.RO5}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>Bioavalability</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.Bio_Availability}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>Lead likeliness</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.LL}}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                </div>
+                <div class="col-md-6">
+                    <table class="table table-bordered table-responsive" >
+                        <tbody>
+                        <thead>
+                        <tr>
+                            <th style="padding: 0px" class="col-md-6"></th>
+                            <th  style="padding: 0px" class="col-md-6"></th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td class="col-md-6"><b>cLogP</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.CLOGP | number}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>Rotatable bonds</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.Num_Rot_Bonds }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>H bond acceptors</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.HBA}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>H bond donors</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.HBD}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>TPSA</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.TPSA | number}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><b>QED</b></td>
+                            <td class="col-md-6">{{viewData.datasetinfo.QED}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" ng-if="viewData.datasetinfo.Drug_Class" || ng-if="viewData.datasetinfo.MECH_OF_ACTION">
+                <div class="col-md-12">
+                    <h2>Biological Annotations</h2>
+                    <div>{{viewData.datasetinfo.Name}}
+                        <span ng-if="viewData.datasetinfo.Drug_Class"> displays {{viewData.datasetinfo.Drug_Class.toString}} </span>
+                        <span ng-if="viewData.datasetinfo.MECH_OF_ACTION"> is active aganist {{viewData.datasetinfo.MECH_OF_ACTION.toString()}} for more details look in <a ng-href="view/{{viewData.datasetinfo.lincsidentifier}}#curated">curated tab</a> </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br>
+    </div>
+</div>

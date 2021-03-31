@@ -1,0 +1,9 @@
+<nav ng-controller="PagenationController" >
+
+    <uib-pagination total-items="pagenationservice.totalDocuments"
+                    ng-model="pagenationservice.currentPage" ng-click="currentpagenum(pagenationservice.currentPage)"
+                    max-size="maxSize" class="col-md-12" boundary-link-numbers="true" rotate="false">
+
+    </uib-pagination>
+
+</nav>

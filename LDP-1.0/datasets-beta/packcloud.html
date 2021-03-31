@@ -1,0 +1,40 @@
+
+<style>
+
+    .node {
+        cursor: pointer;
+    }
+
+    .node:hover {
+        stroke: #000;
+        stroke-width: 1.5px;
+    }
+
+    .node--leaf {
+        fill: white;
+    }
+
+    .label {
+        font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-anchor: middle;
+        text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+    }
+
+    .label,
+    .node--root,
+    .node--leaf {
+        pointer-events: none;
+    }
+
+
+</style>
+<div class="row"   >
+    <div class="text-center main-page-content jumbotron col-md-offset-1 col-md-10">
+        Enclosure diagrams use containment to represent the Kinase hierarchy. Although circle packing is not as space-efficient as a treemap, it better reveals the hierarchy.
+        Click on any package to zoom in or out. Size of circle is based on the percent control.
+    </div>
+    <div ng-controller="PackCtrl" class="col-md-offset-1">
+        <div id="pack"></div>
+    </div>
+
+</div>

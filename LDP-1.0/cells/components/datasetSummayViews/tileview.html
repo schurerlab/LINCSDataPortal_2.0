@@ -1,0 +1,64 @@
+<div class="col-md-12" >
+<div  class="deck-container "  >
+    <li   ng-repeat="docs in datasets.documents">
+        <div class="grid_tile_header ">
+            <!--<a class="add" aria-label="Add" ng-click="addToCart(docs['datasetid'])">-->
+            <!--</a>-->
+            <a  class="add-button" aria-label="Add" ng-click="addToCart(docs['datasetid'])">
+                <i class="fa fa-plus add-tocart" ></i></a>
+            <div ><a ng-href="#/view/{{docs.datasetid}}">{{docs.datasetname | limitTo:40}} <span
+                    ng-if="docs.datasetname.length>40">...</span>
+                <div ng-if="$index==1" data-intro="Dataset title" data-position="bottom"></div>
+            </a></div>
+        </div>
+        <div>
+        <div class="panel-body">
+            <div ng-if="$index==7" data-intro="Center which generated the dataset" data-position="bottom"></div>
+            <img class="centerimage" ng-src="images/{{docs.centerletter}}.png"/>
+
+        </div>
+        <div><i class="fa fa-cube tile_icon"></i><span
+                class="titip-top"  data-title="Assay">{{docs.assayname.toString() | limitTo:18}} <span
+                ng-if="docs.assayname.length>18">...</span></span>
+            <div ng-if="$index==3" data-intro="Assay name to which the dataset belongs" data-position="bottom"></div>
+
+        </div>
+
+
+        <div><i class="fa fa-road tile_icon"></i><span class="titip-top"  data-title="Project">{{docs.projectname}}</span>
+            <div ng-if="$index==3" data-intro="Project from which the dataset id generated" data-position="right"></div>
+        </div>
+
+        <!--<div><i class="fa fa-info-circle tile_icon"></i>-->
+            <!--<span class="titip-top"  data-title="Status"> <span ng-if="docs.datasetstage=='Released'" style="background-color: darkgreen;color: white;padding: 1px">{{docs.datasetstage}}</span>-->
+                <!--<span ng-if="docs.datasetstage=='Dataset publicly available'" style="background-color: orangered;color: white;padding: 1px">{{docs.datasetstage | limitTo:20}}...</span>-->
+                <!--<span ng-if="docs.datasetstage=='Archived/Revoked'" style="background-color: darkred;color: white;padding: 1px">{{docs.datasetstage}}</span>-->
+                <!--<span ng-if="docs.datasetstage=='Packaging/QC'" style="background-color: darkseagreen;color: white;padding: 1px">{{docs.datasetstage}}</span>-->
+                <!--<span ng-if="docs.datasetstage=='Updating'" style="background-color: yellow;color: white;padding: 1px">{{docs.datasetstage}}</span></span>-->
+            <!--<div ng-if="$index==2" data-intro="Date when the dataset is released" data-position="bottom"></div>-->
+
+        <!--</div>-->
+        <div><a ng-href="{{docs.centerdatasetid}}"
+                target="_blank"><i class="fa fa-external-link tile_icon">
+        </i><span  class="titip-top"  data-title="Source link"> Source link</span></a>
+            <div ng-if="$index==1" data-intro="Source link to the dataset" data-position="bottom"></div>
+        </div>
+        <div><a  ng-click="showStatsModal(docs.statsfields,docs.statsvalues)"><i class="fa fa-bar-chart tile_icon">
+        </i><span class="titip-top"  data-title="Dataset stats"> Dataset stats</span></a>
+            <div ng-if="$index==6" data-intro="Stats of the participants in the dataset" data-position="top"></div>
+        </div>
+        <div ng-if="docs.datasetstage=='Released'" ><a
+                ng-href="/dcic/api/download?path={{docs.path | ftppath}}&file={{docs.datasetid}}.tar.gz">
+            <i class="fa fa-download tile_icon">
+            </i><span class="titip-top"  data-title="Dataset data"> Download data</span></a></a></div>
+
+        <div ng-if="$first" data-intro="Tile that holds summary of the dataset" data-position="bottom"></div>
+        <div ng-if="docs.datasetstage!='Released'" >
+            <br>
+        </div>
+    </div>
+    </li>
+
+</div>
+    <div ng-include="'pagination.html'"></div>
+</div>

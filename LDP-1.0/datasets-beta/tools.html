@@ -1,0 +1,10 @@
+<div class="container fluid">
+    <div ng-repeat=" tools in viewData.tools">
+        <a ng-href="{{viewData.links[$index]}}">
+            <div  ng-include="'templates/'+tools+'.html'"></div>
+        </a>
+    </div>
+    <div ng-if="viewData.tools==undefined">
+            <div  ng-include="'placeholder.html'"></div>
+    </div>
+</div>

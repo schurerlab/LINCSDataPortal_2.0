@@ -1,0 +1,32 @@
+/**
+ * Created by akoleti on 3/8/16.
+ */
+app.controller('ViewCtrl',function($modal,$scope,$routeParams, $filter,$window,$timeout,$location,$http,
+                                   $anchorScroll,$compile,ViewService,$interval,$resource,Dataset){
+    $scope.did = $routeParams.id;
+    var term = $routeParams.id;
+
+    $scope.viewData= ViewService;
+     downlaodGroups= Dataset;
+    $scope.viewData.viewDatasetDetails(term);
+    $scope.acttab ="description";
+    $scope.tabs = function(id){
+        if(id=='description'){
+            $scope.acttab ="description";
+                $scope.template="components/datasetLandingPages/description/description.html";
+
+        }else if(id=='datasets'){
+            $scope.acttab ="datasets";
+            $scope.template="components/datasetLandingPages/datasets/datasets.html";
+        }else if(id=='curated'){
+            $scope.acttab ="curated";
+            $scope.template="components/datasetLandingPages/curated/curated.html";
+        }
+        
+    }
+
+    $scope.template = "components/datasetLandingPages/description/description.html";
+    
+
+
+});

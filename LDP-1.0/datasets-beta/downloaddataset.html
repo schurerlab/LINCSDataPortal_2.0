@@ -1,0 +1,159 @@
+<div class="col-md-offset-1">   
+    <div> 
+
+        <button class="btn pull-right btn-default download-btn" ng-click="groupDownload()"> 
+            <i class="fa fa-download download-icon"></i>Download
+            all levels
+        </button>
+    </div>
+    <table class="table download-table"> 
+        <tr> 
+            <th class="text-center download-table-header">Data Level</th>
+
+            <th class="text-center download-table-header">Data Description</th>
+
+            <th class="text-center download-table-header">Dataset ID</th>
+ 
+ 
+            <th class="text-center download-table-header">Version</th>
+ 
+            <th class="text-center download-table-header">Size</th>
+
+            <th class="text-center download-table-header">Download</th>
+
+            <th class="text-center download-table-header">Cite</th>
+ 
+
+ 
+        </tr>
+ 
+        <tr ng-repeat="lev in viewData.levels"  ng-init="sectionIndex = $index"> 
+            <td class="text-center"> 
+                <div class="titip-top" data-title="Raw data" ng-if="lev==0">
+                    {{lev}}
+                </div>
+                <div class="titip-top" data-title="Raw data" ng-if="lev==1">
+                    {{lev}}
+                </div>
+                <div class="titip-top" data-title="Processed raw data" ng-if="lev==2">
+                    {{lev}}
+                </div>
+                <div class="titip-top"
+                     data-title="Normalized per sample data (can be used as input for statistical analysis)"
+                     ng-if="lev==3">
+                    {{lev}}
+                </div>
+                <div class="titip-top" data-title='Signatures (Can be used for "connecting" perturbations)'
+                     ng-if="lev==4">
+                    {{lev}}
+                </div>
+                <div class="titip-top" data-title='Aggregated dataset' ng-if="lev.includes(',')">
+                    {{lev}}
+                </div>
+
+            </td>
+ 
+            <td class="text-center">{{viewData.datasetinfo.datasetlevels[$index]}}</td>
+            <td class="text-center" ng-if="lev==0"> Raw dataset</td>
+            <td class="text-center" ng-if="lev==1"> Raw dataset</td>
+            <td class="text-center" ng-if="lev==2"> Processed raw dataset</td>
+            <td class="text-center" ng-if="lev==3"> Normalized dataset</td>
+            <td class="text-center" ng-if="lev==4"> Signature dataset</td>
+            <td class="text-center" ng-if="lev.includes(',')"> Aggregated dataset</td>
+
+            <td class="text-center">{{viewData.datasetinfo.latestversions[$index]}}</td>
+ 
+            <td class="text-center" ng-if="viewData.datasetinfo.size[$index]!=undefined">
+                {{viewData.datasetinfo.size[$index]}} MB
+            </td>
+            <td class="text-center" ng-if="viewData.datasetinfo.size[$index]==undefined">
+                -
+            </td>
+
+            <td class="text-center"
+                ng-if="viewData.datasetinfo.levelspath[$index]!=undefined && viewData.datasetinfo.levelspath[$index]!=''">
+                <a
+                        ng-href="/dcic/api/download?path={{viewData.datasetinfo.levelspath[$index]| ftppath }}&file={{viewData.datasetinfo.datasetlevels[$index]}}_{{viewData.datasetinfo.latestversions[$index]}}.tar.gz">
+
+                    <i class="fa fa-download download-icon" aria-hidden="true"></i> </a>
+                <span>
+                    <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        Archived files <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" ng-repeat="v in viewData.datasetinfo.versions[$index].split(':')" >
+
+                        <li ng-repeat="ver in v.split(';')">
+                            <a class="label label-default label-margin" ng-href="/dcic/api/download?path={{viewData.datasetinfo.levelspath[sectionIndex]| ftppath }}&file={{viewData.datasetinfo.versions[sectionIndex].split(':')[0]}}_{{ver}}.tar.gz">{{ver}} </a>
+                        </li>
+                    </ul>
+
+                </div>
+                </span>
+            </td>
+            <td class="text-center"
+                ng-if="viewData.datasetinfo.levelspath[$index]=='' || viewData.datasetinfo.levelspath[$index]==undefined">
+                Under Evaluation
+            </td>
+
+            <td class="text-center"
+                ng-if="viewData.datasetinfo.levelspath[$index]!=undefined && viewData.datasetinfo.levelspath[$index]!=''">
+                <button class="btn btn-default" ng-click="showCitation(viewData.datasetinfo.datasetlevels[$index],'dataset',viewData.datasetinfo.latestversions[$index])" >Cite</button>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        Export <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                    <li>
+                        <a class="label label-default label-margin"
+                           ng-click="bibtext(viewData.datasetinfo.datasetlevels[$index],'bibtex')">BibTeX
+                            (.bib) </a>
+                    </li>
+                    <li>
+                        <a  class="label label-default label-margin"
+                            ng-click="ris(viewData.datasetinfo.datasetlevels[$index],'ris','dataset')">RIS
+                            (.ris) </a>
+                    </li>
+                    <li>
+                        <a  class="label label-default label-margin"
+                            ng-click="endnote(viewData.datasetinfo.datasetlevels[$index],'enw','dataset')">EndNote
+                            (.enw) </a>
+
+                    </li>
+
+                </ul>
+
+                </div>
+                <!--<div class="btn-group">-->
+                    <!--<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"-->
+                            <!--aria-haspopup="true" aria-expanded="false">-->
+                        <!--Cite Archived <span class="caret"></span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li>-->
+                            <!--<a class="label label-default label-margin"-->
+                               <!--ng-click="bibtext(viewData.datasetinfo.datasetlevels[$index],'bibtex')">1.0 </a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a  class="label label-default label-margin"-->
+                                <!--ng-click="ris(viewData.datasetinfo.datasetlevels[$index],'ris','dataset')">1.1 </a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a  class="label label-default label-margin"-->
+                                <!--ng-click="endnote(viewData.datasetinfo.datasetlevels[$index],'enw','dataset')">1.2 </a>-->
+
+                        <!--</li>-->
+
+                    <!--</ul>-->
+
+                <!--</div>-->
+            </td>
+ 
+ 
+        </tr>
+ 
+    </table>
+ 
+</div> 
