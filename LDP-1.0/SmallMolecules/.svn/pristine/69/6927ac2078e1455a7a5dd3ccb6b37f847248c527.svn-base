@@ -1,9 +1,0 @@
-<div class="col-md-2 panel panel-default tool">
-    <div>
-        <hr class="ilincs">
-        <img src="images/DCIC_500x375_cropped.png" class="tool-image"><b class="tool-name"> iLINCS</b></div>
-    <hr class="ilincs">
-
-    <p class="tool-desc">A data analysis platform aimed at developing statistical methods and
-        computational tools for integrative analysis of the data produced by the LINCS program.</p>
-</div>

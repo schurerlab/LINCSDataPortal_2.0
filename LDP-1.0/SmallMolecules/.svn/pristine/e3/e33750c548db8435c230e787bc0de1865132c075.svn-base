@@ -1,4 +1,0 @@
-<div ng-controller="ViewCtrl">
-    <head-title></head-title>
-    <div ng-include=template></div>
-</div>
