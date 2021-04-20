@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+
+  <display-name>dcic</display-name>
+  <description>
+     DCIC Information FramEwork
+  </description>
+
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
+
+      <servlet>
+        <display-name>fetchdata</display-name>
+        <servlet-name>fetchdata</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.FetchData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fetchdata</servlet-name>
+        <url-pattern>/api/fetchdata</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>dataset-validation</display-name>
+        <servlet-name>dataset-validation</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.DatasetValidation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dataset-validation</servlet-name>
+        <url-pattern>/api/dataset-validation</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>fileparser</display-name>
+        <servlet-name>fileparser</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.CSVFileParser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fileparser</servlet-name>
+        <url-pattern>/api/fileparser</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>cederidg</display-name>
+        <servlet-name>cederidg</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.FetchDataIDG</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cederidg</servlet-name>
+        <url-pattern>/api/cederidg</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>cederlincs</display-name>
+        <servlet-name>cederlincs</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.FetchDataCeder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cederlincs</servlet-name>
+        <url-pattern>/api/cederlincs</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>submit-metadata</display-name>
+        <servlet-name>submit-metadata</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SubmitMetadata</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>submit-metadata</servlet-name>
+        <url-pattern>/api/submit-metadata</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>cedarstats</display-name>
+        <servlet-name>cedarstats</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.CedarStats</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cedarstats</servlet-name>
+        <url-pattern>/api/cedarstats</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>fetchcells</display-name>
+        <servlet-name>fetchcells</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.FetchCells</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fetchcells</servlet-name>
+        <url-pattern>/api/fetchcells</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>fetchmolecules</display-name>
+        <servlet-name>fetchmolecules</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.FetchSmallMolecules</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fetchmolecules</servlet-name>
+        <url-pattern>/api/fetchmolecules</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>fetchassayinfo</display-name>
+        <servlet-name>fetchassayinfo</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.FetchAssayInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fetchassayinfo</servlet-name>
+        <url-pattern>/api/fetchassayinfo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>sminfo</display-name>
+        <servlet-name>sminfo</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.FetchSmInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sminfo</servlet-name>
+        <url-pattern>/api/sminfo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>chembl</display-name>
+        <servlet-name>chembl</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.ChemblData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chembl</servlet-name>
+        <url-pattern>/api/chembl</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>bioactivity</display-name>
+        <servlet-name>bioactivity</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.Bioactivity</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>bioactivity</servlet-name>
+        <url-pattern>/api/bioactivity</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>drugindication</display-name>
+        <servlet-name>drugindication</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.DrugIndication</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>drugindication</servlet-name>
+        <url-pattern>/api/drugindication</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>mechanismOfAction</display-name>
+        <servlet-name>mechanismOfAction</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.MechanismOfAction</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>mechanismOfAction</servlet-name>
+        <url-pattern>/api/mechanismOfAction</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>drugClassification</display-name>
+        <servlet-name>drugClassification</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.DrugClassification</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>drugClassification</servlet-name>
+        <url-pattern>/api/drugClassification</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>moa</display-name>
+        <servlet-name>moa</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.MoA</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>moa</servlet-name>
+        <url-pattern>/api/moa</url-pattern>
+    </servlet-mapping>
+    
+    
+     <servlet>
+        <display-name>SigC-bioactivity</display-name>
+        <servlet-name>SigC-bioactivity</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SigCBioactivity</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SigC-bioactivity</servlet-name>
+        <url-pattern>/api/SigC-bioactivity</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>SigC-drug</display-name>
+        <servlet-name>SigC-drug</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SigCDrugClassification</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SigC-drug</servlet-name>
+        <url-pattern>/api/SigC-drug</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>SigC-pharma</display-name>
+        <servlet-name>SigC-pharma</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SigCpharmacology</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SigC-pharma</servlet-name>
+        <url-pattern>/api/SigC-pharma</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>SigC-clinical</display-name>
+        <servlet-name>SigC-clinical</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SigCClinical</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SigC-clinical</servlet-name>
+        <url-pattern>/api/SigC-clinical</url-pattern>
+    </servlet-mapping>
+    
+      <servlet>
+        <display-name>mlp</display-name>
+        <servlet-name>mlp</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.MlpData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mlp</servlet-name>
+        <url-pattern>/api/mlp</url-pattern>
+    </servlet-mapping>
+    
+      <servlet>
+        <display-name>tcrd</display-name>
+        <servlet-name>tcrd</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.TcrdData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>tcrd</servlet-name>
+        <url-pattern>/api/tcrd</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>pdb</display-name>
+        <servlet-name>pdb</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.PdbData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pdb</servlet-name>
+        <url-pattern>/api/pdb</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>fetchentities</display-name>
+        <servlet-name>fetchentities</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.FetchEntities</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fetchentities</servlet-name>
+        <url-pattern>/api/fetchentities</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>fetchbatch</display-name>
+        <servlet-name>fetchbatch</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.FetchBatch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fetchbatch</servlet-name>
+        <url-pattern>/api/fetchbatch</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>batchTolsm</display-name>
+        <servlet-name>batchTolsm</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.Batch2Lsm</servlet-class>
+    </servlet>
+    
+     <servlet-mapping>
+        <servlet-name>find-signature</servlet-name>
+        <url-pattern>/api/find-signature</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>find-signature</display-name>
+        <servlet-name>find-signature</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SigatureQuery</servlet-class>
+    </servlet>
+    
+      <servlet-mapping>
+        <servlet-name>disease</servlet-name>
+        <url-pattern>/api/disease</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>disease</display-name>
+        <servlet-name>disease</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.Disease2Lsm</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>batchTolsm</servlet-name>
+        <url-pattern>/api/batchTolsm</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>getfacets</display-name>
+        <servlet-name>getfacets</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.GetFacets</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getfacets</servlet-name>
+        <url-pattern>/api/getfacets</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>suggest</display-name>
+        <servlet-name>suggest</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SuggestTerms</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>suggest</servlet-name>
+        <url-pattern>/api/suggest</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>export</display-name>
+        <servlet-name>export</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.Citation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>export</servlet-name>
+        <url-pattern>/api/export</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>datasetsuggest</display-name>
+        <servlet-name>datasetsuggest</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.DatasetSuggest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>datasetsuggest</servlet-name>
+        <url-pattern>/api/datasetsuggest</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>uniqueid</display-name>
+        <servlet-name>uniqueid</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.UniqueId</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uniqueid</servlet-name>
+        <url-pattern>/api/uniqueid</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+     <servlet>
+        <display-name>smautosuggest</display-name>
+        <servlet-name>smautosuggest</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SmSuggest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>smautosuggest</servlet-name>
+        <url-pattern>/api/smautosuggest</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>smsuggest</display-name>
+        <servlet-name>smsuggest</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SmallMoleculeSuggest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>smsuggest</servlet-name>
+        <url-pattern>/api/smsuggest</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <display-name>autosuggest</display-name>
+        <servlet-name>autosuggest</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.Autosuggest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>autosuggest</servlet-name>
+        <url-pattern>/api/autosuggest</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <display-name>drilldown</display-name>
+        <servlet-name>drilldown</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.DrillDown</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>drilldown</servlet-name>
+        <url-pattern>/api/drilldown</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    <display-name>Results</display-name>
+    <servlet-name>Results</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.DownloadData</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>Results</servlet-name>
+    <url-pattern>/api/Results</url-pattern>
+</servlet-mapping>
+
+
+ <servlet>
+    <display-name>SmDownload</display-name>
+    <servlet-name>SmDownload</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.SmallMoleculeDownload</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>SmDownload</servlet-name>
+    <url-pattern>/api/SmDownload</url-pattern>
+</servlet-mapping>
+    
+ 
+<servlet>
+   
+    <servlet-name>download</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.AlternativeFileDownload</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>download</servlet-name>
+    <url-pattern>/api/download</url-pattern>
+</servlet-mapping>
+
+
+
+ <servlet>
+    <servlet-name>list-files</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.ListFiles</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>list-files</servlet-name>
+    <url-pattern>/api/list-files</url-pattern>
+</servlet-mapping>
+
+
+ <servlet>
+    <servlet-name>fetch-signatures</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.FetchSignatures</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>fetch-signatures</servlet-name>
+    <url-pattern>/api/fetch-signatures</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>gene-info</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.GeneInfo</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>gene-info</servlet-name>
+    <url-pattern>/api/gene-info</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>component-info</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.ComponentInfo</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>component-info</servlet-name>
+    <url-pattern>/api/component-info</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>knockdown</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.KnockDown</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>knockdown</servlet-name>
+    <url-pattern>/api/knockdown</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>perturbagen-info</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.FetchPerturbagenInfo</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>perturbagen-info</servlet-name>
+    <url-pattern>/api/perturbagen-info</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>counts</servlet-name>
+    <url-pattern>/api/counts</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>counts</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.GetCounts</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>fetch-counts</servlet-name>
+    <url-pattern>/api/fetch-counts</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>fetch-counts</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.FetchCounts</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>fetch-narreagents</servlet-name>
+    <url-pattern>/api/fetch-narreagents</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>fetch-narreagents</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.FetchNuclicAcidReagnets</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>modelsystems</servlet-name>
+    <url-pattern>/api/modelsystems</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>modelsystems</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.ModelSystems</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>fetch-modelsystems</servlet-name>
+    <url-pattern>/api/fetch-modelsystems</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>fetch-modelsystems</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.FetchModelSystemsJDBC</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>perturbagens</servlet-name>
+    <url-pattern>/api/perturbagens</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>perturbagens</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.Perturbagens</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>fetch-perturbagens</servlet-name>
+    <url-pattern>/api/fetch-perturbagens</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>fetch-perturbagens</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.FetchPerturbagensJDBC</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>signatures</servlet-name>
+    <url-pattern>/api/signatures</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>signatures</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.Signatures</servlet-class>
+</servlet>
+
+
+<servlet-mapping>
+    <servlet-name>signatures-summary</servlet-name>
+    <url-pattern>/api/signatures-summary</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>signatures-summary</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.FetchSignaturesJdbc</servlet-class>
+</servlet>
+
+ <servlet>
+    <servlet-name>search</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.SuggestJDBC</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>signatures-by-id</servlet-name>
+    <url-pattern>/api/signatures-by-id</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>signatures-by-id</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.SignaturesSummaryById</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>search</servlet-name>
+    <url-pattern>/api/search</url-pattern>
+</servlet-mapping>
+
+
+ <servlet>
+    <servlet-name>organized-suggest</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.OrganizedSuggestJDBC</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>organized-suggest</servlet-name>
+    <url-pattern>/api/organized-suggest</url-pattern>
+</servlet-mapping>
+
+  <servlet>
+        <display-name>SendMail</display-name>
+        <servlet-name>SendMail</servlet-name>
+        <servlet-class>edu.miami.ccs.dcic.SendMail</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SendMail</servlet-name>
+        <url-pattern>/api/SendMail</url-pattern>
+    </servlet-mapping>
+
+ <servlet>
+    <servlet-name>suggest-count</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.SuggestCount</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>suggest-count</servlet-name>
+    <url-pattern>/api/suggest-count</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>genelist</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.FetchSignaturesByGene</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>genelist</servlet-name>
+    <url-pattern>/api/genelist</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>signatures-count</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.FetchSignatureCount</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>signatures-count</servlet-name>
+    <url-pattern>/api/signatures-count</url-pattern>
+</servlet-mapping>
+
+<servlet>
+   
+    <servlet-name>bulk-download</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.AlternativeBulkDownload</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>bulk-download</servlet-name>
+    <url-pattern>/api/bulk-download</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>dataset-download-csv</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.DownloadDatasetscsv</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>dataset-download-csv</servlet-name>
+    <url-pattern>/api/dataset-download-csv</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>chart-feeder</servlet-name>
+    <servlet-class>edu.miami.ccs.dcic.ChartFeeder</servlet-class>
+</servlet>
+ 
+<servlet-mapping>
+    <servlet-name>chart-feeder</servlet-name>
+    <url-pattern>/api/chart-feeder</url-pattern>
+</servlet-mapping>
+    
+ </web-app>
